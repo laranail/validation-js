@@ -29,8 +29,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   application submit a payload it believed had been filtered.
 - Rules from `laranail/validation` that implement `Contracts\ClientCheckable` are checked in
   the browser using the rule's own pattern — `Slug`, `WithoutSpaces`, `SemVer`, `Subdomain`,
-  `EthereumAddress`. Anything performing a checksum, a query or IO keeps the server default,
+  `EthereumAddress`, `CaseStyle`, `Username`, `MonetaryAmount`, `VendorIdentifier` and
+  `PostalCode`. Anything performing a checksum, a query or IO keeps the server default,
   and an advertised rule name the runner does not implement is ignored rather than shipped.
-- A differential test: the PHP suite records Laravel's own verdicts over 196 rule-and-value
+- A differential test: the PHP suite records Laravel's own verdicts over 227 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.

@@ -6,7 +6,12 @@ use Illuminate\Support\Facades\Validator;
 use Simtabi\Laranail\Validation\Rules\Crypto\EthereumAddress;
 use Simtabi\Laranail\Validation\Rules\Identifiers\SemVer;
 use Simtabi\Laranail\Validation\Rules\Net\Subdomain;
+use Simtabi\Laranail\Validation\Rules\Numbers\MonetaryAmount;
+use Simtabi\Laranail\Validation\Rules\Postal\PostalCode;
+use Simtabi\Laranail\Validation\Rules\Text\CaseStyle;
 use Simtabi\Laranail\Validation\Rules\Text\Slug;
+use Simtabi\Laranail\Validation\Rules\Text\Username;
+use Simtabi\Laranail\Validation\Rules\Vendor\VendorIdentifier;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
 
 /**
@@ -117,6 +122,30 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
                 'schema' => $exporter->export(['field' => [$rule]]),
                 'laravel' => Validator::make(['field' => $value], ['field' => [$rule]])->passes(),
                 'id' => class_basename($rule)." #{$index}",
+            ];
+        }
+    }
+
+    // The rules that gained a browser form. Each sends its OWN pattern, so
+    // what runs here is the expression the PHP rule matches against.
+    foreach ([
+        [new CaseStyle('kebab'), ['my-post', 'myPost', 'my_post']],
+        [new Username(3, 12), ['alice', 'al', 'a_b', 'a__b', 'aliceandbobandcarol']],
+        [new MonetaryAmount, ['12.34', '12.345', '-12.00', '1e3', '1,234.50']],
+        [new MonetaryAmount(2, true), ['-12.00', '12.00']],
+        [new VendorIdentifier('aws_region'), ['us-east-1', 'US-EAST-1', 'us-east']],
+        [new VendorIdentifier('google_analytics'), ['G-ABCDE12345', 'g-abcde12345', 'UA-1-1']],
+        [new VendorIdentifier('microsoft_tenant'), ['common', '72f988bf-86f1-41af-91ab-2d7cd011db47', 'nope']],
+        [new PostalCode(['US']), ['90210', '9021', 'SW1A 1AA']],
+        [new PostalCode(['US', 'CA']), ['90210', 'K1A 0B1', 'k1a 0b1', 'nonsense']],
+    ] as [$rule, $values]) {
+        foreach ($values as $index => $value) {
+            $cases[] = [
+                'rule' => class_basename($rule),
+                'value' => $value,
+                'schema' => $exporter->export(['field' => [$rule]]),
+                'laravel' => Validator::make(['field' => $value], ['field' => [$rule]])->passes(),
+                'id' => class_basename($rule)." advertised #{$index} ".$value,
             ];
         }
     }

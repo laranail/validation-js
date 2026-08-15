@@ -83,7 +83,12 @@ A rule OBJECT normally routes to the server: its logic is PHP that was never sen
 implementing `Contracts\ClientCheckable` are the exception — they advertise their **own
 pattern**, which the exporter ships as a `regex` or `not_regex` rule.
 
-Today that is `Slug`, `WithoutSpaces`, `SemVer`, `Subdomain` and `EthereumAddress`.
+Today that is `Slug`, `WithoutSpaces`, `SemVer`, `Subdomain`, `EthereumAddress`, `CaseStyle`,
+`Username`, `MonetaryAmount`, `VendorIdentifier` and `PostalCode`.
+
+`PostalCode` sends only the countries it was given — one pattern each, never the hundred-country
+table — and sends nothing at all when built with `reference('country')`, because which pattern
+applies is not knowable while exporting.
 
 The contract returns a rule name and parameters rather than a JavaScript implementation, and
 that is the point: a hand-written twin of every rule would drift from the PHP one and disagree

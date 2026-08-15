@@ -4306,6 +4306,812 @@
         "id": "EthereumAddress #1"
     },
     {
+        "rule": "CaseStyle",
+        "value": "my-post",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CaseStyle advertised #0 my-post"
+    },
+    {
+        "rule": "CaseStyle",
+        "value": "myPost",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "CaseStyle advertised #1 myPost"
+    },
+    {
+        "rule": "CaseStyle",
+        "value": "my_post",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z0-9]+(?:-[a-z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "CaseStyle advertised #2 my_post"
+    },
+    {
+        "rule": "Username",
+        "value": "alice",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?=.{3,12}$)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "Username advertised #0 alice"
+    },
+    {
+        "rule": "Username",
+        "value": "al",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?=.{3,12}$)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "Username advertised #1 al"
+    },
+    {
+        "rule": "Username",
+        "value": "a_b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?=.{3,12}$)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "Username advertised #2 a_b"
+    },
+    {
+        "rule": "Username",
+        "value": "a__b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?=.{3,12}$)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "Username advertised #3 a__b"
+    },
+    {
+        "rule": "Username",
+        "value": "aliceandbobandcarol",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?=.{3,12}$)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "Username advertised #4 aliceandbobandcarol"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "12.34",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^\\+?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "MonetaryAmount advertised #0 12.34"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "12.345",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^\\+?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "MonetaryAmount advertised #1 12.345"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "-12.00",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^\\+?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "MonetaryAmount advertised #2 -12.00"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "1e3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^\\+?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "MonetaryAmount advertised #3 1e3"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "1,234.50",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^\\+?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "MonetaryAmount advertised #4 1,234.50"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "-12.00",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[+-]?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "MonetaryAmount advertised #0 -12.00"
+    },
+    {
+        "rule": "MonetaryAmount",
+        "value": "12.00",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[+-]?\\d+(?:\\.\\d{1,2})?$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "MonetaryAmount advertised #1 12.00"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "us-east-1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z]{2}(?:-gov)?-[a-z]{4,9}-\\d$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "VendorIdentifier advertised #0 us-east-1"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "US-EAST-1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z]{2}(?:-gov)?-[a-z]{4,9}-\\d$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "VendorIdentifier advertised #1 US-EAST-1"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "us-east",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z]{2}(?:-gov)?-[a-z]{4,9}-\\d$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "VendorIdentifier advertised #2 us-east"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "G-ABCDE12345",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^G-[A-Z0-9]{10}$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "VendorIdentifier advertised #0 G-ABCDE12345"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "g-abcde12345",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^G-[A-Z0-9]{10}$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "VendorIdentifier advertised #1 g-abcde12345"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "UA-1-1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^G-[A-Z0-9]{10}$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "VendorIdentifier advertised #2 UA-1-1"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "common",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:common|organizations|consumers|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "VendorIdentifier advertised #0 common"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:common|organizations|consumers|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "VendorIdentifier advertised #1 72f988bf-86f1-41af-91ab-2d7cd011db47"
+    },
+    {
+        "rule": "VendorIdentifier",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:common|organizations|consumers|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "VendorIdentifier advertised #2 nope"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "90210",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[0-9]{5}$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "PostalCode advertised #0 90210"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "9021",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[0-9]{5}$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "PostalCode advertised #1 9021"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "SW1A 1AA",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[0-9]{5}$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "PostalCode advertised #2 SW1A 1AA"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "90210",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:(?:[0-9]{5})|(?:(?i:[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z] ?[0-9][ABCEGHJ-NPRSTV-Z][0-9])))$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "PostalCode advertised #0 90210"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "K1A 0B1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:(?:[0-9]{5})|(?:(?i:[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z] ?[0-9][ABCEGHJ-NPRSTV-Z][0-9])))$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "PostalCode advertised #1 K1A 0B1"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "k1a 0b1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:(?:[0-9]{5})|(?:(?i:[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z] ?[0-9][ABCEGHJ-NPRSTV-Z][0-9])))$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "PostalCode advertised #2 k1a 0b1"
+    },
+    {
+        "rule": "PostalCode",
+        "value": "nonsense",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:(?:[0-9]{5})|(?:(?i:[ABCEGHJ-NPRSTVXY][0-9][ABCEGHJ-NPRSTV-Z] ?[0-9][ABCEGHJ-NPRSTV-Z][0-9])))$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "PostalCode advertised #3 nonsense"
+    },
+    {
         "rule": "required_if:kind,card",
         "value": null,
         "data": {
