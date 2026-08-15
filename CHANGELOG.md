@@ -21,6 +21,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   has it, rather than at export time, which does not; failures name the concrete path. Nested
   patterns work, an empty collection expands to nothing (matching Laravel), and cross-field
   rules resolve within the row before walking outward.
-- A differential test: the PHP suite records Laravel's own verdicts over 163 rule-and-value
+- The conditional presence family — `required_if`, `required_if_accepted`,
+  `required_if_declined`, `required_unless`, `required_with`, `required_with_all`,
+  `required_without`, `required_without_all` — decided in the browser, since every input they
+  need is already there. `exclude_*` deliberately stays on the server: it changes the shape of
+  the validated data rather than the verdict, and a client that faked that would have an
+  application submit a payload it believed had been filtered.
+- A differential test: the PHP suite records Laravel's own verdicts over 182 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.

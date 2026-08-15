@@ -98,9 +98,17 @@ export interface Context {
 
 export type Check = (value: unknown, params: Record<string, string>, ctx: Context) => boolean;
 
-/** Rules Laravel runs even when the value is absent or empty. */
+/**
+ * Rules Laravel runs even when the value is absent or empty.
+ *
+ * Every conditional-presence rule belongs here: their entire job is to decide
+ * whether an ABSENT field should have been there, so skipping them on an empty
+ * value would skip exactly the case they exist for.
+ */
 export const IMPLICIT = new Set([
     'required', 'filled', 'present', 'accepted', 'declined', 'confirmed', 'same', 'different',
+    'required_if', 'required_if_accepted', 'required_if_declined', 'required_unless',
+    'required_with', 'required_with_all', 'required_without', 'required_without_all',
 ]);
 
 export const checks: Record<string, Check> = {
@@ -181,6 +189,24 @@ export const checks: Record<string, Check> = {
     in: (v, p) => Object.values(p).includes(str(v)),
     not_in: (v, p) => !Object.values(p).includes(str(v)),
 
+    // Conditional presence. Each decides from OTHER fields whether this one
+    // is required, then defers to the same emptiness test `required` uses.
+    required_if: (v, p, c) => (matchesCondition(p, c) ? !isEmpty(v) : true),
+    required_unless: (v, p, c) => (matchesCondition(p, c) ? true : !isEmpty(v)),
+    required_if_accepted: (v, p, c) =>
+        checks.accepted(other(c, p.other), {}, c) ? !isEmpty(v) : true,
+    required_if_declined: (v, p, c) =>
+        checks.declined(other(c, p.other), {}, c) ? !isEmpty(v) : true,
+    // `required_with` asks whether ANY named field is present; `_all` whether
+    // every one is. `_without` and `_without_all` are their negations, and the
+    // asymmetry between the pairs is Laravel's, not a mistake here:
+    // `required_without:a,b` fires when ANY is missing, `_without_all` only
+    // when ALL are.
+    required_with: (v, p, c) => (fields(p).some((f) => present(c, f)) ? !isEmpty(v) : true),
+    required_with_all: (v, p, c) => (fields(p).every((f) => present(c, f)) ? !isEmpty(v) : true),
+    required_without: (v, p, c) => (fields(p).some((f) => !present(c, f)) ? !isEmpty(v) : true),
+    required_without_all: (v, p, c) => (fields(p).every((f) => !present(c, f)) ? !isEmpty(v) : true),
+
     accepted: (v) => ['yes', 'on', '1', 1, true, 'true'].includes(v as never),
     declined: (v) => ['no', 'off', '0', 0, false, 'false'].includes(v as never),
     confirmed: (v, p, c) => str(v) === str(other(c, p.other ?? `${basename(c.field)}_confirmation`)),
@@ -233,6 +259,39 @@ function decimals(value: string): number {
  */
 function other(ctx: Context, name: string | undefined): unknown {
     return name === undefined ? undefined : get(ctx.values, sibling(ctx.field, name, ctx.values));
+}
+
+/** Every parameter as a field name — for the rules whose params are all fields. */
+function fields(params: Record<string, string> | string[]): string[] {
+    return Object.values(params);
+}
+
+/** Is another field present and non-empty, resolved relative to the row? */
+function present(ctx: Context, name: string): boolean {
+    return !isEmpty(other(ctx, name));
+}
+
+/**
+ * Does the dependent field hold one of the rule's values?
+ *
+ * Position 0 is the field; everything after it is a value, and there may be
+ * several — `required_if:kind,card,cheque`. Comparison is loose by string,
+ * matching Laravel, so a submitted `1` matches a declared `"1"`.
+ */
+function matchesCondition(params: Record<string, string> | string[], ctx: Context): boolean {
+    const entries = Object.entries(params);
+    const field = (params as Record<string, string>).other ?? entries[0]?.[1];
+    const values = entries.filter(([key]) => key !== 'other' && key !== '0').map(([, value]) => value);
+    const actual = other(ctx, field);
+
+    // Laravel converts `true`/`false` parameters when the dependent is
+    // declared boolean. The schema does not carry that declaration, so a
+    // boolean value is compared in both spellings rather than guessed at.
+    return values.some((value) =>
+        typeof actual === 'boolean'
+            ? String(actual) === value || (actual ? value === '1' : value === '0')
+            : str(actual) === value,
+    );
 }
 
 /** The last segment of a dotted path — `items.0.email` is `email`. */

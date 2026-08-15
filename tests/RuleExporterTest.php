@@ -112,3 +112,47 @@ it('produces JSON the runner can parse', function (): void {
 
     expect(json_decode($json, true))->toHaveKeys(['version', 'fields', 'messages']);
 });
+
+it('checks the conditional presence family in the browser', function (string $rule): void {
+    // These decide requiredness from other fields in the same submission,
+    // all of which the browser already has. Sending them to the server spends
+    // a round trip on the commonest dynamic-form case.
+    $schema = exporter()->export(['field' => $rule]);
+
+    expect($schema['fields']['field']['server'])->toBeEmpty()
+        ->and($schema['fields']['field']['client'])->not->toBeEmpty();
+})->with([
+    'required_if:kind,card',
+    'required_unless:kind,cash',
+    'required_with:a',
+    'required_with_all:a,b',
+    'required_without:a',
+    'required_without_all:a,b',
+    'required_if_accepted:agree',
+]);
+
+it('keeps exclude_* on the server, because it changes the SHAPE of the result', function (string $rule): void {
+    // Every other rule answers pass or fail. `exclude_if` removes the field
+    // from validated() entirely, so a client that "handled" it would have to
+    // return a different data set, not a different verdict — a larger change
+    // than a rule implementation, and wrong to fake.
+    $schema = exporter()->export(['field' => $rule]);
+
+    expect($schema['fields']['field']['server'])->not->toBeEmpty()
+        ->and(array_column($schema['fields']['field']['client'], 'rule'))->not->toContain(explode(':', $rule)[0]);
+})->with([
+    'exclude',
+    'exclude_if:other,x',
+    'exclude_unless:other,x',
+    'exclude_with:other',
+    'exclude_without:other',
+]);
+
+it('names only the dependent field, leaving variadic values positional', function (): void {
+    // `required_if:kind,card,cheque` takes a field and then SEVERAL values.
+    // Naming the second would imply there is exactly one.
+    $params = exporter()->export(['f' => 'required_if:kind,card,cheque'])['fields']['f']['client'][0]['params'];
+
+    expect($params['other'])->toBe('kind')
+        ->and(array_values(array_diff_key($params, ['other' => null])))->toBe(['card', 'cheque']);
+});

@@ -3942,6 +3942,569 @@
         "id": "confirmed (x vs y)"
     },
     {
+        "rule": "required_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "card"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The field field is required when :other is :value."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #0 required_if:kind,card"
+    },
+    {
+        "rule": "required_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "cash"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The field field is required when :other is :value."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #1 required_if:kind,card"
+    },
+    {
+        "rule": "required_if:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "card",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The field field is required when :other is :value."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #2 required_if:kind,card"
+    },
+    {
+        "rule": "required_if:kind,card,cheque",
+        "value": null,
+        "data": {
+            "kind": "cheque"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card",
+                                "2": "cheque"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The field field is required when :other is :value."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #3 required_if:kind,card,cheque"
+    },
+    {
+        "rule": "required_if:kind,card,cheque",
+        "value": null,
+        "data": {
+            "kind": "cash"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card",
+                                "2": "cheque"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The field field is required when :other is :value."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #4 required_if:kind,card,cheque"
+    },
+    {
+        "rule": "required_unless:kind,cash",
+        "value": null,
+        "data": {
+            "kind": "card"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "cash"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The field field is required unless :other is in :values."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #5 required_unless:kind,cash"
+    },
+    {
+        "rule": "required_unless:kind,cash",
+        "value": null,
+        "data": {
+            "kind": "cash"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "cash"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The field field is required unless :other is in :values."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #6 required_unless:kind,cash"
+    },
+    {
+        "rule": "required_unless:kind,cash",
+        "value": "x",
+        "data": {
+            "kind": "card",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "cash"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The field field is required unless :other is in :values."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #7 required_unless:kind,cash"
+    },
+    {
+        "rule": "required_with:a",
+        "value": null,
+        "data": {
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The field field is required when :values is present."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #8 required_with:a"
+    },
+    {
+        "rule": "required_with:a",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The field field is required when :values is present."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #9 required_with:a"
+    },
+    {
+        "rule": "required_with:a,b",
+        "value": null,
+        "data": {
+            "b": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The field field is required when :values is present."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #10 required_with:a,b"
+    },
+    {
+        "rule": "required_with_all:a,b",
+        "value": null,
+        "data": {
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with_all": "The field field is required when :values are present."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #11 required_with_all:a,b"
+    },
+    {
+        "rule": "required_with_all:a,b",
+        "value": null,
+        "data": {
+            "a": "1",
+            "b": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with_all": "The field field is required when :values are present."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #12 required_with_all:a,b"
+    },
+    {
+        "rule": "required_without:a",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_without",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_without": "The field field is required when :values is not present."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #13 required_without:a"
+    },
+    {
+        "rule": "required_without:a",
+        "value": null,
+        "data": {
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_without",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_without": "The field field is required when :values is not present."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #14 required_without:a"
+    },
+    {
+        "rule": "required_without_all:a,b",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_without_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_without_all": "The field field is required when none of :values are present."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #15 required_without_all:a,b"
+    },
+    {
+        "rule": "required_without_all:a,b",
+        "value": null,
+        "data": {
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_without_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_without_all": "The field field is required when none of :values are present."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #16 required_without_all:a,b"
+    },
+    {
+        "rule": "required_if_accepted:agree",
+        "value": null,
+        "data": {
+            "agree": "yes"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if_accepted",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if_accepted": "The field field is required when :other is accepted."
+            }
+        },
+        "laravel": false,
+        "id": "conditional #17 required_if_accepted:agree"
+    },
+    {
+        "rule": "required_if_accepted:agree",
+        "value": null,
+        "data": {
+            "agree": "no"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if_accepted",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if_accepted": "The field field is required when :other is accepted."
+            }
+        },
+        "laravel": true,
+        "id": "conditional #18 required_if_accepted:agree"
+    },
+    {
         "rule": "items.*.email => required|email",
         "value": null,
         "data": {

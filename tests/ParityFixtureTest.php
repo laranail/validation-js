@@ -97,6 +97,39 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ];
     }
 
+    // Conditionals. The commonest dynamic-form case, and the one that most
+    // wastes a round trip when it falls to the server.
+    foreach ([
+        ['required_if:kind,card', ['kind' => 'card']],
+        ['required_if:kind,card', ['kind' => 'cash']],
+        ['required_if:kind,card', ['kind' => 'card', 'field' => 'x']],
+        ['required_if:kind,card,cheque', ['kind' => 'cheque']],
+        ['required_if:kind,card,cheque', ['kind' => 'cash']],
+        ['required_unless:kind,cash', ['kind' => 'card']],
+        ['required_unless:kind,cash', ['kind' => 'cash']],
+        ['required_unless:kind,cash', ['kind' => 'card', 'field' => 'x']],
+        ['required_with:a', ['a' => '1']],
+        ['required_with:a', []],
+        ['required_with:a,b', ['b' => '1']],
+        ['required_with_all:a,b', ['a' => '1']],
+        ['required_with_all:a,b', ['a' => '1', 'b' => '1']],
+        ['required_without:a', []],
+        ['required_without:a', ['a' => '1']],
+        ['required_without_all:a,b', []],
+        ['required_without_all:a,b', ['a' => '1']],
+        ['required_if_accepted:agree', ['agree' => 'yes']],
+        ['required_if_accepted:agree', ['agree' => 'no']],
+    ] as $index => [$rule, $data]) {
+        $cases[] = [
+            'rule' => $rule,
+            'value' => $data['field'] ?? null,
+            'data' => $data,
+            'schema' => $exporter->export(['field' => $rule]),
+            'laravel' => Validator::make($data, ['field' => $rule])->passes(),
+            'id' => "conditional #{$index} {$rule}",
+        ];
+    }
+
     // Wildcards. Laravel expands `items.*.email` against the submitted data
     // and validates each concrete path; a runner that treats the pattern as a
     // literal field name reports a failure on a field nobody submitted.

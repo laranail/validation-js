@@ -44,6 +44,13 @@ final class RuleCatalogue
         // Comparison against another field
         'accepted', 'confirmed', 'declined', 'different', 'same',
         'gt', 'gte', 'lt', 'lte',
+        // Conditional presence. These decide whether the field is required
+        // from OTHER fields in the same submission, all of which the browser
+        // already has — which is what makes them worth doing here rather than
+        // spending a round trip on the commonest dynamic-form case.
+        'required_if', 'required_if_accepted', 'required_if_declined',
+        'required_unless', 'required_with', 'required_with_all',
+        'required_without', 'required_without_all',
         // Substring
         'contains', 'doesnt_contain', 'doesnt_end_with', 'doesnt_start_with',
         'ends_with', 'starts_with',
@@ -108,8 +115,13 @@ final class RuleCatalogue
         'gte' => ['value'],
         'lt' => ['value'],
         'lte' => ['value'],
-        'required_if' => ['other', 'value'],
-        'required_unless' => ['other', 'value'],
+        // Only position 0 is named. These take a field and then a VARIADIC
+        // list of values — `required_if:kind,card,cheque` — so naming the
+        // second would imply there is exactly one.
+        'required_if' => ['other'],
+        'required_unless' => ['other'],
+        'required_if_accepted' => ['other'],
+        'required_if_declined' => ['other'],
         'confirmed' => ['other'],
     ];
 

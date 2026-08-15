@@ -7,7 +7,9 @@ Presence (`required`, `filled`, `present`, `nullable`, `sometimes`), types (`arr
 `min`, `size`), format (`alpha`, `alpha_dash`, `alpha_num`, `ascii`, `email`, `hex_color`, `ip`,
 `ipv4`, `ipv6`, `lowercase`, `mac_address`, `regex`, `not_regex`, `ulid`, `uppercase`, `url`,
 `uuid`), sets (`in`, `not_in`), cross-field (`accepted`, `confirmed`, `declined`, `different`,
-`same`, `gt`, `gte`, `lt`, `lte`), substring (`contains`, `doesnt_contain`, `ends_with`,
+`same`, `gt`, `gte`, `lt`, `lte`), conditional presence (`required_if`,
+`required_if_accepted`, `required_if_declined`, `required_unless`, `required_with`,
+`required_with_all`, `required_without`, `required_without_all`), substring (`contains`, `doesnt_contain`, `ends_with`,
 `starts_with`, and their `doesnt_` forms), and numeric (`decimal`, `multiple_of`).
 
 ## What does not, and why
@@ -18,6 +20,7 @@ Presence (`required`, `filled`, `present`, `nullable`, `sometimes`), types (`arr
 | `active_url` | DNS |
 | `current_password` | the session and a hash comparison |
 | `dimensions`, `image`, `mimes`, `mimetypes`, `extensions`, `file` | to read the file, which a browser can only approximate from a name |
+| `exclude`, `exclude_if`, `exclude_unless`, `exclude_with`, `exclude_without` | a different result model — see below |
 
 These are listed explicitly rather than merely omitted, because each is a case where a naive
 reading would put it on the client and be wrong.
@@ -44,6 +47,35 @@ suggests.
 
 **An empty value does not skip every rule.** Laravel runs its implicit rules regardless:
 `accepted` on `''` fails rather than being skipped.
+
+## Why `exclude_*` stays on the server
+
+Every other rule answers pass or fail. `exclude_if` does something else: it removes the field
+from `validated()` entirely, changing the SHAPE of the result rather than the verdict.
+
+A runner that "supported" it would have to return a different data set, not a different answer
+— and an application that trusted a client-side exclusion would submit a payload it believed
+had been filtered. That is a larger change than a rule implementation, and faking it is worse
+than routing it.
+
+## Conditional presence
+
+`required_if` and its family are decided in the browser, because every input they need — the
+value of another field in the same submission — is already there. Sending them to the server
+spends a round trip on the commonest dynamic-form case.
+
+Two details worth knowing:
+
+- **They are implicit rules.** Their whole job is to decide whether an *absent* field should
+  have been there, so skipping them on an empty value would skip exactly the case they exist
+  for.
+- **`required_without` and `required_without_all` are not symmetrical with the `_with` pair.**
+  `required_without:a,b` fires when ANY named field is missing; `required_without_all:a,b` only
+  when ALL are. That asymmetry is Laravel's.
+
+One limitation: Laravel converts `true`/`false` parameters when the dependent field is declared
+`boolean`, and the schema does not carry that declaration. A boolean value is therefore compared
+in both spellings rather than the declaration being guessed at.
 
 ## Wildcards
 
