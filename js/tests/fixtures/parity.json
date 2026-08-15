@@ -410,6 +410,246 @@
         "id": "numeric #5"
     },
     {
+        "rule": "numeric",
+        "value": "0x1A",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #6"
+    },
+    {
+        "rule": "numeric",
+        "value": "0b11",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #7"
+    },
+    {
+        "rule": "numeric",
+        "value": "0o17",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #8"
+    },
+    {
+        "rule": "numeric",
+        "value": "Infinity",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #9"
+    },
+    {
+        "rule": "numeric",
+        "value": "-Infinity",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #10"
+    },
+    {
+        "rule": "numeric",
+        "value": ".5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #11"
+    },
+    {
+        "rule": "numeric",
+        "value": "5.",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #12"
+    },
+    {
+        "rule": "numeric",
+        "value": "+5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #13"
+    },
+    {
+        "rule": "numeric",
+        "value": "1_000",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #14"
+    },
+    {
+        "rule": "numeric",
+        "value": "12.34.56",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #15"
+    },
+    {
         "rule": "integer",
         "value": "12",
         "schema": {
@@ -504,6 +744,78 @@
         },
         "laravel": false,
         "id": "integer #3"
+    },
+    {
+        "rule": "integer",
+        "value": "0x1A",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": false,
+        "id": "integer #4"
+    },
+    {
+        "rule": "integer",
+        "value": "0b11",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": false,
+        "id": "integer #5"
+    },
+    {
+        "rule": "integer",
+        "value": "Infinity",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": false,
+        "id": "integer #6"
     },
     {
         "rule": "string",
@@ -5110,6 +5422,772 @@
         },
         "laravel": false,
         "id": "PostalCode advertised #3 nonsense"
+    },
+    {
+        "rule": "Latitude",
+        "value": "0",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Latitude multi #0 0"
+    },
+    {
+        "rule": "Latitude",
+        "value": "90",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Latitude multi #1 90"
+    },
+    {
+        "rule": "Latitude",
+        "value": "-90",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Latitude multi #2 -90"
+    },
+    {
+        "rule": "Latitude",
+        "value": "90.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Latitude multi #3 90.1"
+    },
+    {
+        "rule": "Latitude",
+        "value": "-90.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Latitude multi #4 -90.1"
+    },
+    {
+        "rule": "Latitude",
+        "value": "45.5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Latitude multi #5 45.5"
+    },
+    {
+        "rule": "Latitude",
+        "value": "1e1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Latitude multi #6 1e1"
+    },
+    {
+        "rule": "Latitude",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Latitude multi #7 abc"
+    },
+    {
+        "rule": "Latitude",
+        "value": "0x1A",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Latitude multi #8 0x1A"
+    },
+    {
+        "rule": "Latitude",
+        "value": "Infinity",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-90",
+                                "max": "90"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Latitude multi #9 Infinity"
+    },
+    {
+        "rule": "Longitude",
+        "value": "180",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-180",
+                                "max": "180"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Longitude multi #0 180"
+    },
+    {
+        "rule": "Longitude",
+        "value": "-180",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-180",
+                                "max": "180"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Longitude multi #1 -180"
+    },
+    {
+        "rule": "Longitude",
+        "value": "180.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-180",
+                                "max": "180"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Longitude multi #2 180.1"
+    },
+    {
+        "rule": "Longitude",
+        "value": "0",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-180",
+                                "max": "180"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "Longitude multi #3 0"
+    },
+    {
+        "rule": "Longitude",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "-180",
+                                "max": "180"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "Longitude multi #4 abc"
+    },
+    {
+        "rule": "CssColor",
+        "value": "#fff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #0 #fff"
+    },
+    {
+        "rule": "CssColor",
+        "value": "#fffff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "CssColor multi #1 #fffff"
+    },
+    {
+        "rule": "CssColor",
+        "value": "red",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #2 red"
+    },
+    {
+        "rule": "CssColor",
+        "value": "rebeccapurple",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #3 rebeccapurple"
+    },
+    {
+        "rule": "CssColor",
+        "value": "transparent",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #4 transparent"
+    },
+    {
+        "rule": "CssColor",
+        "value": "rgb(1,2,3)",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #5 rgb(1,2,3)"
+    },
+    {
+        "rule": "CssColor",
+        "value": "rgb(300,0,0)",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #6 rgb(300,0,0)"
+    },
+    {
+        "rule": "CssColor",
+        "value": "hsl(120, 50%, 50%)",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #7 hsl(120, 50%, 50%)"
+    },
+    {
+        "rule": "CssColor",
+        "value": "notacolour",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})|rgba?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|hsla?\\(\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*,\\s*|\\s+)[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?(?:\\s*(?:,|\\/)\\s*[+-]?(?:\\d+\\.?\\d*|\\.\\d+)(?:%|deg|grad|rad|turn)?)?\\s*\\)|aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|rebeccapurple|red|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen|transparent|currentcolor)$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "CssColor multi #8 notacolour"
+    },
+    {
+        "rule": "CssColor",
+        "value": "#fff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8}))$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "CssColor multi #0 #fff"
+    },
+    {
+        "rule": "CssColor",
+        "value": "red",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^(?:#(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8}))$/i"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "CssColor multi #1 red"
     },
     {
         "rule": "required_if:kind,card",

@@ -84,15 +84,27 @@ implementing `Contracts\ClientCheckable` are the exception — they advertise th
 pattern**, which the exporter ships as a `regex` or `not_regex` rule.
 
 Today that is `Slug`, `WithoutSpaces`, `SemVer`, `Subdomain`, `EthereumAddress`, `CaseStyle`,
-`Username`, `MonetaryAmount`, `VendorIdentifier` and `PostalCode`.
+`Username`, `MonetaryAmount`, `VendorIdentifier`, `PostalCode`, `Latitude`, `Longitude` and
+`CssColor`.
+
+**A rule may advertise more than one.** `Latitude` is `is_numeric` plus a range, so its browser
+form is `numeric` **and** `between:-90,90` — two native rules the runner already implements,
+rather than a regex contorted into a bounded numeric range. All advertised rules must pass.
+
+If any one of them is unusable, the **whole** advertisement is dropped and the rule routes to
+the server. Exporting the usable half would check a field against a subset of its own rules and
+pass values the full set rejects — a green tick that is worse than a round trip.
 
 `PostalCode` sends only the countries it was given — one pattern each, never the hundred-country
 table — and sends nothing at all when built with `reference('country')`, because which pattern
 applies is not knowable while exporting.
 
-The contract returns a rule name and parameters rather than a JavaScript implementation, and
-that is the point: a hand-written twin of every rule would drift from the PHP one and disagree
-with the server in the cases nobody tested.
+The contract returns native Laravel rule names and parameters rather than a JavaScript
+implementation, and that is the point: a hand-written twin of every rule would drift from the
+PHP one and disagree with the server in the cases nobody tested.
+
+`CssColor` inlines the 150 named CSS colours into its pattern, about 2 KB. Leaving them out
+would mean a browser rejecting `red`.
 
 **No rule performing a checksum, a query or IO advertises one, and none should.** A shape-only
 pattern for an IBAN would pass a mistyped account number in the browser and fail it on the

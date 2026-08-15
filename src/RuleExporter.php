@@ -146,10 +146,12 @@ final readonly class RuleExporter
             }
 
             if ($single instanceof ValidationRule || $single instanceof Rule) {
-                $advertised = self::advertisedClientRule($single);
+                $advertised = self::advertisedClientRules($single);
 
-                if ($advertised !== null) {
-                    $exploded[] = [$advertised['rule'], $advertised['params']];
+                if ($advertised !== []) {
+                    foreach ($advertised as $clientRule) {
+                        $exploded[] = [$clientRule['rule'], $clientRule['params']];
+                    }
 
                     continue;
                 }
@@ -191,35 +193,41 @@ final readonly class RuleExporter
     }
 
     /**
-     * A rule's own browser-equivalent form, if it advertises one.
+     * A rule's own browser-equivalent rules, if it advertises any.
+     *
+     * A LIST, because a rule's browser form is not always one rule:
+     * `Geo\Latitude` is `numeric` AND `between:-90,90`. All of them are
+     * exported, and all must pass.
      *
      * `interface_exists` rather than a hard dependency: laranail/validation is
      * a suggest, not a require, and this package is useful without it. A
      * consumer who has not installed it simply has no rule objects that could
      * advertise anything.
      *
-     * @return array{rule: string, params: list<string>}|null
+     * @return list<array{rule: string, params: list<string>}>
      */
-    private static function advertisedClientRule(object $rule): ?array
+    private static function advertisedClientRules(object $rule): array
     {
         if (! interface_exists(ClientCheckable::class) || ! $rule instanceof ClientCheckable) {
-            return null;
+            return [];
         }
 
-        $advertised = $rule->clientRule();
+        $exported = [];
 
-        if ($advertised === null) {
-            return null;
+        foreach ($rule->clientRules() as $advertised) {
+            // Only names the runner implements. A rule inventing its own would
+            // be exported and then silently do nothing, which is the failure
+            // mode the server default exists to prevent — and it must take the
+            // WHOLE advertisement with it, or the field would be checked
+            // against a subset of its own rules and pass too easily.
+            if (! RuleCatalogue::isClientCheckable($advertised['rule'])) {
+                return [];
+            }
+
+            $exported[] = ['rule' => $advertised['rule'], 'params' => array_values($advertised['params'])];
         }
 
-        // Only names the runner implements. A rule inventing its own would be
-        // exported and then silently do nothing, which is the failure mode the
-        // server default exists to prevent.
-        if (! RuleCatalogue::isClientCheckable($advertised['rule'])) {
-            return null;
-        }
-
-        return ['rule' => $advertised['rule'], 'params' => array_values($advertised['params'])];
+        return $exported;
     }
 
     private static function objectName(object $rule): string

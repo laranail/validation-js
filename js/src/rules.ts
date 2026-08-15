@@ -46,7 +46,7 @@ export function sizeOf(value: unknown, isNumeric: boolean): number {
         // A numeric string under a numeric rule is compared by VALUE, not by
         // length. "9" is greater than "10" by length and smaller by value, and
         // getting this backwards is the classic bug.
-        return isNumeric && value.trim() !== '' && !Number.isNaN(Number(value))
+        return isNumeric && numeric(value)
             ? Number(value)
             : [...value].length; // spread, so an emoji counts as one character
     }
@@ -75,11 +75,26 @@ function num(value: string | undefined): number {
     return Number(value ?? 0);
 }
 
-/** Is this value comparable as a number at all? */
+/**
+ * PHP's `is_numeric` grammar, not JavaScript's `Number()`.
+ *
+ * The two disagree on more than they agree about at the edges, and every
+ * disagreement is in the dangerous direction — the browser accepting what the
+ * server rejects. `Number()` parses hexadecimal (`0x1A`), binary (`0b11`),
+ * octal (`0o17`) and the word `Infinity`; `is_numeric` accepts none of them.
+ *
+ * The accepted form is: optional surrounding whitespace, an optional sign,
+ * then digits with an optional fractional part or a bare fractional part, then
+ * an optional exponent. Leading AND trailing whitespace are allowed because
+ * PHP 8 allows both.
+ */
+const PHP_NUMERIC = /^\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?\s*$/;
+
 function numeric(value: unknown): boolean {
     if (typeof value === 'number') return Number.isFinite(value);
     if (typeof value !== 'string') return false;
-    return value.trim() !== '' && !Number.isNaN(Number(value));
+
+    return PHP_NUMERIC.test(value);
 }
 
 /**

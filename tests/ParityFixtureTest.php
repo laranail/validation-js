@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Validator;
+use Simtabi\Laranail\Validation\Rules\Colour\CssColor;
 use Simtabi\Laranail\Validation\Rules\Crypto\EthereumAddress;
+use Simtabi\Laranail\Validation\Rules\Geo\Latitude;
+use Simtabi\Laranail\Validation\Rules\Geo\Longitude;
 use Simtabi\Laranail\Validation\Rules\Identifiers\SemVer;
 use Simtabi\Laranail\Validation\Rules\Net\Subdomain;
 use Simtabi\Laranail\Validation\Rules\Numbers\MonetaryAmount;
@@ -29,8 +32,10 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
     $grid = [
         'required' => ['ok', '', '   ', null, [], ['a']],
         'email' => ['a@b.co', 'no-at', 'a@b', '', 'a b@c.co'],
-        'numeric' => ['12', '1.5', '-3', 'abc', '1e3', ''],
-        'integer' => ['12', '1.5', '-3', 'abc'],
+        // The literal forms JavaScript's Number() accepts and PHP's
+        // is_numeric() does not — hex, binary, octal, and the word Infinity.
+        'numeric' => ['12', '1.5', '-3', 'abc', '1e3', '', '0x1A', '0b11', '0o17', 'Infinity', '-Infinity', '.5', '5.', '+5', '1_000', '12.34.56'],
+        'integer' => ['12', '1.5', '-3', 'abc', '0x1A', '0b11', 'Infinity'],
         'string' => ['abc', 12, true, ''],
         'boolean' => [true, false, 1, 0, '1', '0', 'yes', 2],
         'alpha' => ['abc', 'abc1', 'ábc', 'a b'],
@@ -146,6 +151,25 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
                 'schema' => $exporter->export(['field' => [$rule]]),
                 'laravel' => Validator::make(['field' => $value], ['field' => [$rule]])->passes(),
                 'id' => class_basename($rule)." advertised #{$index} ".$value,
+            ];
+        }
+    }
+
+    // The rules whose browser form is more than one rule, or a pattern that
+    // had been dismissed as too large.
+    foreach ([
+        [new Latitude, ['0', '90', '-90', '90.1', '-90.1', '45.5', '1e1', 'abc', '0x1A', 'Infinity']],
+        [new Longitude, ['180', '-180', '180.1', '0', 'abc']],
+        [new CssColor, ['#fff', '#fffff', 'red', 'rebeccapurple', 'transparent', 'rgb(1,2,3)', 'rgb(300,0,0)', 'hsl(120, 50%, 50%)', 'notacolour']],
+        [new CssColor(['hex']), ['#fff', 'red']],
+    ] as [$rule, $values]) {
+        foreach ($values as $index => $value) {
+            $cases[] = [
+                'rule' => class_basename($rule),
+                'value' => $value,
+                'schema' => $exporter->export(['field' => [$rule]]),
+                'laravel' => Validator::make(['field' => $value], ['field' => [$rule]])->passes(),
+                'id' => class_basename($rule)." multi #{$index} ".$value,
             ];
         }
     }

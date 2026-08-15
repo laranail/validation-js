@@ -8,6 +8,7 @@ use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
 use Simtabi\Laranail\Validation\Rules\Banking\Iban;
 use Simtabi\Laranail\Validation\Rules\Banking\Luhn;
 use Simtabi\Laranail\Validation\Rules\Crypto\BitcoinAddress;
+use Simtabi\Laranail\Validation\Rules\Geo\Latitude;
 use Simtabi\Laranail\Validation\Rules\Identifiers\Imei;
 use Simtabi\Laranail\Validation\Rules\Text\Slug;
 use Simtabi\Laranail\ValidationJs\RuleCatalogue;
@@ -163,6 +164,44 @@ it('names only the dependent field, leaving variadic values positional', functio
         ->and(array_values(array_diff_key($params, ['other' => null])))->toBe(['card', 'cheque']);
 });
 
+it('exports every rule a multi-rule advertisement carries', function (): void {
+    // Latitude is `is_numeric` plus a range, so its browser form is two native
+    // rules. Exporting only the first would check that 'abc' is not a latitude
+    // while letting 1000 through.
+    $schema = exporter()->export(['lat' => [new Latitude]]);
+
+    expect($schema['fields']['lat']['server'])->toBeEmpty()
+        ->and(array_column($schema['fields']['lat']['client'], 'rule'))->toBe(['numeric', 'between'])
+        // Named by the catalogue on the way out, like any other between:
+        // an advertised rule goes through the same parameter naming as a
+        // string rule, so the runner reads one set of keys.
+        ->and($schema['fields']['lat']['client'][1]['params'])->toBe(['min' => '-90', 'max' => '90']);
+});
+
+it('rejects a partial advertisement whole, rather than exporting a subset', function (): void {
+    // If any advertised rule is unusable, the WHOLE advertisement is dropped.
+    // Exporting the usable half would check a field against a subset of its
+    // own rules and pass values the full set rejects — a green tick that is
+    // worse than a round trip.
+    $rule = new class implements ClientCheckable, ValidationRule
+    {
+        public function validate(string $attribute, mixed $value, Closure $fail): void {}
+
+        public function clientRules(): array
+        {
+            return [
+                ['rule' => 'numeric', 'params' => []],
+                ['rule' => 'not_a_real_rule', 'params' => []],
+            ];
+        }
+    };
+
+    $schema = exporter()->export(['f' => [$rule]]);
+
+    expect($schema['fields']['f']['client'])->toBeEmpty()
+        ->and($schema['fields']['f']['server'])->not->toBeEmpty();
+});
+
 it('honours a rule that advertises a browser form', function (): void {
     // laranail/validation's Slug returns its OWN pattern, so what runs in the
     // browser is the same expression the PHP rule uses.
@@ -203,12 +242,9 @@ it('ignores an advertised rule the runner does not implement', function (): void
     {
         public function validate(string $attribute, mixed $value, Closure $fail): void {}
 
-        // Narrower than the interface's ?array, which PHP allows: this one
-        // never returns null, because the test is about what the exporter
-        // does with an unknown NAME rather than with a null.
-        public function clientRule(): array
+        public function clientRules(): array
         {
-            return ['rule' => 'not_a_real_rule', 'params' => []];
+            return [['rule' => 'not_a_real_rule', 'params' => []]];
         }
     };
 
