@@ -1,0 +1,26 @@
+name: phpstan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          # fileinfo: league/flysystem-local requires it via laravel/framework.
+          extensions: dom, curl, libxml, mbstring, zip, fileinfo, intl, pdo_sqlite, sqlite3
+          coverage: none
+
+      - name: Install dependencies
+        run: composer update --prefer-dist --no-interaction
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --error-format=github
