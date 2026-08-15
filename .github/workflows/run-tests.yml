@@ -16,7 +16,7 @@ jobs:
         stability: [prefer-lowest, prefer-stable]
     name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.stability }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     name: JavaScript
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Parity fixture is current
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
