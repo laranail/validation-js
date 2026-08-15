@@ -20,7 +20,11 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: dom, curl, libxml, mbstring, zip, intl
+          # fileinfo is required by league/flysystem-local, which
+          # laravel/framework pulls in. Linux images ship it; the Windows PHP
+          # build does not unless asked, so composer could not resolve at all
+          # and every Windows cell failed while every Linux one passed.
+          extensions: dom, curl, libxml, mbstring, zip, fileinfo, intl, pdo_sqlite, sqlite3
           coverage: none
       - run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
       - run: vendor/bin/pest
@@ -45,7 +49,11 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: dom, curl, libxml, mbstring, zip, intl
+          # fileinfo is required by league/flysystem-local, which
+          # laravel/framework pulls in. Linux images ship it; the Windows PHP
+          # build does not unless asked, so composer could not resolve at all
+          # and every Windows cell failed while every Linux one passed.
+          extensions: dom, curl, libxml, mbstring, zip, fileinfo, intl, pdo_sqlite, sqlite3
           coverage: none
       - uses: actions/setup-node@v4
         with:
