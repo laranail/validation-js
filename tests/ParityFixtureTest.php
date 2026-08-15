@@ -1,0 +1,105 @@
+<?php
+
+declare(strict_types=1);
+
+use Illuminate\Support\Facades\Validator;
+use Simtabi\Laranail\ValidationJs\RuleExporter;
+
+/**
+ * Generates the fixture the JavaScript parity test consumes.
+ *
+ * This is the only honest way to claim the runner "matches Laravel": run the
+ * real validator over a grid of rules and values, record its verdicts, and
+ * make the JavaScript reproduce them. Asserting the runner against my own
+ * expectations would only prove it matches what I believed Laravel does —
+ * which, across this project, has repeatedly not been the same thing.
+ *
+ * The fixture is committed so the JS suite runs without PHP.
+ */
+it('writes the parity fixture from Laravel’s own verdicts', function (): void {
+    $grid = [
+        'required' => ['ok', '', '   ', null, [], ['a']],
+        'email' => ['a@b.co', 'no-at', 'a@b', '', 'a b@c.co'],
+        'numeric' => ['12', '1.5', '-3', 'abc', '1e3', ''],
+        'integer' => ['12', '1.5', '-3', 'abc'],
+        'string' => ['abc', 12, true, ''],
+        'boolean' => [true, false, 1, 0, '1', '0', 'yes', 2],
+        'alpha' => ['abc', 'abc1', 'ábc', 'a b'],
+        'alpha_num' => ['abc1', 'abc-1', 'ábc1'],
+        'alpha_dash' => ['a-b_c1', 'a b', 'a.b'],
+        'url' => ['https://a.co', 'http://a.co', 'ftp://a.co', 'a.co', 'javascript:alert(1)', 'file:///etc/passwd'],
+        'uuid' => ['3f2504e0-4f89-41d3-9a0c-0305e82c3301', 'nope', '3f2504e0-4f89-41d3-9a0c-0305e82c330'],
+        'ulid' => ['01ARZ3NDEKTSV4RRFFQ69G5FAV', 'nope'],
+        'ip' => ['127.0.0.1', '::1', '999.1.1.1', 'nope'],
+        'ipv4' => ['127.0.0.1', '::1', '256.1.1.1'],
+        'mac_address' => ['00:1B:44:11:3A:B7', '00-1B-44-11-3A-B7', 'nope'],
+        'hex_color' => ['#fff', '#ffffff', '#ffff', '#fffff', 'fff'],
+        'json' => ['{"a":1}', '[1,2]', 'not json', '"str"'],
+        'lowercase' => ['abc', 'Abc'],
+        'uppercase' => ['ABC', 'Abc'],
+        'ascii' => ['abc', 'ábc'],
+        'max:5' => ['abcde', 'abcdef', '5', '6', [1, 2, 3]],
+        'min:3' => ['abc', 'ab', '3', '2'],
+        'size:4' => ['abcd', 'abc', '4', '5'],
+        'between:2,4' => ['abc', 'a', 'abcde', '3', '9'],
+        'digits:4' => ['1234', '123', 'abcd'],
+        'digits_between:2,4' => ['123', '1', '12345'],
+        'numeric|max:5' => ['5', '6', '4.9'],
+        'numeric|min:3' => ['3', '2.9'],
+        'in:a,b,c' => ['a', 'd', ''],
+        'not_in:a,b' => ['c', 'a'],
+        'starts_with:ab,cd' => ['abc', 'cde', 'xyz'],
+        'ends_with:ing' => ['testing', 'tested'],
+        'contains:foo' => ['a foo b', 'a bar b'],
+        'accepted' => ['yes', 'on', '1', 1, true, 'no', ''],
+        'declined' => ['no', 'off', '0', 0, false, 'yes'],
+        'regex:/^[a-z]+$/' => ['abc', 'ABC', 'a1'],
+        'not_regex:/\d/' => ['abc', 'a1'],
+        'multiple_of:3' => ['9', '10', '0.3'],
+        'decimal:2' => ['1.23', '1.2', '1', '1.234'],
+        'gt:5' => ['6', '5', '4'],
+        'lte:5' => ['5', '6'],
+    ];
+
+    $exporter = new RuleExporter(app('translator'));
+    $cases = [];
+
+    foreach ($grid as $rule => $values) {
+        foreach ($values as $index => $value) {
+            $laravel = Validator::make(['field' => $value], ['field' => $rule])->passes();
+
+            $cases[] = [
+                'rule' => $rule,
+                'value' => $value,
+                'schema' => $exporter->export(['field' => $rule]),
+                'laravel' => $laravel,
+                'id' => "{$rule} #{$index}",
+            ];
+        }
+    }
+
+    // Cross-field rules need a second field present.
+    foreach ([
+        ['same:other', 'x', 'x'], ['same:other', 'x', 'y'],
+        ['different:other', 'x', 'y'], ['different:other', 'x', 'x'],
+        ['confirmed', 'x', 'x'], ['confirmed', 'x', 'y'],
+    ] as [$rule, $value, $other]) {
+        $key = $rule === 'confirmed' ? 'field_confirmation' : 'other';
+        $data = ['field' => $value, $key => $other];
+
+        $cases[] = [
+            'rule' => $rule,
+            'value' => $value,
+            'data' => $data,
+            'schema' => $exporter->export(['field' => $rule]),
+            'laravel' => Validator::make($data, ['field' => $rule])->passes(),
+            'id' => "{$rule} ({$value} vs {$other})",
+        ];
+    }
+
+    $path = dirname(__DIR__).'/js/tests/fixtures/parity.json';
+    file_put_contents($path, json_encode($cases, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+
+    expect($cases)->not->toBeEmpty()
+        ->and(file_exists($path))->toBeTrue();
+});

@@ -1,0 +1,3944 @@
+[
+    {
+        "rule": "required",
+        "value": "ok",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The field field is required."
+            }
+        },
+        "laravel": true,
+        "id": "required #0"
+    },
+    {
+        "rule": "required",
+        "value": "",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The field field is required."
+            }
+        },
+        "laravel": false,
+        "id": "required #1"
+    },
+    {
+        "rule": "required",
+        "value": "   ",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The field field is required."
+            }
+        },
+        "laravel": false,
+        "id": "required #2"
+    },
+    {
+        "rule": "required",
+        "value": null,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The field field is required."
+            }
+        },
+        "laravel": false,
+        "id": "required #3"
+    },
+    {
+        "rule": "required",
+        "value": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The field field is required."
+            }
+        },
+        "laravel": false,
+        "id": "required #4"
+    },
+    {
+        "rule": "required",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The field field is required."
+            }
+        },
+        "laravel": true,
+        "id": "required #5"
+    },
+    {
+        "rule": "email",
+        "value": "a@b.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The field field must be a valid email address."
+            }
+        },
+        "laravel": true,
+        "id": "email #0"
+    },
+    {
+        "rule": "email",
+        "value": "no-at",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The field field must be a valid email address."
+            }
+        },
+        "laravel": false,
+        "id": "email #1"
+    },
+    {
+        "rule": "email",
+        "value": "a@b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The field field must be a valid email address."
+            }
+        },
+        "laravel": true,
+        "id": "email #2"
+    },
+    {
+        "rule": "email",
+        "value": "",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The field field must be a valid email address."
+            }
+        },
+        "laravel": true,
+        "id": "email #3"
+    },
+    {
+        "rule": "email",
+        "value": "a b@c.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The field field must be a valid email address."
+            }
+        },
+        "laravel": false,
+        "id": "email #4"
+    },
+    {
+        "rule": "numeric",
+        "value": "12",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #0"
+    },
+    {
+        "rule": "numeric",
+        "value": "1.5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #1"
+    },
+    {
+        "rule": "numeric",
+        "value": "-3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #2"
+    },
+    {
+        "rule": "numeric",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": false,
+        "id": "numeric #3"
+    },
+    {
+        "rule": "numeric",
+        "value": "1e3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #4"
+    },
+    {
+        "rule": "numeric",
+        "value": "",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number."
+            }
+        },
+        "laravel": true,
+        "id": "numeric #5"
+    },
+    {
+        "rule": "integer",
+        "value": "12",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": true,
+        "id": "integer #0"
+    },
+    {
+        "rule": "integer",
+        "value": "1.5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": false,
+        "id": "integer #1"
+    },
+    {
+        "rule": "integer",
+        "value": "-3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": true,
+        "id": "integer #2"
+    },
+    {
+        "rule": "integer",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The field field must be an integer."
+            }
+        },
+        "laravel": false,
+        "id": "integer #3"
+    },
+    {
+        "rule": "string",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The field field must be a string."
+            }
+        },
+        "laravel": true,
+        "id": "string #0"
+    },
+    {
+        "rule": "string",
+        "value": 12,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The field field must be a string."
+            }
+        },
+        "laravel": false,
+        "id": "string #1"
+    },
+    {
+        "rule": "string",
+        "value": true,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The field field must be a string."
+            }
+        },
+        "laravel": false,
+        "id": "string #2"
+    },
+    {
+        "rule": "string",
+        "value": "",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The field field must be a string."
+            }
+        },
+        "laravel": true,
+        "id": "string #3"
+    },
+    {
+        "rule": "boolean",
+        "value": true,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": true,
+        "id": "boolean #0"
+    },
+    {
+        "rule": "boolean",
+        "value": false,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": true,
+        "id": "boolean #1"
+    },
+    {
+        "rule": "boolean",
+        "value": 1,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": true,
+        "id": "boolean #2"
+    },
+    {
+        "rule": "boolean",
+        "value": 0,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": true,
+        "id": "boolean #3"
+    },
+    {
+        "rule": "boolean",
+        "value": "1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": true,
+        "id": "boolean #4"
+    },
+    {
+        "rule": "boolean",
+        "value": "0",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": true,
+        "id": "boolean #5"
+    },
+    {
+        "rule": "boolean",
+        "value": "yes",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": false,
+        "id": "boolean #6"
+    },
+    {
+        "rule": "boolean",
+        "value": 2,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The field field must be true or false."
+            }
+        },
+        "laravel": false,
+        "id": "boolean #7"
+    },
+    {
+        "rule": "alpha",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha": "The field field must only contain letters."
+            }
+        },
+        "laravel": true,
+        "id": "alpha #0"
+    },
+    {
+        "rule": "alpha",
+        "value": "abc1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha": "The field field must only contain letters."
+            }
+        },
+        "laravel": false,
+        "id": "alpha #1"
+    },
+    {
+        "rule": "alpha",
+        "value": "\u00e1bc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha": "The field field must only contain letters."
+            }
+        },
+        "laravel": true,
+        "id": "alpha #2"
+    },
+    {
+        "rule": "alpha",
+        "value": "a b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha": "The field field must only contain letters."
+            }
+        },
+        "laravel": false,
+        "id": "alpha #3"
+    },
+    {
+        "rule": "alpha_num",
+        "value": "abc1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha_num",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha_num": "The field field must only contain letters and numbers."
+            }
+        },
+        "laravel": true,
+        "id": "alpha_num #0"
+    },
+    {
+        "rule": "alpha_num",
+        "value": "abc-1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha_num",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha_num": "The field field must only contain letters and numbers."
+            }
+        },
+        "laravel": false,
+        "id": "alpha_num #1"
+    },
+    {
+        "rule": "alpha_num",
+        "value": "\u00e1bc1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha_num",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha_num": "The field field must only contain letters and numbers."
+            }
+        },
+        "laravel": true,
+        "id": "alpha_num #2"
+    },
+    {
+        "rule": "alpha_dash",
+        "value": "a-b_c1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha_dash",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha_dash": "The field field must only contain letters, numbers, dashes, and underscores."
+            }
+        },
+        "laravel": true,
+        "id": "alpha_dash #0"
+    },
+    {
+        "rule": "alpha_dash",
+        "value": "a b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha_dash",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha_dash": "The field field must only contain letters, numbers, dashes, and underscores."
+            }
+        },
+        "laravel": false,
+        "id": "alpha_dash #1"
+    },
+    {
+        "rule": "alpha_dash",
+        "value": "a.b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "alpha_dash",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.alpha_dash": "The field field must only contain letters, numbers, dashes, and underscores."
+            }
+        },
+        "laravel": false,
+        "id": "alpha_dash #2"
+    },
+    {
+        "rule": "url",
+        "value": "https://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The field field must be a valid URL."
+            }
+        },
+        "laravel": true,
+        "id": "url #0"
+    },
+    {
+        "rule": "url",
+        "value": "http://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The field field must be a valid URL."
+            }
+        },
+        "laravel": true,
+        "id": "url #1"
+    },
+    {
+        "rule": "url",
+        "value": "ftp://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The field field must be a valid URL."
+            }
+        },
+        "laravel": true,
+        "id": "url #2"
+    },
+    {
+        "rule": "url",
+        "value": "a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The field field must be a valid URL."
+            }
+        },
+        "laravel": false,
+        "id": "url #3"
+    },
+    {
+        "rule": "url",
+        "value": "javascript:alert(1)",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The field field must be a valid URL."
+            }
+        },
+        "laravel": false,
+        "id": "url #4"
+    },
+    {
+        "rule": "url",
+        "value": "file:///etc/passwd",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The field field must be a valid URL."
+            }
+        },
+        "laravel": false,
+        "id": "url #5"
+    },
+    {
+        "rule": "uuid",
+        "value": "3f2504e0-4f89-41d3-9a0c-0305e82c3301",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "uuid",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.uuid": "The field field must be a valid UUID."
+            }
+        },
+        "laravel": true,
+        "id": "uuid #0"
+    },
+    {
+        "rule": "uuid",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "uuid",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.uuid": "The field field must be a valid UUID."
+            }
+        },
+        "laravel": false,
+        "id": "uuid #1"
+    },
+    {
+        "rule": "uuid",
+        "value": "3f2504e0-4f89-41d3-9a0c-0305e82c330",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "uuid",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.uuid": "The field field must be a valid UUID."
+            }
+        },
+        "laravel": false,
+        "id": "uuid #2"
+    },
+    {
+        "rule": "ulid",
+        "value": "01ARZ3NDEKTSV4RRFFQ69G5FAV",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ulid",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ulid": "The field field must be a valid ULID."
+            }
+        },
+        "laravel": true,
+        "id": "ulid #0"
+    },
+    {
+        "rule": "ulid",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ulid",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ulid": "The field field must be a valid ULID."
+            }
+        },
+        "laravel": false,
+        "id": "ulid #1"
+    },
+    {
+        "rule": "ip",
+        "value": "127.0.0.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ip",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ip": "The field field must be a valid IP address."
+            }
+        },
+        "laravel": true,
+        "id": "ip #0"
+    },
+    {
+        "rule": "ip",
+        "value": "::1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ip",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ip": "The field field must be a valid IP address."
+            }
+        },
+        "laravel": true,
+        "id": "ip #1"
+    },
+    {
+        "rule": "ip",
+        "value": "999.1.1.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ip",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ip": "The field field must be a valid IP address."
+            }
+        },
+        "laravel": false,
+        "id": "ip #2"
+    },
+    {
+        "rule": "ip",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ip",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ip": "The field field must be a valid IP address."
+            }
+        },
+        "laravel": false,
+        "id": "ip #3"
+    },
+    {
+        "rule": "ipv4",
+        "value": "127.0.0.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv4",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv4": "The field field must be a valid IPv4 address."
+            }
+        },
+        "laravel": true,
+        "id": "ipv4 #0"
+    },
+    {
+        "rule": "ipv4",
+        "value": "::1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv4",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv4": "The field field must be a valid IPv4 address."
+            }
+        },
+        "laravel": false,
+        "id": "ipv4 #1"
+    },
+    {
+        "rule": "ipv4",
+        "value": "256.1.1.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv4",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv4": "The field field must be a valid IPv4 address."
+            }
+        },
+        "laravel": false,
+        "id": "ipv4 #2"
+    },
+    {
+        "rule": "mac_address",
+        "value": "00:1B:44:11:3A:B7",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "mac_address",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.mac_address": "The field field must be a valid MAC address."
+            }
+        },
+        "laravel": true,
+        "id": "mac_address #0"
+    },
+    {
+        "rule": "mac_address",
+        "value": "00-1B-44-11-3A-B7",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "mac_address",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.mac_address": "The field field must be a valid MAC address."
+            }
+        },
+        "laravel": true,
+        "id": "mac_address #1"
+    },
+    {
+        "rule": "mac_address",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "mac_address",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.mac_address": "The field field must be a valid MAC address."
+            }
+        },
+        "laravel": false,
+        "id": "mac_address #2"
+    },
+    {
+        "rule": "hex_color",
+        "value": "#fff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "hex_color",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.hex_color": "The field field must be a valid hexadecimal color."
+            }
+        },
+        "laravel": true,
+        "id": "hex_color #0"
+    },
+    {
+        "rule": "hex_color",
+        "value": "#ffffff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "hex_color",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.hex_color": "The field field must be a valid hexadecimal color."
+            }
+        },
+        "laravel": true,
+        "id": "hex_color #1"
+    },
+    {
+        "rule": "hex_color",
+        "value": "#ffff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "hex_color",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.hex_color": "The field field must be a valid hexadecimal color."
+            }
+        },
+        "laravel": true,
+        "id": "hex_color #2"
+    },
+    {
+        "rule": "hex_color",
+        "value": "#fffff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "hex_color",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.hex_color": "The field field must be a valid hexadecimal color."
+            }
+        },
+        "laravel": false,
+        "id": "hex_color #3"
+    },
+    {
+        "rule": "hex_color",
+        "value": "fff",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "hex_color",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.hex_color": "The field field must be a valid hexadecimal color."
+            }
+        },
+        "laravel": false,
+        "id": "hex_color #4"
+    },
+    {
+        "rule": "json",
+        "value": "{\"a\":1}",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "json",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.json": "The field field must be a valid JSON string."
+            }
+        },
+        "laravel": true,
+        "id": "json #0"
+    },
+    {
+        "rule": "json",
+        "value": "[1,2]",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "json",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.json": "The field field must be a valid JSON string."
+            }
+        },
+        "laravel": true,
+        "id": "json #1"
+    },
+    {
+        "rule": "json",
+        "value": "not json",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "json",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.json": "The field field must be a valid JSON string."
+            }
+        },
+        "laravel": false,
+        "id": "json #2"
+    },
+    {
+        "rule": "json",
+        "value": "\"str\"",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "json",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.json": "The field field must be a valid JSON string."
+            }
+        },
+        "laravel": true,
+        "id": "json #3"
+    },
+    {
+        "rule": "lowercase",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lowercase",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lowercase": "The field field must be lowercase."
+            }
+        },
+        "laravel": true,
+        "id": "lowercase #0"
+    },
+    {
+        "rule": "lowercase",
+        "value": "Abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lowercase",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lowercase": "The field field must be lowercase."
+            }
+        },
+        "laravel": false,
+        "id": "lowercase #1"
+    },
+    {
+        "rule": "uppercase",
+        "value": "ABC",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "uppercase",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.uppercase": "The field field must be uppercase."
+            }
+        },
+        "laravel": true,
+        "id": "uppercase #0"
+    },
+    {
+        "rule": "uppercase",
+        "value": "Abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "uppercase",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.uppercase": "The field field must be uppercase."
+            }
+        },
+        "laravel": false,
+        "id": "uppercase #1"
+    },
+    {
+        "rule": "ascii",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ascii",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ascii": "The field field must only contain single-byte alphanumeric characters and symbols."
+            }
+        },
+        "laravel": true,
+        "id": "ascii #0"
+    },
+    {
+        "rule": "ascii",
+        "value": "\u00e1bc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ascii",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ascii": "The field field must only contain single-byte alphanumeric characters and symbols."
+            }
+        },
+        "laravel": false,
+        "id": "ascii #1"
+    },
+    {
+        "rule": "max:5",
+        "value": "abcde",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "max:5 #0"
+    },
+    {
+        "rule": "max:5",
+        "value": "abcdef",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "max:5 #1"
+    },
+    {
+        "rule": "max:5",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "max:5 #2"
+    },
+    {
+        "rule": "max:5",
+        "value": "6",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "max:5 #3"
+    },
+    {
+        "rule": "max:5",
+        "value": [
+            1,
+            2,
+            3
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "max:5 #4"
+    },
+    {
+        "rule": "min:3",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min": "The field field must be at least :min characters."
+            }
+        },
+        "laravel": true,
+        "id": "min:3 #0"
+    },
+    {
+        "rule": "min:3",
+        "value": "ab",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min": "The field field must be at least :min characters."
+            }
+        },
+        "laravel": false,
+        "id": "min:3 #1"
+    },
+    {
+        "rule": "min:3",
+        "value": "3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min": "The field field must be at least :min characters."
+            }
+        },
+        "laravel": false,
+        "id": "min:3 #2"
+    },
+    {
+        "rule": "min:3",
+        "value": "2",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min": "The field field must be at least :min characters."
+            }
+        },
+        "laravel": false,
+        "id": "min:3 #3"
+    },
+    {
+        "rule": "size:4",
+        "value": "abcd",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "size",
+                            "params": {
+                                "value": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.size": "The field field must be :size characters."
+            }
+        },
+        "laravel": true,
+        "id": "size:4 #0"
+    },
+    {
+        "rule": "size:4",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "size",
+                            "params": {
+                                "value": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.size": "The field field must be :size characters."
+            }
+        },
+        "laravel": false,
+        "id": "size:4 #1"
+    },
+    {
+        "rule": "size:4",
+        "value": "4",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "size",
+                            "params": {
+                                "value": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.size": "The field field must be :size characters."
+            }
+        },
+        "laravel": false,
+        "id": "size:4 #2"
+    },
+    {
+        "rule": "size:4",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "size",
+                            "params": {
+                                "value": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.size": "The field field must be :size characters."
+            }
+        },
+        "laravel": false,
+        "id": "size:4 #3"
+    },
+    {
+        "rule": "between:2,4",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "between:2,4 #0"
+    },
+    {
+        "rule": "between:2,4",
+        "value": "a",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "between:2,4 #1"
+    },
+    {
+        "rule": "between:2,4",
+        "value": "abcde",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "between:2,4 #2"
+    },
+    {
+        "rule": "between:2,4",
+        "value": "3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "between:2,4 #3"
+    },
+    {
+        "rule": "between:2,4",
+        "value": "9",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.between": "The field field must be between :min and :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "between:2,4 #4"
+    },
+    {
+        "rule": "digits:4",
+        "value": "1234",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits",
+                            "params": {
+                                "digits": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits": "The field field must be :digits digits."
+            }
+        },
+        "laravel": true,
+        "id": "digits:4 #0"
+    },
+    {
+        "rule": "digits:4",
+        "value": "123",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits",
+                            "params": {
+                                "digits": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits": "The field field must be :digits digits."
+            }
+        },
+        "laravel": false,
+        "id": "digits:4 #1"
+    },
+    {
+        "rule": "digits:4",
+        "value": "abcd",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits",
+                            "params": {
+                                "digits": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits": "The field field must be :digits digits."
+            }
+        },
+        "laravel": false,
+        "id": "digits:4 #2"
+    },
+    {
+        "rule": "digits_between:2,4",
+        "value": "123",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits_between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits_between": "The field field must be between :min and :max digits."
+            }
+        },
+        "laravel": true,
+        "id": "digits_between:2,4 #0"
+    },
+    {
+        "rule": "digits_between:2,4",
+        "value": "1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits_between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits_between": "The field field must be between :min and :max digits."
+            }
+        },
+        "laravel": false,
+        "id": "digits_between:2,4 #1"
+    },
+    {
+        "rule": "digits_between:2,4",
+        "value": "12345",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits_between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits_between": "The field field must be between :min and :max digits."
+            }
+        },
+        "laravel": false,
+        "id": "digits_between:2,4 #2"
+    },
+    {
+        "rule": "numeric|max:5",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "numeric|max:5 #0"
+    },
+    {
+        "rule": "numeric|max:5",
+        "value": "6",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": false,
+        "id": "numeric|max:5 #1"
+    },
+    {
+        "rule": "numeric|max:5",
+        "value": "4.9",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "max",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.max": "The field field must not be greater than :max characters."
+            }
+        },
+        "laravel": true,
+        "id": "numeric|max:5 #2"
+    },
+    {
+        "rule": "numeric|min:3",
+        "value": "3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.min": "The field field must be at least :min characters."
+            }
+        },
+        "laravel": true,
+        "id": "numeric|min:3 #0"
+    },
+    {
+        "rule": "numeric|min:3",
+        "value": "2.9",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The field field must be a number.",
+                "field.min": "The field field must be at least :min characters."
+            }
+        },
+        "laravel": false,
+        "id": "numeric|min:3 #1"
+    },
+    {
+        "rule": "in:a,b,c",
+        "value": "a",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected field is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "in:a,b,c #0"
+    },
+    {
+        "rule": "in:a,b,c",
+        "value": "d",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected field is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "in:a,b,c #1"
+    },
+    {
+        "rule": "in:a,b,c",
+        "value": "",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected field is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "in:a,b,c #2"
+    },
+    {
+        "rule": "not_in:a,b",
+        "value": "c",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_in": "The selected field is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "not_in:a,b #0"
+    },
+    {
+        "rule": "not_in:a,b",
+        "value": "a",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_in": "The selected field is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "not_in:a,b #1"
+    },
+    {
+        "rule": "starts_with:ab,cd",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "starts_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.starts_with": "The field field must start with one of the following: :values."
+            }
+        },
+        "laravel": true,
+        "id": "starts_with:ab,cd #0"
+    },
+    {
+        "rule": "starts_with:ab,cd",
+        "value": "cde",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "starts_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.starts_with": "The field field must start with one of the following: :values."
+            }
+        },
+        "laravel": true,
+        "id": "starts_with:ab,cd #1"
+    },
+    {
+        "rule": "starts_with:ab,cd",
+        "value": "xyz",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "starts_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.starts_with": "The field field must start with one of the following: :values."
+            }
+        },
+        "laravel": false,
+        "id": "starts_with:ab,cd #2"
+    },
+    {
+        "rule": "ends_with:ing",
+        "value": "testing",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ends_with",
+                            "params": [
+                                "ing"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ends_with": "The field field must end with one of the following: :values."
+            }
+        },
+        "laravel": true,
+        "id": "ends_with:ing #0"
+    },
+    {
+        "rule": "ends_with:ing",
+        "value": "tested",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ends_with",
+                            "params": [
+                                "ing"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ends_with": "The field field must end with one of the following: :values."
+            }
+        },
+        "laravel": false,
+        "id": "ends_with:ing #1"
+    },
+    {
+        "rule": "contains:foo",
+        "value": "a foo b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "contains",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.contains": "The field field is missing a required value."
+            }
+        },
+        "laravel": false,
+        "id": "contains:foo #0"
+    },
+    {
+        "rule": "contains:foo",
+        "value": "a bar b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "contains",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.contains": "The field field is missing a required value."
+            }
+        },
+        "laravel": false,
+        "id": "contains:foo #1"
+    },
+    {
+        "rule": "accepted",
+        "value": "yes",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": true,
+        "id": "accepted #0"
+    },
+    {
+        "rule": "accepted",
+        "value": "on",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": true,
+        "id": "accepted #1"
+    },
+    {
+        "rule": "accepted",
+        "value": "1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": true,
+        "id": "accepted #2"
+    },
+    {
+        "rule": "accepted",
+        "value": 1,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": true,
+        "id": "accepted #3"
+    },
+    {
+        "rule": "accepted",
+        "value": true,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": true,
+        "id": "accepted #4"
+    },
+    {
+        "rule": "accepted",
+        "value": "no",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": false,
+        "id": "accepted #5"
+    },
+    {
+        "rule": "accepted",
+        "value": "",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted": "The field field must be accepted."
+            }
+        },
+        "laravel": false,
+        "id": "accepted #6"
+    },
+    {
+        "rule": "declined",
+        "value": "no",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined": "The field field must be declined."
+            }
+        },
+        "laravel": true,
+        "id": "declined #0"
+    },
+    {
+        "rule": "declined",
+        "value": "off",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined": "The field field must be declined."
+            }
+        },
+        "laravel": true,
+        "id": "declined #1"
+    },
+    {
+        "rule": "declined",
+        "value": "0",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined": "The field field must be declined."
+            }
+        },
+        "laravel": true,
+        "id": "declined #2"
+    },
+    {
+        "rule": "declined",
+        "value": 0,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined": "The field field must be declined."
+            }
+        },
+        "laravel": true,
+        "id": "declined #3"
+    },
+    {
+        "rule": "declined",
+        "value": false,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined": "The field field must be declined."
+            }
+        },
+        "laravel": true,
+        "id": "declined #4"
+    },
+    {
+        "rule": "declined",
+        "value": "yes",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined": "The field field must be declined."
+            }
+        },
+        "laravel": false,
+        "id": "declined #5"
+    },
+    {
+        "rule": "regex:/^[a-z]+$/",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z]+$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "regex:/^[a-z]+$/ #0"
+    },
+    {
+        "rule": "regex:/^[a-z]+$/",
+        "value": "ABC",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z]+$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "regex:/^[a-z]+$/ #1"
+    },
+    {
+        "rule": "regex:/^[a-z]+$/",
+        "value": "a1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "regex",
+                            "params": {
+                                "pattern": "/^[a-z]+$/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "regex:/^[a-z]+$/ #2"
+    },
+    {
+        "rule": "not_regex:/\\d/",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_regex",
+                            "params": {
+                                "pattern": "/\\d/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_regex": "The field field format is invalid."
+            }
+        },
+        "laravel": true,
+        "id": "not_regex:/\\d/ #0"
+    },
+    {
+        "rule": "not_regex:/\\d/",
+        "value": "a1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_regex",
+                            "params": {
+                                "pattern": "/\\d/"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_regex": "The field field format is invalid."
+            }
+        },
+        "laravel": false,
+        "id": "not_regex:/\\d/ #1"
+    },
+    {
+        "rule": "multiple_of:3",
+        "value": "9",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "multiple_of",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.multiple_of": "The field field must be a multiple of :value."
+            }
+        },
+        "laravel": true,
+        "id": "multiple_of:3 #0"
+    },
+    {
+        "rule": "multiple_of:3",
+        "value": "10",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "multiple_of",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.multiple_of": "The field field must be a multiple of :value."
+            }
+        },
+        "laravel": false,
+        "id": "multiple_of:3 #1"
+    },
+    {
+        "rule": "multiple_of:3",
+        "value": "0.3",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "multiple_of",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.multiple_of": "The field field must be a multiple of :value."
+            }
+        },
+        "laravel": false,
+        "id": "multiple_of:3 #2"
+    },
+    {
+        "rule": "decimal:2",
+        "value": "1.23",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The field field must have :decimal decimal places."
+            }
+        },
+        "laravel": true,
+        "id": "decimal:2 #0"
+    },
+    {
+        "rule": "decimal:2",
+        "value": "1.2",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The field field must have :decimal decimal places."
+            }
+        },
+        "laravel": false,
+        "id": "decimal:2 #1"
+    },
+    {
+        "rule": "decimal:2",
+        "value": "1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The field field must have :decimal decimal places."
+            }
+        },
+        "laravel": false,
+        "id": "decimal:2 #2"
+    },
+    {
+        "rule": "decimal:2",
+        "value": "1.234",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The field field must have :decimal decimal places."
+            }
+        },
+        "laravel": false,
+        "id": "decimal:2 #3"
+    },
+    {
+        "rule": "gt:5",
+        "value": "6",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The field field must be greater than :value characters."
+            }
+        },
+        "laravel": true,
+        "id": "gt:5 #0"
+    },
+    {
+        "rule": "gt:5",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The field field must be greater than :value characters."
+            }
+        },
+        "laravel": false,
+        "id": "gt:5 #1"
+    },
+    {
+        "rule": "gt:5",
+        "value": "4",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The field field must be greater than :value characters."
+            }
+        },
+        "laravel": false,
+        "id": "gt:5 #2"
+    },
+    {
+        "rule": "lte:5",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lte",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lte": "The field field must be less than or equal to :value characters."
+            }
+        },
+        "laravel": true,
+        "id": "lte:5 #0"
+    },
+    {
+        "rule": "lte:5",
+        "value": "6",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lte",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lte": "The field field must be less than or equal to :value characters."
+            }
+        },
+        "laravel": false,
+        "id": "lte:5 #1"
+    },
+    {
+        "rule": "same:other",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The field field must match :other."
+            }
+        },
+        "laravel": true,
+        "id": "same:other (x vs x)"
+    },
+    {
+        "rule": "same:other",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "other": "y"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The field field must match :other."
+            }
+        },
+        "laravel": false,
+        "id": "same:other (x vs y)"
+    },
+    {
+        "rule": "different:other",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "other": "y"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "different",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.different": "The field field and :other must be different."
+            }
+        },
+        "laravel": true,
+        "id": "different:other (x vs y)"
+    },
+    {
+        "rule": "different:other",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "different",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.different": "The field field and :other must be different."
+            }
+        },
+        "laravel": false,
+        "id": "different:other (x vs x)"
+    },
+    {
+        "rule": "confirmed",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "field_confirmation": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "confirmed",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.confirmed": "The field field confirmation does not match."
+            }
+        },
+        "laravel": true,
+        "id": "confirmed (x vs x)"
+    },
+    {
+        "rule": "confirmed",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "field_confirmation": "y"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "confirmed",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.confirmed": "The field field confirmation does not match."
+            }
+        },
+        "laravel": false,
+        "id": "confirmed (x vs y)"
+    }
+]

@@ -1,0 +1,59 @@
+name: run-tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  php:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        php: ['8.4', '8.5']
+        stability: [prefer-lowest, prefer-stable]
+    name: PHP ${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.stability }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, intl
+          coverage: none
+      - run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+      - run: vendor/bin/pest
+
+  js:
+    runs-on: ubuntu-latest
+    name: JavaScript
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      # No install step: the library and its tests have zero dependencies, and
+      # Node strips the types natively.
+      - run: node --test 'js/tests/**/*.test.ts'
+
+  parity:
+    runs-on: ubuntu-latest
+    name: Parity fixture is current
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: dom, curl, libxml, mbstring, zip, intl
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: composer update --prefer-dist --no-interaction
+      # Regenerate from Laravel's own verdicts, then fail if the committed
+      # fixture disagrees. Without this the fixture silently rots and the
+      # parity claim becomes a claim about a snapshot of a past Laravel.
+      - run: vendor/bin/pest --filter=ParityFixture
+      - run: git diff --exit-code js/tests/fixtures/parity.json
+      - run: node --test 'js/tests/**/*.test.ts'
