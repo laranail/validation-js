@@ -77,6 +77,31 @@ One limitation: Laravel converts `true`/`false` parameters when the dependent fi
 `boolean`, and the schema does not carry that declaration. A boolean value is therefore compared
 in both spellings rather than the declaration being guessed at.
 
+## Rules from laranail/validation
+
+A rule OBJECT normally routes to the server: its logic is PHP that was never sent. Rules
+implementing `Contracts\ClientCheckable` are the exception — they advertise their **own
+pattern**, which the exporter ships as a `regex` or `not_regex` rule.
+
+Today that is `Slug`, `WithoutSpaces`, `SemVer`, `Subdomain` and `EthereumAddress`.
+
+The contract returns a rule name and parameters rather than a JavaScript implementation, and
+that is the point: a hand-written twin of every rule would drift from the PHP one and disagree
+with the server in the cases nobody tested.
+
+**No rule performing a checksum, a query or IO advertises one, and none should.** A shape-only
+pattern for an IBAN would pass a mistyped account number in the browser and fail it on the
+server — the precise failure this whole design avoids. Both packages carry tests asserting
+those rules stay server-side.
+
+Two things had to be right for this to work at all, and both fail safe:
+
+- Laravel **wraps** a rule object in `InvokableValidationRule` during `explode()`, so the
+  exporter unwraps before looking for the contract. Without that the contract is unreachable
+  and the server name is the wrapper's mangled FQN rather than the rule's.
+- An advertised rule name the runner does not implement is **ignored**, and the rule routes to
+  the server as usual.
+
 ## Wildcards
 
 A schema field key is a **pattern**, not a key. `items.*.email` never appears in the submitted

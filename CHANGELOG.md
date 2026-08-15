@@ -27,6 +27,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   need is already there. `exclude_*` deliberately stays on the server: it changes the shape of
   the validated data rather than the verdict, and a client that faked that would have an
   application submit a payload it believed had been filtered.
-- A differential test: the PHP suite records Laravel's own verdicts over 182 rule-and-value
+- Rules from `laranail/validation` that implement `Contracts\ClientCheckable` are checked in
+  the browser using the rule's own pattern — `Slug`, `WithoutSpaces`, `SemVer`, `Subdomain`,
+  `EthereumAddress`. Anything performing a checksum, a query or IO keeps the server default,
+  and an advertised rule name the runner does not implement is ignored rather than shipped.
+- A differential test: the PHP suite records Laravel's own verdicts over 196 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.

@@ -4,6 +4,12 @@ declare(strict_types=1);
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Validation\Rule;
+use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
+use Simtabi\Laranail\Validation\Rules\Banking\Iban;
+use Simtabi\Laranail\Validation\Rules\Banking\Luhn;
+use Simtabi\Laranail\Validation\Rules\Crypto\BitcoinAddress;
+use Simtabi\Laranail\Validation\Rules\Identifiers\Imei;
+use Simtabi\Laranail\Validation\Rules\Text\Slug;
 use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
 
@@ -155,4 +161,59 @@ it('names only the dependent field, leaving variadic values positional', functio
 
     expect($params['other'])->toBe('kind')
         ->and(array_values(array_diff_key($params, ['other' => null])))->toBe(['card', 'cheque']);
+});
+
+it('honours a rule that advertises a browser form', function (): void {
+    // laranail/validation's Slug returns its OWN pattern, so what runs in the
+    // browser is the same expression the PHP rule uses.
+    $schema = exporter()->export(['slug' => [new Slug]]);
+
+    expect($schema['fields']['slug']['server'])->toBeEmpty()
+        ->and($schema['fields']['slug']['client'][0]['rule'])->toBe('regex');
+});
+
+it('unwraps the invokable wrapper Laravel puts around a rule object', function (): void {
+    // explode() wraps a ValidationRule in InvokableValidationRule, so without
+    // unwrapping, the exporter sees the wrapper: ClientCheckable is
+    // unreachable and the server name is the wrapper's mangled FQN rather
+    // than the rule's.
+    $schema = exporter()->export(['f' => [new Iban]]);
+
+    expect($schema['fields']['f']['server'])->toBe(['iban']);
+});
+
+it('still routes a checksum rule to the server', function (string $class): void {
+    // These must never advertise a browser form: a shape-only pattern would
+    // pass a mistyped account number in the browser and fail it on the server.
+    $schema = exporter()->export(['f' => [new $class]]);
+
+    expect($schema['fields']['f']['client'])->toBeEmpty()
+        ->and($schema['fields']['f']['server'])->not->toBeEmpty();
+})->with([
+    Iban::class,
+    Luhn::class,
+    Imei::class,
+    BitcoinAddress::class,
+]);
+
+it('ignores an advertised rule the runner does not implement', function (): void {
+    // A rule inventing its own client rule name would be exported and then
+    // silently do nothing — the failure the server default exists to prevent.
+    $rule = new class implements ClientCheckable, ValidationRule
+    {
+        public function validate(string $attribute, mixed $value, Closure $fail): void {}
+
+        // Narrower than the interface's ?array, which PHP allows: this one
+        // never returns null, because the test is about what the exporter
+        // does with an unknown NAME rather than with a null.
+        public function clientRule(): array
+        {
+            return ['rule' => 'not_a_real_rule', 'params' => []];
+        }
+    };
+
+    $schema = exporter()->export(['f' => [$rule]]);
+
+    expect($schema['fields']['f']['client'])->toBeEmpty()
+        ->and($schema['fields']['f']['server'])->not->toBeEmpty();
 });

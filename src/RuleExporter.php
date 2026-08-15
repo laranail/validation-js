@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\ValidationJs;
 
 use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Validation\InvokableValidationRule;
 use Illuminate\Validation\ValidationRuleParser;
+use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
 use Stringable;
 
 /**
@@ -128,11 +131,32 @@ final readonly class RuleExporter
         }
 
         foreach ($forAttribute as $single) {
-            // A rule OBJECT cannot be evaluated in a browser: its logic is PHP
-            // that was never sent. Name it so the field still round trips
-            // rather than dropping it, which would silently reduce the rule
-            // set the client believes in.
-            if ($single instanceof ValidationRule) {
+            // A rule OBJECT cannot normally be evaluated in a browser: its
+            // logic is PHP that was never sent. Unless it says otherwise —
+            // laranail/validation's ClientCheckable lets a rule advertise a
+            // browser-equivalent form, and the rules that do return their OWN
+            // pattern, so there is no second implementation to drift.
+            // Laravel WRAPS a rule object in InvokableValidationRule during
+            // explode(), so the object reaching here is the wrapper, not the
+            // rule. Unwrapping first is what makes ClientCheckable reachable
+            // at all — and without it the server name is the wrapper's
+            // mangled FQN rather than the rule's.
+            if ($single instanceof InvokableValidationRule) {
+                $single = $single->invokable();
+            }
+
+            if ($single instanceof ValidationRule || $single instanceof Rule) {
+                $advertised = self::advertisedClientRule($single);
+
+                if ($advertised !== null) {
+                    $exploded[] = [$advertised['rule'], $advertised['params']];
+
+                    continue;
+                }
+
+                // Named rather than dropped, so the field still round trips.
+                // Dropping it would silently reduce the rule set the client
+                // believes in.
                 $exploded[] = [self::objectName($single), []];
 
                 continue;
@@ -166,7 +190,39 @@ final readonly class RuleExporter
         return $exploded;
     }
 
-    private static function objectName(ValidationRule $rule): string
+    /**
+     * A rule's own browser-equivalent form, if it advertises one.
+     *
+     * `interface_exists` rather than a hard dependency: laranail/validation is
+     * a suggest, not a require, and this package is useful without it. A
+     * consumer who has not installed it simply has no rule objects that could
+     * advertise anything.
+     *
+     * @return array{rule: string, params: list<string>}|null
+     */
+    private static function advertisedClientRule(object $rule): ?array
+    {
+        if (! interface_exists(ClientCheckable::class) || ! $rule instanceof ClientCheckable) {
+            return null;
+        }
+
+        $advertised = $rule->clientRule();
+
+        if ($advertised === null) {
+            return null;
+        }
+
+        // Only names the runner implements. A rule inventing its own would be
+        // exported and then silently do nothing, which is the failure mode the
+        // server default exists to prevent.
+        if (! RuleCatalogue::isClientCheckable($advertised['rule'])) {
+            return null;
+        }
+
+        return ['rule' => $advertised['rule'], 'params' => array_values($advertised['params'])];
+    }
+
+    private static function objectName(object $rule): string
     {
         return self::snake(class_basename($rule));
     }

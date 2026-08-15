@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Validator;
+use Simtabi\Laranail\Validation\Rules\Crypto\EthereumAddress;
+use Simtabi\Laranail\Validation\Rules\Identifiers\SemVer;
+use Simtabi\Laranail\Validation\Rules\Net\Subdomain;
+use Simtabi\Laranail\Validation\Rules\Text\Slug;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
 
 /**
@@ -95,6 +99,26 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
             'laravel' => Validator::make($data, ['field' => $rule])->passes(),
             'id' => "{$rule} ({$value} vs {$other})",
         ];
+    }
+
+    // Rules from laranail/validation that advertise a browser form. Each
+    // returns its OWN pattern, so what runs in the browser is the same
+    // expression the PHP rule uses — there is no second implementation.
+    foreach ([
+        [new Slug, ['my-post', 'My-Post', 'my--post', 'my post']],
+        [new SemVer, ['1.0.0', '1.0.0-alpha.1', '1.0', 'v1.0.0']],
+        [new Subdomain, ['blog', 'my-blog', '-blog', 'a_b']],
+        [new EthereumAddress, ['0x'.str_repeat('a', 40), '0x'.str_repeat('g', 40)]],
+    ] as [$rule, $values]) {
+        foreach ($values as $index => $value) {
+            $cases[] = [
+                'rule' => class_basename($rule),
+                'value' => $value,
+                'schema' => $exporter->export(['field' => [$rule]]),
+                'laravel' => Validator::make(['field' => $value], ['field' => [$rule]])->passes(),
+                'id' => class_basename($rule)." #{$index}",
+            ];
+        }
     }
 
     // Conditionals. The commonest dynamic-form case, and the one that most
