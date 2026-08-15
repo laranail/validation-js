@@ -97,6 +97,28 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ];
     }
 
+    // Wildcards. Laravel expands `items.*.email` against the submitted data
+    // and validates each concrete path; a runner that treats the pattern as a
+    // literal field name reports a failure on a field nobody submitted.
+    foreach ([
+        ['items.*.email', 'required|email', ['items' => [['email' => 'a@b.co'], ['email' => 'c@d.co']]]],
+        ['items.*.email', 'required|email', ['items' => [['email' => 'a@b.co'], ['email' => 'nope']]]],
+        ['items.*.email', 'required|email', ['items' => []]],
+        ['items.*.email', 'required|email', []],
+        ['items.*.qty', 'required|numeric|min:2', ['items' => [['qty' => '3']]]],
+        ['items.*.qty', 'required|numeric|min:2', ['items' => [['qty' => '1']]]],
+        ['rows.*.cols.*.v', 'required', ['rows' => [['cols' => [['v' => 'x'], ['v' => '']]]]]],
+    ] as $index => [$field, $rule, $data]) {
+        $cases[] = [
+            'rule' => "{$field} => {$rule}",
+            'value' => null,
+            'data' => $data,
+            'schema' => $exporter->export([$field => $rule]),
+            'laravel' => Validator::make($data, [$field => $rule])->passes(),
+            'id' => "wildcard #{$index} {$field}",
+        ];
+    }
+
     $path = dirname(__DIR__).'/js/tests/fixtures/parity.json';
     file_put_contents($path, json_encode($cases, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
 

@@ -23,6 +23,13 @@ use Stringable;
  */
 final readonly class RuleExporter
 {
+    /**
+     * Stands in for `*` while Laravel's parser runs. Any token works provided
+     * it is a legal attribute segment and cannot collide with a real field
+     * name — hence the underscores.
+     */
+    private const string WILDCARD_TOKEN = '__laranail_wildcard__';
+
     public function __construct(private ?Translator $translator = null) {}
 
     /**
@@ -94,7 +101,18 @@ final readonly class RuleExporter
      */
     private function explode(ValidationRuleParser $parser, string $attribute, mixed $rule): array
     {
-        $parsed = $parser->explode([$attribute => $rule]);
+        // ValidationRuleParser::explode() EXPANDS wildcards against the
+        // validator's data, and this exporter has none — it describes a rule
+        // set, not one submission. Left alone, `items.*.qty` expands to
+        // nothing and the field exports with an empty rule list, which the
+        // browser then treats as "nothing to check".
+        //
+        // So the wildcard is hidden from the parser behind a token that is a
+        // legal attribute name, and the pattern is kept as the schema key.
+        // Expansion belongs to the runner, which has the actual data.
+        $safe = str_replace('*', self::WILDCARD_TOKEN, $attribute);
+
+        $parsed = $parser->explode([$safe => $rule]);
         $exploded = [];
 
         $all = $parsed->rules;
@@ -103,7 +121,7 @@ final readonly class RuleExporter
             return [];
         }
 
-        $forAttribute = $all[$attribute] ?? [];
+        $forAttribute = $all[$safe] ?? [];
 
         if (! is_array($forAttribute)) {
             return [];

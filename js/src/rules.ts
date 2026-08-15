@@ -1,3 +1,4 @@
+import { get, sibling } from './paths.ts';
 import type { Values } from './types.ts';
 
 /**
@@ -182,9 +183,9 @@ export const checks: Record<string, Check> = {
 
     accepted: (v) => ['yes', 'on', '1', 1, true, 'true'].includes(v as never),
     declined: (v) => ['no', 'off', '0', 0, false, 'false'].includes(v as never),
-    confirmed: (v, p, c) => str(v) === str(c.values[p.other ?? `${c.field}_confirmation`]),
-    same: (v, p, c) => str(v) === str(c.values[p.other]),
-    different: (v, p, c) => str(v) !== str(c.values[p.other]),
+    confirmed: (v, p, c) => str(v) === str(other(c, p.other ?? `${basename(c.field)}_confirmation`)),
+    same: (v, p, c) => str(v) === str(other(c, p.other)),
+    different: (v, p, c) => str(v) !== str(other(c, p.other)),
 
     gt: (v, p, c) => compare(v, p.value, c) > 0,
     gte: (v, p, c) => compare(v, p.value, c) >= 0,
@@ -223,9 +224,26 @@ function decimals(value: string): number {
     return value.split('.')[1]?.length ?? 0;
 }
 
+/**
+ * Another field's value, resolved relative to the current row.
+ *
+ * Inside `items.0.password`, `same:password_confirmation` means the sibling in
+ * the SAME row. Resolving at the top level would compare every row against one
+ * shared field, which is not what the form means.
+ */
+function other(ctx: Context, name: string | undefined): unknown {
+    return name === undefined ? undefined : get(ctx.values, sibling(ctx.field, name, ctx.values));
+}
+
+/** The last segment of a dotted path — `items.0.email` is `email`. */
+function basename(field: string): string {
+    return field.split('.').pop() ?? field;
+}
+
 /** Compare against a literal, or against another field when one is named. */
-function compare(value: unknown, other: string | undefined, ctx: Context): number {
-    const against = other !== undefined && other in ctx.values ? ctx.values[other] : other;
+function compare(value: unknown, name: string | undefined, ctx: Context): number {
+    const resolved = other(ctx, name);
+    const against = resolved === undefined ? name : resolved;
     const a = sizeOf(value, ctx.numericField || numeric(value));
     const b = sizeOf(against, ctx.numericField || numeric(against));
     return a === b ? 0 : a > b ? 1 : -1;

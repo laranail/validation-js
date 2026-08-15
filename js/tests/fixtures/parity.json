@@ -3940,5 +3940,269 @@
         },
         "laravel": false,
         "id": "confirmed (x vs y)"
+    },
+    {
+        "rule": "items.*.email => required|email",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "email": "a@b.co"
+                },
+                {
+                    "email": "c@d.co"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.email": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.email.required": "The items.*.email field is required.",
+                "items.*.email.email": "The items.*.email field must be a valid email address."
+            }
+        },
+        "laravel": true,
+        "id": "wildcard #0 items.*.email"
+    },
+    {
+        "rule": "items.*.email => required|email",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "email": "a@b.co"
+                },
+                {
+                    "email": "nope"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.email": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.email.required": "The items.*.email field is required.",
+                "items.*.email.email": "The items.*.email field must be a valid email address."
+            }
+        },
+        "laravel": false,
+        "id": "wildcard #1 items.*.email"
+    },
+    {
+        "rule": "items.*.email => required|email",
+        "value": null,
+        "data": {
+            "items": []
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.email": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.email.required": "The items.*.email field is required.",
+                "items.*.email.email": "The items.*.email field must be a valid email address."
+            }
+        },
+        "laravel": true,
+        "id": "wildcard #2 items.*.email"
+    },
+    {
+        "rule": "items.*.email => required|email",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.email": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.email.required": "The items.*.email field is required.",
+                "items.*.email.email": "The items.*.email field must be a valid email address."
+            }
+        },
+        "laravel": true,
+        "id": "wildcard #3 items.*.email"
+    },
+    {
+        "rule": "items.*.qty => required|numeric|min:2",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "qty": "3"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.qty": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.qty.required": "The items.*.qty field is required.",
+                "items.*.qty.numeric": "The items.*.qty field must be a number.",
+                "items.*.qty.min": "The items.*.qty field must be at least :min characters."
+            }
+        },
+        "laravel": true,
+        "id": "wildcard #4 items.*.qty"
+    },
+    {
+        "rule": "items.*.qty => required|numeric|min:2",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "qty": "1"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.qty": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "min",
+                            "params": {
+                                "value": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.qty.required": "The items.*.qty field is required.",
+                "items.*.qty.numeric": "The items.*.qty field must be a number.",
+                "items.*.qty.min": "The items.*.qty field must be at least :min characters."
+            }
+        },
+        "laravel": false,
+        "id": "wildcard #5 items.*.qty"
+    },
+    {
+        "rule": "rows.*.cols.*.v => required",
+        "value": null,
+        "data": {
+            "rows": [
+                {
+                    "cols": [
+                        {
+                            "v": "x"
+                        },
+                        {
+                            "v": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "rows.*.cols.*.v": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "rows.*.cols.*.v.required": "The rows.*.cols.*.v field is required."
+            }
+        },
+        "laravel": false,
+        "id": "wildcard #6 rows.*.cols.*.v"
     }
 ]

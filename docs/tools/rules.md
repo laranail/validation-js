@@ -45,6 +45,28 @@ suggests.
 **An empty value does not skip every rule.** Laravel runs its implicit rules regardless:
 `accepted` on `''` fails rather than being skipped.
 
+## Wildcards
+
+A schema field key is a **pattern**, not a key. `items.*.email` never appears in the submitted
+data: the runner expands it against what was actually sent and checks each concrete path, and a
+failure names that path — `items.1.email`, not `items.*.email`.
+
+An empty or absent collection expands to **nothing**, so `items.*.email => required` passes for
+`{"items": []}`. Laravel behaves the same way: there is no item, so there is no field to
+require.
+
+Nested wildcards work: `rows.*.cols.*.v` expands the second only once the first is concrete.
+
+Cross-field rules resolve **within the row first**. Inside `items.0.password`, a
+`same:password_confirmation` means the sibling in that row, walking outward only if no such
+sibling exists. Resolving at the top level would compare every row against one shared field,
+which is not what the form means.
+
+> The expansion happens in the browser, not at export time, because the exporter describes a
+> rule SET rather than one submission — it has no data to expand against. Letting Laravel's
+> parser expand it there produced a field with an empty rule list, which the runner then read
+> as "nothing to check".
+
 ## A PHP regex that JavaScript cannot express
 
 `regex:` patterns are translated from PCRE. When a pattern uses a construct JavaScript lacks —

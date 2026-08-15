@@ -17,6 +17,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `RuleCatalogue`, classifying rules as client-checkable or server-only, where anything
   unrecognised — custom, package, or future-Laravel — defaults to the server.
 - `@laranail/validation-js`, a zero-dependency TypeScript runner implementing 60 rules.
-- A differential test: the PHP suite records Laravel's own verdicts over 156 rule-and-value
+- Wildcard support. `items.*.email` is expanded against the submitted data by the runner, which
+  has it, rather than at export time, which does not; failures name the concrete path. Nested
+  patterns work, an empty collection expands to nothing (matching Laravel), and cross-field
+  rules resolve within the row before walking outward.
+- A differential test: the PHP suite records Laravel's own verdicts over 163 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.

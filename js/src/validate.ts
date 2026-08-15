@@ -1,5 +1,6 @@
 import { checks, IMPLICIT, isEmpty } from './rules.ts';
 import type { Context } from './rules.ts';
+import { expand, get, has } from './paths.ts';
 import type { Failure, Result, Schema, Values } from './types.ts';
 
 /**
@@ -14,12 +15,17 @@ export function validate(values: Values, schema: Schema): Result {
     const failures: Failure[] = [];
     const undetermined: string[] = [];
 
-    for (const [field, definition] of Object.entries(schema.fields)) {
-        if (definition.server.length > 0) {
+    for (const [pattern, definition] of Object.entries(schema.fields)) {
+        // A field key is a PATTERN. `items.*.email` never appears in the data;
+        // Laravel expands it against what was submitted and checks each
+        // concrete path. An empty collection expands to nothing, which is why
+        // `items.*.email => required` passes for `{items: []}`.
+        for (const field of expand(pattern, values)) {
+        if (definition.server.length > 0 && !undetermined.includes(field)) {
             undetermined.push(field);
         }
 
-        const value = values[field];
+        const value = get(values, field);
         const rules = definition.client;
 
         // `nullable` and `sometimes` are structural: they decide whether the
@@ -38,7 +44,7 @@ export function validate(values: Values, schema: Schema): Result {
             numericField: rules.some((r) => ['numeric', 'integer', 'decimal'].includes(r.rule)),
         };
 
-        if (sometimes && !(field in values)) continue;
+        if (sometimes && !has(values, field)) continue;
 
         // An empty value does NOT skip every rule. Laravel runs its implicit
         // rules regardless — `accepted` on '' fails, it does not pass — and
@@ -73,6 +79,7 @@ export function validate(values: Values, schema: Schema): Result {
                 // five messages on one input is noise.
                 break;
             }
+        }
         }
     }
 
