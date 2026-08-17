@@ -68,6 +68,58 @@ it('exports the message Laravel would have used', function (): void {
     expect($schema['messages']['email.required'] ?? '')->toContain('required');
 });
 
+it('leaves :attribute unfilled, because only the runner knows the concrete field', function (): void {
+    // Filling it here is wrong for exactly one shape, and silently: the schema
+    // key is the PATTERN, the failure is reported on the expanded path, and a
+    // baked-in pattern showed the user "The items.*.qty field is required."
+    $message = exporter()->export(['items.*.qty' => 'required'])['messages']['items.*.qty.required'];
+
+    expect($message)->toContain(':attribute')
+        ->and($message)->not->toContain('items.*.qty');
+});
+
+it('exports every variant of a size message, in a key of their own', function (): void {
+    // Which variant applies depends on the rule set, on the value, and — for
+    // gt/gte/lt/lte — on whether the value is numeric. None of that is known
+    // here, so all four travel.
+    //
+    // In `messageVariants`, NOT by changing the type of `messages`. An older
+    // runner calls replaceAll() on whatever `messages` holds, so handing it an
+    // object throws — and a new key it has never heard of is simply ignored.
+    $schema = exporter()->export(['n' => 'numeric|max:5']);
+
+    expect($schema['messageVariants']['n.max'])
+        ->toHaveKeys(['numeric', 'file', 'string', 'array'])
+        ->and($schema['messageVariants']['n.max']['numeric'])->not->toContain('characters')
+        // And `messages` still holds a plain string, which is the shape every
+        // runner ever released expects.
+        ->and($schema['messages']['n.max'])->toBeString()
+        ->toContain('characters');
+});
+
+it('emits the parameter name an older runner reads, alongside the current one', function (): void {
+    // The size bounds were named `value` in the first release and are now named
+    // for the placeholder their message uses. Both travel, so a runner from
+    // either era finds what it looks for and the two halves ship separately.
+    $params = exporter()->export(['n' => 'max:255'])['fields']['n']['client'][0]['params'];
+
+    expect($params)->toBe(['max' => '255', 'value' => '255']);
+});
+
+it('adds no alias for a parameter that never had another name', function (): void {
+    // The aliases are a migration aid, not a habit. A rule whose names have
+    // never changed carries exactly what it needs.
+    $params = exporter()->export(['n' => 'between:1,5'])['fields']['n']['client'][0]['params'];
+
+    expect($params)->toBe(['min' => '1', 'max' => '5']);
+});
+
+it('keeps a custom message a plain string, variants or not', function (): void {
+    $schema = exporter()->export(['n' => 'max:5'], ['n.max' => 'Too long.']);
+
+    expect($schema['messages']['n.max'])->toBe('Too long.');
+});
+
 it('prefers a custom message, and a human attribute name', function (): void {
     $schema = exporter()->export(
         ['email' => 'required'],
@@ -252,4 +304,60 @@ it('ignores an advertised rule the runner does not implement', function (): void
 
     expect($schema['fields']['f']['client'])->toBeEmpty()
         ->and($schema['fields']['f']['server'])->not->toBeEmpty();
+});
+
+it('stamps the schema MAJOR version, which is meant to stay put', function (): void {
+    // Gating on this is the last resort, not the mechanism. Within a major
+    // version every change is additive and a runner ignores what it does not
+    // recognise, which is what lets the two halves ship apart. Bumping it costs
+    // every consumer a lockstep upgrade — so this assertion is here to make
+    // that a deliberate act rather than a side effect.
+    expect(exporter()->export(['f' => 'required'])['version'])->toBe(RuleExporter::VERSION)
+        ->and(RuleExporter::VERSION)->toBe(1);
+});
+
+/*
+ * Wire compatibility with a runner that is already published.
+ *
+ * These assert the SHAPE the first release reads, not any behaviour of this
+ * package. They are what lets the two halves ship apart, and each one records a
+ * specific way that could be broken without noticing — verified once against the
+ * v0.1.0 runner itself, and pinned here so it stays true.
+ */
+it('keeps every exported message a plain string', function (): void {
+    // A published runner calls replaceAll() on whatever `messages` holds.
+    // Handing it an object throws, in the browser, on a form that worked
+    // yesterday. Variants go in `messageVariants`, which it ignores.
+    $schema = exporter()->export([
+        'a' => 'required|max:5',
+        'b' => 'numeric|between:1,9',
+        'c' => 'gt:other',
+        'd' => 'in:x,y',
+    ]);
+
+    foreach ($schema['messages'] as $key => $message) {
+        expect($message)->toBeString("{$key} is not a string, which an older runner cannot render");
+    }
+});
+
+it('keeps every renamed parameter reachable under its old name', function (string $rule, string $legacy): void {
+    // A runner reading a key that is no longer there gets nothing, and the
+    // coercions underneath turn that into a verdict rather than a question.
+    $params = exporter()->export(['f' => $rule])['fields']['f']['client'][0]['params'];
+
+    expect($params)->toHaveKey($legacy);
+})->with([
+    'max:5' => ['max:5', 'value'],
+    'min:5' => ['min:5', 'value'],
+    'size:5' => ['size:5', 'value'],
+]);
+
+it('adds only keys, never removes one the first release read', function (): void {
+    // The additive rule, asserted at the top level. A key disappearing is the
+    // one change that cannot be absorbed by a runner ignoring what it does not
+    // know, so it has to be a deliberate major bump rather than a refactor.
+    expect(exporter()->export(['f' => 'required']))
+        ->toHaveKeys(['version', 'fields', 'messages'])
+        ->and(exporter()->export(['f' => 'required'])['fields']['f'])
+        ->toHaveKeys(['attribute', 'client', 'server']);
 });

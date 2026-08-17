@@ -102,9 +102,19 @@ final class RuleCatalogue
         'between' => ['min', 'max'],
         'digits' => ['digits'],
         'digits_between' => ['min', 'max'],
-        'max' => ['value'],
-        'min' => ['value'],
-        'size' => ['value'],
+        // Named for the PLACEHOLDER the message uses, not for the role the
+        // parameter plays. `max:255`'s line reads ":max characters", so a
+        // parameter called `value` interpolated nothing and the user was shown
+        // a literal ":max". The check and the message have to read the same key
+        // or one of the two is silently wrong, and it is always the message —
+        // the check keeps working, so nothing fails to reveal it.
+        'max' => ['max'],
+        'min' => ['min'],
+        'size' => ['size'],
+        // `decimal` is the exception, and it is Laravel's exception rather than
+        // one invented here: the check needs two bounds, the line has a single
+        // `:decimal` that Laravel renders as "2" or "2-4". The runner composes
+        // it from these two — see interpolate() in js/src/validate.ts.
         'decimal' => ['min', 'max'],
         'multiple_of' => ['value'],
         'regex' => ['pattern'],
@@ -125,6 +135,22 @@ final class RuleCatalogue
         'confirmed' => ['other'],
     ];
 
+    /**
+     * Names an older runner reads, emitted alongside the current ones.
+     *
+     * Keyed rule => [current name => legacy name]. Schema version 1 called all
+     * three size bounds `value`; they are now named for the placeholder their
+     * message uses, which is what makes the message interpolate. Both travel,
+     * so a runner from either era finds what it looks for.
+     *
+     * @var array<string, array<string, string>>
+     */
+    public const array PARAMETER_ALIASES = [
+        'max' => ['max' => 'value'],
+        'min' => ['min' => 'value'],
+        'size' => ['size' => 'value'],
+    ];
+
     public static function isClientCheckable(string $rule): bool
     {
         $rule = mb_strtolower($rule);
@@ -142,14 +168,33 @@ final class RuleCatalogue
      */
     public static function nameParameters(string $rule, array $parameters): array
     {
-        $names = self::PARAMETER_NAMES[mb_strtolower($rule)] ?? [];
+        $rule = mb_strtolower($rule);
+        $names = self::PARAMETER_NAMES[$rule] ?? [];
         $named = [];
 
         foreach (array_values($parameters) as $index => $parameter) {
             // Keys are forced to strings: an integer key would make the
             // schema's JSON object serialise as an ARRAY on round trip, and
             // the runner reads params as an object.
-            $named[$names[$index] ?? (string) $index] = $parameter;
+            $name = $names[$index] ?? (string) $index;
+            $named[$name] = $parameter;
+
+            // The same value under the name an older runner looks for.
+            //
+            // This is what lets the two halves ship separately. Renaming a
+            // parameter is invisible on the wire — a runner that reads a key
+            // which is no longer there gets `undefined`, and the interesting
+            // question is what it does next. Emitting both means it never has
+            // to find out: the old name keeps working for as long as anyone is
+            // running the old code, and the entry costs a handful of bytes.
+            //
+            // Retire an alias only when the runner that needed it is out of
+            // support, and treat that as the breaking change it is.
+            $legacy = self::PARAMETER_ALIASES[$rule][$name] ?? null;
+
+            if ($legacy !== null) {
+                $named[$legacy] = $parameter;
+            }
         }
 
         return $named;

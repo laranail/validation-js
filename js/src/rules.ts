@@ -1,4 +1,4 @@
-import { get, sibling } from './paths.ts';
+import { get, has, sibling } from './paths.ts';
 import type { Values } from './types.ts';
 
 /**
@@ -90,11 +90,16 @@ function num(value: string | undefined): number {
  */
 const PHP_NUMERIC = /^\s*[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?\s*$/;
 
-function numeric(value: unknown): boolean {
+export function numeric(value: unknown): boolean {
     if (typeof value === 'number') return Number.isFinite(value);
     if (typeof value !== 'string') return false;
 
     return PHP_NUMERIC.test(value);
+}
+
+/** Whether the value is a file, which decides one of the size-message variants. */
+export function isFileValue(value: unknown): boolean {
+    return isFile(value) || isFileList(value);
 }
 
 /**
@@ -109,6 +114,8 @@ export interface Context {
     values: Values;
     field: string;
     numericField: boolean;
+    /** Whether the rule set declares the field an array — the other size-message variant. */
+    arrayField: boolean;
 }
 
 export type Check = (value: unknown, params: Record<string, string>, ctx: Context) => boolean;
@@ -121,15 +128,97 @@ export type Check = (value: unknown, params: Record<string, string>, ctx: Contex
  * value would skip exactly the case they exist for.
  */
 export const IMPLICIT = new Set([
-    'required', 'filled', 'present', 'accepted', 'declined', 'confirmed', 'same', 'different',
+    'required', 'filled', 'present', 'accepted', 'declined',
     'required_if', 'required_if_accepted', 'required_if_declined', 'required_unless',
     'required_with', 'required_with_all', 'required_without', 'required_without_all',
 ]);
 
+/*
+ * `confirmed`, `same` and `different` are deliberately NOT in that set, though
+ * they read like they belong: they compare against another field, so treating
+ * an absent one as "nothing to compare" looks wrong.
+ *
+ * Laravel's own `$implicitRules` does not list them, and the consequence is
+ * visible: `['other' => 'x']` against `field => same:other` PASSES on the
+ * server, because an absent `field` never reaches the rule at all. Marking them
+ * implicit here made the browser reject a payload Laravel accepts.
+ */
+
+/**
+ * The parameters a check cannot work without.
+ *
+ * This is the guard that makes the two halves of this package independent. A
+ * check that reads `p.max` on a schema which does not carry it gets `undefined`,
+ * and the coercions underneath turn that into a NUMBER — `Number(undefined ?? 0)`
+ * is 0 — so `max` silently becomes "no longer than nothing" and rejects every
+ * value. A wrong verdict, from missing data, with no way for anyone to tell.
+ *
+ * Declared here rather than guarded inside each check so there is one place to
+ * read, and so a rule added without thinking about it fails loudly in a test
+ * rather than quietly in a browser. A rule whose parameters are all optional is
+ * absent from this table.
+ *
+ * A missing parameter makes that rule UNDETERMINED — the same answer already
+ * given for a rule this runner has never heard of. The field round trips; the
+ * server decides.
+ */
+export const REQUIRED_PARAMS: Record<string, readonly string[]> = {
+    max: ['max'],
+    min: ['min'],
+    size: ['size'],
+    between: ['min', 'max'],
+    digits: ['digits'],
+    digits_between: ['min', 'max'],
+    decimal: ['min'],
+    multiple_of: ['value'],
+    regex: ['pattern'],
+    not_regex: ['pattern'],
+    same: ['other'],
+    different: ['other'],
+    gt: ['value'],
+    gte: ['value'],
+    lt: ['value'],
+    lte: ['value'],
+    required_if: ['other'],
+    required_unless: ['other'],
+    required_if_accepted: ['other'],
+    required_if_declined: ['other'],
+};
+
+/**
+ * Rules whose parameters are a variadic list, so any one of them will do.
+ *
+ * `in` with no values matches nothing and would fail every input — the same
+ * wrong-verdict-from-missing-data as above, reached a different way.
+ */
+export const REQUIRES_ANY_PARAM: ReadonlySet<string> = new Set([
+    'in', 'not_in', 'starts_with', 'ends_with', 'doesnt_start_with', 'doesnt_end_with',
+    'contains', 'doesnt_contain', 'required_with', 'required_with_all',
+    'required_without', 'required_without_all',
+]);
+
+/** Whether this runner has everything it needs to decide the rule. */
+export function hasRequiredParams(rule: string, params: Record<string, string>): boolean {
+    const required = REQUIRED_PARAMS[rule];
+
+    if (required !== undefined && required.some((name) => params[name] === undefined)) {
+        return false;
+    }
+
+    return !REQUIRES_ANY_PARAM.has(rule) || Object.values(params).length > 0;
+}
+
 export const checks: Record<string, Check> = {
     required: (v) => !isEmpty(v),
-    filled: (v) => !isEmpty(v),
-    present: (v) => v !== undefined,
+    // `filled` is `required` only when the key is THERE. An absent attribute
+    // passes it — the rule says "if you send it, send something", which is not
+    // the same as requiring it, and treating the two alike rejected a payload
+    // Laravel accepts.
+    filled: (v, _p, c) => (has(c.values, c.field) ? !isEmpty(v) : true),
+    // Laravel's `present` asks whether the KEY exists, not whether the value is
+    // anything in particular: `{name: null}` is present and passes. Testing the
+    // value instead failed a payload Laravel accepts.
+    present: (_v, _p, c) => has(c.values, c.field),
     // Presence modifiers are structural: they change whether OTHER rules run,
     // and never fail on their own.
     nullable: () => true,
@@ -150,9 +239,11 @@ export const checks: Record<string, Check> = {
         }
     },
 
-    max: (v, p, c) => sizeOf(v, c.numericField) <= num(p.value),
-    min: (v, p, c) => sizeOf(v, c.numericField) >= num(p.value),
-    size: (v, p, c) => sizeOf(v, c.numericField) === num(p.value),
+    // `p.max`/`p.min`/`p.size` rather than a shared `p.value`, because the key
+    // is also what the message interpolates — see RuleCatalogue::PARAMETER_NAMES.
+    max: (v, p, c) => sizeOf(v, c.numericField) <= num(p.max),
+    min: (v, p, c) => sizeOf(v, c.numericField) >= num(p.min),
+    size: (v, p, c) => sizeOf(v, c.numericField) === num(p.size),
     between: (v, p, c) => {
         const size = sizeOf(v, c.numericField);
         return size >= num(p.min) && size <= num(p.max);
@@ -170,7 +261,15 @@ export const checks: Record<string, Check> = {
     email: (v) => EMAIL.test(str(v)),
     hex_color: (v) => HEX_COLOR.test(str(v)),
     ip: (v, p, c) => checks.ipv4(v, p, c) || checks.ipv6(v, p, c),
-    ipv4: (v) => IPV4.test(str(v)) && str(v).split('.').every((o) => Number(o) <= 255),
+    // Leading zeros are rejected, matching PHP's FILTER_FLAG_IPV4. They are not
+    // cosmetic: `010.1.1.1` is read as octal by some resolvers and as decimal by
+    // others, which is why the filter refuses it — and accepting it here would
+    // pass an address the server rejects.
+    ipv4: (v) =>
+        IPV4.test(str(v)) &&
+        str(v)
+            .split('.')
+            .every((o) => Number(o) <= 255 && (o === '0' || !o.startsWith('0'))),
     ipv6: (v) => {
         // Delegating to the platform rather than hand-rolling: IPv6 has
         // compressed forms, zone ids and IPv4-mapped notation, and a regex

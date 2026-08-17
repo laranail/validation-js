@@ -13,7 +13,7 @@
     "exports": { ".": "./js/src/index.ts" },
     "files": ["js/src"],
     "scripts": {
-        "test": "node --test js/tests/"
+        "test": "node --test \"js/tests/**/*.test.ts\""
     },
     "publishConfig": { "access": "public" },
     "engines": { "node": ">=22.6" }

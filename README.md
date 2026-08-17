@@ -80,10 +80,26 @@ this, four of those beliefs turned out to be wrong:
 CI regenerates the fixture and fails if the committed copy disagrees, so the claim cannot rot
 into a statement about a past version of Laravel.
 
+## The two packages upgrade separately
+
+`laranail/validation-js` on Packagist writes the schema; `@laranail/validation-js` on npm reads
+it. They are separate releases and neither waits for the other.
+
+That is a property of the format, not a promise. Within a major schema version every change is
+additive: the runner ignores keys it does not recognise, degrades a rule whose parameters it
+cannot find to **undetermined** rather than guessing, and a renamed key is emitted under both
+names for as long as anyone is running the old code. A mismatch costs precision — some fields
+round trip that need not have — and never correctness.
+
+The alternative, which this replaced, was a version check that fired on any change and sent
+whole forms to the server until both halves were upgraded in step. See
+[Schema](docs/schema.md#shipping-the-two-halves-apart).
+
 ## <a name="documentation"></a>Documentation
 
 - [Schema](docs/schema.md) — the contract both halves implement
 - [Rules](docs/tools/rules.md) — what runs in the browser, what does not, and why
+- [Upgrading](UPGRADING.md) — why the two packages upgrade separately, and what would change that
 
 ## Prior art
 
