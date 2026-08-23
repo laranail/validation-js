@@ -1,6 +1,6 @@
 {
     "name": "@laranail/validation-js",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "Validate a form in the browser against a schema exported from Laravel's own validation rules. Zero dependencies.",
     "keywords": [
         "laravel",
