@@ -50,6 +50,36 @@ Full detail in [`docs/schema.md`](docs/schema.md#shipping-the-two-halves-apart).
 
 ## Unreleased
 
-Nothing requiring action. The schema gained `messageVariants` and a second name on the size
-parameters, both additive; the runner gained per-rule degradation when it cannot read a parameter.
-A runner and an exporter from any combination of these releases work together.
+The schema gained `messageVariants` and a second name on the size parameters, both additive; the
+runner gained per-rule degradation when it cannot read a parameter. A runner and an exporter from
+any combination of these releases work together.
+
+### The npm package installs and imports (J1)
+
+`main`/`exports` pointed at the raw `./js/src/index.ts`, which plain Node refuses to type-strip
+under `node_modules` — the published package could not be imported at all outside a Vite-style
+transpiling bundler. The package now ships compiled ESM + `.d.ts` under `dist/`, with a `types`
+export condition. Nothing to change for a consumer who could not use it before; a bundler consumer
+that deep-imported `./js/src/…` paths must import the package root instead (`dist` is the only
+published directory).
+
+### Verdict corrections a consumer could observe (J3, J4, J13)
+
+- **Advertised parameter names are preserved (J3).** A `ClientCheckable` rule that named its
+  parameters in a different order than the catalogue's positional table exported inverted values
+  (`{"min":"90","max":"-90"}`) — the browser then rejected every in-range value. Named keys now
+  travel as written.
+- **`in`/`not_in` handle array values like Laravel (J4).** With an `array` rule the check is
+  loose subset; without one an array value fails `in` and passes `not_in`. Stringifying the array
+  produced a green tick for multi-selects Laravel rejects and a false block the other way.
+- **Path reads see only own properties (J13).** A field or parameter path segment like
+  `constructor` resolved through `Object.prototype` and read as present, firing presence
+  conditionals on data that was never sent. Reads use `Object.hasOwn` now; negative array indices
+  are out of bounds.
+
+### `toJson()` output is inline-`<script>`-safe (J14)
+
+The exporter's JSON now carries `JSON_HEX_TAG|APOS|QUOT|AMP` escapes, so a translated message
+containing `</script>` cannot terminate the script block it is embedded in. Decoded values are
+byte-identical; only the transport encoding changed. Nothing to change unless something parsed
+the raw JSON with a tool that chokes on `<` escapes.
