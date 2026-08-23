@@ -45,7 +45,9 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         'uuid' => ['3f2504e0-4f89-41d3-9a0c-0305e82c3301', 'nope', '3f2504e0-4f89-41d3-9a0c-0305e82c330'],
         'ulid' => ['01ARZ3NDEKTSV4RRFFQ69G5FAV', 'nope'],
         'ip' => ['127.0.0.1', '::1', '999.1.1.1', 'nope'],
-        'ipv4' => ['127.0.0.1', '::1', '256.1.1.1'],
+        // Leading zeros are the interesting ones: PHP's FILTER_FLAG_IPV4
+        // refuses them and a `\d{1,3}` regex does not.
+        'ipv4' => ['127.0.0.1', '::1', '256.1.1.1', '010.1.1.1', '01.2.3.4', '0.0.0.0'],
         'mac_address' => ['00:1B:44:11:3A:B7', '00-1B-44-11-3A-B7', 'nope'],
         'hex_color' => ['#fff', '#ffffff', '#ffff', '#fffff', 'fff'],
         'json' => ['{"a":1}', '[1,2]', 'not json', '"str"'],
@@ -60,8 +62,15 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         'digits_between:2,4' => ['123', '1', '12345'],
         'numeric|max:5' => ['5', '6', '4.9'],
         'numeric|min:3' => ['3', '2.9'],
-        'in:a,b,c' => ['a', 'd', ''],
-        'not_in:a,b' => ['c', 'a'],
+        // Array values are the interesting ones: with an `array` rule Laravel
+        // switches to loose SUBSET semantics (array_diff); without one an
+        // array value simply fails `in` (and passes `not_in`). A runner that
+        // stringifies the array gets both directions wrong — String(['a'])
+        // === 'a' is a green tick `in:a,b` never gave.
+        'in:a,b,c' => ['a', 'd', '', ['a'], ['a', 'b']],
+        'not_in:a,b' => ['c', 'a', ['a'], ['c']],
+        'array|in:a,b,c' => [['a', 'b'], ['a', 'x'], [], [['nested']]],
+        'array|not_in:a,b' => [['a'], ['c', 'd']],
         'starts_with:ab,cd' => ['abc', 'cde', 'xyz'],
         'ends_with:ing' => ['testing', 'tested'],
         'contains:foo' => ['a foo b', 'a bar b'],
@@ -108,6 +117,61 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
             'schema' => $exporter->export(['field' => $rule]),
             'laravel' => Validator::make($data, ['field' => $rule])->passes(),
             'id' => "{$rule} ({$value} vs {$other})",
+        ];
+    }
+
+    // Presence and nullability — the axis the grid above cannot reach, because
+    // it always sets the key.
+    //
+    // The three states are not interchangeable, and this is where a runner
+    // built on "is the value empty" goes wrong. An ABSENT attribute runs only
+    // the implicit rules. A PRESENT NULL one runs EVERYTHING, so `integer` on
+    // null fails. `nullable` is what opts the second back out, and it is the
+    // rule set that decides that — not the value.
+    //
+    // Four of these passed in the browser and failed on the server before the
+    // gate was rewritten, which is the exact lie this package exists to avoid.
+    foreach ([
+        ['integer', ['field' => null]],
+        ['integer', []],
+        ['integer', ['field' => []]],
+        ['nullable|integer', ['field' => null]],
+        ['nullable|integer', ['field' => 'abc']],
+        ['string', ['field' => null]],
+        ['string', ['field' => []]],
+        ['string', []],
+        ['numeric', ['field' => null]],
+        ['email', ['field' => null]],
+        ['max:5', ['field' => null]],
+        ['array', ['field' => null]],
+        ['nullable|string|max:255', ['field' => null]],
+        ['nullable|string|max:255', ['field' => '']],
+        ['required|string', ['field' => null]],
+        ['required|string', ['field' => []]],
+        ['sometimes|integer', []],
+        ['sometimes|integer', ['field' => 'abc']],
+        ['present', ['field' => null]],
+        ['present', []],
+        ['present|nullable|string', ['field' => null]],
+        ['filled', ['field' => null]],
+        ['filled', []],
+        // Comparison rules are NOT implicit in Laravel, so an absent field
+        // skips them entirely — including when the counterpart is present.
+        ['same:other', ['other' => 'x']],
+        ['same:other', ['field' => 'x', 'other' => 'x']],
+        ['different:other', ['other' => 'x']],
+        ['confirmed', ['field_confirmation' => 'x']],
+        ['nullable|required_without_all:a,b', []],
+        ['nullable|required_without_all:a,b', ['a' => 'x']],
+        ['nullable|string|required_without_all:a,b', ['field' => null, 'a' => 'x']],
+    ] as $index => [$rule, $data]) {
+        $cases[] = [
+            'rule' => $rule,
+            'value' => $data['field'] ?? null,
+            'data' => $data,
+            'schema' => $exporter->export(['field' => $rule]),
+            'laravel' => Validator::make($data, ['field' => $rule])->passes(),
+            'id' => "presence #{$index} {$rule} ".json_encode($data),
         ];
     }
 
@@ -196,6 +260,13 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['required_without_all:a,b', ['a' => '1']],
         ['required_if_accepted:agree', ['agree' => 'yes']],
         ['required_if_accepted:agree', ['agree' => 'no']],
+        // Presence probes on hostile-looking paths. Laravel's Arr::has says
+        // "absent" for both; a runner whose path walk uses the `in` operator
+        // finds 'constructor' on Object.prototype, and one whose array-index
+        // check lacks a `>= 0` guard treats -1 as within bounds — either way
+        // "required_with" fires on a sibling that does not exist.
+        ['required_with:meta.constructor', ['meta' => ['x' => '1']]],
+        ['required_with:items.-1', ['items' => ['a', 'b']]],
     ] as $index => [$rule, $data]) {
         $cases[] = [
             'rule' => $rule,
@@ -230,6 +301,88 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
     }
 
     $path = dirname(__DIR__).'/js/tests/fixtures/parity.json';
+    file_put_contents($path, json_encode($cases, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
+
+    expect($cases)->not->toBeEmpty()
+        ->and(file_exists($path))->toBeTrue();
+});
+
+/**
+ * The same idea applied to the MESSAGE rather than the verdict.
+ *
+ * A runner can reach the right verdict and still show the wrong sentence, and
+ * that failure is invisible to the grid above — it compares booleans. It is not
+ * a cosmetic difference either: an uninterpolated ":max" is what the user reads,
+ * and a wildcard field whose message key never matched fell all the way through
+ * to "The … field is invalid.", which names neither the rule nor the fix.
+ *
+ * So the expected text is Laravel's own, taken from a validator that really
+ * failed, rather than anything written down here.
+ */
+it('writes the message-parity fixture from Laravel’s own messages', function (): void {
+    $exporter = new RuleExporter(app('translator'));
+    $cases = [];
+
+    foreach ([
+        // Size rules: the placeholder is `:max`/`:min`/`:size`, never `:value`.
+        ['field', 'max:5', ['field' => 'abcdef'], 'field', []],
+        ['field', 'numeric|max:5', ['field' => '6'], 'field', []],
+        ['field', 'min:3', ['field' => 'ab'], 'field', []],
+        ['field', 'size:4', ['field' => 'abc'], 'field', []],
+        ['field', 'between:2,4', ['field' => 'a'], 'field', []],
+        ['field', 'digits:4', ['field' => '123'], 'field', []],
+        ['field', 'digits_between:2,4', ['field' => '12345'], 'field', []],
+        // One placeholder over two parameters, rendered "2" or "2-4".
+        ['field', 'decimal:2', ['field' => '1.234'], 'field', []],
+        ['field', 'decimal:2,4', ['field' => '1.234567'], 'field', []],
+        ['field', 'multiple_of:3', ['field' => '10'], 'field', []],
+        ['field', 'gt:5', ['field' => '4'], 'field', []],
+        ['field', 'lte:5', ['field' => '6'], 'field', []],
+        // The variadic tail. Position 0 of a conditional is the DEPENDENT
+        // FIELD and is already spent on `:other`; joining it into `:values`
+        // rendered "required unless kind is in kind, card".
+        ['field', 'required_if:kind,card', ['kind' => 'card'], 'field', []],
+        ['field', 'required_if:kind,card,cheque', ['kind' => 'cheque'], 'field', []],
+        ['field', 'required_unless:kind,cash', ['kind' => 'card'], 'field', []],
+        ['field', 'required_with:a', ['a' => 'x'], 'field', []],
+        ['field', 'starts_with:ab,cd', ['field' => 'zz'], 'field', []],
+        ['field', 'ends_with:ing', ['field' => 'zz'], 'field', []],
+        ['field', 'in:a,b', ['field' => 'z'], 'field', []],
+        ['field', 'same:other', ['field' => 'x', 'other' => 'y'], 'field', []],
+        ['field', 'required', [], 'field', []],
+        ['field', 'email', ['field' => 'nope'], 'field', []],
+        // A human label replaces `:attribute` wherever it appears.
+        ['email', 'required', [], 'email', ['email' => 'Email address']],
+        ['email', 'max:5', ['email' => 'abcdef'], 'email', ['email' => 'Email address']],
+        // Wildcards. The exporter can only key the message by the PATTERN —
+        // it describes a rule set and has no submission to expand against —
+        // while the failure is reported on the concrete path.
+        ['items.*.qty', 'required', ['items' => [['qty' => '']]], 'items.0.qty', []],
+        ['items.*.qty', 'max:2', ['items' => [['qty' => 'abcd']]], 'items.0.qty', []],
+        ['items.*.qty', 'required', ['items' => [['qty' => 'ok'], ['qty' => '']]], 'items.1.qty', []],
+        ['items.*.qty', 'max:2', ['items' => [['qty' => 'abcd']]], 'items.0.qty', ['items.*.qty' => 'Quantity']],
+        ['rows.*.cols.*.v', 'required', ['rows' => [['cols' => [['v' => '']]]]], 'rows.0.cols.0.v', []],
+    ] as $index => [$attribute, $rule, $data, $errorKey, $attributes]) {
+        $validator = Validator::make($data, [$attribute => $rule], [], $attributes);
+        $validator->fails();
+        $message = $validator->errors()->first($errorKey);
+
+        // A case that produced no failure would assert nothing, and would do it
+        // silently — so it is a defect in the case, not something to skip.
+        expect($message)->not->toBe('', "no failure produced for {$attribute} => {$rule}");
+
+        $cases[] = [
+            'attribute' => $attribute,
+            'rule' => $rule,
+            'data' => $data,
+            'field' => $errorKey,
+            'schema' => $exporter->export([$attribute => $rule], attributes: $attributes),
+            'laravel' => $message,
+            'id' => "message #{$index} {$attribute} => {$rule}",
+        ];
+    }
+
+    $path = dirname(__DIR__).'/js/tests/fixtures/messages.json';
     file_put_contents($path, json_encode($cases, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR));
 
     expect($cases)->not->toBeEmpty()

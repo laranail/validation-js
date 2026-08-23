@@ -17,8 +17,9 @@
                 }
             },
             "messages": {
-                "field.required": "The field field is required."
-            }
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "required #0"
@@ -41,8 +42,9 @@
                 }
             },
             "messages": {
-                "field.required": "The field field is required."
-            }
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "required #1"
@@ -65,8 +67,9 @@
                 }
             },
             "messages": {
-                "field.required": "The field field is required."
-            }
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "required #2"
@@ -89,8 +92,9 @@
                 }
             },
             "messages": {
-                "field.required": "The field field is required."
-            }
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "required #3"
@@ -113,8 +117,9 @@
                 }
             },
             "messages": {
-                "field.required": "The field field is required."
-            }
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "required #4"
@@ -139,8 +144,9 @@
                 }
             },
             "messages": {
-                "field.required": "The field field is required."
-            }
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "required #5"
@@ -163,8 +169,9 @@
                 }
             },
             "messages": {
-                "field.email": "The field field must be a valid email address."
-            }
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "email #0"
@@ -187,8 +194,9 @@
                 }
             },
             "messages": {
-                "field.email": "The field field must be a valid email address."
-            }
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "email #1"
@@ -211,8 +219,9 @@
                 }
             },
             "messages": {
-                "field.email": "The field field must be a valid email address."
-            }
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "email #2"
@@ -235,8 +244,9 @@
                 }
             },
             "messages": {
-                "field.email": "The field field must be a valid email address."
-            }
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "email #3"
@@ -259,8 +269,9 @@
                 }
             },
             "messages": {
-                "field.email": "The field field must be a valid email address."
-            }
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "email #4"
@@ -283,8 +294,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #0"
@@ -307,8 +319,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #1"
@@ -331,8 +344,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #2"
@@ -355,8 +369,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #3"
@@ -379,8 +394,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #4"
@@ -403,8 +419,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #5"
@@ -427,8 +444,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #6"
@@ -451,8 +469,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #7"
@@ -475,8 +494,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #8"
@@ -499,8 +519,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #9"
@@ -523,8 +544,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #10"
@@ -547,8 +569,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #11"
@@ -571,8 +594,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #12"
@@ -595,8 +619,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "numeric #13"
@@ -619,8 +644,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #14"
@@ -643,8 +669,9 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number."
-            }
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "numeric #15"
@@ -667,8 +694,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "integer #0"
@@ -691,8 +719,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "integer #1"
@@ -715,8 +744,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "integer #2"
@@ -739,8 +769,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "integer #3"
@@ -763,8 +794,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "integer #4"
@@ -787,8 +819,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "integer #5"
@@ -811,8 +844,9 @@
                 }
             },
             "messages": {
-                "field.integer": "The field field must be an integer."
-            }
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "integer #6"
@@ -835,8 +869,9 @@
                 }
             },
             "messages": {
-                "field.string": "The field field must be a string."
-            }
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "string #0"
@@ -859,8 +894,9 @@
                 }
             },
             "messages": {
-                "field.string": "The field field must be a string."
-            }
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "string #1"
@@ -883,8 +919,9 @@
                 }
             },
             "messages": {
-                "field.string": "The field field must be a string."
-            }
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "string #2"
@@ -907,8 +944,9 @@
                 }
             },
             "messages": {
-                "field.string": "The field field must be a string."
-            }
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "string #3"
@@ -931,8 +969,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "boolean #0"
@@ -955,8 +994,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "boolean #1"
@@ -979,8 +1019,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "boolean #2"
@@ -1003,8 +1044,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "boolean #3"
@@ -1027,8 +1069,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "boolean #4"
@@ -1051,8 +1094,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "boolean #5"
@@ -1075,8 +1119,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "boolean #6"
@@ -1099,8 +1144,9 @@
                 }
             },
             "messages": {
-                "field.boolean": "The field field must be true or false."
-            }
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "boolean #7"
@@ -1123,8 +1169,9 @@
                 }
             },
             "messages": {
-                "field.alpha": "The field field must only contain letters."
-            }
+                "field.alpha": "The :attribute field must only contain letters."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "alpha #0"
@@ -1147,8 +1194,9 @@
                 }
             },
             "messages": {
-                "field.alpha": "The field field must only contain letters."
-            }
+                "field.alpha": "The :attribute field must only contain letters."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "alpha #1"
@@ -1171,8 +1219,9 @@
                 }
             },
             "messages": {
-                "field.alpha": "The field field must only contain letters."
-            }
+                "field.alpha": "The :attribute field must only contain letters."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "alpha #2"
@@ -1195,8 +1244,9 @@
                 }
             },
             "messages": {
-                "field.alpha": "The field field must only contain letters."
-            }
+                "field.alpha": "The :attribute field must only contain letters."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "alpha #3"
@@ -1219,8 +1269,9 @@
                 }
             },
             "messages": {
-                "field.alpha_num": "The field field must only contain letters and numbers."
-            }
+                "field.alpha_num": "The :attribute field must only contain letters and numbers."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "alpha_num #0"
@@ -1243,8 +1294,9 @@
                 }
             },
             "messages": {
-                "field.alpha_num": "The field field must only contain letters and numbers."
-            }
+                "field.alpha_num": "The :attribute field must only contain letters and numbers."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "alpha_num #1"
@@ -1267,8 +1319,9 @@
                 }
             },
             "messages": {
-                "field.alpha_num": "The field field must only contain letters and numbers."
-            }
+                "field.alpha_num": "The :attribute field must only contain letters and numbers."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "alpha_num #2"
@@ -1291,8 +1344,9 @@
                 }
             },
             "messages": {
-                "field.alpha_dash": "The field field must only contain letters, numbers, dashes, and underscores."
-            }
+                "field.alpha_dash": "The :attribute field must only contain letters, numbers, dashes, and underscores."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "alpha_dash #0"
@@ -1315,8 +1369,9 @@
                 }
             },
             "messages": {
-                "field.alpha_dash": "The field field must only contain letters, numbers, dashes, and underscores."
-            }
+                "field.alpha_dash": "The :attribute field must only contain letters, numbers, dashes, and underscores."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "alpha_dash #1"
@@ -1339,8 +1394,9 @@
                 }
             },
             "messages": {
-                "field.alpha_dash": "The field field must only contain letters, numbers, dashes, and underscores."
-            }
+                "field.alpha_dash": "The :attribute field must only contain letters, numbers, dashes, and underscores."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "alpha_dash #2"
@@ -1363,8 +1419,9 @@
                 }
             },
             "messages": {
-                "field.url": "The field field must be a valid URL."
-            }
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "url #0"
@@ -1387,8 +1444,9 @@
                 }
             },
             "messages": {
-                "field.url": "The field field must be a valid URL."
-            }
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "url #1"
@@ -1411,8 +1469,9 @@
                 }
             },
             "messages": {
-                "field.url": "The field field must be a valid URL."
-            }
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "url #2"
@@ -1435,8 +1494,9 @@
                 }
             },
             "messages": {
-                "field.url": "The field field must be a valid URL."
-            }
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "url #3"
@@ -1459,8 +1519,9 @@
                 }
             },
             "messages": {
-                "field.url": "The field field must be a valid URL."
-            }
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "url #4"
@@ -1483,8 +1544,9 @@
                 }
             },
             "messages": {
-                "field.url": "The field field must be a valid URL."
-            }
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "url #5"
@@ -1507,8 +1569,9 @@
                 }
             },
             "messages": {
-                "field.uuid": "The field field must be a valid UUID."
-            }
+                "field.uuid": "The :attribute field must be a valid UUID."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "uuid #0"
@@ -1531,8 +1594,9 @@
                 }
             },
             "messages": {
-                "field.uuid": "The field field must be a valid UUID."
-            }
+                "field.uuid": "The :attribute field must be a valid UUID."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "uuid #1"
@@ -1555,8 +1619,9 @@
                 }
             },
             "messages": {
-                "field.uuid": "The field field must be a valid UUID."
-            }
+                "field.uuid": "The :attribute field must be a valid UUID."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "uuid #2"
@@ -1579,8 +1644,9 @@
                 }
             },
             "messages": {
-                "field.ulid": "The field field must be a valid ULID."
-            }
+                "field.ulid": "The :attribute field must be a valid ULID."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "ulid #0"
@@ -1603,8 +1669,9 @@
                 }
             },
             "messages": {
-                "field.ulid": "The field field must be a valid ULID."
-            }
+                "field.ulid": "The :attribute field must be a valid ULID."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ulid #1"
@@ -1627,8 +1694,9 @@
                 }
             },
             "messages": {
-                "field.ip": "The field field must be a valid IP address."
-            }
+                "field.ip": "The :attribute field must be a valid IP address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "ip #0"
@@ -1651,8 +1719,9 @@
                 }
             },
             "messages": {
-                "field.ip": "The field field must be a valid IP address."
-            }
+                "field.ip": "The :attribute field must be a valid IP address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "ip #1"
@@ -1675,8 +1744,9 @@
                 }
             },
             "messages": {
-                "field.ip": "The field field must be a valid IP address."
-            }
+                "field.ip": "The :attribute field must be a valid IP address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ip #2"
@@ -1699,8 +1769,9 @@
                 }
             },
             "messages": {
-                "field.ip": "The field field must be a valid IP address."
-            }
+                "field.ip": "The :attribute field must be a valid IP address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ip #3"
@@ -1723,8 +1794,9 @@
                 }
             },
             "messages": {
-                "field.ipv4": "The field field must be a valid IPv4 address."
-            }
+                "field.ipv4": "The :attribute field must be a valid IPv4 address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "ipv4 #0"
@@ -1747,8 +1819,9 @@
                 }
             },
             "messages": {
-                "field.ipv4": "The field field must be a valid IPv4 address."
-            }
+                "field.ipv4": "The :attribute field must be a valid IPv4 address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ipv4 #1"
@@ -1771,11 +1844,87 @@
                 }
             },
             "messages": {
-                "field.ipv4": "The field field must be a valid IPv4 address."
-            }
+                "field.ipv4": "The :attribute field must be a valid IPv4 address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ipv4 #2"
+    },
+    {
+        "rule": "ipv4",
+        "value": "010.1.1.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv4",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv4": "The :attribute field must be a valid IPv4 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "ipv4 #3"
+    },
+    {
+        "rule": "ipv4",
+        "value": "01.2.3.4",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv4",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv4": "The :attribute field must be a valid IPv4 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "ipv4 #4"
+    },
+    {
+        "rule": "ipv4",
+        "value": "0.0.0.0",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv4",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv4": "The :attribute field must be a valid IPv4 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "ipv4 #5"
     },
     {
         "rule": "mac_address",
@@ -1795,8 +1944,9 @@
                 }
             },
             "messages": {
-                "field.mac_address": "The field field must be a valid MAC address."
-            }
+                "field.mac_address": "The :attribute field must be a valid MAC address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "mac_address #0"
@@ -1819,8 +1969,9 @@
                 }
             },
             "messages": {
-                "field.mac_address": "The field field must be a valid MAC address."
-            }
+                "field.mac_address": "The :attribute field must be a valid MAC address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "mac_address #1"
@@ -1843,8 +1994,9 @@
                 }
             },
             "messages": {
-                "field.mac_address": "The field field must be a valid MAC address."
-            }
+                "field.mac_address": "The :attribute field must be a valid MAC address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "mac_address #2"
@@ -1867,8 +2019,9 @@
                 }
             },
             "messages": {
-                "field.hex_color": "The field field must be a valid hexadecimal color."
-            }
+                "field.hex_color": "The :attribute field must be a valid hexadecimal color."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "hex_color #0"
@@ -1891,8 +2044,9 @@
                 }
             },
             "messages": {
-                "field.hex_color": "The field field must be a valid hexadecimal color."
-            }
+                "field.hex_color": "The :attribute field must be a valid hexadecimal color."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "hex_color #1"
@@ -1915,8 +2069,9 @@
                 }
             },
             "messages": {
-                "field.hex_color": "The field field must be a valid hexadecimal color."
-            }
+                "field.hex_color": "The :attribute field must be a valid hexadecimal color."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "hex_color #2"
@@ -1939,8 +2094,9 @@
                 }
             },
             "messages": {
-                "field.hex_color": "The field field must be a valid hexadecimal color."
-            }
+                "field.hex_color": "The :attribute field must be a valid hexadecimal color."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "hex_color #3"
@@ -1963,8 +2119,9 @@
                 }
             },
             "messages": {
-                "field.hex_color": "The field field must be a valid hexadecimal color."
-            }
+                "field.hex_color": "The :attribute field must be a valid hexadecimal color."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "hex_color #4"
@@ -1987,8 +2144,9 @@
                 }
             },
             "messages": {
-                "field.json": "The field field must be a valid JSON string."
-            }
+                "field.json": "The :attribute field must be a valid JSON string."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "json #0"
@@ -2011,8 +2169,9 @@
                 }
             },
             "messages": {
-                "field.json": "The field field must be a valid JSON string."
-            }
+                "field.json": "The :attribute field must be a valid JSON string."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "json #1"
@@ -2035,8 +2194,9 @@
                 }
             },
             "messages": {
-                "field.json": "The field field must be a valid JSON string."
-            }
+                "field.json": "The :attribute field must be a valid JSON string."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "json #2"
@@ -2059,8 +2219,9 @@
                 }
             },
             "messages": {
-                "field.json": "The field field must be a valid JSON string."
-            }
+                "field.json": "The :attribute field must be a valid JSON string."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "json #3"
@@ -2083,8 +2244,9 @@
                 }
             },
             "messages": {
-                "field.lowercase": "The field field must be lowercase."
-            }
+                "field.lowercase": "The :attribute field must be lowercase."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "lowercase #0"
@@ -2107,8 +2269,9 @@
                 }
             },
             "messages": {
-                "field.lowercase": "The field field must be lowercase."
-            }
+                "field.lowercase": "The :attribute field must be lowercase."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "lowercase #1"
@@ -2131,8 +2294,9 @@
                 }
             },
             "messages": {
-                "field.uppercase": "The field field must be uppercase."
-            }
+                "field.uppercase": "The :attribute field must be uppercase."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "uppercase #0"
@@ -2155,8 +2319,9 @@
                 }
             },
             "messages": {
-                "field.uppercase": "The field field must be uppercase."
-            }
+                "field.uppercase": "The :attribute field must be uppercase."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "uppercase #1"
@@ -2179,8 +2344,9 @@
                 }
             },
             "messages": {
-                "field.ascii": "The field field must only contain single-byte alphanumeric characters and symbols."
-            }
+                "field.ascii": "The :attribute field must only contain single-byte alphanumeric characters and symbols."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "ascii #0"
@@ -2203,8 +2369,9 @@
                 }
             },
             "messages": {
-                "field.ascii": "The field field must only contain single-byte alphanumeric characters and symbols."
-            }
+                "field.ascii": "The :attribute field must only contain single-byte alphanumeric characters and symbols."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ascii #1"
@@ -2221,6 +2388,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2229,7 +2397,15 @@
                 }
             },
             "messages": {
-                "field.max": "The field field must not be greater than :max characters."
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2247,6 +2423,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2255,7 +2432,15 @@
                 }
             },
             "messages": {
-                "field.max": "The field field must not be greater than :max characters."
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": false,
@@ -2273,6 +2458,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2281,7 +2467,15 @@
                 }
             },
             "messages": {
-                "field.max": "The field field must not be greater than :max characters."
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2299,6 +2493,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2307,7 +2502,15 @@
                 }
             },
             "messages": {
-                "field.max": "The field field must not be greater than :max characters."
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2329,6 +2532,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2337,7 +2541,15 @@
                 }
             },
             "messages": {
-                "field.max": "The field field must not be greater than :max characters."
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2355,6 +2567,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "3",
                                 "value": "3"
                             }
                         }
@@ -2363,7 +2576,15 @@
                 }
             },
             "messages": {
-                "field.min": "The field field must be at least :min characters."
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": true,
@@ -2381,6 +2602,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "3",
                                 "value": "3"
                             }
                         }
@@ -2389,7 +2611,15 @@
                 }
             },
             "messages": {
-                "field.min": "The field field must be at least :min characters."
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": false,
@@ -2407,6 +2637,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "3",
                                 "value": "3"
                             }
                         }
@@ -2415,7 +2646,15 @@
                 }
             },
             "messages": {
-                "field.min": "The field field must be at least :min characters."
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": false,
@@ -2433,6 +2672,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "3",
                                 "value": "3"
                             }
                         }
@@ -2441,7 +2681,15 @@
                 }
             },
             "messages": {
-                "field.min": "The field field must be at least :min characters."
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": false,
@@ -2459,6 +2707,7 @@
                         {
                             "rule": "size",
                             "params": {
+                                "size": "4",
                                 "value": "4"
                             }
                         }
@@ -2467,7 +2716,15 @@
                 }
             },
             "messages": {
-                "field.size": "The field field must be :size characters."
+                "field.size": "The :attribute field must be :size characters."
+            },
+            "messageVariants": {
+                "field.size": {
+                    "array": "The :attribute field must contain :size items.",
+                    "file": "The :attribute field must be :size kilobytes.",
+                    "numeric": "The :attribute field must be :size.",
+                    "string": "The :attribute field must be :size characters."
+                }
             }
         },
         "laravel": true,
@@ -2485,6 +2742,7 @@
                         {
                             "rule": "size",
                             "params": {
+                                "size": "4",
                                 "value": "4"
                             }
                         }
@@ -2493,7 +2751,15 @@
                 }
             },
             "messages": {
-                "field.size": "The field field must be :size characters."
+                "field.size": "The :attribute field must be :size characters."
+            },
+            "messageVariants": {
+                "field.size": {
+                    "array": "The :attribute field must contain :size items.",
+                    "file": "The :attribute field must be :size kilobytes.",
+                    "numeric": "The :attribute field must be :size.",
+                    "string": "The :attribute field must be :size characters."
+                }
             }
         },
         "laravel": false,
@@ -2511,6 +2777,7 @@
                         {
                             "rule": "size",
                             "params": {
+                                "size": "4",
                                 "value": "4"
                             }
                         }
@@ -2519,7 +2786,15 @@
                 }
             },
             "messages": {
-                "field.size": "The field field must be :size characters."
+                "field.size": "The :attribute field must be :size characters."
+            },
+            "messageVariants": {
+                "field.size": {
+                    "array": "The :attribute field must contain :size items.",
+                    "file": "The :attribute field must be :size kilobytes.",
+                    "numeric": "The :attribute field must be :size.",
+                    "string": "The :attribute field must be :size characters."
+                }
             }
         },
         "laravel": false,
@@ -2537,6 +2812,7 @@
                         {
                             "rule": "size",
                             "params": {
+                                "size": "4",
                                 "value": "4"
                             }
                         }
@@ -2545,7 +2821,15 @@
                 }
             },
             "messages": {
-                "field.size": "The field field must be :size characters."
+                "field.size": "The :attribute field must be :size characters."
+            },
+            "messageVariants": {
+                "field.size": {
+                    "array": "The :attribute field must contain :size items.",
+                    "file": "The :attribute field must be :size kilobytes.",
+                    "numeric": "The :attribute field must be :size.",
+                    "string": "The :attribute field must be :size characters."
+                }
             }
         },
         "laravel": false,
@@ -2572,7 +2856,15 @@
                 }
             },
             "messages": {
-                "field.between": "The field field must be between :min and :max characters."
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2599,7 +2891,15 @@
                 }
             },
             "messages": {
-                "field.between": "The field field must be between :min and :max characters."
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -2626,7 +2926,15 @@
                 }
             },
             "messages": {
-                "field.between": "The field field must be between :min and :max characters."
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -2653,7 +2961,15 @@
                 }
             },
             "messages": {
-                "field.between": "The field field must be between :min and :max characters."
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -2680,7 +2996,15 @@
                 }
             },
             "messages": {
-                "field.between": "The field field must be between :min and :max characters."
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -2706,8 +3030,9 @@
                 }
             },
             "messages": {
-                "field.digits": "The field field must be :digits digits."
-            }
+                "field.digits": "The :attribute field must be :digits digits."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "digits:4 #0"
@@ -2732,8 +3057,9 @@
                 }
             },
             "messages": {
-                "field.digits": "The field field must be :digits digits."
-            }
+                "field.digits": "The :attribute field must be :digits digits."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "digits:4 #1"
@@ -2758,8 +3084,9 @@
                 }
             },
             "messages": {
-                "field.digits": "The field field must be :digits digits."
-            }
+                "field.digits": "The :attribute field must be :digits digits."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "digits:4 #2"
@@ -2785,8 +3112,9 @@
                 }
             },
             "messages": {
-                "field.digits_between": "The field field must be between :min and :max digits."
-            }
+                "field.digits_between": "The :attribute field must be between :min and :max digits."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "digits_between:2,4 #0"
@@ -2812,8 +3140,9 @@
                 }
             },
             "messages": {
-                "field.digits_between": "The field field must be between :min and :max digits."
-            }
+                "field.digits_between": "The :attribute field must be between :min and :max digits."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "digits_between:2,4 #1"
@@ -2839,8 +3168,9 @@
                 }
             },
             "messages": {
-                "field.digits_between": "The field field must be between :min and :max digits."
-            }
+                "field.digits_between": "The :attribute field must be between :min and :max digits."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "digits_between:2,4 #2"
@@ -2861,6 +3191,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2869,8 +3200,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.max": "The field field must not be greater than :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2892,6 +3231,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2900,8 +3240,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.max": "The field field must not be greater than :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": false,
@@ -2923,6 +3271,7 @@
                         {
                             "rule": "max",
                             "params": {
+                                "max": "5",
                                 "value": "5"
                             }
                         }
@@ -2931,8 +3280,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.max": "The field field must not be greater than :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
             }
         },
         "laravel": true,
@@ -2954,6 +3311,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "3",
                                 "value": "3"
                             }
                         }
@@ -2962,8 +3320,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.min": "The field field must be at least :min characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": true,
@@ -2985,6 +3351,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "3",
                                 "value": "3"
                             }
                         }
@@ -2993,8 +3360,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.min": "The field field must be at least :min characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": false,
@@ -3022,8 +3397,9 @@
                 }
             },
             "messages": {
-                "field.in": "The selected field is invalid."
-            }
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "in:a,b,c #0"
@@ -3050,8 +3426,9 @@
                 }
             },
             "messages": {
-                "field.in": "The selected field is invalid."
-            }
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "in:a,b,c #1"
@@ -3078,11 +3455,75 @@
                 }
             },
             "messages": {
-                "field.in": "The selected field is invalid."
-            }
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "in:a,b,c #2"
+    },
+    {
+        "rule": "in:a,b,c",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "in:a,b,c #3"
+    },
+    {
+        "rule": "in:a,b,c",
+        "value": [
+            "a",
+            "b"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "in:a,b,c #4"
     },
     {
         "rule": "not_in:a,b",
@@ -3105,8 +3546,9 @@
                 }
             },
             "messages": {
-                "field.not_in": "The selected field is invalid."
-            }
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "not_in:a,b #0"
@@ -3132,11 +3574,289 @@
                 }
             },
             "messages": {
-                "field.not_in": "The selected field is invalid."
-            }
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "not_in:a,b #1"
+    },
+    {
+        "rule": "not_in:a,b",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "not_in:a,b #2"
+    },
+    {
+        "rule": "not_in:a,b",
+        "value": [
+            "c"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "not_in:a,b #3"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [
+            "a",
+            "b"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "array|in:a,b,c #0"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [
+            "a",
+            "x"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "array|in:a,b,c #1"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "array|in:a,b,c #2"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [
+            [
+                "nested"
+            ]
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "array|in:a,b,c #3"
+    },
+    {
+        "rule": "array|not_in:a,b",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "array|not_in:a,b #0"
+    },
+    {
+        "rule": "array|not_in:a,b",
+        "value": [
+            "c",
+            "d"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "array|not_in:a,b #1"
     },
     {
         "rule": "starts_with:ab,cd",
@@ -3159,8 +3879,9 @@
                 }
             },
             "messages": {
-                "field.starts_with": "The field field must start with one of the following: :values."
-            }
+                "field.starts_with": "The :attribute field must start with one of the following: :values."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "starts_with:ab,cd #0"
@@ -3186,8 +3907,9 @@
                 }
             },
             "messages": {
-                "field.starts_with": "The field field must start with one of the following: :values."
-            }
+                "field.starts_with": "The :attribute field must start with one of the following: :values."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "starts_with:ab,cd #1"
@@ -3213,8 +3935,9 @@
                 }
             },
             "messages": {
-                "field.starts_with": "The field field must start with one of the following: :values."
-            }
+                "field.starts_with": "The :attribute field must start with one of the following: :values."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "starts_with:ab,cd #2"
@@ -3239,8 +3962,9 @@
                 }
             },
             "messages": {
-                "field.ends_with": "The field field must end with one of the following: :values."
-            }
+                "field.ends_with": "The :attribute field must end with one of the following: :values."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "ends_with:ing #0"
@@ -3265,8 +3989,9 @@
                 }
             },
             "messages": {
-                "field.ends_with": "The field field must end with one of the following: :values."
-            }
+                "field.ends_with": "The :attribute field must end with one of the following: :values."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "ends_with:ing #1"
@@ -3291,8 +4016,9 @@
                 }
             },
             "messages": {
-                "field.contains": "The field field is missing a required value."
-            }
+                "field.contains": "The :attribute field is missing a required value."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "contains:foo #0"
@@ -3317,8 +4043,9 @@
                 }
             },
             "messages": {
-                "field.contains": "The field field is missing a required value."
-            }
+                "field.contains": "The :attribute field is missing a required value."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "contains:foo #1"
@@ -3341,8 +4068,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "accepted #0"
@@ -3365,8 +4093,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "accepted #1"
@@ -3389,8 +4118,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "accepted #2"
@@ -3413,8 +4143,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "accepted #3"
@@ -3437,8 +4168,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "accepted #4"
@@ -3461,8 +4193,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "accepted #5"
@@ -3485,8 +4218,9 @@
                 }
             },
             "messages": {
-                "field.accepted": "The field field must be accepted."
-            }
+                "field.accepted": "The :attribute field must be accepted."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "accepted #6"
@@ -3509,8 +4243,9 @@
                 }
             },
             "messages": {
-                "field.declined": "The field field must be declined."
-            }
+                "field.declined": "The :attribute field must be declined."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "declined #0"
@@ -3533,8 +4268,9 @@
                 }
             },
             "messages": {
-                "field.declined": "The field field must be declined."
-            }
+                "field.declined": "The :attribute field must be declined."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "declined #1"
@@ -3557,8 +4293,9 @@
                 }
             },
             "messages": {
-                "field.declined": "The field field must be declined."
-            }
+                "field.declined": "The :attribute field must be declined."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "declined #2"
@@ -3581,8 +4318,9 @@
                 }
             },
             "messages": {
-                "field.declined": "The field field must be declined."
-            }
+                "field.declined": "The :attribute field must be declined."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "declined #3"
@@ -3605,8 +4343,9 @@
                 }
             },
             "messages": {
-                "field.declined": "The field field must be declined."
-            }
+                "field.declined": "The :attribute field must be declined."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "declined #4"
@@ -3629,8 +4368,9 @@
                 }
             },
             "messages": {
-                "field.declined": "The field field must be declined."
-            }
+                "field.declined": "The :attribute field must be declined."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "declined #5"
@@ -3655,8 +4395,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "regex:/^[a-z]+$/ #0"
@@ -3681,8 +4422,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "regex:/^[a-z]+$/ #1"
@@ -3707,8 +4449,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "regex:/^[a-z]+$/ #2"
@@ -3733,8 +4476,9 @@
                 }
             },
             "messages": {
-                "field.not_regex": "The field field format is invalid."
-            }
+                "field.not_regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "not_regex:/\\d/ #0"
@@ -3759,8 +4503,9 @@
                 }
             },
             "messages": {
-                "field.not_regex": "The field field format is invalid."
-            }
+                "field.not_regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "not_regex:/\\d/ #1"
@@ -3785,8 +4530,9 @@
                 }
             },
             "messages": {
-                "field.multiple_of": "The field field must be a multiple of :value."
-            }
+                "field.multiple_of": "The :attribute field must be a multiple of :value."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "multiple_of:3 #0"
@@ -3811,8 +4557,9 @@
                 }
             },
             "messages": {
-                "field.multiple_of": "The field field must be a multiple of :value."
-            }
+                "field.multiple_of": "The :attribute field must be a multiple of :value."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "multiple_of:3 #1"
@@ -3837,8 +4584,9 @@
                 }
             },
             "messages": {
-                "field.multiple_of": "The field field must be a multiple of :value."
-            }
+                "field.multiple_of": "The :attribute field must be a multiple of :value."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "multiple_of:3 #2"
@@ -3863,8 +4611,9 @@
                 }
             },
             "messages": {
-                "field.decimal": "The field field must have :decimal decimal places."
-            }
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "decimal:2 #0"
@@ -3889,8 +4638,9 @@
                 }
             },
             "messages": {
-                "field.decimal": "The field field must have :decimal decimal places."
-            }
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "decimal:2 #1"
@@ -3915,8 +4665,9 @@
                 }
             },
             "messages": {
-                "field.decimal": "The field field must have :decimal decimal places."
-            }
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "decimal:2 #2"
@@ -3941,8 +4692,9 @@
                 }
             },
             "messages": {
-                "field.decimal": "The field field must have :decimal decimal places."
-            }
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "decimal:2 #3"
@@ -3967,7 +4719,15 @@
                 }
             },
             "messages": {
-                "field.gt": "The field field must be greater than :value characters."
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
             }
         },
         "laravel": true,
@@ -3993,7 +4753,15 @@
                 }
             },
             "messages": {
-                "field.gt": "The field field must be greater than :value characters."
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
             }
         },
         "laravel": false,
@@ -4019,7 +4787,15 @@
                 }
             },
             "messages": {
-                "field.gt": "The field field must be greater than :value characters."
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
             }
         },
         "laravel": false,
@@ -4045,7 +4821,15 @@
                 }
             },
             "messages": {
-                "field.lte": "The field field must be less than or equal to :value characters."
+                "field.lte": "The :attribute field must be less than or equal to :value characters."
+            },
+            "messageVariants": {
+                "field.lte": {
+                    "array": "The :attribute field must not have more than :value items.",
+                    "file": "The :attribute field must be less than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be less than or equal to :value.",
+                    "string": "The :attribute field must be less than or equal to :value characters."
+                }
             }
         },
         "laravel": true,
@@ -4071,7 +4855,15 @@
                 }
             },
             "messages": {
-                "field.lte": "The field field must be less than or equal to :value characters."
+                "field.lte": "The :attribute field must be less than or equal to :value characters."
+            },
+            "messageVariants": {
+                "field.lte": {
+                    "array": "The :attribute field must not have more than :value items.",
+                    "file": "The :attribute field must be less than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be less than or equal to :value.",
+                    "string": "The :attribute field must be less than or equal to :value characters."
+                }
             }
         },
         "laravel": false,
@@ -4101,8 +4893,9 @@
                 }
             },
             "messages": {
-                "field.same": "The field field must match :other."
-            }
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "same:other (x vs x)"
@@ -4131,8 +4924,9 @@
                 }
             },
             "messages": {
-                "field.same": "The field field must match :other."
-            }
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "same:other (x vs y)"
@@ -4161,8 +4955,9 @@
                 }
             },
             "messages": {
-                "field.different": "The field field and :other must be different."
-            }
+                "field.different": "The :attribute field and :other must be different."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "different:other (x vs y)"
@@ -4191,8 +4986,9 @@
                 }
             },
             "messages": {
-                "field.different": "The field field and :other must be different."
-            }
+                "field.different": "The :attribute field and :other must be different."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "different:other (x vs x)"
@@ -4219,8 +5015,9 @@
                 }
             },
             "messages": {
-                "field.confirmed": "The field field confirmation does not match."
-            }
+                "field.confirmed": "The :attribute field confirmation does not match."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "confirmed (x vs x)"
@@ -4247,11 +5044,957 @@
                 }
             },
             "messages": {
-                "field.confirmed": "The field field confirmation does not match."
-            }
+                "field.confirmed": "The :attribute field confirmation does not match."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "confirmed (x vs y)"
+    },
+    {
+        "rule": "integer",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #0 integer {\"field\":null}"
+    },
+    {
+        "rule": "integer",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #1 integer []"
+    },
+    {
+        "rule": "integer",
+        "value": [],
+        "data": {
+            "field": []
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #2 integer {\"field\":[]}"
+    },
+    {
+        "rule": "nullable|integer",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #3 nullable|integer {\"field\":null}"
+    },
+    {
+        "rule": "nullable|integer",
+        "value": "abc",
+        "data": {
+            "field": "abc"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #4 nullable|integer {\"field\":\"abc\"}"
+    },
+    {
+        "rule": "string",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #5 string {\"field\":null}"
+    },
+    {
+        "rule": "string",
+        "value": [],
+        "data": {
+            "field": []
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #6 string {\"field\":[]}"
+    },
+    {
+        "rule": "string",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #7 string []"
+    },
+    {
+        "rule": "numeric",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The :attribute field must be a number."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #8 numeric {\"field\":null}"
+    },
+    {
+        "rule": "email",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #9 email {\"field\":null}"
+    },
+    {
+        "rule": "max:5",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "5",
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "presence #10 max:5 {\"field\":null}"
+    },
+    {
+        "rule": "array",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #11 array {\"field\":null}"
+    },
+    {
+        "rule": "nullable|string|max:255",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "string",
+                            "params": []
+                        },
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "255",
+                                "value": "255"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The :attribute field must be a string.",
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "presence #12 nullable|string|max:255 {\"field\":null}"
+    },
+    {
+        "rule": "nullable|string|max:255",
+        "value": "",
+        "data": {
+            "field": ""
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "string",
+                            "params": []
+                        },
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "255",
+                                "value": "255"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The :attribute field must be a string.",
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "presence #13 nullable|string|max:255 {\"field\":\"\"}"
+    },
+    {
+        "rule": "required|string",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The :attribute field is required.",
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #14 required|string {\"field\":null}"
+    },
+    {
+        "rule": "required|string",
+        "value": [],
+        "data": {
+            "field": []
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        },
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The :attribute field is required.",
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #15 required|string {\"field\":[]}"
+    },
+    {
+        "rule": "sometimes|integer",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "sometimes",
+                            "params": []
+                        },
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #16 sometimes|integer []"
+    },
+    {
+        "rule": "sometimes|integer",
+        "value": "abc",
+        "data": {
+            "field": "abc"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "sometimes",
+                            "params": []
+                        },
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #17 sometimes|integer {\"field\":\"abc\"}"
+    },
+    {
+        "rule": "present",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present": "The :attribute field must be present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #18 present {\"field\":null}"
+    },
+    {
+        "rule": "present",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present": "The :attribute field must be present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #19 present []"
+    },
+    {
+        "rule": "present|nullable|string",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present",
+                            "params": []
+                        },
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "string",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present": "The :attribute field must be present.",
+                "field.string": "The :attribute field must be a string."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #20 present|nullable|string {\"field\":null}"
+    },
+    {
+        "rule": "filled",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "filled",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.filled": "The :attribute field must have a value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #21 filled {\"field\":null}"
+    },
+    {
+        "rule": "filled",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "filled",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.filled": "The :attribute field must have a value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #22 filled []"
+    },
+    {
+        "rule": "same:other",
+        "value": null,
+        "data": {
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #23 same:other {\"other\":\"x\"}"
+    },
+    {
+        "rule": "same:other",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #24 same:other {\"field\":\"x\",\"other\":\"x\"}"
+    },
+    {
+        "rule": "different:other",
+        "value": null,
+        "data": {
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "different",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.different": "The :attribute field and :other must be different."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #25 different:other {\"other\":\"x\"}"
+    },
+    {
+        "rule": "confirmed",
+        "value": null,
+        "data": {
+            "field_confirmation": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "confirmed",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.confirmed": "The :attribute field confirmation does not match."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #26 confirmed {\"field_confirmation\":\"x\"}"
+    },
+    {
+        "rule": "nullable|required_without_all:a,b",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "required_without_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_without_all": "The :attribute field is required when none of :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "presence #27 nullable|required_without_all:a,b []"
+    },
+    {
+        "rule": "nullable|required_without_all:a,b",
+        "value": null,
+        "data": {
+            "a": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "required_without_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_without_all": "The :attribute field is required when none of :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #28 nullable|required_without_all:a,b {\"a\":\"x\"}"
+    },
+    {
+        "rule": "nullable|string|required_without_all:a,b",
+        "value": null,
+        "data": {
+            "field": null,
+            "a": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "nullable",
+                            "params": []
+                        },
+                        {
+                            "rule": "string",
+                            "params": []
+                        },
+                        {
+                            "rule": "required_without_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.string": "The :attribute field must be a string.",
+                "field.required_without_all": "The :attribute field is required when none of :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "presence #29 nullable|string|required_without_all:a,b {\"field\":null,\"a\":\"x\"}"
     },
     {
         "rule": "Slug",
@@ -4273,8 +6016,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "Slug #0"
@@ -4299,8 +6043,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Slug #1"
@@ -4325,8 +6070,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Slug #2"
@@ -4351,8 +6097,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Slug #3"
@@ -4377,8 +6124,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "SemVer #0"
@@ -4403,8 +6151,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "SemVer #1"
@@ -4429,8 +6178,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "SemVer #2"
@@ -4455,8 +6205,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "SemVer #3"
@@ -4481,8 +6232,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "Subdomain #0"
@@ -4507,8 +6259,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "Subdomain #1"
@@ -4533,8 +6286,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Subdomain #2"
@@ -4559,8 +6313,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Subdomain #3"
@@ -4585,8 +6340,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "EthereumAddress #0"
@@ -4611,8 +6367,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "EthereumAddress #1"
@@ -4637,8 +6394,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CaseStyle advertised #0 my-post"
@@ -4663,8 +6421,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "CaseStyle advertised #1 myPost"
@@ -4689,8 +6448,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "CaseStyle advertised #2 my_post"
@@ -4715,8 +6475,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "Username advertised #0 alice"
@@ -4741,8 +6502,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Username advertised #1 al"
@@ -4767,8 +6529,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "Username advertised #2 a_b"
@@ -4793,8 +6556,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Username advertised #3 a__b"
@@ -4819,8 +6583,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "Username advertised #4 aliceandbobandcarol"
@@ -4845,8 +6610,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "MonetaryAmount advertised #0 12.34"
@@ -4871,8 +6637,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "MonetaryAmount advertised #1 12.345"
@@ -4897,8 +6664,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "MonetaryAmount advertised #2 -12.00"
@@ -4923,8 +6691,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "MonetaryAmount advertised #3 1e3"
@@ -4949,8 +6718,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "MonetaryAmount advertised #4 1,234.50"
@@ -4975,8 +6745,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "MonetaryAmount advertised #0 -12.00"
@@ -5001,8 +6772,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "MonetaryAmount advertised #1 12.00"
@@ -5027,8 +6799,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "VendorIdentifier advertised #0 us-east-1"
@@ -5053,8 +6826,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "VendorIdentifier advertised #1 US-EAST-1"
@@ -5079,8 +6853,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "VendorIdentifier advertised #2 us-east"
@@ -5105,8 +6880,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "VendorIdentifier advertised #0 G-ABCDE12345"
@@ -5131,8 +6907,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "VendorIdentifier advertised #1 g-abcde12345"
@@ -5157,8 +6934,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "VendorIdentifier advertised #2 UA-1-1"
@@ -5183,8 +6961,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "VendorIdentifier advertised #0 common"
@@ -5209,8 +6988,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "VendorIdentifier advertised #1 72f988bf-86f1-41af-91ab-2d7cd011db47"
@@ -5235,8 +7015,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "VendorIdentifier advertised #2 nope"
@@ -5261,8 +7042,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "PostalCode advertised #0 90210"
@@ -5287,8 +7069,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "PostalCode advertised #1 9021"
@@ -5313,8 +7096,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "PostalCode advertised #2 SW1A 1AA"
@@ -5339,8 +7123,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "PostalCode advertised #0 90210"
@@ -5365,8 +7150,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "PostalCode advertised #1 K1A 0B1"
@@ -5391,8 +7177,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "PostalCode advertised #2 k1a 0b1"
@@ -5417,8 +7204,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "PostalCode advertised #3 nonsense"
@@ -5448,8 +7236,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5480,8 +7276,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5512,8 +7316,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5544,8 +7356,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5576,8 +7396,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5608,8 +7436,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5640,8 +7476,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5672,8 +7516,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5704,8 +7556,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5736,8 +7596,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5768,8 +7636,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5800,8 +7676,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5832,8 +7716,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5864,8 +7756,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": true,
@@ -5896,8 +7796,16 @@
                 }
             },
             "messages": {
-                "field.numeric": "The field field must be a number.",
-                "field.between": "The field field must be between :min and :max characters."
+                "field.numeric": "The :attribute field must be a number.",
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
             }
         },
         "laravel": false,
@@ -5923,8 +7831,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #0 #fff"
@@ -5949,8 +7858,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "CssColor multi #1 #fffff"
@@ -5975,8 +7885,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #2 red"
@@ -6001,8 +7912,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #3 rebeccapurple"
@@ -6027,8 +7939,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #4 transparent"
@@ -6053,8 +7966,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #5 rgb(1,2,3)"
@@ -6079,8 +7993,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #6 rgb(300,0,0)"
@@ -6105,8 +8020,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #7 hsl(120, 50%, 50%)"
@@ -6131,8 +8047,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "CssColor multi #8 notacolour"
@@ -6157,8 +8074,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "CssColor multi #0 #fff"
@@ -6183,8 +8101,9 @@
                 }
             },
             "messages": {
-                "field.regex": "The field field format is invalid."
-            }
+                "field.regex": "The :attribute field format is invalid."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "CssColor multi #1 red"
@@ -6213,8 +8132,9 @@
                 }
             },
             "messages": {
-                "field.required_if": "The field field is required when :other is :value."
-            }
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #0 required_if:kind,card"
@@ -6243,8 +8163,9 @@
                 }
             },
             "messages": {
-                "field.required_if": "The field field is required when :other is :value."
-            }
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #1 required_if:kind,card"
@@ -6274,8 +8195,9 @@
                 }
             },
             "messages": {
-                "field.required_if": "The field field is required when :other is :value."
-            }
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #2 required_if:kind,card"
@@ -6305,8 +8227,9 @@
                 }
             },
             "messages": {
-                "field.required_if": "The field field is required when :other is :value."
-            }
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #3 required_if:kind,card,cheque"
@@ -6336,8 +8259,9 @@
                 }
             },
             "messages": {
-                "field.required_if": "The field field is required when :other is :value."
-            }
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #4 required_if:kind,card,cheque"
@@ -6366,8 +8290,9 @@
                 }
             },
             "messages": {
-                "field.required_unless": "The field field is required unless :other is in :values."
-            }
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #5 required_unless:kind,cash"
@@ -6396,8 +8321,9 @@
                 }
             },
             "messages": {
-                "field.required_unless": "The field field is required unless :other is in :values."
-            }
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #6 required_unless:kind,cash"
@@ -6427,8 +8353,9 @@
                 }
             },
             "messages": {
-                "field.required_unless": "The field field is required unless :other is in :values."
-            }
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #7 required_unless:kind,cash"
@@ -6456,8 +8383,9 @@
                 }
             },
             "messages": {
-                "field.required_with": "The field field is required when :values is present."
-            }
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #8 required_with:a"
@@ -6483,8 +8411,9 @@
                 }
             },
             "messages": {
-                "field.required_with": "The field field is required when :values is present."
-            }
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #9 required_with:a"
@@ -6513,8 +8442,9 @@
                 }
             },
             "messages": {
-                "field.required_with": "The field field is required when :values is present."
-            }
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #10 required_with:a,b"
@@ -6543,8 +8473,9 @@
                 }
             },
             "messages": {
-                "field.required_with_all": "The field field is required when :values are present."
-            }
+                "field.required_with_all": "The :attribute field is required when :values are present."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #11 required_with_all:a,b"
@@ -6574,8 +8505,9 @@
                 }
             },
             "messages": {
-                "field.required_with_all": "The field field is required when :values are present."
-            }
+                "field.required_with_all": "The :attribute field is required when :values are present."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #12 required_with_all:a,b"
@@ -6601,8 +8533,9 @@
                 }
             },
             "messages": {
-                "field.required_without": "The field field is required when :values is not present."
-            }
+                "field.required_without": "The :attribute field is required when :values is not present."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #13 required_without:a"
@@ -6630,8 +8563,9 @@
                 }
             },
             "messages": {
-                "field.required_without": "The field field is required when :values is not present."
-            }
+                "field.required_without": "The :attribute field is required when :values is not present."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #14 required_without:a"
@@ -6658,8 +8592,9 @@
                 }
             },
             "messages": {
-                "field.required_without_all": "The field field is required when none of :values are present."
-            }
+                "field.required_without_all": "The :attribute field is required when none of :values are present."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #15 required_without_all:a,b"
@@ -6688,8 +8623,9 @@
                 }
             },
             "messages": {
-                "field.required_without_all": "The field field is required when none of :values are present."
-            }
+                "field.required_without_all": "The :attribute field is required when none of :values are present."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #16 required_without_all:a,b"
@@ -6717,8 +8653,9 @@
                 }
             },
             "messages": {
-                "field.required_if_accepted": "The field field is required when :other is accepted."
-            }
+                "field.required_if_accepted": "The :attribute field is required when :other is accepted."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "conditional #17 required_if_accepted:agree"
@@ -6746,11 +8683,77 @@
                 }
             },
             "messages": {
-                "field.required_if_accepted": "The field field is required when :other is accepted."
-            }
+                "field.required_if_accepted": "The :attribute field is required when :other is accepted."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "conditional #18 required_if_accepted:agree"
+    },
+    {
+        "rule": "required_with:meta.constructor",
+        "value": null,
+        "data": {
+            "meta": {
+                "x": "1"
+            }
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "meta.constructor"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #19 required_with:meta.constructor"
+    },
+    {
+        "rule": "required_with:items.-1",
+        "value": null,
+        "data": {
+            "items": [
+                "a",
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "items.-1"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #20 required_with:items.-1"
     },
     {
         "rule": "items.*.email => required|email",
@@ -6784,9 +8787,10 @@
                 }
             },
             "messages": {
-                "items.*.email.required": "The items.*.email field is required.",
-                "items.*.email.email": "The items.*.email field must be a valid email address."
-            }
+                "items.*.email.required": "The :attribute field is required.",
+                "items.*.email.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "wildcard #0 items.*.email"
@@ -6823,9 +8827,10 @@
                 }
             },
             "messages": {
-                "items.*.email.required": "The items.*.email field is required.",
-                "items.*.email.email": "The items.*.email field must be a valid email address."
-            }
+                "items.*.email.required": "The :attribute field is required.",
+                "items.*.email.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "wildcard #1 items.*.email"
@@ -6855,9 +8860,10 @@
                 }
             },
             "messages": {
-                "items.*.email.required": "The items.*.email field is required.",
-                "items.*.email.email": "The items.*.email field must be a valid email address."
-            }
+                "items.*.email.required": "The :attribute field is required.",
+                "items.*.email.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "wildcard #2 items.*.email"
@@ -6885,9 +8891,10 @@
                 }
             },
             "messages": {
-                "items.*.email.required": "The items.*.email field is required.",
-                "items.*.email.email": "The items.*.email field must be a valid email address."
-            }
+                "items.*.email.required": "The :attribute field is required.",
+                "items.*.email.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
         },
         "laravel": true,
         "id": "wildcard #3 items.*.email"
@@ -6919,6 +8926,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "2",
                                 "value": "2"
                             }
                         }
@@ -6927,9 +8935,17 @@
                 }
             },
             "messages": {
-                "items.*.qty.required": "The items.*.qty field is required.",
-                "items.*.qty.numeric": "The items.*.qty field must be a number.",
-                "items.*.qty.min": "The items.*.qty field must be at least :min characters."
+                "items.*.qty.required": "The :attribute field is required.",
+                "items.*.qty.numeric": "The :attribute field must be a number.",
+                "items.*.qty.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "items.*.qty.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": true,
@@ -6962,6 +8978,7 @@
                         {
                             "rule": "min",
                             "params": {
+                                "min": "2",
                                 "value": "2"
                             }
                         }
@@ -6970,9 +8987,17 @@
                 }
             },
             "messages": {
-                "items.*.qty.required": "The items.*.qty field is required.",
-                "items.*.qty.numeric": "The items.*.qty field must be a number.",
-                "items.*.qty.min": "The items.*.qty field must be at least :min characters."
+                "items.*.qty.required": "The :attribute field is required.",
+                "items.*.qty.numeric": "The :attribute field must be a number.",
+                "items.*.qty.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "items.*.qty.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
             }
         },
         "laravel": false,
@@ -7010,8 +9035,9 @@
                 }
             },
             "messages": {
-                "rows.*.cols.*.v.required": "The rows.*.cols.*.v field is required."
-            }
+                "rows.*.cols.*.v.required": "The :attribute field is required."
+            },
+            "messageVariants": []
         },
         "laravel": false,
         "id": "wildcard #6 rows.*.cols.*.v"

@@ -48,6 +48,51 @@ suggests.
 **An empty value does not skip every rule.** Laravel runs its implicit rules regardless:
 `accepted` on `''` fails rather than being skipped.
 
+## What happens when the two packages are out of step
+
+They are separate packages and are meant to be upgraded separately, so the runner is built to
+lose precision rather than correctness when it meets a schema it cannot fully read.
+
+- A **rule name** it does not implement → that field is undetermined.
+- A **parameter** it cannot find → that ONE rule is undetermined, the rest of the field is still
+  decided. Without this the coercions underneath turn a missing `max` into `0` and the rule
+  silently becomes "no value is shorter than nothing", rejecting everything.
+- A **top-level key** added since it was published → ignored.
+- A different **major** schema version → the whole schema goes to the server. Reserved for a
+  restructuring that cannot be expressed additively, and not expected to happen.
+
+The cost is always a round trip, never a wrong answer. See
+[Schema](../schema.md#shipping-the-two-halves-apart).
+
+## Absent, blank and null are three different things
+
+The rule above is not "empty values are skipped", and reading it that way is how the runner
+came to pass four payloads the server rejects. Laravel's `isValidatable` draws a finer line,
+and the runner reproduces it:
+
+| The value is | What runs |
+|---|---|
+| a blank string (`''`, `'   '`) | implicit rules only |
+| absent — the key is not in the payload | implicit rules only |
+| present, including `null` and `[]` | everything |
+
+So `['age' => null]` against `integer` **fails**, exactly as it does on the server. Treating a
+present null as "nothing to check" showed a green tick for input that was about to be rejected.
+
+`nullable` is the opt-out, and it is narrower than it looks: only for `null`, and only for the
+non-implicit rules, so a `required` alongside it still fires. The decision belongs to the rule
+set — the value does not get to make it.
+
+Two rules read presence directly rather than through their value, and both were wrong for the
+same reason. `present` asks whether the KEY exists, so `{name: null}` passes it. `filled` is
+`required` **only when the key is there** — "if you send it, send something" is not the same as
+requiring it.
+
+`confirmed`, `same` and `different` are deliberately not implicit, though they read like they
+should be. Laravel's own `$implicitRules` omits them, and the consequence is visible:
+`{other: 'x'}` against `field => same:other` passes on the server, because an absent `field`
+never reaches the rule.
+
 ## Why `exclude_*` stays on the server
 
 Every other rule answers pass or fail. `exclude_if` does something else: it removes the field

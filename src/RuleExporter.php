@@ -27,6 +27,34 @@ use Stringable;
 final readonly class RuleExporter
 {
     /**
+     * The schema format's MAJOR version, and the only thing a runner may gate on.
+     *
+     * It is 1, and the intention is that it stays 1. Within a major version
+     * every change is ADDITIVE: a new top-level key, a new rule name, an extra
+     * parameter. A runner from any era ignores what it does not recognise and
+     * keeps deciding what it can, which is what lets the PHP half and the
+     * JavaScript half ship on their own schedules with neither waiting for the
+     * other.
+     *
+     * That is a constraint on this class, not a hope. Two changes have already
+     * had to respect it:
+     *
+     * - The size parameters were renamed — `{"max":"255"}`, once
+     *   `{"value":"255"}`. Both are emitted, see
+     *   {@see RuleCatalogue::PARAMETER_ALIASES}, because a runner reading a key
+     *   that is no longer there gets nothing, and one of them turned that into
+     *   "no value is shorter than nothing" and rejected every input.
+     * - Size messages gained per-type variants. They went into a NEW
+     *   `messageVariants` key rather than changing the type of `messages`, which
+     *   an older runner calls `replaceAll()` on.
+     *
+     * Bump this only for a change that cannot be made additive — restructuring
+     * `fields`, say. It costs every consumer a lockstep upgrade, so the bar is
+     * "there is no additive way to express this", not "this is tidier".
+     */
+    public const int VERSION = 1;
+
+    /**
      * Stands in for `*` while Laravel's parser runs. Any token works provided
      * it is a legal attribute segment and cannot collide with a real field
      * name — hence the underscores.
@@ -39,13 +67,14 @@ final readonly class RuleExporter
      * @param  array<string, mixed>  $rules
      * @param  array<string, string>  $messages  Custom messages, `field.rule` or `field`.
      * @param  array<string, string>  $attributes  Human names for fields.
-     * @return array{version: int, fields: array<string, array{attribute: string|null, client: list<array{rule: string, params: array<array-key, string>}>, server: list<string>}>, messages: array<string, string>}
+     * @return array{version: int, fields: array<string, array{attribute: string|null, client: list<array{rule: string, params: array<array-key, string>}>, server: list<string>}>, messages: array<string, string>, messageVariants: array<string, array<string, string>>}
      */
     public function export(array $rules, array $messages = [], array $attributes = []): array
     {
         $parser = new ValidationRuleParser([]);
         $fields = [];
         $exportedMessages = [];
+        $exportedVariants = [];
 
         foreach ($rules as $attribute => $rule) {
             $attribute = (string) $attribute;
@@ -61,9 +90,18 @@ final readonly class RuleExporter
                         'params' => RuleCatalogue::nameParameters($snake, $parameters),
                     ];
 
-                    $message = $this->message($attribute, $snake, $messages, $attributes);
+                    $message = $this->message($attribute, $snake, $messages);
 
-                    if ($message !== null) {
+                    // A size rule's line has four variants keyed by the value's
+                    // type. They travel in their own map, and `messages` keeps
+                    // the string an older runner expects to call replaceAll on
+                    // — changing the type in place would have thrown there.
+                    if (is_array($message)) {
+                        $exportedVariants["{$attribute}.{$snake}"] = $message;
+                        $message = $message['string'] ?? reset($message);
+                    }
+
+                    if (is_string($message)) {
                         $exportedMessages["{$attribute}.{$snake}"] = $message;
                     }
 
@@ -83,9 +121,10 @@ final readonly class RuleExporter
         }
 
         return [
-            'version' => 1,
+            'version' => self::VERSION,
             'fields' => $fields,
             'messages' => $exportedMessages,
+            'messageVariants' => $exportedVariants,
         ];
     }
 
@@ -96,11 +135,21 @@ final readonly class RuleExporter
      */
     public function toJson(array $rules, array $messages = [], array $attributes = []): string
     {
-        return json_encode($this->export($rules, $messages, $attributes), JSON_THROW_ON_ERROR);
+        // The HEX flags are load-bearing: this JSON is written to be dropped
+        // into an inline <script> block, where an unescaped "</script>" in a
+        // translated message terminates the block early — stored XSS via a
+        // translation string. Escaping is transport-only; the decoded values
+        // are byte-identical.
+        return json_encode(
+            $this->export($rules, $messages, $attributes),
+            JSON_THROW_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP,
+        );
     }
 
     /**
-     * @return list<array{0: string, 1: list<string>}>
+     * @return list<array{0: string, 1: array<array-key, string>}> Parameters keep
+     *                                                             string keys when a ClientCheckable advertisement named
+     *                                                             them; parser-derived parameters stay positional.
      */
     private function explode(ValidationRuleParser $parser, string $attribute, mixed $rule): array
     {
@@ -199,12 +248,18 @@ final readonly class RuleExporter
      * `Geo\Latitude` is `numeric` AND `between:-90,90`. All of them are
      * exported, and all must pass.
      *
+     * Parameter keys are preserved: ClientCheckable documents NAMED keys,
+     * and the name is the contract. Flattening them to a positional list
+     * re-keyed each VALUE to whatever name sat at that position in the
+     * catalogue table — a rule that wrote ['max' => …, 'min' => …] exported
+     * inverted bounds.
+     *
      * `interface_exists` rather than a hard dependency: laranail/validation is
      * a suggest, not a require, and this package is useful without it. A
      * consumer who has not installed it simply has no rule objects that could
      * advertise anything.
      *
-     * @return list<array{rule: string, params: list<string>}>
+     * @return list<array{rule: string, params: array<array-key, string>}>
      */
     private static function advertisedClientRules(object $rule): array
     {
@@ -224,7 +279,7 @@ final readonly class RuleExporter
                 return [];
             }
 
-            $exported[] = ['rule' => $advertised['rule'], 'params' => array_values($advertised['params'])];
+            $exported[] = ['rule' => $advertised['rule'], 'params' => $advertised['params']];
         }
 
         return $exported;
@@ -244,10 +299,19 @@ final readonly class RuleExporter
     }
 
     /**
+     * The message template for a rule — never a finished sentence.
+     *
+     * `:attribute` is deliberately left in place. Substituting it here looks
+     * harmless and is wrong for exactly one shape: a wildcard. The schema key
+     * is the PATTERN (`items.*.qty`), the failure is reported on the concrete
+     * path (`items.0.qty`), and baking the pattern into the sentence showed the
+     * user "The items.*.qty field is required." The runner has the submission,
+     * so it fills the name.
+     *
      * @param  array<string, string>  $messages
-     * @param  array<string, string>  $attributes
+     * @return string|array<string, string>|null
      */
-    private function message(string $attribute, string $rule, array $messages, array $attributes): ?string
+    private function message(string $attribute, string $rule, array $messages): string|array|null
     {
         $custom = $messages["{$attribute}.{$rule}"] ?? $messages[$attribute] ?? null;
 
@@ -262,18 +326,29 @@ final readonly class RuleExporter
         $key = "validation.{$rule}";
         $line = $this->translator->get($key);
 
-        // A size rule has four variants keyed by the value's type. The browser
-        // decides which applies, so the string form is exported as the
-        // default — anything else would require the exporter to know the input
-        // type, which it does not.
+        // A size rule has four variants keyed by the value's TYPE, and which
+        // one applies cannot be decided here. It depends on the rule set
+        // (`numeric`, `array`), on the value (an uploaded file), and — for
+        // gt/gte/lt/lte — on whether the value itself is numeric, which is
+        // Laravel's `shouldBeNumeric` and runs at validation time. Exporting
+        // the `string` variant as the default meant a numeric field was told
+        // it "must not be greater than 5 characters". All four go, and the
+        // runner picks.
         if (is_array($line)) {
-            $line = $line['string'] ?? reset($line);
+            /** @var array<string, string> $variants */
+            $variants = array_filter(
+                $line,
+                static fn (mixed $variant, mixed $type): bool => is_string($variant) && is_string($type),
+                ARRAY_FILTER_USE_BOTH,
+            );
+
+            return $variants === [] ? null : $variants;
         }
 
         if (! is_string($line) || $line === $key) {
             return null;
         }
 
-        return str_replace(':attribute', $attributes[$attribute] ?? str_replace('_', ' ', $attribute), $line);
+        return $line;
     }
 }

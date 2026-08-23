@@ -1,0 +1,1004 @@
+[
+    {
+        "attribute": "field",
+        "rule": "max:5",
+        "data": {
+            "field": "abcdef"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "5",
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": "The field field must not be greater than 5 characters.",
+        "id": "message #0 field => max:5"
+    },
+    {
+        "attribute": "field",
+        "rule": "numeric|max:5",
+        "data": {
+            "field": "6"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "numeric",
+                            "params": []
+                        },
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "5",
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.numeric": "The :attribute field must be a number.",
+                "field.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "field.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": "The field field must not be greater than 5.",
+        "id": "message #1 field => numeric|max:5"
+    },
+    {
+        "attribute": "field",
+        "rule": "min:3",
+        "data": {
+            "field": "ab"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min",
+                            "params": {
+                                "min": "3",
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min": "The :attribute field must be at least :min characters."
+            },
+            "messageVariants": {
+                "field.min": {
+                    "array": "The :attribute field must have at least :min items.",
+                    "file": "The :attribute field must be at least :min kilobytes.",
+                    "numeric": "The :attribute field must be at least :min.",
+                    "string": "The :attribute field must be at least :min characters."
+                }
+            }
+        },
+        "laravel": "The field field must be at least 3 characters.",
+        "id": "message #2 field => min:3"
+    },
+    {
+        "attribute": "field",
+        "rule": "size:4",
+        "data": {
+            "field": "abc"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "size",
+                            "params": {
+                                "size": "4",
+                                "value": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.size": "The :attribute field must be :size characters."
+            },
+            "messageVariants": {
+                "field.size": {
+                    "array": "The :attribute field must contain :size items.",
+                    "file": "The :attribute field must be :size kilobytes.",
+                    "numeric": "The :attribute field must be :size.",
+                    "string": "The :attribute field must be :size characters."
+                }
+            }
+        },
+        "laravel": "The field field must be 4 characters.",
+        "id": "message #3 field => size:4"
+    },
+    {
+        "attribute": "field",
+        "rule": "between:2,4",
+        "data": {
+            "field": "a"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.between": "The :attribute field must be between :min and :max characters."
+            },
+            "messageVariants": {
+                "field.between": {
+                    "array": "The :attribute field must have between :min and :max items.",
+                    "file": "The :attribute field must be between :min and :max kilobytes.",
+                    "numeric": "The :attribute field must be between :min and :max.",
+                    "string": "The :attribute field must be between :min and :max characters."
+                }
+            }
+        },
+        "laravel": "The field field must be between 2 and 4 characters.",
+        "id": "message #4 field => between:2,4"
+    },
+    {
+        "attribute": "field",
+        "rule": "digits:4",
+        "data": {
+            "field": "123"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits",
+                            "params": {
+                                "digits": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits": "The :attribute field must be :digits digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must be 4 digits.",
+        "id": "message #5 field => digits:4"
+    },
+    {
+        "attribute": "field",
+        "rule": "digits_between:2,4",
+        "data": {
+            "field": "12345"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "digits_between",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.digits_between": "The :attribute field must be between :min and :max digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must be between 2 and 4 digits.",
+        "id": "message #6 field => digits_between:2,4"
+    },
+    {
+        "attribute": "field",
+        "rule": "decimal:2",
+        "data": {
+            "field": "1.234"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must have 2 decimal places.",
+        "id": "message #7 field => decimal:2"
+    },
+    {
+        "attribute": "field",
+        "rule": "decimal:2,4",
+        "data": {
+            "field": "1.234567"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "2",
+                                "max": "4"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must have 2-4 decimal places.",
+        "id": "message #8 field => decimal:2,4"
+    },
+    {
+        "attribute": "field",
+        "rule": "multiple_of:3",
+        "data": {
+            "field": "10"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "multiple_of",
+                            "params": {
+                                "value": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.multiple_of": "The :attribute field must be a multiple of :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must be a multiple of 3.",
+        "id": "message #9 field => multiple_of:3"
+    },
+    {
+        "attribute": "field",
+        "rule": "gt:5",
+        "data": {
+            "field": "4"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": "The field field must be greater than 5.",
+        "id": "message #10 field => gt:5"
+    },
+    {
+        "attribute": "field",
+        "rule": "lte:5",
+        "data": {
+            "field": "6"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lte",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lte": "The :attribute field must be less than or equal to :value characters."
+            },
+            "messageVariants": {
+                "field.lte": {
+                    "array": "The :attribute field must not have more than :value items.",
+                    "file": "The :attribute field must be less than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be less than or equal to :value.",
+                    "string": "The :attribute field must be less than or equal to :value characters."
+                }
+            }
+        },
+        "laravel": "The field field must be less than or equal to 5.",
+        "id": "message #11 field => lte:5"
+    },
+    {
+        "attribute": "field",
+        "rule": "required_if:kind,card",
+        "data": {
+            "kind": "card"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field is required when kind is card.",
+        "id": "message #12 field => required_if:kind,card"
+    },
+    {
+        "attribute": "field",
+        "rule": "required_if:kind,card,cheque",
+        "data": {
+            "kind": "cheque"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card",
+                                "2": "cheque"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field is required when kind is cheque.",
+        "id": "message #13 field => required_if:kind,card,cheque"
+    },
+    {
+        "attribute": "field",
+        "rule": "required_unless:kind,cash",
+        "data": {
+            "kind": "card"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "cash"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field is required unless kind is in cash.",
+        "id": "message #14 field => required_unless:kind,cash"
+    },
+    {
+        "attribute": "field",
+        "rule": "required_with:a",
+        "data": {
+            "a": "x"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field is required when a is present.",
+        "id": "message #15 field => required_with:a"
+    },
+    {
+        "attribute": "field",
+        "rule": "starts_with:ab,cd",
+        "data": {
+            "field": "zz"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "starts_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.starts_with": "The :attribute field must start with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must start with one of the following: ab, cd.",
+        "id": "message #16 field => starts_with:ab,cd"
+    },
+    {
+        "attribute": "field",
+        "rule": "ends_with:ing",
+        "data": {
+            "field": "zz"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ends_with",
+                            "params": [
+                                "ing"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ends_with": "The :attribute field must end with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must end with one of the following: ing.",
+        "id": "message #17 field => ends_with:ing"
+    },
+    {
+        "attribute": "field",
+        "rule": "in:a,b",
+        "data": {
+            "field": "z"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The selected field is invalid.",
+        "id": "message #18 field => in:a,b"
+    },
+    {
+        "attribute": "field",
+        "rule": "same:other",
+        "data": {
+            "field": "x",
+            "other": "y"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must match other.",
+        "id": "message #19 field => same:other"
+    },
+    {
+        "attribute": "field",
+        "rule": "required",
+        "data": [],
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required": "The :attribute field is required."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field is required.",
+        "id": "message #20 field => required"
+    },
+    {
+        "attribute": "field",
+        "rule": "email",
+        "data": {
+            "field": "nope"
+        },
+        "field": "field",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "email",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.email": "The :attribute field must be a valid email address."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The field field must be a valid email address.",
+        "id": "message #21 field => email"
+    },
+    {
+        "attribute": "email",
+        "rule": "required",
+        "data": [],
+        "field": "email",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "email": {
+                    "attribute": "Email address",
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "email.required": "The :attribute field is required."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The Email address field is required.",
+        "id": "message #22 email => required"
+    },
+    {
+        "attribute": "email",
+        "rule": "max:5",
+        "data": {
+            "email": "abcdef"
+        },
+        "field": "email",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "email": {
+                    "attribute": "Email address",
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "5",
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "email.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "email.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": "The Email address field must not be greater than 5 characters.",
+        "id": "message #23 email => max:5"
+    },
+    {
+        "attribute": "items.*.qty",
+        "rule": "required",
+        "data": {
+            "items": [
+                {
+                    "qty": ""
+                }
+            ]
+        },
+        "field": "items.0.qty",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.qty": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.qty.required": "The :attribute field is required."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The items.0.qty field is required.",
+        "id": "message #24 items.*.qty => required"
+    },
+    {
+        "attribute": "items.*.qty",
+        "rule": "max:2",
+        "data": {
+            "items": [
+                {
+                    "qty": "abcd"
+                }
+            ]
+        },
+        "field": "items.0.qty",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.qty": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "2",
+                                "value": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.qty.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "items.*.qty.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": "The items.0.qty field must not be greater than 2 characters.",
+        "id": "message #25 items.*.qty => max:2"
+    },
+    {
+        "attribute": "items.*.qty",
+        "rule": "required",
+        "data": {
+            "items": [
+                {
+                    "qty": "ok"
+                },
+                {
+                    "qty": ""
+                }
+            ]
+        },
+        "field": "items.1.qty",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.qty": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.qty.required": "The :attribute field is required."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The items.1.qty field is required.",
+        "id": "message #26 items.*.qty => required"
+    },
+    {
+        "attribute": "items.*.qty",
+        "rule": "max:2",
+        "data": {
+            "items": [
+                {
+                    "qty": "abcd"
+                }
+            ]
+        },
+        "field": "items.0.qty",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.qty": {
+                    "attribute": "Quantity",
+                    "client": [
+                        {
+                            "rule": "max",
+                            "params": {
+                                "max": "2",
+                                "value": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.qty.max": "The :attribute field must not be greater than :max characters."
+            },
+            "messageVariants": {
+                "items.*.qty.max": {
+                    "array": "The :attribute field must not have more than :max items.",
+                    "file": "The :attribute field must not be greater than :max kilobytes.",
+                    "numeric": "The :attribute field must not be greater than :max.",
+                    "string": "The :attribute field must not be greater than :max characters."
+                }
+            }
+        },
+        "laravel": "The Quantity field must not be greater than 2 characters.",
+        "id": "message #27 items.*.qty => max:2"
+    },
+    {
+        "attribute": "rows.*.cols.*.v",
+        "rule": "required",
+        "data": {
+            "rows": [
+                {
+                    "cols": [
+                        {
+                            "v": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "field": "rows.0.cols.0.v",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "rows.*.cols.*.v": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "rows.*.cols.*.v.required": "The :attribute field is required."
+            },
+            "messageVariants": []
+        },
+        "laravel": "The rows.0.cols.0.v field is required.",
+        "id": "message #28 rows.*.cols.*.v => required"
+    }
+]

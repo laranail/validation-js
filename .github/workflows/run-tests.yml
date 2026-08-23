@@ -37,9 +37,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      # No install step: the library and its tests have zero dependencies, and
-      # Node strips the types natively.
+      # The library has zero runtime dependencies; the install brings only the
+      # TypeScript compiler the build step needs.
+      - run: npm install
       - run: node --test 'js/tests/**/*.test.ts'
+      # The unit suite runs the raw sources — it stayed green while the
+      # PUBLISHED package could not be imported at all (`main` pointed at a
+      # .ts file). This packs the tarball exactly as `npm publish` would,
+      # installs it into a clean project, and imports it under plain Node.
+      - run: npm run test:pack
 
   parity:
     runs-on: ubuntu-latest
