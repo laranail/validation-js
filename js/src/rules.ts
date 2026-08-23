@@ -46,9 +46,7 @@ export function sizeOf(value: unknown, isNumeric: boolean): number {
         // A numeric string under a numeric rule is compared by VALUE, not by
         // length. "9" is greater than "10" by length and smaller by value, and
         // getting this backwards is the classic bug.
-        return isNumeric && numeric(value)
-            ? Number(value)
-            : [...value].length; // spread, so an emoji counts as one character
+        return isNumeric && numeric(value) ? Number(value) : [...value].length; // spread, so an emoji counts as one character
     }
     if (Array.isArray(value)) return value.length;
     if (isFile(value)) return value.size / 1024;
@@ -128,9 +126,19 @@ export type Check = (value: unknown, params: Record<string, string>, ctx: Contex
  * value would skip exactly the case they exist for.
  */
 export const IMPLICIT = new Set([
-    'required', 'filled', 'present', 'accepted', 'declined',
-    'required_if', 'required_if_accepted', 'required_if_declined', 'required_unless',
-    'required_with', 'required_with_all', 'required_without', 'required_without_all',
+    'required',
+    'filled',
+    'present',
+    'accepted',
+    'declined',
+    'required_if',
+    'required_if_accepted',
+    'required_if_declined',
+    'required_unless',
+    'required_with',
+    'required_with_all',
+    'required_without',
+    'required_without_all',
 ]);
 
 /*
@@ -192,9 +200,18 @@ export const REQUIRED_PARAMS: Record<string, readonly string[]> = {
  * wrong-verdict-from-missing-data as above, reached a different way.
  */
 export const REQUIRES_ANY_PARAM: ReadonlySet<string> = new Set([
-    'in', 'not_in', 'starts_with', 'ends_with', 'doesnt_start_with', 'doesnt_end_with',
-    'contains', 'doesnt_contain', 'required_with', 'required_with_all',
-    'required_without', 'required_without_all',
+    'in',
+    'not_in',
+    'starts_with',
+    'ends_with',
+    'doesnt_start_with',
+    'doesnt_end_with',
+    'contains',
+    'doesnt_contain',
+    'required_with',
+    'required_with_all',
+    'required_without',
+    'required_without_all',
 ]);
 
 /** Whether this runner has everything it needs to decide the rule. */
@@ -208,7 +225,56 @@ export function hasRequiredParams(rule: string, params: Record<string, string>):
     return !REQUIRES_ANY_PARAM.has(rule) || Object.values(params).length > 0;
 }
 
-export const checks: Record<string, Check> = {
+// Checks that other checks are DEFINED FROM live outside the literal — a
+// `satisfies`-typed literal cannot reference itself while it is being typed.
+
+const acceptedCheck: Check = (v) => ['yes', 'on', '1', 1, true, 'true'].includes(v as never);
+const declinedCheck: Check = (v) => ['no', 'off', '0', 0, false, 'false'].includes(v as never);
+
+// Leading zeros are rejected, matching PHP's FILTER_FLAG_IPV4. They are not
+// cosmetic: `010.1.1.1` is read as octal by some resolvers and as decimal by
+// others, which is why the filter refuses it — and accepting it here would
+// pass an address the server rejects.
+const ipv4Check: Check = (v) =>
+    IPV4.test(str(v)) &&
+    str(v)
+        .split('.')
+        .every((o) => Number(o) <= 255 && (o === '0' || !o.startsWith('0')));
+
+const ipv6Check: Check = (v) => {
+    // Delegating to the platform rather than hand-rolling: IPv6 has
+    // compressed forms, zone ids and IPv4-mapped notation, and a regex
+    // that covers them all is longer than it is correct.
+    try {
+        return str(v).includes(':') && new URL(`http://[${str(v)}]`).hostname !== '';
+    } catch {
+        return false;
+    }
+};
+
+// Array values change the question. With an `array` rule on the field
+// Laravel switches to loose SUBSET semantics (array_diff — every element
+// in the list, nested arrays always fail); without one an array value
+// simply fails `in`. Stringifying the array got both directions wrong:
+// String(['a']) === 'a' green-ticked `in:a,b` for a multi-select, and
+// failed `not_in` for a value Laravel accepts. `not_in` is Laravel's own
+// definition — the exact negation of `in`.
+const inCheck: Check = (v, p, c) => {
+    if (Array.isArray(v)) {
+        return (
+            c.arrayField &&
+            v.every((el) => !Array.isArray(el) && Object.values(p).includes(str(el)))
+        );
+    }
+
+    return Object.values(p).includes(str(v));
+};
+
+// `satisfies` rather than a Record annotation: the literal keeps its keys,
+// so an internal reference is statically known to exist. Dynamic lookups by
+// rule NAME widen to `Check | undefined` at the call site — an unknown rule
+// is a real runtime case (it becomes undetermined).
+export const checks = {
     required: (v) => !isEmpty(v),
     // `filled` is `required` only when the key is THERE. An absent attribute
     // passes it — the rule says "if you send it, send something", which is not
@@ -260,26 +326,9 @@ export const checks: Record<string, Check> = {
     ascii: (v) => /^[\x00-\x7F]*$/.test(str(v)),
     email: (v) => EMAIL.test(str(v)),
     hex_color: (v) => HEX_COLOR.test(str(v)),
-    ip: (v, p, c) => checks.ipv4(v, p, c) || checks.ipv6(v, p, c),
-    // Leading zeros are rejected, matching PHP's FILTER_FLAG_IPV4. They are not
-    // cosmetic: `010.1.1.1` is read as octal by some resolvers and as decimal by
-    // others, which is why the filter refuses it — and accepting it here would
-    // pass an address the server rejects.
-    ipv4: (v) =>
-        IPV4.test(str(v)) &&
-        str(v)
-            .split('.')
-            .every((o) => Number(o) <= 255 && (o === '0' || !o.startsWith('0'))),
-    ipv6: (v) => {
-        // Delegating to the platform rather than hand-rolling: IPv6 has
-        // compressed forms, zone ids and IPv4-mapped notation, and a regex
-        // that covers them all is longer than it is correct.
-        try {
-            return str(v).includes(':') && new URL(`http://[${str(v)}]`).hostname !== '';
-        } catch {
-            return false;
-        }
-    },
+    ip: (v, p, c) => ipv4Check(v, p, c) || ipv6Check(v, p, c),
+    ipv4: ipv4Check,
+    ipv6: ipv6Check,
     lowercase: (v) => str(v) === str(v).toLowerCase(),
     uppercase: (v) => str(v) === str(v).toUpperCase(),
     mac_address: (v) => MAC.test(str(v)),
@@ -300,33 +349,17 @@ export const checks: Record<string, Check> = {
     regex: (v, p) => toRegExp(p.pattern)?.test(str(v)) ?? true,
     not_regex: (v, p) => !(toRegExp(p.pattern)?.test(str(v)) ?? false),
 
-    // Array values change the question. With an `array` rule on the field
-    // Laravel switches to loose SUBSET semantics (array_diff — every element
-    // in the list, nested arrays always fail); without one an array value
-    // simply fails `in`. Stringifying the array got both directions wrong:
-    // String(['a']) === 'a' green-ticked `in:a,b` for a multi-select, and
-    // failed `not_in` for a value Laravel accepts. `not_in` is Laravel's own
-    // definition — the exact negation of `in`.
-    in: (v, p, c) => {
-        if (Array.isArray(v)) {
-            return (
-                c.arrayField &&
-                v.every((el) => !Array.isArray(el) && Object.values(p).includes(str(el)))
-            );
-        }
-
-        return Object.values(p).includes(str(v));
-    },
-    not_in: (v, p, c) => !checks.in(v, p, c),
+    in: inCheck,
+    not_in: (v, p, c) => !inCheck(v, p, c),
 
     // Conditional presence. Each decides from OTHER fields whether this one
     // is required, then defers to the same emptiness test `required` uses.
     required_if: (v, p, c) => (matchesCondition(p, c) ? !isEmpty(v) : true),
     required_unless: (v, p, c) => (matchesCondition(p, c) ? true : !isEmpty(v)),
     required_if_accepted: (v, p, c) =>
-        checks.accepted(other(c, p.other), {}, c) ? !isEmpty(v) : true,
+        acceptedCheck(other(c, p.other), {}, c) ? !isEmpty(v) : true,
     required_if_declined: (v, p, c) =>
-        checks.declined(other(c, p.other), {}, c) ? !isEmpty(v) : true,
+        declinedCheck(other(c, p.other), {}, c) ? !isEmpty(v) : true,
     // `required_with` asks whether ANY named field is present; `_all` whether
     // every one is. `_without` and `_without_all` are their negations, and the
     // asymmetry between the pairs is Laravel's, not a mistake here:
@@ -335,11 +368,13 @@ export const checks: Record<string, Check> = {
     required_with: (v, p, c) => (fields(p).some((f) => present(c, f)) ? !isEmpty(v) : true),
     required_with_all: (v, p, c) => (fields(p).every((f) => present(c, f)) ? !isEmpty(v) : true),
     required_without: (v, p, c) => (fields(p).some((f) => !present(c, f)) ? !isEmpty(v) : true),
-    required_without_all: (v, p, c) => (fields(p).every((f) => !present(c, f)) ? !isEmpty(v) : true),
+    required_without_all: (v, p, c) =>
+        fields(p).every((f) => !present(c, f)) ? !isEmpty(v) : true,
 
-    accepted: (v) => ['yes', 'on', '1', 1, true, 'true'].includes(v as never),
-    declined: (v) => ['no', 'off', '0', 0, false, 'false'].includes(v as never),
-    confirmed: (v, p, c) => str(v) === str(other(c, p.other ?? `${basename(c.field)}_confirmation`)),
+    accepted: acceptedCheck,
+    declined: declinedCheck,
+    confirmed: (v, p, c) =>
+        str(v) === str(other(c, p.other ?? `${basename(c.field)}_confirmation`)),
     same: (v, p, c) => str(v) === str(other(c, p.other)),
     different: (v, p, c) => str(v) !== str(other(c, p.other)),
 
@@ -356,7 +391,8 @@ export const checks: Record<string, Check> = {
     // values. It is not a substring test — `contains:foo` fails for the string
     // 'a foo b', which is the opposite of what the name suggests.
     contains: (v, p) => Array.isArray(v) && Object.values(p).every((n) => v.map(str).includes(n)),
-    doesnt_contain: (v, p) => Array.isArray(v) && !Object.values(p).some((n) => v.map(str).includes(n)),
+    doesnt_contain: (v, p) =>
+        Array.isArray(v) && !Object.values(p).some((n) => v.map(str).includes(n)),
 
     decimal: (v, p) => {
         const match = /^[+-]?\d*\.(\d+)$|^[+-]?\d+$/.exec(str(v));
@@ -374,7 +410,7 @@ export const checks: Record<string, Check> = {
         const scale = 10 ** Math.max(decimals(String(v)), decimals(String(divisor)));
         return Math.round(Number(v) * scale) % Math.round(divisor * scale) === 0;
     },
-};
+} satisfies Record<string, Check>;
 
 function decimals(value: string): number {
     return value.split('.')[1]?.length ?? 0;
@@ -411,7 +447,9 @@ function present(ctx: Context, name: string): boolean {
 function matchesCondition(params: Record<string, string> | string[], ctx: Context): boolean {
     const entries = Object.entries(params);
     const field = (params as Record<string, string>).other ?? entries[0]?.[1];
-    const values = entries.filter(([key]) => key !== 'other' && key !== '0').map(([, value]) => value);
+    const values = entries
+        .filter(([key]) => key !== 'other' && key !== '0')
+        .map(([, value]) => value);
     const actual = other(ctx, field);
 
     // Laravel converts `true`/`false` parameters when the dependent is
@@ -450,7 +488,10 @@ export function toRegExp(pattern: string | undefined): RegExp | null {
     if (!pattern) return null;
     const match = /^([/#~%])(.*)\1([imsuxADSUXJn]*)$/s.exec(pattern);
     if (!match) return null;
-    const [, , body, modifiers] = match;
+    // Both groups always capture on a successful match; the fallbacks only
+    // satisfy the type system's view of indexed access.
+    const body = match[2] ?? '';
+    const modifiers = match[3] ?? '';
     try {
         return new RegExp(body, modifiers.replace(/[^gimsuy]/g, ''));
     } catch {

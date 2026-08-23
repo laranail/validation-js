@@ -33,8 +33,12 @@
     "scripts": {
         "build": "tsc -p tsconfig.build.json",
         "prepack": "npm run build",
-        "test": "node --test \"js/tests/**/*.test.ts\"",
-        "test:pack": "bash js/tests/pack-import-check.sh"
+        "typecheck": "tsc --noEmit",
+        "format": "biome format --write js",
+        "format:check": "biome format js",
+        "test": "npm run typecheck && node --test \"js/tests/**/*.test.ts\"",
+        "test:pack": "bash js/tests/pack-import-check.sh",
+        "prepublishOnly": "npm test && npm run test:pack"
     },
     "publishConfig": {
         "access": "public"
@@ -43,7 +47,9 @@
         "node": ">=22.6"
     },
     "devDependencies": {
+        "@biomejs/biome": "^2.5.10",
         "@stryker-mutator/core": "^10.0.0",
+        "@types/node": "^26.2.0",
         "typescript": "^7.0.2"
     }
 }

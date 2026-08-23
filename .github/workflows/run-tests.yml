@@ -37,10 +37,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      # The library has zero runtime dependencies; the install brings only the
-      # TypeScript compiler the build step needs.
+      # The library has zero runtime dependencies; the install brings only
+      # dev tooling (TypeScript, Biome, Stryker).
       - run: npm install
-      - run: node --test 'js/tests/**/*.test.ts'
+      # npm test runs the strict typecheck first, then the suite — published
+      # declarations were provably unsound while nothing ran tsc.
+      - run: npm test
+      - run: npm run format:check
       # The unit suite runs the raw sources — it stayed green while the
       # PUBLISHED package could not be imported at all (`main` pointed at a
       # .ts file). This packs the tarball exactly as `npm publish` would,

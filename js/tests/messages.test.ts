@@ -87,7 +87,13 @@ test('a schema carrying both parameter names is decided here, not round tripped'
     // the one it reads and nothing degrades.
     const both = {
         version: 1,
-        fields: { f: { attribute: null, client: [{ rule: 'max', params: { max: '2', value: '2' } }], server: [] } },
+        fields: {
+            f: {
+                attribute: null,
+                client: [{ rule: 'max', params: { max: '2', value: '2' } }],
+                server: [],
+            },
+        },
         messages: {},
     };
 
@@ -114,7 +120,13 @@ test('a variadic rule with no values is undetermined rather than always false', 
 test('a rule name added since this runner was published degrades to undetermined', () => {
     const future = {
         version: 1,
-        fields: { f: { attribute: null, client: [{ rule: 'some_rule_from_2027', params: {} }], server: [] } },
+        fields: {
+            f: {
+                attribute: null,
+                client: [{ rule: 'some_rule_from_2027', params: {} }],
+                server: [],
+            },
+        },
         messages: {},
     };
 
