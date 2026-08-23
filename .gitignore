@@ -57,3 +57,7 @@ benchmark-snapshot.json
 .DS_Store
 
 node_modules/
+
+# Mutation testing
+/.stryker-tmp
+/reports
