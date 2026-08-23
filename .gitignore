@@ -1,8 +1,12 @@
 # Dependencies
 composer.lock
+package-lock.json
 /vendor
 /node_modules
 auth.json
+
+# Build output (prepack rebuilds it)
+/dist
 
 # Logs
 npm-debug.log

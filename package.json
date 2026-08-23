@@ -2,19 +2,47 @@
     "name": "@laranail/validation-js",
     "version": "0.1.0",
     "description": "Validate a form in the browser against a schema exported from Laravel's own validation rules. Zero dependencies.",
-    "keywords": ["laravel", "validation", "forms", "client-side"],
+    "keywords": [
+        "laravel",
+        "validation",
+        "forms",
+        "client-side"
+    ],
     "homepage": "https://opensource.simtabi.com/products/laranail/validation-js",
-    "repository": { "type": "git", "url": "https://github.com/laranail/validation-js.git" },
-    "bugs": { "url": "https://github.com/laranail/validation-js/issues" },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/laranail/validation-js.git"
+    },
+    "bugs": {
+        "url": "https://github.com/laranail/validation-js/issues"
+    },
     "license": "MIT",
     "author": "Simtabi LLC <opensource@simtabi.com>",
     "type": "module",
-    "main": "./js/src/index.ts",
-    "exports": { ".": "./js/src/index.ts" },
-    "files": ["js/src"],
-    "scripts": {
-        "test": "node --test \"js/tests/**/*.test.ts\""
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
     },
-    "publishConfig": { "access": "public" },
-    "engines": { "node": ">=22.6" }
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc -p tsconfig.build.json",
+        "prepack": "npm run build",
+        "test": "node --test \"js/tests/**/*.test.ts\"",
+        "test:pack": "bash js/tests/pack-import-check.sh"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=22.6"
+    },
+    "devDependencies": {
+        "typescript": "^7.0.2"
+    }
 }

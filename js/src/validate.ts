@@ -98,7 +98,18 @@ export function validate(values: Values, schema: Schema): Result {
 
         if (applicable.length === 0) continue;
 
-        for (const { rule, params } of applicable) {
+        for (const { rule, params: rawParams } of applicable) {
+            // The wire carries params as an object for named rules and as a
+            // JSON ARRAY for purely positional ones (PHP coerces
+            // numeric-string keys to integers). Normalize once at this
+            // boundary: an array becomes an index-keyed object, which reads
+            // identically through Object.values() and named lookups — the
+            // three functions below are typed on the object form, and the
+            // published .d.ts was unsound while the union leaked through.
+            const params: Record<string, string> = Array.isArray(rawParams)
+                ? Object.fromEntries(rawParams.map((value, index) => [String(index), value]))
+                : rawParams;
+
             // A rule with no implementation must not silently pass: that is
             // the same lie as treating a server rule as valid. It becomes
             // undetermined instead.
