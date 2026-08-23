@@ -300,8 +300,24 @@ export const checks: Record<string, Check> = {
     regex: (v, p) => toRegExp(p.pattern)?.test(str(v)) ?? true,
     not_regex: (v, p) => !(toRegExp(p.pattern)?.test(str(v)) ?? false),
 
-    in: (v, p) => Object.values(p).includes(str(v)),
-    not_in: (v, p) => !Object.values(p).includes(str(v)),
+    // Array values change the question. With an `array` rule on the field
+    // Laravel switches to loose SUBSET semantics (array_diff — every element
+    // in the list, nested arrays always fail); without one an array value
+    // simply fails `in`. Stringifying the array got both directions wrong:
+    // String(['a']) === 'a' green-ticked `in:a,b` for a multi-select, and
+    // failed `not_in` for a value Laravel accepts. `not_in` is Laravel's own
+    // definition — the exact negation of `in`.
+    in: (v, p, c) => {
+        if (Array.isArray(v)) {
+            return (
+                c.arrayField &&
+                v.every((el) => !Array.isArray(el) && Object.values(p).includes(str(el)))
+            );
+        }
+
+        return Object.values(p).includes(str(v));
+    },
+    not_in: (v, p, c) => !checks.in(v, p, c),
 
     // Conditional presence. Each decides from OTHER fields whether this one
     // is required, then defers to the same emptiness test `required` uses.

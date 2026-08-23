@@ -20,14 +20,20 @@ export function get(values: unknown, path: string): unknown {
 
         if (Array.isArray(current)) {
             const index = Number(segment);
-            if (!Number.isInteger(index)) return undefined;
+            if (!Number.isInteger(index) || index < 0) return undefined;
             current = current[index];
             continue;
         }
 
         if (typeof current !== 'object') return undefined;
 
-        current = (current as Record<string, unknown>)[segment];
+        // Own properties only: a bare index read finds 'constructor' and
+        // friends on Object.prototype, so a hostile-looking path resolved to
+        // a function and read as "present" — Laravel's Arr::get sees only
+        // the data that was actually sent.
+        current = Object.hasOwn(current, segment)
+            ? (current as Record<string, unknown>)[segment]
+            : undefined;
     }
 
     return current;
@@ -43,10 +49,14 @@ export function has(values: unknown, path: string): boolean {
 
     if (Array.isArray(parent)) {
         const index = Number(last);
-        return Number.isInteger(index) && index < parent.length;
+        return Number.isInteger(index) && index >= 0 && index < parent.length;
     }
 
-    return typeof parent === 'object' && parent !== null && last in parent;
+    // Object.hasOwn, never `in`: the `in` operator walks the prototype
+    // chain, so a path segment like 'constructor' reads as present on every
+    // object and a presence-conditional rule fires on data that was never
+    // sent. Own properties are the only ones Laravel's Arr::has can see.
+    return typeof parent === 'object' && parent !== null && Object.hasOwn(parent, last);
 }
 
 /**

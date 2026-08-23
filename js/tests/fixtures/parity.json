@@ -3463,6 +3463,69 @@
         "id": "in:a,b,c #2"
     },
     {
+        "rule": "in:a,b,c",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "in:a,b,c #3"
+    },
+    {
+        "rule": "in:a,b,c",
+        "value": [
+            "a",
+            "b"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "in:a,b,c #4"
+    },
+    {
         "rule": "not_in:a,b",
         "value": "c",
         "schema": {
@@ -3517,6 +3580,283 @@
         },
         "laravel": false,
         "id": "not_in:a,b #1"
+    },
+    {
+        "rule": "not_in:a,b",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "not_in:a,b #2"
+    },
+    {
+        "rule": "not_in:a,b",
+        "value": [
+            "c"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "not_in:a,b #3"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [
+            "a",
+            "b"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "array|in:a,b,c #0"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [
+            "a",
+            "x"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "array|in:a,b,c #1"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "array|in:a,b,c #2"
+    },
+    {
+        "rule": "array|in:a,b,c",
+        "value": [
+            [
+                "nested"
+            ]
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "in",
+                            "params": [
+                                "a",
+                                "b",
+                                "c"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "array|in:a,b,c #3"
+    },
+    {
+        "rule": "array|not_in:a,b",
+        "value": [
+            "a"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "array|not_in:a,b #0"
+    },
+    {
+        "rule": "array|not_in:a,b",
+        "value": [
+            "c",
+            "d"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "array",
+                            "params": []
+                        },
+                        {
+                            "rule": "not_in",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.array": "The :attribute field must be an array.",
+                "field.not_in": "The selected :attribute is invalid."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "array|not_in:a,b #1"
     },
     {
         "rule": "starts_with:ab,cd",
@@ -8349,6 +8689,71 @@
         },
         "laravel": true,
         "id": "conditional #18 required_if_accepted:agree"
+    },
+    {
+        "rule": "required_with:meta.constructor",
+        "value": null,
+        "data": {
+            "meta": {
+                "x": "1"
+            }
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "meta.constructor"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #19 required_with:meta.constructor"
+    },
+    {
+        "rule": "required_with:items.-1",
+        "value": null,
+        "data": {
+            "items": [
+                "a",
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_with",
+                            "params": [
+                                "items.-1"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_with": "The :attribute field is required when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #20 required_with:items.-1"
     },
     {
         "rule": "items.*.email => required|email",

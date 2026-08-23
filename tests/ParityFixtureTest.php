@@ -62,8 +62,15 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         'digits_between:2,4' => ['123', '1', '12345'],
         'numeric|max:5' => ['5', '6', '4.9'],
         'numeric|min:3' => ['3', '2.9'],
-        'in:a,b,c' => ['a', 'd', ''],
-        'not_in:a,b' => ['c', 'a'],
+        // Array values are the interesting ones: with an `array` rule Laravel
+        // switches to loose SUBSET semantics (array_diff); without one an
+        // array value simply fails `in` (and passes `not_in`). A runner that
+        // stringifies the array gets both directions wrong — String(['a'])
+        // === 'a' is a green tick `in:a,b` never gave.
+        'in:a,b,c' => ['a', 'd', '', ['a'], ['a', 'b']],
+        'not_in:a,b' => ['c', 'a', ['a'], ['c']],
+        'array|in:a,b,c' => [['a', 'b'], ['a', 'x'], [], [['nested']]],
+        'array|not_in:a,b' => [['a'], ['c', 'd']],
         'starts_with:ab,cd' => ['abc', 'cde', 'xyz'],
         'ends_with:ing' => ['testing', 'tested'],
         'contains:foo' => ['a foo b', 'a bar b'],
@@ -253,6 +260,13 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['required_without_all:a,b', ['a' => '1']],
         ['required_if_accepted:agree', ['agree' => 'yes']],
         ['required_if_accepted:agree', ['agree' => 'no']],
+        // Presence probes on hostile-looking paths. Laravel's Arr::has says
+        // "absent" for both; a runner whose path walk uses the `in` operator
+        // finds 'constructor' on Object.prototype, and one whose array-index
+        // check lacks a `>= 0` guard treats -1 as within bounds — either way
+        // "required_with" fires on a sibling that does not exist.
+        ['required_with:meta.constructor', ['meta' => ['x' => '1']]],
+        ['required_with:items.-1', ['items' => ['a', 'b']]],
     ] as $index => [$rule, $data]) {
         $cases[] = [
             'rule' => $rule,
