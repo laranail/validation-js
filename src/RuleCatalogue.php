@@ -162,7 +162,7 @@ final class RuleCatalogue
     }
 
     /**
-     * @param  list<string>  $parameters
+     * @param  array<array-key, string>  $parameters
      * @return array<array-key, string> String keys for named rules; integer
      *                                  keys for variadic ones. See above.
      */
@@ -171,12 +171,25 @@ final class RuleCatalogue
         $rule = mb_strtolower($rule);
         $names = self::PARAMETER_NAMES[$rule] ?? [];
         $named = [];
+        $position = 0;
 
-        foreach (array_values($parameters) as $index => $parameter) {
-            // Keys are forced to strings: an integer key would make the
-            // schema's JSON object serialise as an ARRAY on round trip, and
-            // the runner reads params as an object.
-            $name = $names[$index] ?? (string) $index;
+        foreach ($parameters as $key => $parameter) {
+            // A string key IS the name — the rule author named it (the
+            // ClientCheckable contract documents named keys). Renaming by
+            // position bound each value to whatever name sat at that index
+            // in the table, inverting min/max whenever the author's
+            // insertion order differed from the table's.
+            //
+            // Positional entries are named from the table as before. Keys
+            // are forced to strings: an integer key would make the schema's
+            // JSON object serialise as an ARRAY on round trip, and the
+            // runner reads params as an object.
+            $name = is_string($key) ? $key : ($names[$position] ?? (string) $position);
+
+            if (! is_string($key)) {
+                $position++;
+            }
+
             $named[$name] = $parameter;
 
             // The same value under the name an older runner looks for.

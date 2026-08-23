@@ -230,6 +230,28 @@ it('exports every rule a multi-rule advertisement carries', function (): void {
         ->and($schema['fields']['lat']['client'][1]['params'])->toBe(['min' => '-90', 'max' => '90']);
 });
 
+it('keeps advertised parameter NAMES, whatever order the rule wrote them in', function (): void {
+    // ClientCheckable documents named keys, and names are the contract:
+    // re-keying them positionally silently binds each VALUE to whatever
+    // name sits at that position in the catalogue table. A rule that wrote
+    // ['max' => …, 'min' => …] exported inverted bounds — the browser then
+    // rejected every in-range value.
+    $rule = new class implements ClientCheckable, ValidationRule
+    {
+        public function validate(string $attribute, mixed $value, Closure $fail): void {}
+
+        public function clientRules(): array
+        {
+            return [['rule' => 'between', 'params' => ['max' => '90', 'min' => '-90']]];
+        }
+    };
+
+    $schema = exporter()->export(['f' => [$rule]]);
+
+    expect($schema['fields']['f']['client'][0]['params']['min'])->toBe('-90')
+        ->and($schema['fields']['f']['client'][0]['params']['max'])->toBe('90');
+});
+
 it('rejects a partial advertisement whole, rather than exporting a subset', function (): void {
     // If any advertised rule is unusable, the WHOLE advertisement is dropped.
     // Exporting the usable half would check a field against a subset of its
@@ -304,6 +326,28 @@ it('ignores an advertised rule the runner does not implement', function (): void
 
     expect($schema['fields']['f']['client'])->toBeEmpty()
         ->and($schema['fields']['f']['server'])->not->toBeEmpty();
+});
+
+it('encodes JSON safely for the inline <script> context the API invites', function (): void {
+    // toJson() exists to be dropped into a Blade view inside a <script>
+    // block. Without JSON_HEX_TAG a translated message (or attribute name)
+    // containing "</script>" terminates that block early and everything
+    // after it parses as markup — stored XSS via a translation string. The
+    // HEX_APOS/QUOT/AMP flags harden the attribute-context variants.
+    $json = exporter()->toJson(
+        ['f' => 'required'],
+        ['f.required' => "</script><script>alert(1)</script> & 'quoted' \"twice\""],
+    );
+
+    expect($json)->not->toContain('</script>')
+        ->and($json)->not->toContain("'")
+        ->and($json)->not->toContain('&');
+
+    // And the round trip is untouched — escaping is transport-only.
+    $decoded = json_decode($json, true, flags: JSON_THROW_ON_ERROR);
+
+    expect($decoded['messages']['f.required'])
+        ->toBe("</script><script>alert(1)</script> & 'quoted' \"twice\"");
 });
 
 it('stamps the schema MAJOR version, which is meant to stay put', function (): void {

@@ -135,11 +135,21 @@ final readonly class RuleExporter
      */
     public function toJson(array $rules, array $messages = [], array $attributes = []): string
     {
-        return json_encode($this->export($rules, $messages, $attributes), JSON_THROW_ON_ERROR);
+        // The HEX flags are load-bearing: this JSON is written to be dropped
+        // into an inline <script> block, where an unescaped "</script>" in a
+        // translated message terminates the block early — stored XSS via a
+        // translation string. Escaping is transport-only; the decoded values
+        // are byte-identical.
+        return json_encode(
+            $this->export($rules, $messages, $attributes),
+            JSON_THROW_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP,
+        );
     }
 
     /**
-     * @return list<array{0: string, 1: list<string>}>
+     * @return list<array{0: string, 1: array<array-key, string>}> Parameters keep
+     *                                                             string keys when a ClientCheckable advertisement named
+     *                                                             them; parser-derived parameters stay positional.
      */
     private function explode(ValidationRuleParser $parser, string $attribute, mixed $rule): array
     {
@@ -238,12 +248,18 @@ final readonly class RuleExporter
      * `Geo\Latitude` is `numeric` AND `between:-90,90`. All of them are
      * exported, and all must pass.
      *
+     * Parameter keys are preserved: ClientCheckable documents NAMED keys,
+     * and the name is the contract. Flattening them to a positional list
+     * re-keyed each VALUE to whatever name sat at that position in the
+     * catalogue table — a rule that wrote ['max' => …, 'min' => …] exported
+     * inverted bounds.
+     *
      * `interface_exists` rather than a hard dependency: laranail/validation is
      * a suggest, not a require, and this package is useful without it. A
      * consumer who has not installed it simply has no rule objects that could
      * advertise anything.
      *
-     * @return list<array{rule: string, params: list<string>}>
+     * @return list<array{rule: string, params: array<array-key, string>}>
      */
     private static function advertisedClientRules(object $rule): array
     {
@@ -263,7 +279,7 @@ final readonly class RuleExporter
                 return [];
             }
 
-            $exported[] = ['rule' => $advertised['rule'], 'params' => array_values($advertised['params'])];
+            $exported[] = ['rule' => $advertised['rule'], 'params' => $advertised['params']];
         }
 
         return $exported;
