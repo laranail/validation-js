@@ -39,6 +39,13 @@ reference the release-planning audit's register.
 
 ### Added
 
+- A strict TypeScript gate: `tsc --noEmit` (with `noUncheckedIndexedAccess`) runs inside
+  `npm test` and CI, Biome formats the source (the generated fixtures excluded — the PHP suite
+  owns those), Dependabot watches the npm ecosystem, and `prepublishOnly` runs the full suite
+  plus the pack-import check.
+- Server-rule parameter stripping documented as a guarantee in `docs/schema.md` — including
+  what a schema still does expose — with a regression test over the whole serialized schema.
+- Prose counts (fixtures, rule totals) are pinned to the live source by a drift test.
 - A build (`npm run build` / `prepack`) producing `dist/` ESM + `.d.ts`, and an
   install-and-import CI gate (`npm run test:pack`) that packs the real tarball, installs it into
   a clean project and imports it under plain Node — the published artifact is now tested, not
