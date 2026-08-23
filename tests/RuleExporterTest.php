@@ -26,6 +26,24 @@ it('splits rules into what the browser can decide and what it cannot', function 
         ->and($schema['fields']['email']['server'])->toBe(['unique']);
 });
 
+it('GUARANTEES server-rule parameters never reach the wire', function (): void {
+    // The stripping is a documented security property, not an implementation
+    // detail (docs/schema.md, "What the schema deliberately does not say").
+    // A schema ships to every browser: table names, column names, and the
+    // shape of a database check are reconnaissance a page should not hand
+    // out. This locks the WHOLE serialized schema — not one field's list —
+    // so a future exporter path that leaks parameters fails here.
+    $json = exporter()->toJson([
+        'email' => 'required|email|unique:app_users,email_column|exists:tenants,id',
+        'code' => ['required', 'my_custom_check:secret_arg'],
+    ]);
+
+    expect($json)->not->toContain('app_users')
+        ->and($json)->not->toContain('email_column')
+        ->and($json)->not->toContain('tenants')
+        ->and($json)->not->toContain('secret_arg');
+});
+
 it('sends an unknown rule to the server rather than assuming it passes', function (): void {
     // The safety property. Calling an unrecognised rule "passed" shows a green
     // tick for input the server will reject; a round trip is the cheaper error.

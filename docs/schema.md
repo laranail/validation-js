@@ -88,6 +88,20 @@ something the browser cannot evaluate, and treating an unknown rule as "passes" 
 user a green tick for input the server will reject. The cost of the safe default is a round
 trip; the cost of the unsafe one is a lie.
 
+### What the schema deliberately does not say
+
+**Server rules travel as a bare name — their parameters are stripped, and that is a
+guarantee, not an accident.** A schema ships to every browser that loads the form, so
+`unique:users,email` exporting as anything but `"unique"` would hand out table names, column
+names, and the shape of a database check as reconnaissance. The exporter strips server-rule
+parameters unconditionally, and a regression test locks the whole serialized schema against
+containing them.
+
+Know what the schema still does say: **field names, client-rule parameters, and any `regex:`
+pattern are public the moment they reach a browser.** A pattern that encodes something
+sensitive — an internal code format, a customer-tier convention — belongs in a server-side
+rule, where only its name travels.
+
 ## `messages` are templates, keyed by the field PATTERN
 
 Two things about a message are easy to get wrong, and both are wrong silently.
