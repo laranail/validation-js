@@ -72,7 +72,9 @@ export function has(values: unknown, path: string): boolean {
 export function expand(pattern: string, values: Values): string[] {
     if (!pattern.includes('*')) return [pattern];
 
-    const [before, ...rest] = pattern.split('*');
+    // split() always yields at least one element; the default only satisfies
+    // the type system's view of indexed access.
+    const [before = '', ...rest] = pattern.split('*');
     const prefix = before.replace(/\.$/, '');
     const suffix = rest.join('*').replace(/^\./, '');
     const collection = prefix === '' ? values : get(values, prefix);

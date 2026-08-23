@@ -1,5 +1,5 @@
 import { checks, hasRequiredParams, IMPLICIT, isFileValue, numeric } from './rules.ts';
-import type { Context } from './rules.ts';
+import type { Check, Context } from './rules.ts';
 import { expand, get, has, sibling } from './paths.ts';
 import type { Failure, Result, Schema, Values } from './types.ts';
 
@@ -52,103 +52,116 @@ export function validate(values: Values, schema: Schema): Result {
         // concrete path. An empty collection expands to nothing, which is why
         // `items.*.email => required` passes for `{items: []}`.
         for (const field of expand(pattern, values)) {
-        const value = get(values, field);
-        const rules = definition.client;
+            const value = get(values, field);
+            const rules = definition.client;
 
-        // `nullable` and `sometimes` are structural: they decide whether the
-        // OTHER rules run at all, so they are resolved before the loop rather
-        // than checked in it.
-        const nullable = rules.some((r) => r.rule === 'nullable');
-        const sometimes = rules.some((r) => r.rule === 'sometimes');
+            // `nullable` and `sometimes` are structural: they decide whether the
+            // OTHER rules run at all, so they are resolved before the loop rather
+            // than checked in it.
+            const nullable = rules.some((r) => r.rule === 'nullable');
+            const sometimes = rules.some((r) => r.rule === 'sometimes');
 
-        if (sometimes && !has(values, field)) continue;
+            if (sometimes && !has(values, field)) continue;
 
-        if (definition.server.length > 0 && !undetermined.includes(field)) {
-            undetermined.push(field);
-        }
-
-        // Whether a size rule means "length" or "value" is decided by the
-        // RULE SET, not by whether the value looks numeric: `max:5` passes for
-        // "6" because the size is the string length, and adding `numeric`
-        // makes the same input fail.
-        const ctx: Context = {
-            values,
-            field,
-            numericField: rules.some((r) => ['numeric', 'integer', 'decimal'].includes(r.rule)),
-            arrayField: rules.some((r) => ['array', 'list'].includes(r.rule)),
-        };
-
-        // Which rules run at all. This mirrors Laravel's `isValidatable`, and
-        // the distinction it draws is finer than "is the value empty":
-        //
-        //   - A BLANK STRING runs only the implicit rules. `accepted` on ''
-        //     fails, it does not pass.
-        //   - An ABSENT attribute runs only the implicit rules. That is what
-        //     makes `required_without_all` fire on a payload with no keys.
-        //   - A PRESENT attribute runs everything, even when its value is null
-        //     or []. `integer` on null FAILS in Laravel, and `nullable` is the
-        //     opt-out — the rule set says so, the value does not get to decide.
-        //
-        // Reading `null` and `[]` as "empty, so nothing to check" was wrong in
-        // that last case, and wrong in the one direction that matters: the
-        // browser showed a green tick for input the server then rejected.
-        const blank = typeof value === 'string' && value.trim() === '';
-        const runsEverything = !blank && has(values, field);
-        const applicable = runsEverything ? rules : rules.filter((r) => IMPLICIT.has(r.rule));
-
-        if (applicable.length === 0) continue;
-
-        for (const { rule, params: rawParams } of applicable) {
-            // The wire carries params as an object for named rules and as a
-            // JSON ARRAY for purely positional ones (PHP coerces
-            // numeric-string keys to integers). Normalize once at this
-            // boundary: an array becomes an index-keyed object, which reads
-            // identically through Object.values() and named lookups — the
-            // three functions below are typed on the object form, and the
-            // published .d.ts was unsound while the union leaked through.
-            const params: Record<string, string> = Array.isArray(rawParams)
-                ? Object.fromEntries(rawParams.map((value, index) => [String(index), value]))
-                : rawParams;
-
-            // A rule with no implementation must not silently pass: that is
-            // the same lie as treating a server rule as valid. It becomes
-            // undetermined instead.
-            const check = checks[rule];
-
-            if (check === undefined) {
-                if (!undetermined.includes(field)) undetermined.push(field);
-                continue;
+            if (definition.server.length > 0 && !undetermined.includes(field)) {
+                undetermined.push(field);
             }
 
-            // The parameters this rule needs, which a schema written by a
-            // different version of the exporter may not carry under the names
-            // this runner reads. Guessing produces a VERDICT from missing data:
-            // an absent `max` coerces to 0 and rejects every value. Undetermined
-            // is the honest answer and costs a round trip.
-            if (!hasRequiredParams(rule, params)) {
-                if (!undetermined.includes(field)) undetermined.push(field);
-                continue;
+            // Whether a size rule means "length" or "value" is decided by the
+            // RULE SET, not by whether the value looks numeric: `max:5` passes for
+            // "6" because the size is the string length, and adding `numeric`
+            // makes the same input fail.
+            const ctx: Context = {
+                values,
+                field,
+                numericField: rules.some((r) => ['numeric', 'integer', 'decimal'].includes(r.rule)),
+                arrayField: rules.some((r) => ['array', 'list'].includes(r.rule)),
+            };
+
+            // Which rules run at all. This mirrors Laravel's `isValidatable`, and
+            // the distinction it draws is finer than "is the value empty":
+            //
+            //   - A BLANK STRING runs only the implicit rules. `accepted` on ''
+            //     fails, it does not pass.
+            //   - An ABSENT attribute runs only the implicit rules. That is what
+            //     makes `required_without_all` fire on a payload with no keys.
+            //   - A PRESENT attribute runs everything, even when its value is null
+            //     or []. `integer` on null FAILS in Laravel, and `nullable` is the
+            //     opt-out — the rule set says so, the value does not get to decide.
+            //
+            // Reading `null` and `[]` as "empty, so nothing to check" was wrong in
+            // that last case, and wrong in the one direction that matters: the
+            // browser showed a green tick for input the server then rejected.
+            const blank = typeof value === 'string' && value.trim() === '';
+            const runsEverything = !blank && has(values, field);
+            const applicable = runsEverything ? rules : rules.filter((r) => IMPLICIT.has(r.rule));
+
+            if (applicable.length === 0) continue;
+
+            for (const { rule, params: rawParams } of applicable) {
+                // The wire carries params as an object for named rules and as a
+                // JSON ARRAY for purely positional ones (PHP coerces
+                // numeric-string keys to integers). Normalize once at this
+                // boundary: an array becomes an index-keyed object, which reads
+                // identically through Object.values() and named lookups — the
+                // three functions below are typed on the object form, and the
+                // published .d.ts was unsound while the union leaked through.
+                const params: Record<string, string> = Array.isArray(rawParams)
+                    ? Object.fromEntries(rawParams.map((value, index) => [String(index), value]))
+                    : rawParams;
+
+                // A rule with no implementation must not silently pass: that is
+                // the same lie as treating a server rule as valid. It becomes
+                // undetermined instead. The widening cast is the lookup's honest
+                // type: rule names come off the wire, not from the literal's keys.
+                const check = (checks as Record<string, Check | undefined>)[rule];
+
+                if (check === undefined) {
+                    if (!undetermined.includes(field)) undetermined.push(field);
+                    continue;
+                }
+
+                // The parameters this rule needs, which a schema written by a
+                // different version of the exporter may not carry under the names
+                // this runner reads. Guessing produces a VERDICT from missing data:
+                // an absent `max` coerces to 0 and rejects every value. Undetermined
+                // is the honest answer and costs a round trip.
+                if (!hasRequiredParams(rule, params)) {
+                    if (!undetermined.includes(field)) undetermined.push(field);
+                    continue;
+                }
+
+                // `nullable` is what a rule set uses to say a present null is
+                // acceptable — Laravel's `isNotNullIfMarkedAsNullable`. It is
+                // narrower than it looks: only null, and only the non-implicit
+                // rules, so a `required` alongside it still fires.
+                if (nullable && value === null && !IMPLICIT.has(rule)) continue;
+
+                if (!check(value, params, ctx)) {
+                    failures.push({
+                        field,
+                        rule,
+                        message: interpolate(
+                            schema,
+                            pattern,
+                            rule,
+                            params,
+                            definition.attribute,
+                            value,
+                            ctx,
+                        ),
+                    });
+
+                    // One failure per field — a deliberate presentation
+                    // choice, NOT Laravel's default: Laravel collects every
+                    // failure per attribute unless `bail` opts out. The
+                    // VERDICT is unaffected (any failure makes the field
+                    // invalid either way); this only picks how much is shown,
+                    // because a user fixes one thing at a time and five
+                    // messages on one input is noise.
+                    break;
+                }
             }
-
-            // `nullable` is what a rule set uses to say a present null is
-            // acceptable — Laravel's `isNotNullIfMarkedAsNullable`. It is
-            // narrower than it looks: only null, and only the non-implicit
-            // rules, so a `required` alongside it still fires.
-            if (nullable && value === null && !IMPLICIT.has(rule)) continue;
-
-            if (!check(value, params, ctx)) {
-                failures.push({
-                    field,
-                    rule,
-                    message: interpolate(schema, pattern, rule, params, definition.attribute, value, ctx),
-                });
-
-                // One failure per field, matching Laravel's default bail-per-
-                // attribute behaviour: a user fixes one thing at a time, and
-                // five messages on one input is noise.
-                break;
-            }
-        }
         }
     }
 
@@ -196,7 +209,10 @@ export function interpolate(
     // `items.0.qty`. Looking the concrete path up first found nothing, and
     // every wildcard field fell through to the generic message below with its
     // real one sitting unused in the schema.
-    const key = schema.messages[`${pattern}.${rule}`] !== undefined ? `${pattern}.${rule}` : `${ctx.field}.${rule}`;
+    const key =
+        schema.messages[`${pattern}.${rule}`] !== undefined
+            ? `${pattern}.${rule}`
+            : `${ctx.field}.${rule}`;
     const template = select(schema, key, rule, value, ctx);
     const name = attribute ?? displayable(ctx.field);
 
@@ -224,7 +240,10 @@ export function interpolate(
     }
 
     if (READS_DEPENDENT_VALUE.has(rule) && params.other !== undefined) {
-        return message.replaceAll(':value', displayValue(get(ctx.values, sibling(ctx.field, params.other, ctx.values))));
+        return message.replaceAll(
+            ':value',
+            displayValue(get(ctx.values, sibling(ctx.field, params.other, ctx.values))),
+        );
     }
 
     for (const [key, param] of Object.entries(params)) {
