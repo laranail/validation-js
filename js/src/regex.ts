@@ -140,5 +140,8 @@ function escapeLiteral(text: string): string {
 }
 
 function looksUnbounded(fragment: string): boolean {
-    return /(?<!\\)[+*]|\{\d+,\}/.test(fragment);
+    // No lookbehind (a parse-time SyntaxError on Safari < 16.4, §12.4):
+    // an unescaped quantifier is one at the start or one whose preceding
+    // character is not a backslash — the same heuristic, spelled forward.
+    return /(?:^|[^\\])[+*]|\{\d+,\}/.test(fragment);
 }

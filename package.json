@@ -1,6 +1,6 @@
 {
     "name": "@laranail/validation-js",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "description": "Validate a form in the browser against a schema exported from Laravel's own validation rules. Zero dependencies.",
     "keywords": [
         "laravel",
@@ -82,7 +82,7 @@
         "access": "public"
     },
     "engines": {
-        "node": ">=22.6"
+        "node": ">=18"
     },
     "devDependencies": {
         "@axe-core/playwright": "^4.13.0",
@@ -98,5 +98,12 @@
         "react-dom": "^19.2.8",
         "typescript": "^7.0.2",
         "vue": "^3.5.41"
-    }
+    },
+    "browserslist": [
+        "Safari >= 15.4",
+        "iOS >= 15.4",
+        "Chrome >= 93",
+        "Firefox >= 92",
+        "Edge >= 93"
+    ]
 }

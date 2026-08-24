@@ -8,7 +8,7 @@ runner from npm — and upgrade separately by design.
 | Half | Requires |
 |---|---|
 | `laranail/validation-js` (PHP) | PHP `^8.4.1 \|\| ^8.5`, Laravel `^13.0` |
-| `@laranail/validation-js` (npm) | Node `>= 22.6` for the dev toolchain; browsers per the bundle you build. Zero runtime dependencies |
+| `@laranail/validation-js` (npm) | Browsers: **Safari/iOS 15.4+, Chrome/Edge 93+, Firefox 92+**. Node `>= 18` to run the built ESM; `>= 22.6` only for developing the package itself. Zero runtime dependencies |
 
 ## PHP exporter
 
@@ -55,6 +55,17 @@ optional pieces — each costs nothing unless imported:
 
 React and Vue are optional peer dependencies: installs without them succeed, and only the
 adapter imports need them.
+
+## Browser support and EOL policy
+
+The declared floor (also in `package.json` `browserslist`) is set by `Object.hasOwn` —
+Safari/iOS 15.4 (March 2022), Chrome/Edge 93, Firefox 92. The source deliberately contains no
+regex lookbehinds: a lookbehind in a literal is a PARSE-time SyntaxError on older Safari, which
+would fail the whole module rather than one rule. Beyond the floor, missing APIs degrade per
+rule — `Intl.supportedValuesOf` (the `timezone` rule) is guarded and falls back to
+undetermined, never a crash. The PHP half supports PHP `^8.4.1 || ^8.5` on Laravel `^13.0`;
+both floors move only in a major, and a Laravel major is adopted within one minor of the
+family's `laranail/package-tools` supporting it.
 
 ---
 

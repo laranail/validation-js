@@ -454,8 +454,12 @@ function select(
  * "items.0.qty", the same string the server would have shown.
  */
 function displayable(field: string): string {
+    // An offset-checking replacer, not a lookbehind: a lookbehind in a
+    // regex LITERAL is a parse-time SyntaxError on Safari < 16.4 — the
+    // whole module fails to load, which is the worst possible failure
+    // shape for a progressive-enhancement library (§12.4).
     return field
-        .replace(/(?<!^)([A-Z])/g, '_$1')
+        .replace(/[A-Z]/g, (match, offset: number) => (offset === 0 ? match : `_${match}`))
         .toLowerCase()
         .replaceAll('_', ' ');
 }
