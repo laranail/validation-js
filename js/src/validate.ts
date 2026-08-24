@@ -1,6 +1,13 @@
-import { checks, hasRequiredParams, IMPLICIT, isFileValue, numeric } from './rules.ts';
-import type { Check, Context } from './rules.ts';
 import { capturedKeys, expand, get, has, substituteAsterisks } from './paths.ts';
+import type { Check, Context } from './rules.ts';
+import {
+    checks,
+    hasRequiredParams,
+    IMPLICIT,
+    isFileValue,
+    NAMES_DEPENDENT_AT_ZERO,
+    numeric,
+} from './rules.ts';
 import type { Failure, Result, Schema, Values } from './types.ts';
 
 /**
@@ -152,7 +159,16 @@ export function validate(values: Values, schema: Schema): Result {
                 // rules, so a `required` alongside it still fires.
                 if (nullable && value === null && !IMPLICIT.has(rule)) continue;
 
-                if (!check(value, params, ctx)) {
+                const verdict = check(value, params, ctx);
+
+                // 'undetermined' is the check saying "I cannot decide" — the
+                // same honest answer an unknown rule gets, reached inside one.
+                if (verdict === 'undetermined') {
+                    if (!undetermined.includes(field)) undetermined.push(field);
+                    continue;
+                }
+
+                if (!verdict) {
                     failures.push({
                         field,
                         rule,
@@ -249,16 +265,19 @@ export function interpolate(
         );
     }
 
-    // A named `other` is a FIELD, so it is displayed the way a field is.
-    if (params.other !== undefined) {
-        message = message.replaceAll(':other', displayable(params.other));
+    // A named `other` is a FIELD, so it is displayed the way a field is. The
+    // conditional family may carry it positionally (key '0') instead.
+    const dependent = params.other ?? (NAMES_DEPENDENT_AT_ZERO.has(rule) ? params['0'] : undefined);
+
+    if (dependent !== undefined) {
+        message = message.replaceAll(':other', displayable(dependent));
     }
 
-    if (READS_DEPENDENT_VALUE.has(rule) && params.other !== undefined) {
+    if (READS_DEPENDENT_VALUE.has(rule) && dependent !== undefined) {
         // Root resolution, like the rules themselves: the parameter reaching
         // here already carries the row's substituted index when it named a
         // wildcard path.
-        return message.replaceAll(':value', displayValue(get(ctx.values, params.other)));
+        return message.replaceAll(':value', displayValue(get(ctx.values, dependent)));
     }
 
     for (const [key, param] of Object.entries(params)) {
@@ -268,9 +287,11 @@ export function interpolate(
     // What is left is the variadic tail. Position 0 of a conditional rule is
     // the dependent FIELD, not a value — already spent on `:other` — so joining
     // every parameter rendered `required_unless:kind,card` as "unless kind is
-    // in kind, card".
+    // in kind, card". A third-party schema writer may carry that field
+    // POSITIONALLY (key '0') instead of under 'other', and it is just as much
+    // the field there — drop both spellings for the conditional family.
     const tail = Object.entries(params)
-        .filter(([key]) => key !== 'other')
+        .filter(([key]) => key !== 'other' && !(NAMES_DEPENDENT_AT_ZERO.has(rule) && key === '0'))
         .map(([, param]) => (LISTS_FIELDS.has(rule) ? displayable(param) : param));
 
     const joined = tail.join(LISTS_FIELDS.has(rule) ? ' / ' : ', ');

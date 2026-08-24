@@ -116,7 +116,16 @@ export interface Context {
     arrayField: boolean;
 }
 
-export type Check = (value: unknown, params: Record<string, string>, ctx: Context) => boolean;
+/**
+ * A check's answer is deliberately three-valued: `'undetermined'` means "this
+ * runner cannot decide" — a bare `url` with a scheme outside the browser-safe
+ * set is VALID to Laravel's ~200-scheme list more often than not, and both
+ * verdicts would be guesses. The engine turns it into a round trip, the same
+ * treatment an unknown rule gets.
+ */
+export type Verdict = boolean | 'undetermined';
+
+export type Check = (value: unknown, params: Record<string, string>, ctx: Context) => Verdict;
 
 /**
  * Rules Laravel runs even when the value is absent or empty.
@@ -214,11 +223,31 @@ export const REQUIRES_ANY_PARAM: ReadonlySet<string> = new Set([
     'required_without_all',
 ]);
 
+/**
+ * The conditional family names its dependent FIELD at position 0, so a
+ * third-party schema that carries parameters positionally still satisfies
+ * `other` — the checks read it through the same fallback.
+ */
+export const NAMES_DEPENDENT_AT_ZERO: ReadonlySet<string> = new Set([
+    'required_if',
+    'required_unless',
+    'required_if_accepted',
+    'required_if_declined',
+    'accepted_if',
+    'declined_if',
+    'prohibited_if',
+    'prohibited_unless',
+]);
+
 /** Whether this runner has everything it needs to decide the rule. */
 export function hasRequiredParams(rule: string, params: Record<string, string>): boolean {
     const required = REQUIRED_PARAMS[rule];
 
-    if (required !== undefined && required.some((name) => params[name] === undefined)) {
+    const satisfied = (name: string): boolean =>
+        params[name] !== undefined ||
+        (name === 'other' && NAMES_DEPENDENT_AT_ZERO.has(rule) && params['0'] !== undefined);
+
+    if (required !== undefined && !required.every(satisfied)) {
         return false;
     }
 
@@ -291,8 +320,16 @@ export const checks = {
     sometimes: () => true,
 
     array: (v) => Array.isArray(v),
-    boolean: (v) => [true, false, 1, 0, '1', '0'].includes(v as never),
-    integer: (v) => numeric(v) && Number.isInteger(Number(v)),
+    // `boolean:strict` narrows to the real booleans — Laravel honours the
+    // parameter, and the fixture proved it (1 and '1' fail under it).
+    boolean: (v, p) =>
+        Object.values(p).includes('strict')
+            ? v === true || v === false
+            : [true, false, 1, 0, '1', '0'].includes(v as never),
+    integer: (v, p) =>
+        Object.values(p).includes('strict')
+            ? typeof v === 'number' && Number.isInteger(v)
+            : phpInteger(v),
     numeric: (v) => numeric(v),
     string: (v) => typeof v === 'string',
     json: (v) => {
@@ -334,17 +371,29 @@ export const checks = {
     mac_address: (v) => MAC.test(str(v)),
     ulid: (v) => ULID.test(str(v)),
     uuid: (v) => UUID.test(str(v)),
-    url: (v) => {
+    url: (v, p) => {
+        let protocol: string;
         try {
-            const parsed = new URL(str(v));
-            // URL accepts any scheme, including javascript: and file:. Laravel
-            // uses an allow-list, and matching it here matters because a `url`
-            // rule that passes javascript: in the browser and fails on the
-            // server is worse than one that just fails.
-            return ['http:', 'https:', 'ftp:', 'ftps:'].includes(parsed.protocol);
+            protocol = new URL(str(v)).protocol;
         } catch {
             return false;
         }
+
+        // Parameters are an exact allow-list — `url:https` fails http://,
+        // which the fixture pinned after the runner waved it through.
+        const declared = Object.values(p);
+        if (declared.length > 0) {
+            return declared.map((scheme) => `${scheme.toLowerCase()}:`).includes(protocol);
+        }
+
+        // Bare `url`: the browser-safe schemes decide; anything else that
+        // PARSES goes to the server. Laravel's allow-list has ~200 entries
+        // (ws:, redis:, …) and neither verdict here would be honest —
+        // javascript: is on that list too, which is exactly why guessing
+        // "valid" for unknown schemes is the wrong kind of wrong.
+        if (['http:', 'https:', 'ftp:', 'ftps:'].includes(protocol)) return true;
+
+        return 'undetermined';
     },
     regex: (v, p) => toRegExp(p.pattern)?.test(str(v)) ?? true,
     not_regex: (v, p) => !(toRegExp(p.pattern)?.test(str(v)) ?? false),
@@ -354,7 +403,12 @@ export const checks = {
 
     // Conditional presence. Each decides from OTHER fields whether this one
     // is required, then defers to the same emptiness test `required` uses.
-    required_if: (v, p, c) => (matchesCondition(p, c) ? !isEmpty(v) : true),
+    // `required_if` alone starts with Laravel's Arr::has guard: an ABSENT
+    // dependent means never required, while a PRESENT null one still goes
+    // through value matching. `required_unless` has no such guard — absent
+    // resolves to null and can match a declared 'null'.
+    required_if: (v, p, c) =>
+        !has(c.values, dependentField(p) ?? '') || !matchesCondition(p, c) ? true : !isEmpty(v),
     required_unless: (v, p, c) => (matchesCondition(p, c) ? true : !isEmpty(v)),
     required_if_accepted: (v, p, c) =>
         acceptedCheck(other(c, p.other), {}, c) ? !isEmpty(v) : true,
@@ -376,14 +430,17 @@ export const checks = {
     // The default counterpart is the FULL concrete path plus `_confirmation`
     // — items.0.password looks for items.0.password_confirmation — which is
     // Laravel's own spelling: $attribute.'_confirmation', resolved from root.
-    confirmed: (v, p, c) => str(v) === str(other(c, p.other ?? `${c.field}_confirmation`)),
-    same: (v, p, c) => str(v) === str(other(c, p.other)),
-    different: (v, p, c) => str(v) !== str(other(c, p.other)),
+    confirmed: (v, p, c) => strictEquals(v, other(c, p.other ?? `${c.field}_confirmation`)),
+    // STRICT, like Laravel's === — an integer 1 is not '1', which matters
+    // for JSON payloads where types survive the trip. Loose stringified
+    // comparison green-ticked exactly those.
+    same: (v, p, c) => strictEquals(v, other(c, p.other)),
+    different: (v, p, c) => !strictEquals(v, other(c, p.other)),
 
-    gt: (v, p, c) => compare(v, p.value, c) > 0,
-    gte: (v, p, c) => compare(v, p.value, c) >= 0,
-    lt: (v, p, c) => compare(v, p.value, c) < 0,
-    lte: (v, p, c) => compare(v, p.value, c) <= 0,
+    gt: (v, p, c) => comparesAs(v, p.value, c, (d) => d > 0),
+    gte: (v, p, c) => comparesAs(v, p.value, c, (d) => d >= 0),
+    lt: (v, p, c) => comparesAs(v, p.value, c, (d) => d < 0),
+    lte: (v, p, c) => comparesAs(v, p.value, c, (d) => d <= 0),
 
     starts_with: (v, p) => Object.values(p).some((prefix) => str(v).startsWith(prefix)),
     ends_with: (v, p) => Object.values(p).some((suffix) => str(v).endsWith(suffix)),
@@ -397,7 +454,10 @@ export const checks = {
         Array.isArray(v) && !Object.values(p).some((n) => v.map(str).includes(n)),
 
     decimal: (v, p) => {
-        const match = /^[+-]?\d*\.(\d+)$|^[+-]?\d+$/.exec(str(v));
+        // The fraction may be EMPTY — '1.' is inside Laravel's grammar, and
+        // rejecting it was a false block. A lone '.' is not a number though,
+        // hence the lookahead requiring a digit somewhere.
+        const match = /^[+-]?(?=.*\d)\d*\.(\d*)$|^[+-]?\d+$/.exec(str(v));
         if (!match) return false;
         const places = match[1]?.length ?? 0;
         const min = num(p.min);
@@ -444,29 +504,40 @@ function present(ctx: Context, name: string): boolean {
     return !isEmpty(other(ctx, name));
 }
 
+/** The dependent field a conditional rule names — `other`, or position 0. */
+function dependentField(params: Record<string, string> | string[]): string | undefined {
+    return (params as Record<string, string>).other ?? Object.entries(params)[0]?.[1];
+}
+
 /**
  * Does the dependent field hold one of the rule's values?
  *
- * Position 0 is the field; everything after it is a value, and there may be
- * several — `required_if:kind,card,cheque`. Comparison is loose by string,
- * matching Laravel, so a submitted `1` matches a declared `"1"`.
+ * `parseDependentRuleParameters`, faithfully: a boolean dependent converts
+ * declared `true`/`false` to real booleans and compares STRICTLY (so `1`
+ * never matches `true`); a NULL dependent converts a declared `null`
+ * (case-insensitively) to a real null, which is how `required_if:other,null`
+ * fires on a present-null value; everything else compares loose-by-string —
+ * including the literal string 'null' matching a declared `null`, because no
+ * conversion happens unless the dependent IS null.
  */
 function matchesCondition(params: Record<string, string> | string[], ctx: Context): boolean {
     const entries = Object.entries(params);
-    const field = (params as Record<string, string>).other ?? entries[0]?.[1];
     const values = entries
         .filter(([key]) => key !== 'other' && key !== '0')
         .map(([, value]) => value);
-    const actual = other(ctx, field);
+    const actual = other(ctx, dependentField(params));
 
-    // Laravel converts `true`/`false` parameters when the dependent is
-    // declared boolean. The schema does not carry that declaration, so a
-    // boolean value is compared in both spellings rather than guessed at.
-    return values.some((value) =>
-        typeof actual === 'boolean'
-            ? String(actual) === value || (actual ? value === '1' : value === '0')
-            : str(actual) === value,
-    );
+    return values.some((value) => {
+        if (typeof actual === 'boolean') {
+            return value === (actual ? 'true' : 'false');
+        }
+
+        if (actual === null || actual === undefined) {
+            return value.toLowerCase() === 'null';
+        }
+
+        return str(actual) === value;
+    });
 }
 
 /** The last segment of a dotted path — `items.0.email` is `email`. */
@@ -474,13 +545,87 @@ function basename(field: string): string {
     return field.split('.').pop() ?? field;
 }
 
-/** Compare against a literal, or against another field when one is named. */
-function compare(value: unknown, name: string | undefined, ctx: Context): number {
-    const resolved = other(ctx, name);
-    const against = resolved === undefined ? name : resolved;
-    const a = sizeOf(value, ctx.numericField || numeric(value));
-    const b = sizeOf(against, ctx.numericField || numeric(against));
-    return a === b ? 0 : a > b ? 1 : -1;
+/**
+ * `FILTER_VALIDATE_INT`'s grammar, which is narrower than "numeric and
+ * whole": no fraction ('10.0'), no exponent ('1e2'), no leading zeros
+ * ('010'), and nothing beyond PHP_INT range — every one of those was a
+ * green tick Laravel refused. Surrounding whitespace and a sign are fine.
+ */
+function phpInteger(value: unknown): boolean {
+    if (typeof value === 'number') return Number.isInteger(value);
+    if (typeof value !== 'string') return false;
+
+    const trimmed = value.trim();
+    if (!/^[+-]?(?:0|[1-9]\d*)$/.test(trimmed)) return false;
+
+    try {
+        const parsed = BigInt(trimmed);
+        return parsed >= -9223372036854775808n && parsed <= 9223372036854775807n;
+    } catch {
+        return false;
+    }
+}
+
+/** PHP's `===`: strict for scalars, element-wise for arrays. */
+function strictEquals(a: unknown, b: unknown): boolean {
+    if (Array.isArray(a) && Array.isArray(b)) {
+        return a.length === b.length && a.every((el, i) => strictEquals(el, b[i]));
+    }
+
+    return a === b;
+}
+
+/** PHP `gettype` agreement — Laravel's isSameType gate on comparisons. */
+function sameType(a: unknown, b: unknown): boolean {
+    return (Array.isArray(a) ? 'array' : typeof a) === (Array.isArray(b) ? 'array' : typeof b);
+}
+
+/**
+ * Laravel's validateGt/Gte/Lt/Lte, branch for branch — the order matters:
+ *
+ *  1. No such FIELD and both sides numeric → numeric comparison against the
+ *     literal.
+ *  2. Numeric literal but non-numeric value → false.
+ *  3. Field comparison under a numeric rule with both sides numeric →
+ *     numeric.
+ *  4. Different types → false.
+ *  5. Otherwise BOTH sides measured by getSize with the ATTRIBUTE's numeric
+ *     decision — one decision, two sides. The old per-side promotion read
+ *     '10' as the number ten and 'abc' as three characters in the same
+ *     comparison, which is how it failed 'abc' gt '10' where Laravel passes
+ *     it (3 characters > 2 characters).
+ */
+function comparesAs(
+    value: unknown,
+    name: string | undefined,
+    ctx: Context,
+    op: (difference: number) => boolean,
+): boolean {
+    const comparedTo = other(ctx, name);
+
+    // Laravel's shouldBeNumeric: a comparison rule ADDS ITSELF to the
+    // attribute's numeric rules when the VALUE is numeric — one decision,
+    // made from the value, then applied to getSize on BOTH sides. This is
+    // the subtlety the old per-side promotion missed: '10' gt 'abc' measures
+    // ten against three characters (passes), while 'abc' gt '10' measures
+    // three characters against two (also passes) — asymmetric, and Laravel's.
+    const numericAttribute = ctx.numericField || numeric(value);
+
+    if (comparedTo === undefined || comparedTo === null) {
+        return numeric(value) && numeric(name)
+            ? op(sizeOf(value, numericAttribute) - Number(name))
+            : false;
+    }
+
+    if (numeric(name)) return false;
+
+    if (numericAttribute && numeric(value) && numeric(comparedTo)) {
+        return op(Number(value) - Number(comparedTo));
+    }
+
+    if (!sameType(value, comparedTo)) return false;
+
+    return op(sizeOf(value, numericAttribute) - sizeOf(comparedTo, numericAttribute));
 }
 
 /**

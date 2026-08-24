@@ -78,6 +78,6 @@ reference the release-planning audit's register.
   `PostalCode`, `Latitude`, `Longitude` and `CssColor`. A rule may advertise SEVERAL rules —
   `Latitude` is `numeric` plus `between:-90,90` — and a partial advertisement is dropped whole. Anything performing a checksum, a query or IO keeps the server default,
   and an advertised rule name the runner does not implement is ignored rather than shipped.
-- A differential test: the PHP suite records Laravel's own verdicts over 311 rule-and-value
+- A differential test: the PHP suite records Laravel's own verdicts over 383 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.
