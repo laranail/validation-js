@@ -46,9 +46,13 @@ export interface Plugin {
 
 export interface Validator {
     readonly id: string;
-    validate(): Promise<Result>;
+    validate(options?: { only?: string[] }): Promise<Result>;
     validateField(field: string): Promise<void>;
     submit(): Promise<boolean>;
+    /** Map a real submit's server 422 back onto the fields (§6.5). */
+    setErrors(errors: Record<string, string[]>): void;
+    /** Re-sync after DOM mutation — repeater rows, HTMX/Turbo swaps. */
+    refresh(): void;
     state(field: string): FieldState;
     explain(field: string): { state: FieldState; client: string[]; server: string[] };
     on(name: EventName, handler: Handler): () => void;
@@ -135,9 +139,11 @@ export function createValidator(
 
     const validator: Validator = {
         id,
-        validate: () => controller.validate(),
+        validate: (options) => controller.validate(options),
         validateField: (field) => controller.validateField(field),
         submit: () => controller.submit(),
+        setErrors: (errors) => controller.setErrors(errors),
+        refresh: () => controller.refresh(),
         state: (field) => controller.state(field),
         explain: (field) => controller.explain(field),
         on: (name, handler) => emitter.on(name, handler),

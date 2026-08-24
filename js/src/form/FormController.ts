@@ -46,6 +46,7 @@ export class FormController {
     private readonly describedByUs = new Set<Element>();
     private liveRegion: HTMLElement | null = null;
     private destroyed = false;
+    private addedNovalidate = false;
 
     private readonly form: HTMLFormElement;
     private readonly deps: ControllerDeps;
@@ -56,6 +57,15 @@ export class FormController {
     }
 
     attach(): void {
+        // Progressive enhancement is the floor (§6.5): native HTML5
+        // constraints own the form until the runtime is REALLY attached —
+        // if this script never runs, nothing was taken away. Only what we
+        // set do we take back on destroy.
+        if (!this.form.hasAttribute('novalidate')) {
+            this.form.setAttribute('novalidate', '');
+            this.addedNovalidate = true;
+        }
+
         this.listen('focusout', (event) => {
             const field = this.fieldFrom(event.target);
             if (field === null) return;
@@ -85,14 +95,19 @@ export class FormController {
         });
     }
 
-    /** The engine's verdict for the whole form, through the hook pipeline. */
-    async validate(): Promise<Result> {
+    /**
+     * The engine's verdict for the whole form, through the hook pipeline.
+     * `only` narrows what is REPORTED to those fields (the wizard/step
+     * case, §6.5) — everything is still evaluated, so cross-field rules
+     * see the full picture, exactly Precognition's validate-only shape.
+     */
+    async validate(options: { only?: string[] } = {}): Promise<Result> {
         const values = this.collect();
         const result = await validateAsync(values, this.effectiveSchema(), {
             rules: this.deps.rules,
         });
 
-        this.applyResult(result, null);
+        this.applyResult(result, options.only === undefined ? null : new Set(options.only));
         this.deps.emitter.emit('form:validated', { valid: result.valid, result });
 
         return result;
@@ -253,6 +268,60 @@ export class FormController {
         return allowed;
     }
 
+    /**
+     * Map a real submit's 422 back onto the fields (§6.5 server-error
+     * re-mapping) — server-only rules surface in the same UI, through the
+     * same renderer and aria plumbing, as any client failure.
+     */
+    setErrors(errors: Record<string, string[]>): void {
+        for (const [field, messages] of Object.entries(errors)) {
+            if (messages.length === 0) continue;
+
+            const control = this.controlFor(field);
+            const ctx = {
+                form: this.form,
+                input: control,
+                wrapper:
+                    control === null
+                        ? null
+                        : (this.deps.resolvers.resolve(control)?.getWrapper(control) ?? null),
+                validatorId: this.deps.validatorId,
+            };
+
+            this.deps.scheduler.recordFailure(field);
+            this.transition(field, (state) => ({ ...state, status: 'invalid', errors: messages }));
+            this.deps.renderer.showErrors(field, messages, ctx);
+            this.deps.renderer.setFieldState(field, 'invalid', ctx);
+            this.markInvalid(control, field);
+        }
+
+        const first = Object.values(errors).find((messages) => messages.length > 0);
+        this.announce(first?.[0] ?? '');
+    }
+
+    /**
+     * Re-sync with a mutated DOM (§6.5 repeater rows, HTMX/Turbo partial
+     * swaps): state for a field whose control is gone is cleared — painted
+     * message, timers, sequence and all — instead of leaking. New rows need
+     * nothing here; the four listeners are delegated on the form, so a
+     * control that appears is live the moment it exists.
+     */
+    refresh(): void {
+        for (const field of [...this.states.keys()]) {
+            if (this.controlFor(field) !== null) continue;
+
+            this.deps.scheduler.cancel(field);
+            this.deps.renderer.clearErrors(field, {
+                form: this.form,
+                input: null,
+                wrapper: null,
+                validatorId: this.deps.validatorId,
+            });
+            this.states.delete(field);
+            this.sequence.delete(field);
+        }
+    }
+
     explain(field: string): { state: FieldState; client: string[]; server: string[] } {
         const definition = Object.entries(this.deps.schema.fields).find(
             ([pattern]) => pattern === field || matchesPattern(pattern, field),
@@ -291,6 +360,11 @@ export class FormController {
         this.liveRegion = null;
         this.states.clear();
         this.sequence.clear();
+
+        if (this.addedNovalidate) {
+            this.form.removeAttribute('novalidate');
+            this.addedNovalidate = false;
+        }
     }
 
     /** How many listeners/timers are live — the leak assertion reads these. */
