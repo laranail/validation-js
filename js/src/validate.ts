@@ -43,8 +43,27 @@ interface PendingCheck {
     ctx: Context;
 }
 
-export function validate(values: Values, schema: Schema): Result {
-    return run(values, schema, undefined);
+/**
+ * Per-instance extensions — the copy-on-write half of the §5.10 guarantee.
+ * The built-in rule table is shared and read-only; an instance's extra
+ * rules and message overrides ride in here and shadow at LOOKUP, so two
+ * validators on one page can disagree about what `iban` means without
+ * either mutating anything the other reads.
+ */
+export interface EngineOptions {
+    rules?: Record<string, Check>;
+    /** Message templates merged UNDER the schema's own (server wins). */
+    messages?: Record<string, string>;
+}
+
+export function validate(values: Values, schema: Schema, options?: EngineOptions): Result {
+    return run(values, withMessages(schema, options), undefined, options);
+}
+
+function withMessages(schema: Schema, options?: EngineOptions): Schema {
+    if (options?.messages === undefined) return schema;
+
+    return { ...schema, messages: { ...options.messages, ...schema.messages } };
 }
 
 /**
@@ -55,9 +74,14 @@ export function validate(values: Values, schema: Schema): Result {
  * already run by the time it resolves, so a field can carry a second
  * failure. The VERDICT is identical either way.
  */
-export async function validateAsync(values: Values, schema: Schema): Promise<Result> {
+export async function validateAsync(
+    values: Values,
+    schema: Schema,
+    options?: EngineOptions,
+): Promise<Result> {
     const pending: PendingCheck[] = [];
-    const result = run(values, schema, pending);
+    const effective = withMessages(schema, options);
+    const result = run(values, effective, pending, options);
 
     for (const entry of pending) {
         const verdict = await entry.promise;
@@ -72,7 +96,7 @@ export async function validateAsync(values: Values, schema: Schema): Promise<Res
                 field: entry.field,
                 rule: entry.rule,
                 message: interpolate(
-                    schema,
+                    effective,
                     entry.pattern,
                     entry.rule,
                     entry.params,
@@ -87,7 +111,12 @@ export async function validateAsync(values: Values, schema: Schema): Promise<Res
     return { ...result, valid: result.failures.length === 0 };
 }
 
-function run(values: Values, schema: Schema, pending: PendingCheck[] | undefined): Result {
+function run(
+    values: Values,
+    schema: Schema,
+    pending: PendingCheck[] | undefined,
+    options?: EngineOptions,
+): Result {
     const failures: Failure[] = [];
     const undetermined: string[] = [];
 
@@ -192,7 +221,8 @@ function run(values: Values, schema: Schema, pending: PendingCheck[] | undefined
                 // the same lie as treating a server rule as valid. It becomes
                 // undetermined instead. The widening cast is the lookup's honest
                 // type: rule names come off the wire, not from the literal's keys.
-                const check = (checks as Record<string, Check | undefined>)[rule];
+                const check =
+                    options?.rules?.[rule] ?? (checks as Record<string, Check | undefined>)[rule];
 
                 if (check === undefined) {
                     if (!undetermined.includes(field)) undetermined.push(field);
