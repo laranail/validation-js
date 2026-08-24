@@ -49,6 +49,24 @@ jobs:
       # .ts file). This packs the tarball exactly as `npm publish` would,
       # installs it into a clean project, and imports it under plain Node.
       - run: npm run test:pack
+      # The §9 non-functional gate: the engine stays small and each layer
+      # separately importable; a size regression fails here, not in review.
+      - run: npm run budget
+
+  browser:
+    runs-on: ubuntu-latest
+    name: Browser runtime (Playwright)
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      # Real browsers, real forms: modes, debounce, the stale-response
+      # race, renderer presets, resolver placement, axe assertions, and
+      # the two-forms / StrictMode / leak-free-destroy guarantees.
+      - run: npm run test:e2e
 
   parity:
     runs-on: ubuntu-latest

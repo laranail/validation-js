@@ -25,6 +25,10 @@
         ".": {
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
+        },
+        "./regex": {
+            "types": "./dist/regex.d.ts",
+            "default": "./dist/regex.js"
         }
     },
     "files": [
@@ -38,7 +42,9 @@
         "format:check": "biome format js",
         "test": "npm run typecheck && node --test \"js/tests/**/*.test.ts\"",
         "test:pack": "bash js/tests/pack-import-check.sh",
-        "prepublishOnly": "npm test && npm run test:pack"
+        "prepublishOnly": "npm test && npm run test:pack",
+        "test:e2e": "playwright test",
+        "budget": "node scripts/bundle-budget.mjs"
     },
     "publishConfig": {
         "access": "public"
@@ -47,9 +53,12 @@
         "node": ">=22.6"
     },
     "devDependencies": {
+        "@axe-core/playwright": "^4.13.0",
         "@biomejs/biome": "^2.5.10",
+        "@playwright/test": "^1.62.1",
         "@stryker-mutator/core": "^10.0.0",
         "@types/node": "^26.2.0",
+        "esbuild": "^0.28.2",
         "typescript": "^7.0.2"
     }
 }
