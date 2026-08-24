@@ -21,6 +21,8 @@ export type { RenderContext, Renderer } from './render/Renderer.ts';
 export { headlessRenderer } from './render/Renderer.ts';
 export type { Check, Verdict } from './rules.ts';
 export { checks, isEmpty, sizeOf, toRegExp } from './rules.ts';
+export type { RemoteChannelOptions, RemoteOutcome } from './transport/RemoteChannel.ts';
+export { RemoteChannel } from './transport/RemoteChannel.ts';
 export type { Failure, Field, Result, Rule, Schema, Values } from './types.ts';
 export type { EngineOptions } from './validate.ts';
 export { interpolate, SCHEMA_VERSION, validate, validateAsync } from './validate.ts';

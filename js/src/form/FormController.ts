@@ -5,6 +5,7 @@ import type { ResolverRegistry } from '../plugins/InputResolver.ts';
 import { messageId } from '../render/ClassMapRenderer.ts';
 import type { Renderer } from '../render/Renderer.ts';
 import type { Check } from '../rules.ts';
+import type { RemoteChannel } from '../transport/RemoteChannel.ts';
 import type { Result, Schema } from '../types.ts';
 import { validateAsync } from '../validate.ts';
 import { type FieldState, pristine } from './FieldState.ts';
@@ -34,6 +35,8 @@ export interface ControllerDeps {
     rules: Record<string, Check>;
     ruleMessages: Record<string, string>;
     validatorId: string;
+    /** Optional: resolves undetermined fields through the server (§5.7). */
+    transport: RemoteChannel | null;
 }
 
 export class FormController {
@@ -130,6 +133,90 @@ export class FormController {
             { field, state: this.states.get(field) },
             { element: this.controlFor(field) },
         );
+
+        // Live remote resolution for what the engine could not decide —
+        // narrowed to the scope so an untouched field is never probed. On
+        // SUBMIT the channel deliberately stays quiet: undetermined fields
+        // submit normally and the real request is the server's last word.
+        const undecided = result.undetermined.filter((name) => scope.has(name));
+
+        if (this.deps.transport !== null && undecided.length > 0) {
+            await this.resolveRemotely(values, undecided, token, field);
+        }
+    }
+
+    private async resolveRemotely(
+        values: Record<string, unknown>,
+        fields: string[],
+        token: number,
+        triggering: string,
+    ): Promise<void> {
+        const transport = this.deps.transport;
+        if (transport === null) return;
+
+        for (const name of fields) {
+            this.transition(name, (state) => ({ ...state, status: 'validating' }));
+        }
+
+        this.deps.emitter.emit('remote:start', { fields });
+        const outcome = await transport.resolve(values, fields);
+
+        // Latest-wins mirrors the sync path; a stale abort paints nothing.
+        if (outcome.kind === 'stale' || this.destroyed || this.sequence.get(triggering) !== token) {
+            return;
+        }
+
+        this.deps.emitter.emit('remote:settled', { fields, outcome: outcome.kind });
+
+        for (const name of fields) {
+            const control = this.controlFor(name);
+            const ctx = {
+                form: this.form,
+                input: control,
+                wrapper:
+                    control === null
+                        ? null
+                        : (this.deps.resolvers.resolve(control)?.getWrapper(control) ?? null),
+                validatorId: this.deps.validatorId,
+            };
+
+            if (outcome.kind === 'failures' && (outcome.errors[name]?.length ?? 0) > 0) {
+                const errors = outcome.errors[name] as string[];
+                this.deps.scheduler.recordFailure(name);
+                this.transition(name, (state) => ({ ...state, status: 'invalid', errors }));
+                this.deps.renderer.showErrors(name, errors, ctx);
+                this.deps.renderer.setFieldState(name, 'invalid', ctx);
+                this.markInvalid(control, name);
+                this.announce(errors[0] ?? '');
+                continue;
+            }
+
+            if (outcome.kind === 'unreachable') {
+                // Degradable, never fail-open: the field stays undetermined
+                // with the retriable reason, and the failure is reported —
+                // §10.12.
+                this.transition(name, (state) => ({
+                    ...state,
+                    status: 'undetermined',
+                    errors: [],
+                    reason: 'transient',
+                }));
+                this.deps.renderer.setFieldState(name, 'undetermined', ctx);
+                continue;
+            }
+
+            // 'clean': the server validated exactly these fields and found
+            // nothing — the one moment an undetermined field earns 'valid'.
+            this.deps.renderer.clearErrors(name, ctx);
+            this.clearInvalid(control);
+            this.transition(name, (state) => ({ ...state, status: 'valid', errors: [] }));
+            this.deps.renderer.setFieldState(name, 'valid', ctx);
+        }
+
+        if (outcome.kind === 'unreachable') {
+            this.deps.emitter.emit('form:error', { transport: true, fields });
+            this.deps.notifier.notify('error', 'remote:unreachable', { fields });
+        }
     }
 
     async submit(sourceEvent?: Event): Promise<boolean> {
@@ -191,6 +278,7 @@ export class FormController {
         this.listeners.length = 0;
 
         this.deps.scheduler.cancelAll();
+        this.deps.transport?.abort();
         this.deps.renderer.destroy();
 
         for (const element of this.describedByUs) {
