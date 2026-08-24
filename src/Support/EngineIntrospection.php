@@ -11,6 +11,8 @@ namespace Simtabi\Laranail\ValidationJs\Support;
  * the exporter advertises as client-side but the runner cannot evaluate
  * is a silent hole (§7.2), so the two lists are pinned to EXACT agreement
  * rather than manually synced.
+ *
+ * @internal Tooling for the doctor and the drift guard; not part of the 1.0 stable API.
  */
 final class EngineIntrospection
 {
