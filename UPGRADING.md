@@ -90,7 +90,7 @@ built-in rule table remains shared and read-only.
 Promise as undetermined; the new `validateAsync()` awaits it. Custom checks keep working
 unchanged — `boolean` remains a valid return.
 
-## Unreleased
+## v0.2.0 - 2026-08-24
 
 The schema gained `messageVariants` and a second name on the size parameters, both additive; the
 runner gained per-rule degradation when it cannot read a parameter. A runner and an exporter from
