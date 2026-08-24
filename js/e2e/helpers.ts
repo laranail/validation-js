@@ -5,7 +5,11 @@ import type { Page } from '@playwright/test';
  * no dev server, no network. `boot` evaluates in the PAGE, so specs
  * express intent as plain browser code — the same code a consumer writes.
  */
-export async function bootPage(page: Page, html: string): Promise<void> {
+export async function bootPage(
+    page: Page,
+    html: string,
+    bundles: string[] = ['laranail.js'],
+): Promise<void> {
     const document = `<!DOCTYPE html><html lang="en"><head><title>Fixture</title></head><body><main><h1>Fixture</h1>${html}</main></body></html>`;
 
     // A REAL origin, not setContent's about:blank: a relative fetch('/…')
@@ -16,7 +20,10 @@ export async function bootPage(page: Page, html: string): Promise<void> {
         route.fulfill({ contentType: 'text/html', body: document }),
     );
     await page.goto('https://fixture.test/');
-    await page.addScriptTag({ path: 'js/e2e/.bundle/laranail.js' });
+
+    for (const bundle of bundles) {
+        await page.addScriptTag({ path: `js/e2e/.bundle/${bundle}` });
+    }
 }
 
 /** A minimal schema literal, typed loosely — the page evaluates it as data. */

@@ -62,19 +62,6 @@ answer; the browser just saves the user a round trip on the things it can be sur
 
 ## How the parity claim is tested
 
-## Form runtime
-
-The engine gained its form runtime: `createValidator(form, schema, options)` binds a real form
-with debounced eager validation, an injectable renderer (`ClassMapRenderer` over plain-data
-presets — `bootstrap5`, `tailwind`, `bulma`, `vanilla`), input-widget resolvers, a dual event
-channel (instance `on()` plus bubbling `laranail:*` DOM events), and core-owned accessibility:
-`aria-invalid`, non-destructive `aria-describedby`, a polite live region, and a `role="alert"`
-summary with focus management. `createHeadless(schema)` is the DOM-free facade;
-`@laranail/validation-js/regex` ships the fluent regex builder, PHP-symmetric. Everything is
-instance-scoped — two validators coexist on one page, attach is idempotent, and `destroy()` is
-leak-free, all pinned by the Playwright suite. The engine stays zero-dependency with a CI
-bundle budget (Layer 0 ≤ 8 KB min+gzip).
-
 The PHP suite runs **Laravel's own validator** over a grid of 511 rule-and-value combinations,
 records its verdicts, and writes them to a fixture. The JavaScript suite then has to reproduce
 every one.
@@ -108,11 +95,51 @@ The alternative, which this replaced, was a version check that fired on any chan
 whole forms to the server until both halves were upgraded in step. See
 [Schema](docs/schema.md#shipping-the-two-halves-apart).
 
+## Form runtime, adapters and bridges
+
+`createValidator(form, schema, options)` binds a real form with debounced eager validation, an
+injectable renderer (`ClassMapRenderer` over plain-data presets — `bootstrap5`, `tailwind`,
+`bulma`, `vanilla`), input-widget resolvers, a dual event channel (instance `on()` plus
+bubbling `laranail:*` DOM events), wizard-step `validate({ only })`, server-422 `setErrors()`,
+repeater-aware `refresh()`, and core-owned accessibility: `aria-invalid`, non-destructive
+`aria-describedby`, a polite live region, and a `role="alert"` summary with focus management.
+Everything is instance-scoped — two validators coexist on one page, attach is idempotent, and
+`destroy()` is leak-free, all pinned by the Playwright suite. The engine stays zero-dependency
+with a CI bundle budget (Layer 0 ≤ 8 KB min+gzip).
+
+Where a framework owns the DOM, the library answers with state instead: `HeadlessForm` under a
+React hook (`@laranail/validation-js/react`) and a Vue 3 composable (`…/vue`), with Alpine
+(`…/alpine`) and declarative autoboot for Blade/HTMX/Turbo/Livewire pages (`…/autoboot`) on
+the DOM-owning side, and `…/debug` console tracing that tree-shakes out by absence.
+
 ## <a name="documentation"></a>Documentation
 
-- [Schema](docs/schema.md) — the contract both halves implement
+### Guides
+
+- [Installation](docs/installation.md) — both halves, the VCS repositories, the subpath exports
+- [Getting started](docs/getting-started.md) — one path from FormRequest to validated form
+- [Configuration](docs/configuration.md) — the `laranail.validation-js.*` keys and per-instance options
+- [Architecture](docs/architecture.md) — the layered design, and why the adapters are headless
+- [Schema](docs/schema.md) — the wire contract both halves implement
 - [Transport](docs/transport.md) — the three delivery tiers, the validate endpoint, and the remote channel
+- [Release](docs/release.md) — three version lines, one discipline
+
+### Reference
+
 - [Rules](docs/tools/rules.md) — what runs in the browser, what does not, and why
+- [Form runtime](docs/tools/runtime.md) — `createValidator`, scheduling, rendering, a11y, debug
+- [Headless form](docs/tools/headless.md) — the DOM-free stateful facade under the adapters
+- [Adapters](docs/tools/adapters.md) — the React hook and the Vue composable
+- [Bridges](docs/tools/bridges.md) — autoboot, Alpine, and the Livewire rules
+- [Console commands](docs/tools/commands.md) — `export`, `doctor`, `parity`
+
+### Recipes
+
+- [React form](docs/recipes/react-form.md) · [Vue form](docs/recipes/vue-form.md) · [Blade autoboot](docs/recipes/blade-autoboot.md) · [Alpine](docs/recipes/alpine-form.md) · [Livewire](docs/recipes/livewire.md) · [Nova field](docs/recipes/nova-field.md)
+- [Server errors](docs/recipes/server-errors.md) · [Wizard steps](docs/recipes/wizard-steps.md) · [Custom rule](docs/recipes/custom-rule.md) · [Remote validation](docs/recipes/remote-validation.md)
+
+### Project
+
 - [Upgrading](UPGRADING.md) — why the two packages upgrade separately, and what would change that
 
 ## Prior art

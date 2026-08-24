@@ -91,4 +91,8 @@ jobs:
       # parity claim becomes a claim about a snapshot of a past Laravel.
       - run: vendor/bin/pest --filter=ParityFixture
       - run: git diff --exit-code js/tests/fixtures/parity.json
-      - run: node --test 'js/tests/**/*.test.ts'
+      # Replay the regenerated fixtures with ZERO node_modules — the
+      # engine's zero-dependency property, exercised for real. Only the
+      # parity replay runs here; the js job runs the full suite (the Vue
+      # adapter test needs its dev-dependency peer installed).
+      - run: node --test js/tests/parity.test.ts

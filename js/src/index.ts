@@ -9,6 +9,12 @@ export { FormController } from './form/FormController.ts';
 export { readControl, readForm, toName, toPath } from './form/NameMapper.ts';
 export type { Mode } from './form/Scheduler.ts';
 export { Scheduler } from './form/Scheduler.ts';
+export type {
+    HeadlessFormOptions,
+    HeadlessSnapshot,
+    RemoteTransport,
+} from './headless/HeadlessForm.ts';
+export { HeadlessForm } from './headless/HeadlessForm.ts';
 export { pluralise, resolveMessage } from './i18n/messages.ts';
 export { capturedKeys, expand, get, has, substituteAsterisks } from './paths.ts';
 export type { InputResolver } from './plugins/InputResolver.ts';
