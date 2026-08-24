@@ -63,7 +63,10 @@ v0.2.0 — see UPGRADING.md for the whole 0.1 → 1.0 line.
 
 - `composer.json` graduates: Simtabi LLC organization author (parity with
   `laranail/validation`), `branch-alias` `1.0.x-dev`, and the `laranail/validation`
-  dev/suggest constraint moves to `^1.0`.
+  dev constraint moves to `^0.1.1 || ^1.0` — dual-range because this package's PHP floor
+  stays `^8.4.1 || ^8.5` while its sister's 1.0 line is PHP `^8.5`-only; the two lines are
+  exporter-equivalent (regenerating the parity fixtures against v1.0.0 changes nothing), and
+  the CI currency job pins itself to the `^1.0` resolution.
 
 - **Transport (PHP):** three delivery tiers over one `SchemaFactory` path — the
   `@laranailValidation` directive and `<x-laranail-validation-js::schema>` component render an

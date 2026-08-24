@@ -75,7 +75,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          # 8.5, deliberately: the dev constraint is dual-range so the 8.4
+          # matrix cells stay resolvable, but the CURRENCY check must track
+          # the live ^1.0 line of laranail/validation — on 8.4 it would
+          # resolve the frozen 0.1 line and silently stop noticing drift.
+          php-version: '8.5'
           # fileinfo is required by league/flysystem-local, which
           # laravel/framework pulls in. Linux images ship it; the Windows PHP
           # build does not unless asked, so composer could not resolve at all

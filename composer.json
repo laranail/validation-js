@@ -51,7 +51,7 @@
     },
     "require-dev": {
         "larastan/larastan": "^3.9.3",
-        "laranail/validation": "^1.0",
+        "laranail/validation": "^0.1.1 || ^1.0",
         "laravel/pint": "^1.29",
         "orchestra/testbench": "^11.0",
         "pestphp/pest": "^3.0||^4.4.5",
@@ -60,7 +60,7 @@
         "phpstan/phpstan": "^2.1"
     },
     "suggest": {
-        "laranail/validation": "^1.0 — export straight from a RuleSet instead of a plain rules array."
+        "laranail/validation": "^1.0 (PHP 8.5) or ^0.1.1 (PHP 8.4) — export straight from a RuleSet instead of a plain rules array."
     },
     "autoload": {
         "psr-4": {
