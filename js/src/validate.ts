@@ -87,6 +87,7 @@ export function validate(values: Values, schema: Schema): Result {
             const ctx: Context = {
                 values,
                 field,
+                pattern,
                 numericField: rules.some((r) => ['numeric', 'integer', 'decimal'].includes(r.rule)),
                 arrayField: rules.some((r) => ['array', 'list'].includes(r.rule)),
             };

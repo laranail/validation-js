@@ -1,5 +1,5 @@
 import { matchesFormat, parseDate } from './dates.ts';
-import { get, has } from './paths.ts';
+import { expand, get, has } from './paths.ts';
 import type { Values } from './types.ts';
 
 /**
@@ -112,6 +112,8 @@ export function isFileValue(value: unknown): boolean {
 export interface Context {
     values: Values;
     field: string;
+    /** The schema PATTERN the field expanded from — what `distinct` ranges over. */
+    pattern: string;
     numericField: boolean;
     /** Whether the rule set declares the field an array — the other size-message variant. */
     arrayField: boolean;
@@ -139,8 +141,19 @@ export const IMPLICIT = new Set([
     'required',
     'filled',
     'present',
+    'present_if',
+    'present_unless',
+    'present_with',
+    'present_with_all',
     'accepted',
+    'accepted_if',
     'declined',
+    'declined_if',
+    'missing',
+    'missing_if',
+    'missing_unless',
+    'missing_with',
+    'missing_with_all',
     'required_if',
     'required_if_accepted',
     'required_if_declined',
@@ -206,6 +219,19 @@ export const REQUIRED_PARAMS: Record<string, readonly string[]> = {
     required_unless: ['other'],
     required_if_accepted: ['other'],
     required_if_declined: ['other'],
+    accepted_if: ['other'],
+    declined_if: ['other'],
+    prohibited_if: ['other'],
+    prohibited_unless: ['other'],
+    prohibited_if_accepted: ['other'],
+    prohibited_if_declined: ['other'],
+    missing_if: ['other'],
+    missing_unless: ['other'],
+    present_if: ['other'],
+    present_unless: ['other'],
+    max_digits: ['max'],
+    min_digits: ['min'],
+    in_array: ['other'],
 };
 
 /**
@@ -244,6 +270,12 @@ export const NAMES_DEPENDENT_AT_ZERO: ReadonlySet<string> = new Set([
     'declined_if',
     'prohibited_if',
     'prohibited_unless',
+    'prohibited_if_accepted',
+    'prohibited_if_declined',
+    'missing_if',
+    'missing_unless',
+    'present_if',
+    'present_unless',
 ]);
 
 /** Whether this runner has everything it needs to decide the rule. */
@@ -252,7 +284,9 @@ export function hasRequiredParams(rule: string, params: Record<string, string>):
 
     const satisfied = (name: string): boolean =>
         params[name] !== undefined ||
-        (name === 'other' && NAMES_DEPENDENT_AT_ZERO.has(rule) && params['0'] !== undefined);
+        (name === 'other' &&
+            (NAMES_DEPENDENT_AT_ZERO.has(rule) || rule === 'in_array') &&
+            params['0'] !== undefined);
 
     if (required !== undefined && !required.every(satisfied)) {
         return false;
@@ -327,6 +361,46 @@ export const checks = {
     sometimes: () => true,
 
     array: (v) => Array.isArray(v),
+    // A JavaScript array IS a list; PHP's associative arrays arrive here as
+    // objects and correctly fail both.
+    list: (v) => Array.isArray(v),
+    required_array_keys: (v, p) => {
+        if (v === null || typeof v !== 'object') return false;
+
+        return Object.values(p).every((key) =>
+            Array.isArray(v) ? Number(key) >= 0 && Number(key) < v.length : Object.hasOwn(v, key),
+        );
+    },
+    // Digit-count bounds on the STRING form — '-12' has a non-digit and
+    // fails, exactly as the vendor's [^0-9] scan does.
+    max_digits: (v, p) => digitCount(v) !== null && (digitCount(v) as number) <= num(p.max),
+    min_digits: (v, p) => digitCount(v) !== null && (digitCount(v) as number) >= num(p.min),
+    // The value must appear among another field's expanded values, loosely —
+    // in_array:users.*.id is the canonical spelling.
+    in_array: (v, p, c) => {
+        const pattern = p.other ?? p['0'];
+        if (pattern === undefined) return false;
+
+        return expand(pattern, c.values)
+            .map((f) => get(c.values, f))
+            .some((el) => looselyEquals(el, v));
+    },
+    // Unique among the OTHER expansions of the same pattern. `strict` and
+    // `ignore_case` ride as flags, as they do in Laravel.
+    distinct: (v, p, c) => {
+        const flags = Object.values(p);
+        const siblings = expand(c.pattern, c.values)
+            .filter((f) => f !== c.field)
+            .map((f) => get(c.values, f));
+
+        return !siblings.some((el) => {
+            if (flags.includes('ignore_case') && typeof v === 'string' && typeof el === 'string') {
+                return el.toLowerCase() === v.toLowerCase();
+            }
+
+            return flags.includes('strict') ? strictEquals(el, v) : looselyEquals(el, v);
+        });
+    },
     // `boolean:strict` narrows to the real booleans — Laravel honours the
     // parameter, and the fixture proved it (1 and '1' fail under it).
     boolean: (v, p) =>
@@ -484,7 +558,43 @@ export const checks = {
         fields(p).every((f) => !present(c, f)) ? !isEmpty(v) : true,
 
     accepted: acceptedCheck,
+    accepted_if: (v, p, c) => (matchesCondition(p, c) ? acceptedCheck(v, {}, c) : true),
     declined: declinedCheck,
+    declined_if: (v, p, c) => (matchesCondition(p, c) ? declinedCheck(v, {}, c) : true),
+
+    // The prohibition family. `prohibited` reads oddly as `isEmpty` — it is
+    // Laravel's `! validateRequired`: when the rule RUNS (present, non-blank
+    // value) anything non-empty fails, and the engine's gating supplies the
+    // pass for absent and blank values, exactly as isValidatable does.
+    prohibited: (v) => isEmpty(v),
+    prohibited_if: (v, p, c) => (matchesCondition(p, c) ? isEmpty(v) : true),
+    prohibited_unless: (v, p, c) => (matchesCondition(p, c) ? true : isEmpty(v)),
+    prohibited_if_accepted: (v, p, c) =>
+        acceptedCheck(other(c, dependentField(p)), {}, c) ? isEmpty(v) : true,
+    prohibited_if_declined: (v, p, c) =>
+        declinedCheck(other(c, dependentField(p)), {}, c) ? isEmpty(v) : true,
+    // `prohibits` points the other way: THIS field being filled forbids the
+    // named ones from being filled.
+    prohibits: (v, p, c) => isEmpty(v) || fields(p).every((f) => isEmpty(get(c.values, f))),
+
+    // The missing family asks about the KEY, not the value — `{field: null}`
+    // fails `missing`. All implicit: their whole job is judging absence.
+    missing: (_v, _p, c) => !has(c.values, c.field),
+    missing_if: (v, p, c) => (matchesCondition(p, c) ? !has(c.values, c.field) : true),
+    missing_unless: (v, p, c) => (matchesCondition(p, c) ? true : !has(c.values, c.field)),
+    // PRESENCE of the named fields triggers these — Arr::hasAny/has, not
+    // filled-ness, which is where they differ from required_with's family.
+    missing_with: (v, p, c) =>
+        fields(p).some((f) => has(c.values, f)) ? !has(c.values, c.field) : true,
+    missing_with_all: (v, p, c) =>
+        fields(p).every((f) => has(c.values, f)) ? !has(c.values, c.field) : true,
+
+    present_if: (v, p, c) => (matchesCondition(p, c) ? has(c.values, c.field) : true),
+    present_unless: (v, p, c) => (matchesCondition(p, c) ? true : has(c.values, c.field)),
+    present_with: (v, p, c) =>
+        fields(p).some((f) => has(c.values, f)) ? has(c.values, c.field) : true,
+    present_with_all: (v, p, c) =>
+        fields(p).every((f) => has(c.values, f)) ? has(c.values, c.field) : true,
     // The default counterpart is the FULL concrete path plus `_confirmation`
     // — items.0.password looks for items.0.password_confirmation — which is
     // Laravel's own spelling: $attribute.'_confirmation', resolved from root.
@@ -644,6 +754,32 @@ function phpInteger(value: unknown): boolean {
     } catch {
         return false;
     }
+}
+
+/** The digit count of a value's string form, or null when it has non-digits. */
+function digitCount(value: unknown): number | null {
+    if (typeof value !== 'string' && typeof value !== 'number') return null;
+
+    const rendered = String(value);
+
+    return /^[0-9]+$/.test(rendered) ? rendered.length : null;
+}
+
+/**
+ * PHP's loose `==` for the shapes that reach `in_array`-style checks:
+ * numeric strings compare as numbers ('1' == '01'), other scalars by
+ * string, null only to null.
+ */
+function looselyEquals(a: unknown, b: unknown): boolean {
+    if (a === null || a === undefined || b === null || b === undefined) {
+        return (a === null || a === undefined) === (b === null || b === undefined);
+    }
+
+    if (typeof a === 'object' || typeof b === 'object') return strictEquals(a, b);
+
+    if (numeric(a) && numeric(b)) return Number(a) === Number(b);
+
+    return str(a) === str(b);
 }
 
 /** PHP's `===`: strict for scalars, element-wise for arrays. */

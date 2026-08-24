@@ -60,6 +60,16 @@ final class RuleCatalogue
         // degrades to undetermined inside the checks themselves.
         'date', 'date_format', 'after', 'after_or_equal', 'before',
         'before_or_equal', 'date_equals', 'timezone',
+        // The wider conditional-presence families — every dependent they
+        // read is in the same submission the browser already holds.
+        'accepted_if', 'declined_if',
+        'prohibited', 'prohibited_if', 'prohibited_unless',
+        'prohibited_if_accepted', 'prohibited_if_declined', 'prohibits',
+        'missing', 'missing_if', 'missing_unless', 'missing_with', 'missing_with_all',
+        'present_if', 'present_unless', 'present_with', 'present_with_all',
+        // Collections
+        'list', 'required_array_keys', 'max_digits', 'min_digits',
+        'in_array', 'distinct',
     ];
 
     /**
@@ -137,6 +147,19 @@ final class RuleCatalogue
         'required_if_accepted' => ['other'],
         'required_if_declined' => ['other'],
         'confirmed' => ['other'],
+        'accepted_if' => ['other'],
+        'declined_if' => ['other'],
+        'prohibited_if' => ['other'],
+        'prohibited_unless' => ['other'],
+        'prohibited_if_accepted' => ['other'],
+        'prohibited_if_declined' => ['other'],
+        'missing_if' => ['other'],
+        'missing_unless' => ['other'],
+        'present_if' => ['other'],
+        'present_unless' => ['other'],
+        'max_digits' => ['max'],
+        'min_digits' => ['min'],
+        'in_array' => ['other'],
         // Named for the `:date` placeholder their messages interpolate.
         'after' => ['date'],
         'after_or_equal' => ['date'],
