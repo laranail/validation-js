@@ -56,6 +56,27 @@ final class RuleCatalogue
         'ends_with', 'starts_with',
         // Numeric
         'decimal', 'multiple_of',
+        // Dates — the shape set the runner documents; everything outside it
+        // degrades to undetermined inside the checks themselves.
+        'date', 'date_format', 'after', 'after_or_equal', 'before',
+        'before_or_equal', 'date_equals', 'timezone',
+        // The wider conditional-presence families — every dependent they
+        // read is in the same submission the browser already holds.
+        'accepted_if', 'declined_if',
+        'prohibited', 'prohibited_if', 'prohibited_unless',
+        'prohibited_if_accepted', 'prohibited_if_declined', 'prohibits',
+        'missing', 'missing_if', 'missing_unless', 'missing_with', 'missing_with_all',
+        'present_if', 'present_unless', 'present_with', 'present_with_all',
+        // Collections
+        'list', 'required_array_keys', 'max_digits', 'min_digits',
+        'in_array', 'distinct',
+        // File pre-flight — advisory: the runner fails the obviously-wrong
+        // pick from name/declared-type/size and answers undetermined on a
+        // match, because only the server reads the bytes.
+        'file', 'mimes', 'extensions', 'image',
+        // Async: decided in browsers by decoding the image; undetermined
+        // where decoding is unavailable.
+        'dimensions',
     ];
 
     /**
@@ -67,14 +88,14 @@ final class RuleCatalogue
      * - `unique` / `exists` need the database.
      * - `active_url` needs DNS.
      * - `current_password` needs the session and a hash comparison.
-     * - `dimensions` / `image` / `mimes` / `mimetypes` / `extensions` need to
-     *   read the file, which the browser can only approximate from a name.
+     * - `mimetypes` needs the sniffed content; the other file rules moved
+     *   to the client as ADVISORY checks that fail fast and never
+     *   green-tick (`dimensions` decodes the real image, asynchronously).
      *
      * @var list<string>
      */
     public const array SERVER = [
-        'unique', 'exists', 'active_url', 'current_password',
-        'dimensions', 'image', 'mimes', 'mimetypes', 'extensions', 'file',
+        'unique', 'exists', 'active_url', 'current_password', 'mimetypes',
     ];
 
     /**
@@ -133,22 +154,25 @@ final class RuleCatalogue
         'required_if_accepted' => ['other'],
         'required_if_declined' => ['other'],
         'confirmed' => ['other'],
-    ];
-
-    /**
-     * Names an older runner reads, emitted alongside the current ones.
-     *
-     * Keyed rule => [current name => legacy name]. Schema version 1 called all
-     * three size bounds `value`; they are now named for the placeholder their
-     * message uses, which is what makes the message interpolate. Both travel,
-     * so a runner from either era finds what it looks for.
-     *
-     * @var array<string, array<string, string>>
-     */
-    public const array PARAMETER_ALIASES = [
-        'max' => ['max' => 'value'],
-        'min' => ['min' => 'value'],
-        'size' => ['size' => 'value'],
+        'accepted_if' => ['other'],
+        'declined_if' => ['other'],
+        'prohibited_if' => ['other'],
+        'prohibited_unless' => ['other'],
+        'prohibited_if_accepted' => ['other'],
+        'prohibited_if_declined' => ['other'],
+        'missing_if' => ['other'],
+        'missing_unless' => ['other'],
+        'present_if' => ['other'],
+        'present_unless' => ['other'],
+        'max_digits' => ['max'],
+        'min_digits' => ['min'],
+        'in_array' => ['other'],
+        // Named for the `:date` placeholder their messages interpolate.
+        'after' => ['date'],
+        'after_or_equal' => ['date'],
+        'before' => ['date'],
+        'before_or_equal' => ['date'],
+        'date_equals' => ['date'],
     ];
 
     public static function isClientCheckable(string $rule): bool
@@ -180,10 +204,12 @@ final class RuleCatalogue
             // in the table, inverting min/max whenever the author's
             // insertion order differed from the table's.
             //
-            // Positional entries are named from the table as before. Keys
-            // are forced to strings: an integer key would make the schema's
-            // JSON object serialise as an ARRAY on round trip, and the
-            // runner reads params as an object.
+            // Positional entries are named from the table as before. The
+            // (string) cast on the fallback keeps the TYPE honest for
+            // readers; it does not change the wire — PHP coerces
+            // numeric-string keys back to integers, which is exactly why
+            // fully-positional rules serialise as a JSON ARRAY (see above)
+            // and the runner normalises both shapes at its boundary.
             $name = is_string($key) ? $key : ($names[$position] ?? (string) $position);
 
             if (! is_string($key)) {
@@ -191,23 +217,6 @@ final class RuleCatalogue
             }
 
             $named[$name] = $parameter;
-
-            // The same value under the name an older runner looks for.
-            //
-            // This is what lets the two halves ship separately. Renaming a
-            // parameter is invisible on the wire — a runner that reads a key
-            // which is no longer there gets `undefined`, and the interesting
-            // question is what it does next. Emitting both means it never has
-            // to find out: the old name keeps working for as long as anyone is
-            // running the old code, and the entry costs a handful of bytes.
-            //
-            // Retire an alias only when the runner that needed it is out of
-            // support, and treat that as the breaking change it is.
-            $legacy = self::PARAMETER_ALIASES[$rule][$name] ?? null;
-
-            if ($legacy !== null) {
-                $named[$legacy] = $parameter;
-            }
         }
 
         return $named;

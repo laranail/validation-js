@@ -852,6 +852,395 @@
         "id": "integer #6"
     },
     {
+        "rule": "integer",
+        "value": "10.0",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "integer #7"
+    },
+    {
+        "rule": "integer",
+        "value": "1e2",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "integer #8"
+    },
+    {
+        "rule": "integer",
+        "value": "010",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "integer #9"
+    },
+    {
+        "rule": "integer",
+        "value": "+10",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "integer #10"
+    },
+    {
+        "rule": "integer",
+        "value": " 10",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "integer #11"
+    },
+    {
+        "rule": "integer",
+        "value": "99999999999999999999",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "integer #12"
+    },
+    {
+        "rule": "integer",
+        "value": 12,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "integer #13"
+    },
+    {
+        "rule": "integer",
+        "value": 12,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "integer #14"
+    },
+    {
+        "rule": "integer:strict",
+        "value": 12,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "integer:strict #0"
+    },
+    {
+        "rule": "integer:strict",
+        "value": "12",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "integer:strict #1"
+    },
+    {
+        "rule": "integer:strict",
+        "value": 1.5,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "integer",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.integer": "The :attribute field must be an integer."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "integer:strict #2"
+    },
+    {
+        "rule": "boolean:strict",
+        "value": true,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "boolean:strict #0"
+    },
+    {
+        "rule": "boolean:strict",
+        "value": false,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "boolean:strict #1"
+    },
+    {
+        "rule": "boolean:strict",
+        "value": 1,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "boolean:strict #2"
+    },
+    {
+        "rule": "boolean:strict",
+        "value": "1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "boolean",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.boolean": "The :attribute field must be true or false."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "boolean:strict #3"
+    },
+    {
         "rule": "string",
         "value": "abc",
         "schema": {
@@ -1550,6 +1939,191 @@
         },
         "laravel": false,
         "id": "url #5"
+    },
+    {
+        "rule": "url",
+        "value": "ws://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "url #6"
+    },
+    {
+        "rule": "url",
+        "value": "redis://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "url #7"
+    },
+    {
+        "rule": "url",
+        "value": "foo://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "url #8"
+    },
+    {
+        "rule": "url:https",
+        "value": "https://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": [
+                                "https"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "url:https #0"
+    },
+    {
+        "rule": "url:https",
+        "value": "http://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": [
+                                "https"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "url:https #1"
+    },
+    {
+        "rule": "url:http,https",
+        "value": "http://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": [
+                                "http",
+                                "https"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "url:http,https #0"
+    },
+    {
+        "rule": "url:http,https",
+        "value": "ftp://a.co",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "url",
+                            "params": [
+                                "http",
+                                "https"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.url": "The :attribute field must be a valid URL."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "url:http,https #1"
     },
     {
         "rule": "uuid",
@@ -2388,8 +2962,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -2423,8 +2996,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -2458,8 +3030,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -2493,8 +3064,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -2532,8 +3102,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -2567,8 +3136,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -2602,8 +3170,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -2637,8 +3204,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -2672,8 +3238,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -2707,8 +3272,7 @@
                         {
                             "rule": "size",
                             "params": {
-                                "size": "4",
-                                "value": "4"
+                                "size": "4"
                             }
                         }
                     ],
@@ -2742,8 +3306,7 @@
                         {
                             "rule": "size",
                             "params": {
-                                "size": "4",
-                                "value": "4"
+                                "size": "4"
                             }
                         }
                     ],
@@ -2777,8 +3340,7 @@
                         {
                             "rule": "size",
                             "params": {
-                                "size": "4",
-                                "value": "4"
+                                "size": "4"
                             }
                         }
                     ],
@@ -2812,8 +3374,7 @@
                         {
                             "rule": "size",
                             "params": {
-                                "size": "4",
-                                "value": "4"
+                                "size": "4"
                             }
                         }
                     ],
@@ -3191,8 +3752,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -3231,8 +3791,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -3271,8 +3830,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -3311,8 +3869,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -3351,8 +3908,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -4051,6 +4607,283 @@
         "id": "contains:foo #1"
     },
     {
+        "rule": "doesnt_contain:foo",
+        "value": [
+            "foo"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_contain",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_contain": "The :attribute field must not contain any of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_contain:foo #0"
+    },
+    {
+        "rule": "doesnt_contain:foo",
+        "value": [
+            "bar"
+        ],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_contain",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_contain": "The :attribute field must not contain any of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "doesnt_contain:foo #1"
+    },
+    {
+        "rule": "doesnt_contain:foo",
+        "value": "a foo b",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_contain",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_contain": "The :attribute field must not contain any of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_contain:foo #2"
+    },
+    {
+        "rule": "doesnt_contain:foo",
+        "value": "plain",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_contain",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_contain": "The :attribute field must not contain any of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_contain:foo #3"
+    },
+    {
+        "rule": "doesnt_contain:foo",
+        "value": 12,
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_contain",
+                            "params": [
+                                "foo"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_contain": "The :attribute field must not contain any of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_contain:foo #4"
+    },
+    {
+        "rule": "doesnt_start_with:ab,cd",
+        "value": "abc",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_start_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_start_with": "The :attribute field must not start with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_start_with:ab,cd #0"
+    },
+    {
+        "rule": "doesnt_start_with:ab,cd",
+        "value": "cde",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_start_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_start_with": "The :attribute field must not start with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_start_with:ab,cd #1"
+    },
+    {
+        "rule": "doesnt_start_with:ab,cd",
+        "value": "xyz",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_start_with",
+                            "params": [
+                                "ab",
+                                "cd"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_start_with": "The :attribute field must not start with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "doesnt_start_with:ab,cd #2"
+    },
+    {
+        "rule": "doesnt_end_with:ing",
+        "value": "testing",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_end_with",
+                            "params": [
+                                "ing"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_end_with": "The :attribute field must not end with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "doesnt_end_with:ing #0"
+    },
+    {
+        "rule": "doesnt_end_with:ing",
+        "value": "rested",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "doesnt_end_with",
+                            "params": [
+                                "ing"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.doesnt_end_with": "The :attribute field must not end with one of the following: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "doesnt_end_with:ing #1"
+    },
+    {
         "rule": "accepted",
         "value": "yes",
         "schema": {
@@ -4700,6 +5533,146 @@
         "id": "decimal:2 #3"
     },
     {
+        "rule": "decimal:0,2",
+        "value": "1.",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "0",
+                                "max": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "decimal:0,2 #0"
+    },
+    {
+        "rule": "decimal:0,2",
+        "value": "1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "0",
+                                "max": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "decimal:0,2 #1"
+    },
+    {
+        "rule": "decimal:0,2",
+        "value": ".5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "0",
+                                "max": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "decimal:0,2 #2"
+    },
+    {
+        "rule": "decimal:0,2",
+        "value": "1.23",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "0",
+                                "max": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "decimal:0,2 #3"
+    },
+    {
+        "rule": "decimal:0,2",
+        "value": "1.234",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "decimal",
+                            "params": {
+                                "min": "0",
+                                "max": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.decimal": "The :attribute field must have :decimal decimal places."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "decimal:0,2 #4"
+    },
+    {
         "rule": "gt:5",
         "value": "6",
         "schema": {
@@ -4802,6 +5775,74 @@
         "id": "gt:5 #2"
     },
     {
+        "rule": "lt:5",
+        "value": "4",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lt": "The :attribute field must be less than :value characters."
+            },
+            "messageVariants": {
+                "field.lt": {
+                    "array": "The :attribute field must have less than :value items.",
+                    "file": "The :attribute field must be less than :value kilobytes.",
+                    "numeric": "The :attribute field must be less than :value.",
+                    "string": "The :attribute field must be less than :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "lt:5 #0"
+    },
+    {
+        "rule": "lt:5",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lt": "The :attribute field must be less than :value characters."
+            },
+            "messageVariants": {
+                "field.lt": {
+                    "array": "The :attribute field must have less than :value items.",
+                    "file": "The :attribute field must be less than :value kilobytes.",
+                    "numeric": "The :attribute field must be less than :value.",
+                    "string": "The :attribute field must be less than :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "lt:5 #1"
+    },
+    {
         "rule": "lte:5",
         "value": "5",
         "schema": {
@@ -4870,6 +5911,1460 @@
         "id": "lte:5 #1"
     },
     {
+        "rule": "ipv6",
+        "value": "::1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "ipv6 #0"
+    },
+    {
+        "rule": "ipv6",
+        "value": "2001:db8::1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "ipv6 #1"
+    },
+    {
+        "rule": "ipv6",
+        "value": "127.0.0.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "ipv6 #2"
+    },
+    {
+        "rule": "ipv6",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "ipv6 #3"
+    },
+    {
+        "rule": "date",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #0"
+    },
+    {
+        "rule": "date",
+        "value": "2023-02-31",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #1"
+    },
+    {
+        "rule": "date",
+        "value": "2023-13-01",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #2"
+    },
+    {
+        "rule": "date",
+        "value": "2023-06-15 10:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #3"
+    },
+    {
+        "rule": "date",
+        "value": "2023-06-15T10:30:00Z",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #4"
+    },
+    {
+        "rule": "date",
+        "value": "6/15/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #5"
+    },
+    {
+        "rule": "date",
+        "value": "15-06-2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #6"
+    },
+    {
+        "rule": "date",
+        "value": "2023/06/15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #7"
+    },
+    {
+        "rule": "date",
+        "value": "20230615",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #8"
+    },
+    {
+        "rule": "date",
+        "value": "not a date",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #9"
+    },
+    {
+        "rule": "date",
+        "value": "2023-6-5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #10"
+    },
+    {
+        "rule": "date",
+        "value": "0000-01-01",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #11"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d #0"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "2023-6-5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #1"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "15/06/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #2"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "2023-02-31",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #3"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #4"
+    },
+    {
+        "rule": "date_format:d/m/Y",
+        "value": "15/06/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "d/m/Y"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:d/m/Y #0"
+    },
+    {
+        "rule": "date_format:d/m/Y",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "d/m/Y"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:d/m/Y #1"
+    },
+    {
+        "rule": "date_format:d/m/Y",
+        "value": "31/02/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "d/m/Y"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:d/m/Y #2"
+    },
+    {
+        "rule": "date_format:Y-m-d H:i",
+        "value": "2023-06-15 10:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d H:i #0"
+    },
+    {
+        "rule": "date_format:Y-m-d H:i",
+        "value": "2023-06-15 25:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d H:i #1"
+    },
+    {
+        "rule": "date_format:Y-m-d H:i",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d H:i #2"
+    },
+    {
+        "rule": "date_format:H:i",
+        "value": "10:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:H:i #0"
+    },
+    {
+        "rule": "date_format:H:i",
+        "value": "25:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:H:i #1"
+    },
+    {
+        "rule": "date_format:H:i",
+        "value": "10:75",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:H:i #2"
+    },
+    {
+        "rule": "date_format:Y-m-d,Y/m/d",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d",
+                                "Y/m/d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d,Y/m/d #0"
+    },
+    {
+        "rule": "date_format:Y-m-d,Y/m/d",
+        "value": "2023/06/15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d",
+                                "Y/m/d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d,Y/m/d #1"
+    },
+    {
+        "rule": "date_format:Y-m-d,Y/m/d",
+        "value": "15.06.2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d",
+                                "Y/m/d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d,Y/m/d #2"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "after:2023-06-15 #0"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:2023-06-15 #1"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "2023-06-14",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:2023-06-15 #2"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "not a date",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:2023-06-15 #3"
+    },
+    {
+        "rule": "after_or_equal:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after_or_equal": "The :attribute field must be a date after or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "after_or_equal:2023-06-15 #0"
+    },
+    {
+        "rule": "after_or_equal:2023-06-15",
+        "value": "2023-06-14",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after_or_equal": "The :attribute field must be a date after or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after_or_equal:2023-06-15 #1"
+    },
+    {
+        "rule": "before:2023-06-15",
+        "value": "2023-06-14",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before": "The :attribute field must be a date before :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "before:2023-06-15 #0"
+    },
+    {
+        "rule": "before:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before": "The :attribute field must be a date before :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before:2023-06-15 #1"
+    },
+    {
+        "rule": "before:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before": "The :attribute field must be a date before :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before:2023-06-15 #2"
+    },
+    {
+        "rule": "before_or_equal:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "before_or_equal:2023-06-15 #0"
+    },
+    {
+        "rule": "before_or_equal:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before_or_equal:2023-06-15 #1"
+    },
+    {
+        "rule": "date_equals:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_equals",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_equals": "The :attribute field must be a date equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_equals:2023-06-15 #0"
+    },
+    {
+        "rule": "date_equals:2023-06-15",
+        "value": "2023-06-15 08:00:00",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_equals",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_equals": "The :attribute field must be a date equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_equals:2023-06-15 #1"
+    },
+    {
+        "rule": "date_equals:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_equals",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_equals": "The :attribute field must be a date equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_equals:2023-06-15 #2"
+    },
+    {
+        "rule": "date|after:2023-06-15 10:00:00",
+        "value": "2023-06-15 10:00:01",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        },
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15 10:00:00"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date.",
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date|after:2023-06-15 10:00:00 #0"
+    },
+    {
+        "rule": "date|after:2023-06-15 10:00:00",
+        "value": "2023-06-15 09:59:59",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        },
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15 10:00:00"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date.",
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date|after:2023-06-15 10:00:00 #1"
+    },
+    {
+        "rule": "timezone",
+        "value": "Europe/Berlin",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "timezone #0"
+    },
+    {
+        "rule": "timezone",
+        "value": "Africa/Nairobi",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "timezone #1"
+    },
+    {
+        "rule": "timezone",
+        "value": "UTC",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "timezone #2"
+    },
+    {
+        "rule": "timezone",
+        "value": "Mars/Olympus",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "timezone #3"
+    },
+    {
+        "rule": "timezone",
+        "value": "europe/berlin",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "timezone #4"
+    },
+    {
+        "rule": "timezone",
+        "value": "EST",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "timezone #5"
+    },
+    {
         "rule": "same:other",
         "value": "x",
         "data": {
@@ -4898,7 +7393,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "same:other (x vs x)"
+        "id": "same:other (\"x\" vs \"x\")"
     },
     {
         "rule": "same:other",
@@ -4929,7 +7424,236 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "same:other (x vs y)"
+        "id": "same:other (\"x\" vs \"y\")"
+    },
+    {
+        "rule": "same:other",
+        "value": 1,
+        "data": {
+            "field": 1,
+            "other": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "same:other (1 vs \"1\")"
+    },
+    {
+        "rule": "same:other",
+        "value": 1,
+        "data": {
+            "field": 1,
+            "other": 1
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "same:other (1 vs 1)"
+    },
+    {
+        "rule": "same:other",
+        "value": "1",
+        "data": {
+            "field": "1",
+            "other": 1
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "same:other (\"1\" vs 1)"
+    },
+    {
+        "rule": "different:other",
+        "value": 1,
+        "data": {
+            "field": 1,
+            "other": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "different",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.different": "The :attribute field and :other must be different."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "different:other (1 vs \"1\")"
+    },
+    {
+        "rule": "different:other",
+        "value": 1,
+        "data": {
+            "field": 1,
+            "other": 1
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "different",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.different": "The :attribute field and :other must be different."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "different:other (1 vs 1)"
+    },
+    {
+        "rule": "same:other",
+        "value": [
+            "a"
+        ],
+        "data": {
+            "field": [
+                "a"
+            ],
+            "other": [
+                "a"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "same:other ([\"a\"] vs [\"a\"])"
+    },
+    {
+        "rule": "same:other",
+        "value": [
+            "a"
+        ],
+        "data": {
+            "field": [
+                "a"
+            ],
+            "other": [
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "same:other ([\"a\"] vs [\"b\"])"
     },
     {
         "rule": "different:other",
@@ -4960,7 +7684,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "different:other (x vs y)"
+        "id": "different:other (\"x\" vs \"y\")"
     },
     {
         "rule": "different:other",
@@ -4991,7 +7715,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "different:other (x vs x)"
+        "id": "different:other (\"x\" vs \"x\")"
     },
     {
         "rule": "confirmed",
@@ -5020,7 +7744,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "confirmed (x vs x)"
+        "id": "confirmed (\"x\" vs \"x\")"
     },
     {
         "rule": "confirmed",
@@ -5049,7 +7773,481 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "confirmed (x vs y)"
+        "id": "confirmed (\"x\" vs \"y\")"
+    },
+    {
+        "rule": "after:other",
+        "value": "2023-06-16",
+        "data": {
+            "field": "2023-06-16",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "after:other (\"2023-06-16\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "after:other",
+        "value": "2023-06-14",
+        "data": {
+            "field": "2023-06-14",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:other (\"2023-06-14\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "before_or_equal:other",
+        "value": "2023-06-15",
+        "data": {
+            "field": "2023-06-15",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "before_or_equal:other (\"2023-06-15\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "before_or_equal:other",
+        "value": "2023-06-16",
+        "data": {
+            "field": "2023-06-16",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before_or_equal:other (\"2023-06-16\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "gt:other",
+        "value": "10",
+        "data": {
+            "field": "10",
+            "other": "9"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "gt:other (\"10\" vs \"9\")"
+    },
+    {
+        "rule": "gt:other",
+        "value": "9",
+        "data": {
+            "field": "9",
+            "other": "10"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "gt:other (\"9\" vs \"10\")"
+    },
+    {
+        "rule": "gt:other",
+        "value": "abcd",
+        "data": {
+            "field": "abcd",
+            "other": "abc"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "gt:other (\"abcd\" vs \"abc\")"
+    },
+    {
+        "rule": "gt:other",
+        "value": "abc",
+        "data": {
+            "field": "abc",
+            "other": "abcd"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "gt:other (\"abc\" vs \"abcd\")"
+    },
+    {
+        "rule": "gt:other",
+        "value": "10",
+        "data": {
+            "field": "10",
+            "other": "abc"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "gt:other (\"10\" vs \"abc\")"
+    },
+    {
+        "rule": "gt:other",
+        "value": "abc",
+        "data": {
+            "field": "abc",
+            "other": "10"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gt",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gt": "The :attribute field must be greater than :value characters."
+            },
+            "messageVariants": {
+                "field.gt": {
+                    "array": "The :attribute field must have more than :value items.",
+                    "file": "The :attribute field must be greater than :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than :value.",
+                    "string": "The :attribute field must be greater than :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "gt:other (\"abc\" vs \"10\")"
+    },
+    {
+        "rule": "lte:other",
+        "value": "9",
+        "data": {
+            "field": "9",
+            "other": "10"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lte",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lte": "The :attribute field must be less than or equal to :value characters."
+            },
+            "messageVariants": {
+                "field.lte": {
+                    "array": "The :attribute field must not have more than :value items.",
+                    "file": "The :attribute field must be less than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be less than or equal to :value.",
+                    "string": "The :attribute field must be less than or equal to :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "lte:other (\"9\" vs \"10\")"
+    },
+    {
+        "rule": "lte:other",
+        "value": "10",
+        "data": {
+            "field": "10",
+            "other": "9"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lte",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lte": "The :attribute field must be less than or equal to :value characters."
+            },
+            "messageVariants": {
+                "field.lte": {
+                    "array": "The :attribute field must not have more than :value items.",
+                    "file": "The :attribute field must be less than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be less than or equal to :value.",
+                    "string": "The :attribute field must be less than or equal to :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "lte:other (\"10\" vs \"9\")"
+    },
+    {
+        "rule": "gte:other",
+        "value": [
+            "a",
+            "b"
+        ],
+        "data": {
+            "field": [
+                "a",
+                "b"
+            ],
+            "other": [
+                "a"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gte",
+                            "params": {
+                                "value": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.gte": "The :attribute field must be greater than or equal to :value characters."
+            },
+            "messageVariants": {
+                "field.gte": {
+                    "array": "The :attribute field must have :value items or more.",
+                    "file": "The :attribute field must be greater than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than or equal to :value.",
+                    "string": "The :attribute field must be greater than or equal to :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "gte:other ([\"a\",\"b\"] vs [\"a\"])"
     },
     {
         "rule": "integer",
@@ -5350,8 +8548,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -5424,8 +8621,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "255",
-                                "value": "255"
+                                "max": "255"
                             }
                         }
                     ],
@@ -5471,8 +8667,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "255",
-                                "value": "255"
+                                "max": "255"
                             }
                         }
                     ],
@@ -8691,6 +11886,2215 @@
         "id": "conditional #18 required_if_accepted:agree"
     },
     {
+        "rule": "required_if_declined:agree",
+        "value": null,
+        "data": {
+            "agree": "no"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if_declined": "The :attribute field is required when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #19 required_if_declined:agree"
+    },
+    {
+        "rule": "required_if_declined:agree",
+        "value": null,
+        "data": {
+            "agree": "yes"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if_declined": "The :attribute field is required when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #20 required_if_declined:agree"
+    },
+    {
+        "rule": "prohibited_if_accepted:agree",
+        "value": "x",
+        "data": {
+            "agree": "yes",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_accepted",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_accepted": "The :attribute field is prohibited when :other is accepted."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #21 prohibited_if_accepted:agree"
+    },
+    {
+        "rule": "prohibited_if_accepted:agree",
+        "value": "x",
+        "data": {
+            "agree": "no",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_accepted",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_accepted": "The :attribute field is prohibited when :other is accepted."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #22 prohibited_if_accepted:agree"
+    },
+    {
+        "rule": "prohibited_if_declined:agree",
+        "value": "x",
+        "data": {
+            "agree": "no",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_declined": "The :attribute field is prohibited when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #23 prohibited_if_declined:agree"
+    },
+    {
+        "rule": "prohibited_if_declined:agree",
+        "value": "x",
+        "data": {
+            "agree": "yes",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_declined": "The :attribute field is prohibited when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #24 prohibited_if_declined:agree"
+    },
+    {
+        "rule": "required_if:other,null",
+        "value": null,
+        "data": {
+            "other": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #25 required_if:other,null"
+    },
+    {
+        "rule": "required_if:other,null",
+        "value": "x",
+        "data": {
+            "other": null,
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #26 required_if:other,null"
+    },
+    {
+        "rule": "required_if:other,null",
+        "value": null,
+        "data": {
+            "other": "null"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #27 required_if:other,null"
+    },
+    {
+        "rule": "required_if:other,null",
+        "value": null,
+        "data": {
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #28 required_if:other,null"
+    },
+    {
+        "rule": "required_unless:other,null",
+        "value": null,
+        "data": {
+            "other": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #29 required_unless:other,null"
+    },
+    {
+        "rule": "required_unless:other,null",
+        "value": null,
+        "data": {
+            "other": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #30 required_unless:other,null"
+    },
+    {
+        "rule": "required_if:other,null",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #31 required_if:other,null"
+    },
+    {
+        "rule": "required_unless:other,null",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_unless",
+                            "params": {
+                                "other": "other",
+                                "1": "null"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_unless": "The :attribute field is required unless :other is in :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #32 required_unless:other,null"
+    },
+    {
+        "rule": "required_if:other,true",
+        "value": null,
+        "data": {
+            "other": true
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "true"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #33 required_if:other,true"
+    },
+    {
+        "rule": "required_if:other,1",
+        "value": null,
+        "data": {
+            "other": true
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "1"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #34 required_if:other,1"
+    },
+    {
+        "rule": "required_if:other,true",
+        "value": null,
+        "data": {
+            "other": "true"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "other",
+                                "1": "true"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #35 required_if:other,true"
+    },
+    {
+        "rule": "accepted_if:kind,card",
+        "value": "yes",
+        "data": {
+            "kind": "card",
+            "field": "yes"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted_if": "The :attribute field must be accepted when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #36 accepted_if:kind,card"
+    },
+    {
+        "rule": "accepted_if:kind,card",
+        "value": "no",
+        "data": {
+            "kind": "card",
+            "field": "no"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted_if": "The :attribute field must be accepted when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #37 accepted_if:kind,card"
+    },
+    {
+        "rule": "accepted_if:kind,card",
+        "value": "no",
+        "data": {
+            "kind": "cash",
+            "field": "no"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted_if": "The :attribute field must be accepted when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #38 accepted_if:kind,card"
+    },
+    {
+        "rule": "accepted_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "card"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "accepted_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.accepted_if": "The :attribute field must be accepted when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #39 accepted_if:kind,card"
+    },
+    {
+        "rule": "declined_if:kind,card",
+        "value": "no",
+        "data": {
+            "kind": "card",
+            "field": "no"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined_if": "The :attribute field must be declined when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #40 declined_if:kind,card"
+    },
+    {
+        "rule": "declined_if:kind,card",
+        "value": "yes",
+        "data": {
+            "kind": "card",
+            "field": "yes"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "declined_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.declined_if": "The :attribute field must be declined when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #41 declined_if:kind,card"
+    },
+    {
+        "rule": "prohibited",
+        "value": "x",
+        "data": {
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited": "The :attribute field is prohibited."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #42 prohibited"
+    },
+    {
+        "rule": "prohibited",
+        "value": "",
+        "data": {
+            "field": ""
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited": "The :attribute field is prohibited."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #43 prohibited"
+    },
+    {
+        "rule": "prohibited",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited": "The :attribute field is prohibited."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #44 prohibited"
+    },
+    {
+        "rule": "prohibited_if:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "card",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if": "The :attribute field is prohibited when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #45 prohibited_if:kind,card"
+    },
+    {
+        "rule": "prohibited_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "card"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if": "The :attribute field is prohibited when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #46 prohibited_if:kind,card"
+    },
+    {
+        "rule": "prohibited_if:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "cash",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if": "The :attribute field is prohibited when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #47 prohibited_if:kind,card"
+    },
+    {
+        "rule": "prohibited_unless:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "card",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_unless": "The :attribute field is prohibited unless :other is in :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #48 prohibited_unless:kind,card"
+    },
+    {
+        "rule": "prohibited_unless:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "cash",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_unless": "The :attribute field is prohibited unless :other is in :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #49 prohibited_unless:kind,card"
+    },
+    {
+        "rule": "prohibits:a,b",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibits",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibits": "The :attribute field prohibits :other from being present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #50 prohibits:a,b"
+    },
+    {
+        "rule": "prohibits:a,b",
+        "value": "x",
+        "data": {
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibits",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibits": "The :attribute field prohibits :other from being present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #51 prohibits:a,b"
+    },
+    {
+        "rule": "prohibits:a,b",
+        "value": null,
+        "data": {
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibits",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibits": "The :attribute field prohibits :other from being present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #52 prohibits:a,b"
+    },
+    {
+        "rule": "missing",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing": "The :attribute field must be missing."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #53 missing"
+    },
+    {
+        "rule": "missing",
+        "value": null,
+        "data": {
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing": "The :attribute field must be missing."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #54 missing"
+    },
+    {
+        "rule": "missing",
+        "value": "x",
+        "data": {
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing": "The :attribute field must be missing."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #55 missing"
+    },
+    {
+        "rule": "missing_if:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "card",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_if": "The :attribute field must be missing when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #56 missing_if:kind,card"
+    },
+    {
+        "rule": "missing_if:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "cash",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_if": "The :attribute field must be missing when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #57 missing_if:kind,card"
+    },
+    {
+        "rule": "missing_unless:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "cash",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_unless": "The :attribute field must be missing unless :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #58 missing_unless:kind,card"
+    },
+    {
+        "rule": "missing_unless:kind,card",
+        "value": "x",
+        "data": {
+            "kind": "card",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_unless": "The :attribute field must be missing unless :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #59 missing_unless:kind,card"
+    },
+    {
+        "rule": "missing_with:a",
+        "value": "x",
+        "data": {
+            "a": null,
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_with": "The :attribute field must be missing when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #60 missing_with:a"
+    },
+    {
+        "rule": "missing_with:a",
+        "value": "x",
+        "data": {
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_with": "The :attribute field must be missing when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #61 missing_with:a"
+    },
+    {
+        "rule": "missing_with_all:a,b",
+        "value": "x",
+        "data": {
+            "a": "1",
+            "b": "1",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_with_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_with_all": "The :attribute field must be missing when :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #62 missing_with_all:a,b"
+    },
+    {
+        "rule": "missing_with_all:a,b",
+        "value": "x",
+        "data": {
+            "a": "1",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "missing_with_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.missing_with_all": "The :attribute field must be missing when :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #63 missing_with_all:a,b"
+    },
+    {
+        "rule": "present_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "card"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_if": "The :attribute field must be present when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #64 present_if:kind,card"
+    },
+    {
+        "rule": "present_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "card",
+            "field": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_if": "The :attribute field must be present when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #65 present_if:kind,card"
+    },
+    {
+        "rule": "present_if:kind,card",
+        "value": null,
+        "data": {
+            "kind": "cash"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_if",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_if": "The :attribute field must be present when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #66 present_if:kind,card"
+    },
+    {
+        "rule": "present_unless:kind,card",
+        "value": null,
+        "data": {
+            "kind": "cash"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_unless": "The :attribute field must be present unless :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #67 present_unless:kind,card"
+    },
+    {
+        "rule": "present_unless:kind,card",
+        "value": null,
+        "data": {
+            "kind": "card"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_unless",
+                            "params": {
+                                "other": "kind",
+                                "1": "card"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_unless": "The :attribute field must be present unless :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #68 present_unless:kind,card"
+    },
+    {
+        "rule": "present_with:a",
+        "value": null,
+        "data": {
+            "a": null
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_with": "The :attribute field must be present when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #69 present_with:a"
+    },
+    {
+        "rule": "present_with:a",
+        "value": null,
+        "data": [],
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_with",
+                            "params": [
+                                "a"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_with": "The :attribute field must be present when :values is present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #70 present_with:a"
+    },
+    {
+        "rule": "present_with_all:a,b",
+        "value": null,
+        "data": {
+            "a": "1",
+            "b": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_with_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_with_all": "The :attribute field must be present when :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #71 present_with_all:a,b"
+    },
+    {
+        "rule": "present_with_all:a,b",
+        "value": null,
+        "data": {
+            "a": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "present_with_all",
+                            "params": [
+                                "a",
+                                "b"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.present_with_all": "The :attribute field must be present when :values are present."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #72 present_with_all:a,b"
+    },
+    {
+        "rule": "list",
+        "value": [
+            "a",
+            "b"
+        ],
+        "data": {
+            "field": [
+                "a",
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "list",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.list": "The :attribute field must be a list."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #73 list"
+    },
+    {
+        "rule": "list",
+        "value": {
+            "x": "a"
+        },
+        "data": {
+            "field": {
+                "x": "a"
+            }
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "list",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.list": "The :attribute field must be a list."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #74 list"
+    },
+    {
+        "rule": "list",
+        "value": "abc",
+        "data": {
+            "field": "abc"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "list",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.list": "The :attribute field must be a list."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #75 list"
+    },
+    {
+        "rule": "required_array_keys:name,email",
+        "value": {
+            "name": "a",
+            "email": "b",
+            "extra": "c"
+        },
+        "data": {
+            "field": {
+                "name": "a",
+                "email": "b",
+                "extra": "c"
+            }
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_array_keys",
+                            "params": [
+                                "name",
+                                "email"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_array_keys": "The :attribute field must contain entries for: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #76 required_array_keys:name,email"
+    },
+    {
+        "rule": "required_array_keys:name,email",
+        "value": {
+            "name": "a"
+        },
+        "data": {
+            "field": {
+                "name": "a"
+            }
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_array_keys",
+                            "params": [
+                                "name",
+                                "email"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_array_keys": "The :attribute field must contain entries for: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #77 required_array_keys:name,email"
+    },
+    {
+        "rule": "required_array_keys:0,1",
+        "value": [
+            "a",
+            "b"
+        ],
+        "data": {
+            "field": [
+                "a",
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_array_keys",
+                            "params": [
+                                "0",
+                                "1"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_array_keys": "The :attribute field must contain entries for: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #78 required_array_keys:0,1"
+    },
+    {
+        "rule": "required_array_keys:name",
+        "value": "abc",
+        "data": {
+            "field": "abc"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_array_keys",
+                            "params": [
+                                "name"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_array_keys": "The :attribute field must contain entries for: :values."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #79 required_array_keys:name"
+    },
+    {
+        "rule": "max_digits:3",
+        "value": "123",
+        "data": {
+            "field": "123"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max_digits",
+                            "params": {
+                                "max": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max_digits": "The :attribute field must not have more than :max digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #80 max_digits:3"
+    },
+    {
+        "rule": "max_digits:3",
+        "value": "1234",
+        "data": {
+            "field": "1234"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max_digits",
+                            "params": {
+                                "max": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max_digits": "The :attribute field must not have more than :max digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #81 max_digits:3"
+    },
+    {
+        "rule": "max_digits:3",
+        "value": "-12",
+        "data": {
+            "field": "-12"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max_digits",
+                            "params": {
+                                "max": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max_digits": "The :attribute field must not have more than :max digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #82 max_digits:3"
+    },
+    {
+        "rule": "max_digits:3",
+        "value": 123,
+        "data": {
+            "field": 123
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "max_digits",
+                            "params": {
+                                "max": "3"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.max_digits": "The :attribute field must not have more than :max digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #83 max_digits:3"
+    },
+    {
+        "rule": "min_digits:2",
+        "value": "12",
+        "data": {
+            "field": "12"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min_digits",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min_digits": "The :attribute field must have at least :min digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #84 min_digits:2"
+    },
+    {
+        "rule": "min_digits:2",
+        "value": "1",
+        "data": {
+            "field": "1"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "min_digits",
+                            "params": {
+                                "min": "2"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.min_digits": "The :attribute field must have at least :min digits."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #85 min_digits:2"
+    },
+    {
+        "rule": "in_array:allowed.*",
+        "value": "b",
+        "data": {
+            "field": "b",
+            "allowed": [
+                "a",
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in_array",
+                            "params": {
+                                "other": "allowed.*"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in_array": "The :attribute field must exist in :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #86 in_array:allowed.*"
+    },
+    {
+        "rule": "in_array:allowed.*",
+        "value": "c",
+        "data": {
+            "field": "c",
+            "allowed": [
+                "a",
+                "b"
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in_array",
+                            "params": {
+                                "other": "allowed.*"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in_array": "The :attribute field must exist in :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #87 in_array:allowed.*"
+    },
+    {
+        "rule": "in_array:allowed.*",
+        "value": "1",
+        "data": {
+            "field": "1",
+            "allowed": [
+                1,
+                2
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in_array",
+                            "params": {
+                                "other": "allowed.*"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in_array": "The :attribute field must exist in :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #88 in_array:allowed.*"
+    },
+    {
+        "rule": "in_array:allowed.*",
+        "value": "x",
+        "data": {
+            "field": "x",
+            "allowed": []
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "in_array",
+                            "params": {
+                                "other": "allowed.*"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.in_array": "The :attribute field must exist in :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #89 in_array:allowed.*"
+    },
+    {
         "rule": "required_with:meta.constructor",
         "value": null,
         "data": {
@@ -8720,7 +14124,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #19 required_with:meta.constructor"
+        "id": "conditional #90 required_with:meta.constructor"
     },
     {
         "rule": "required_with:items.-1",
@@ -8753,7 +14157,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #20 required_with:items.-1"
+        "id": "conditional #91 required_with:items.-1"
     },
     {
         "rule": "items.*.email => required|email",
@@ -8926,8 +14330,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "2",
-                                "value": "2"
+                                "min": "2"
                             }
                         }
                     ],
@@ -8978,8 +14381,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "2",
-                                "value": "2"
+                                "min": "2"
                             }
                         }
                     ],
@@ -9041,5 +14443,564 @@
         },
         "laravel": false,
         "id": "wildcard #6 rows.*.cols.*.v"
+    },
+    {
+        "rule": "items.*.password => same:items.*.password_confirmation",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "password": "a",
+                    "password_confirmation": "a"
+                },
+                {
+                    "password": "b",
+                    "password_confirmation": "b"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "items.*.password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #7 items.*.password"
+    },
+    {
+        "rule": "items.*.password => same:items.*.password_confirmation",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "password": "a",
+                    "password_confirmation": "a"
+                },
+                {
+                    "password": "b",
+                    "password_confirmation": "c"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "items.*.password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #8 items.*.password"
+    },
+    {
+        "rule": "items.*.max => gte:items.*.min",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "min": "2",
+                    "max": "5"
+                },
+                {
+                    "min": "4",
+                    "max": "3"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.max": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gte",
+                            "params": {
+                                "value": "items.*.min"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.max.gte": "The :attribute field must be greater than or equal to :value characters."
+            },
+            "messageVariants": {
+                "items.*.max.gte": {
+                    "array": "The :attribute field must have :value items or more.",
+                    "file": "The :attribute field must be greater than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than or equal to :value.",
+                    "string": "The :attribute field must be greater than or equal to :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "wildcard #9 items.*.max"
+    },
+    {
+        "rule": "items.*.b => required_if:items.*.a,yes",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "a": "yes"
+                },
+                {
+                    "a": "no"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.b": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "items.*.a",
+                                "1": "yes"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.b.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #10 items.*.b"
+    },
+    {
+        "rule": "items.*.b => required_if:items.*.a,yes",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "a": "yes",
+                    "b": "x"
+                },
+                {
+                    "a": "no"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.b": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "items.*.a",
+                                "1": "yes"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.b.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #11 items.*.b"
+    },
+    {
+        "rule": "items.*.password => same:password_confirmation",
+        "value": null,
+        "data": {
+            "password_confirmation": "x",
+            "items": [
+                {
+                    "password": "x",
+                    "password_confirmation": "y"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #12 items.*.password"
+    },
+    {
+        "rule": "items.*.password => same:password_confirmation",
+        "value": null,
+        "data": {
+            "password_confirmation": "x",
+            "items": [
+                {
+                    "password": "y",
+                    "password_confirmation": "x"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #13 items.*.password"
+    },
+    {
+        "rule": "items.*.id => distinct",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "a"
+                },
+                {
+                    "id": "b"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #14 items.*.id"
+    },
+    {
+        "rule": "items.*.id => distinct",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "a"
+                },
+                {
+                    "id": "a"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #15 items.*.id"
+    },
+    {
+        "rule": "items.*.id => distinct",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "1"
+                },
+                {
+                    "id": "01"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #16 items.*.id"
+    },
+    {
+        "rule": "items.*.id => distinct:strict",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "1"
+                },
+                {
+                    "id": 1
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": [
+                                "strict"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #17 items.*.id"
+    },
+    {
+        "rule": "items.*.id => distinct",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "1"
+                },
+                {
+                    "id": 1
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #18 items.*.id"
+    },
+    {
+        "rule": "items.*.id => distinct:ignore_case",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "A"
+                },
+                {
+                    "id": "a"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": [
+                                "ignore_case"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #19 items.*.id"
+    },
+    {
+        "rule": "items.*.id => distinct",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "id": "A"
+                },
+                {
+                    "id": "a"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.id": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "distinct",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.id.distinct": "The :attribute field has a duplicate value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #20 items.*.id"
+    },
+    {
+        "rule": "items.*.password => confirmed",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "password": "x",
+                    "password_confirmation": "x"
+                },
+                {
+                    "password": "y",
+                    "password_confirmation": "z"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "confirmed",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.confirmed": "The :attribute field confirmation does not match."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #21 items.*.password"
     }
 ]

@@ -40,10 +40,11 @@ final readonly class RuleExporter
      * had to respect it:
      *
      * - The size parameters were renamed — `{"max":"255"}`, once
-     *   `{"value":"255"}`. Both are emitted, see
-     *   {@see RuleCatalogue::PARAMETER_ALIASES}, because a runner reading a key
-     *   that is no longer there gets nothing, and one of them turned that into
-     *   "no value is shorter than nothing" and rejected every input.
+     *   `{"value":"255"}` — and both spellings travelled together while any
+     *   runner might read the old one. The alias retired with the pre-1.0
+     *   schema reset (no runner that wanted it was ever installable — J1
+     *   predates every real consumer); the DISCIPLINE stands: rename by
+     *   emitting both, retire an alias as the deliberate break it is.
      * - Size messages gained per-type variants. They went into a NEW
      *   `messageVariants` key rather than changing the type of `messages`, which
      *   an older runner calls `replaceAll()` on.

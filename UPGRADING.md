@@ -34,19 +34,54 @@ upgrade order spelled out.
 The additive discipline is a constraint on the exporter, not a hope, and two changes have already
 had to respect it:
 
-- **Renaming a parameter.** `max:255` carries `{"max": "255", "value": "255"}` — `value` is what
-  the first release called it. Both travel, so a runner from either era finds what it reads. See
-  `RuleCatalogue::PARAMETER_ALIASES`; retire an alias only when the runner that needed it is out
-  of support, and treat that as the breaking change it is.
+- **Renaming a parameter.** `max:255` once carried `{"max": "255", "value": "255"}` — `value`
+  was the first spelling, and both travelled while any runner might read it. The alias retired
+  with the pre-1.0 schema reset (below); the discipline stands for every future rename: emit
+  both names until the old runner is out of support, and treat retiring an alias as the
+  breaking change it is.
 - **Adding per-type messages.** A size rule's four variants went into a new `messageVariants` key
   rather than changing the type of `messages`, because a published runner calls `replaceAll()` on
   whatever `messages` holds — an object throws there, a key it has never heard of is ignored.
 
 `tests/RuleExporterTest.php` pins these as wire-compatibility guards: every exported message is a
-plain string, every renamed parameter is still reachable under its old name, and no top-level key
-an earlier release read has disappeared.
+plain string, the clean schema carries no legacy alias, and no top-level key an earlier release
+read has disappeared.
 
 Full detail in [`docs/schema.md`](docs/schema.md#shipping-the-two-halves-apart).
+
+## Unreleased (the 1.0 line)
+
+### The wire schema is reset clean
+
+The legacy `value` parameter alias on `max`/`min`/`size` is gone. It existed for a runner that
+was never actually installable (J1 — the published package could not be imported), so nothing
+real reads it; a schema key nothing reads is noise every future runner must tolerate. If you
+wrote a third-party runner against the alias, read the modern names — they are the message
+placeholders (`:max`, `:min`, `:size`).
+
+### Cross-field references resolve from the root, as Laravel's do
+
+`same:password_confirmation` inside `items.*` now reads the TOP-LEVEL field, exactly as
+Laravel's `getValue()` does; the row-relative meaning is spelled
+`same:items.*.password_confirmation`, whose asterisks are substituted with the row's own
+indices. If a form relied on the runner's old row-first search, it was relying on a verdict
+the server never agreed with. `sibling()` is gone from the public API; `capturedKeys()` and
+`substituteAsterisks()` are the replacement primitives.
+
+### Stricter, because Laravel is
+
+`same`/`different`/`confirmed` compare strictly (an integer `1` is not `'1'`), `integer`
+mirrors `FILTER_VALIDATE_INT` (no `'10.0'`, `'1e2'`, leading zeros, or beyond-PHP_INT-range),
+`integer:strict`/`boolean:strict` are honoured, `url` treats protocol parameters as the exact
+allow-list, and the comparison family reproduces `shouldBeNumeric`. Each change moves a
+browser verdict onto the server's side of a previously measured disagreement — if input now
+fails client-side, it was already failing server-side.
+
+### Checks are three-valued and may be asynchronous
+
+`Check` returns `boolean | 'undetermined' | Promise<...>`. The sync `validate()` treats a
+Promise as undetermined; the new `validateAsync()` awaits it. Custom checks keep working
+unchanged — `boolean` remains a valid return.
 
 ## Unreleased
 

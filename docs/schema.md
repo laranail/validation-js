@@ -12,7 +12,7 @@ against this document; if they disagree, this is what is right.
       "client": [
         { "rule": "required", "params": {} },
         { "rule": "email", "params": {} },
-        { "rule": "max", "params": { "max": "255", "value": "255" } }
+        { "rule": "max", "params": { "max": "255" } }
       ],
       "server": ["unique"]
     }
@@ -52,10 +52,20 @@ rule name, an extra parameter. Three rules make that hold:
    without it, an absent `max` coerces to `0` and the rule silently becomes "no
    value is shorter than nothing", rejecting everything. A wrong verdict from
    missing data is worse than a round trip, and it is invisible.
-3. **A renamed key is emitted under both names.** `max:255` carries
-   `{"max": "255", "value": "255"}` — `value` is what the first release called
-   it. The alias costs a handful of bytes and is retired only when the runner
-   that needed it is out of support.
+3. **A renamed key is emitted under both names while any runner reads the
+   old one.** `max:255` once carried `{"max": "255", "value": "255"}` —
+   `value` was the first spelling. That alias retired with the pre-1.0
+   schema reset (the runner that wanted it was never installable), but the
+   discipline stands for every future rename: both names travel until the
+   old runner is out of support, and retiring an alias is a deliberate
+   break, not a refactor.
+
+   Two serialisation artifacts a runner must tolerate either way: an EMPTY
+   `messages`/`messageVariants` map serialises as `[]` rather than `{}`
+   (a PHP empty array has no way to say which it meant), and `in`/`not_in`
+   comparisons follow the server's Laravel — 13.26 tightened them from
+   loose to strict, so a runner talking to an older server may disagree on
+   `in:10` vs `"10.0"`; both halves here track current Laravel.
 
 So the four combinations behave like this:
 

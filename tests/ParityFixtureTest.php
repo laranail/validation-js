@@ -35,13 +35,21 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         // The literal forms JavaScript's Number() accepts and PHP's
         // is_numeric() does not — hex, binary, octal, and the word Infinity.
         'numeric' => ['12', '1.5', '-3', 'abc', '1e3', '', '0x1A', '0b11', '0o17', 'Infinity', '-Infinity', '.5', '5.', '+5', '1_000', '12.34.56'],
-        'integer' => ['12', '1.5', '-3', 'abc', '0x1A', '0b11', 'Infinity'],
+        // '10.0' and '1e2' are the J5 rows: numeric-and-whole to JavaScript's
+        // Number(), rejected by FILTER_VALIDATE_INT. '010' (leading zero),
+        // ' 10' (whitespace) and the overflow row probe the filter's edges.
+        'integer' => ['12', '1.5', '-3', 'abc', '0x1A', '0b11', 'Infinity', '10.0', '1e2', '010', '+10', ' 10', '99999999999999999999', 12, 12.0],
+        'integer:strict' => [12, '12', 1.5],
+        'boolean:strict' => [true, false, 1, '1'],
         'string' => ['abc', 12, true, ''],
         'boolean' => [true, false, 1, 0, '1', '0', 'yes', 2],
         'alpha' => ['abc', 'abc1', 'ábc', 'a b'],
         'alpha_num' => ['abc1', 'abc-1', 'ábc1'],
         'alpha_dash' => ['a-b_c1', 'a b', 'a.b'],
-        'url' => ['https://a.co', 'http://a.co', 'ftp://a.co', 'a.co', 'javascript:alert(1)', 'file:///etc/passwd'],
+        'url' => ['https://a.co', 'http://a.co', 'ftp://a.co', 'a.co', 'javascript:alert(1)', 'file:///etc/passwd', 'ws://a.co', 'redis://a.co', 'foo://a.co'],
+        // J6: protocol parameters are an exact allow-list, not a suggestion.
+        'url:https' => ['https://a.co', 'http://a.co'],
+        'url:http,https' => ['http://a.co', 'ftp://a.co'],
         'uuid' => ['3f2504e0-4f89-41d3-9a0c-0305e82c3301', 'nope', '3f2504e0-4f89-41d3-9a0c-0305e82c330'],
         'ulid' => ['01ARZ3NDEKTSV4RRFFQ69G5FAV', 'nope'],
         'ip' => ['127.0.0.1', '::1', '999.1.1.1', 'nope'],
@@ -74,14 +82,41 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         'starts_with:ab,cd' => ['abc', 'cde', 'xyz'],
         'ends_with:ing' => ['testing', 'tested'],
         'contains:foo' => ['a foo b', 'a bar b'],
+        // J12: the doesnt_* family and the non-array question for
+        // doesnt_contain, previously untested in this grid.
+        'doesnt_contain:foo' => [['foo'], ['bar'], 'a foo b', 'plain', 12],
+        'doesnt_start_with:ab,cd' => ['abc', 'cde', 'xyz'],
+        'doesnt_end_with:ing' => ['testing', 'rested'],
         'accepted' => ['yes', 'on', '1', 1, true, 'no', ''],
         'declined' => ['no', 'off', '0', 0, false, 'yes'],
         'regex:/^[a-z]+$/' => ['abc', 'ABC', 'a1'],
         'not_regex:/\d/' => ['abc', 'a1'],
         'multiple_of:3' => ['9', '10', '0.3'],
         'decimal:2' => ['1.23', '1.2', '1', '1.234'],
+        // J11: '1.' — a dot with no digits after it — is in Laravel's grammar.
+        'decimal:0,2' => ['1.', '1', '.5', '1.23', '1.234'],
         'gt:5' => ['6', '5', '4'],
+        'lt:5' => ['4', '5'],
         'lte:5' => ['5', '6'],
+        'ipv6' => ['::1', '2001:db8::1', '127.0.0.1', 'nope'],
+        // The date family — the biggest client-rule gap. Shapes the runner
+        // decides must match Laravel; anything outside its documented shape
+        // set degrades to undetermined and is excluded from this comparison.
+        'date' => ['2023-06-15', '2023-02-31', '2023-13-01', '2023-06-15 10:30', '2023-06-15T10:30:00Z', '6/15/2023', '15-06-2023', '2023/06/15', '20230615', 'not a date', '2023-6-5', '0000-01-01'],
+        'date_format:Y-m-d' => ['2023-06-15', '2023-6-5', '15/06/2023', '2023-02-31', 'nope'],
+        'date_format:d/m/Y' => ['15/06/2023', '2023-06-15', '31/02/2023'],
+        'date_format:Y-m-d H:i' => ['2023-06-15 10:30', '2023-06-15 25:30', '2023-06-15'],
+        'date_format:H:i' => ['10:30', '25:30', '10:75'],
+        'date_format:Y-m-d,Y/m/d' => ['2023-06-15', '2023/06/15', '15.06.2023'],
+        'after:2023-06-15' => ['2023-06-16', '2023-06-15', '2023-06-14', 'not a date'],
+        'after_or_equal:2023-06-15' => ['2023-06-15', '2023-06-14'],
+        'before:2023-06-15' => ['2023-06-14', '2023-06-15', '2023-06-16'],
+        'before_or_equal:2023-06-15' => ['2023-06-15', '2023-06-16'],
+        // P3's lesson from the PHP side, mirrored: date_equals compares the
+        // full timestamp, not the calendar day.
+        'date_equals:2023-06-15' => ['2023-06-15', '2023-06-15 08:00:00', '2023-06-16'],
+        'date|after:2023-06-15 10:00:00' => ['2023-06-15 10:00:01', '2023-06-15 09:59:59'],
+        'timezone' => ['Europe/Berlin', 'Africa/Nairobi', 'UTC', 'Mars/Olympus', 'europe/berlin', 'EST'],
     ];
 
     $exporter = new RuleExporter(app('translator'));
@@ -104,8 +139,22 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
     // Cross-field rules need a second field present.
     foreach ([
         ['same:other', 'x', 'x'], ['same:other', 'x', 'y'],
+        // J9: Laravel's same/different are STRICT — an integer 1 is not '1'.
+        ['same:other', 1, '1'], ['same:other', 1, 1], ['same:other', '1', 1],
+        ['different:other', 1, '1'], ['different:other', 1, 1],
+        ['same:other', ['a'], ['a']], ['same:other', ['a'], ['b']],
         ['different:other', 'x', 'y'], ['different:other', 'x', 'x'],
         ['confirmed', 'x', 'x'], ['confirmed', 'x', 'y'],
+        // J10: comparisons decide numeric-ness ONCE per attribute; these are
+        // the shapes where per-side promotion diverges.
+        // Date comparisons against a FIELD reference.
+        ['after:other', '2023-06-16', '2023-06-15'], ['after:other', '2023-06-14', '2023-06-15'],
+        ['before_or_equal:other', '2023-06-15', '2023-06-15'], ['before_or_equal:other', '2023-06-16', '2023-06-15'],
+        ['gt:other', '10', '9'], ['gt:other', '9', '10'],
+        ['gt:other', 'abcd', 'abc'], ['gt:other', 'abc', 'abcd'],
+        ['gt:other', '10', 'abc'], ['gt:other', 'abc', '10'],
+        ['lte:other', '9', '10'], ['lte:other', '10', '9'],
+        ['gte:other', ['a', 'b'], ['a']],
     ] as [$rule, $value, $other]) {
         $key = $rule === 'confirmed' ? 'field_confirmation' : 'other';
         $data = ['field' => $value, $key => $other];
@@ -116,7 +165,7 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
             'data' => $data,
             'schema' => $exporter->export(['field' => $rule]),
             'laravel' => Validator::make($data, ['field' => $rule])->passes(),
-            'id' => "{$rule} ({$value} vs {$other})",
+            'id' => sprintf('%s (%s vs %s)', $rule, json_encode($value), json_encode($other)),
         ];
     }
 
@@ -260,6 +309,90 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['required_without_all:a,b', ['a' => '1']],
         ['required_if_accepted:agree', ['agree' => 'yes']],
         ['required_if_accepted:agree', ['agree' => 'no']],
+        ['required_if_declined:agree', ['agree' => 'no']],
+        ['required_if_declined:agree', ['agree' => 'yes']],
+        ['prohibited_if_accepted:agree', ['agree' => 'yes', 'field' => 'x']],
+        ['prohibited_if_accepted:agree', ['agree' => 'no', 'field' => 'x']],
+        ['prohibited_if_declined:agree', ['agree' => 'no', 'field' => 'x']],
+        ['prohibited_if_declined:agree', ['agree' => 'yes', 'field' => 'x']],
+        // J8: Laravel converts a literal 'null' parameter to a real null
+        // (convertValuesToNull), so `required_if:other,null` fires on a
+        // present-null dependent.
+        ['required_if:other,null', ['other' => null]],
+        ['required_if:other,null', ['other' => null, 'field' => 'x']],
+        ['required_if:other,null', ['other' => 'null']],
+        ['required_if:other,null', ['other' => 'x']],
+        ['required_unless:other,null', ['other' => null]],
+        ['required_unless:other,null', ['other' => 'x']],
+        // required_if alone carries Laravel's Arr::has guard: an ABSENT
+        // dependent means never required; required_unless has no guard, so
+        // absent resolves to null and can match a declared 'null'.
+        ['required_if:other,null', []],
+        ['required_unless:other,null', []],
+        // A boolean dependent converts declared true/false to REAL booleans
+        // and compares strictly — '1' never matches true.
+        ['required_if:other,true', ['other' => true]],
+        ['required_if:other,1', ['other' => true]],
+        ['required_if:other,true', ['other' => 'true']],
+        // The wider conditional families, each with its trigger both ways.
+        ['accepted_if:kind,card', ['kind' => 'card', 'field' => 'yes']],
+        ['accepted_if:kind,card', ['kind' => 'card', 'field' => 'no']],
+        ['accepted_if:kind,card', ['kind' => 'cash', 'field' => 'no']],
+        ['accepted_if:kind,card', ['kind' => 'card']],
+        ['declined_if:kind,card', ['kind' => 'card', 'field' => 'no']],
+        ['declined_if:kind,card', ['kind' => 'card', 'field' => 'yes']],
+        ['prohibited', ['field' => 'x']],
+        ['prohibited', ['field' => '']],
+        ['prohibited', []],
+        ['prohibited_if:kind,card', ['kind' => 'card', 'field' => 'x']],
+        ['prohibited_if:kind,card', ['kind' => 'card']],
+        ['prohibited_if:kind,card', ['kind' => 'cash', 'field' => 'x']],
+        ['prohibited_unless:kind,card', ['kind' => 'card', 'field' => 'x']],
+        ['prohibited_unless:kind,card', ['kind' => 'cash', 'field' => 'x']],
+        ['prohibits:a,b', ['field' => 'x', 'a' => '1']],
+        ['prohibits:a,b', ['field' => 'x']],
+        ['prohibits:a,b', ['a' => '1']],
+        ['missing', []],
+        ['missing', ['field' => null]],
+        ['missing', ['field' => 'x']],
+        ['missing_if:kind,card', ['kind' => 'card', 'field' => 'x']],
+        ['missing_if:kind,card', ['kind' => 'cash', 'field' => 'x']],
+        ['missing_unless:kind,card', ['kind' => 'cash', 'field' => 'x']],
+        ['missing_unless:kind,card', ['kind' => 'card', 'field' => 'x']],
+        // The missing/present *_with families trigger on the KEY existing —
+        // a present-null sibling counts, which is where they differ from
+        // required_with's filled-ness test.
+        ['missing_with:a', ['a' => null, 'field' => 'x']],
+        ['missing_with:a', ['field' => 'x']],
+        ['missing_with_all:a,b', ['a' => '1', 'b' => '1', 'field' => 'x']],
+        ['missing_with_all:a,b', ['a' => '1', 'field' => 'x']],
+        ['present_if:kind,card', ['kind' => 'card']],
+        ['present_if:kind,card', ['kind' => 'card', 'field' => null]],
+        ['present_if:kind,card', ['kind' => 'cash']],
+        ['present_unless:kind,card', ['kind' => 'cash']],
+        ['present_unless:kind,card', ['kind' => 'card']],
+        ['present_with:a', ['a' => null]],
+        ['present_with:a', []],
+        ['present_with_all:a,b', ['a' => '1', 'b' => '1']],
+        ['present_with_all:a,b', ['a' => '1']],
+        // Collections.
+        ['list', ['field' => ['a', 'b']]],
+        ['list', ['field' => ['x' => 'a']]],
+        ['list', ['field' => 'abc']],
+        ['required_array_keys:name,email', ['field' => ['name' => 'a', 'email' => 'b', 'extra' => 'c']]],
+        ['required_array_keys:name,email', ['field' => ['name' => 'a']]],
+        ['required_array_keys:0,1', ['field' => ['a', 'b']]],
+        ['required_array_keys:name', ['field' => 'abc']],
+        ['max_digits:3', ['field' => '123']],
+        ['max_digits:3', ['field' => '1234']],
+        ['max_digits:3', ['field' => '-12']],
+        ['max_digits:3', ['field' => 123]],
+        ['min_digits:2', ['field' => '12']],
+        ['min_digits:2', ['field' => '1']],
+        ['in_array:allowed.*', ['field' => 'b', 'allowed' => ['a', 'b']]],
+        ['in_array:allowed.*', ['field' => 'c', 'allowed' => ['a', 'b']]],
+        ['in_array:allowed.*', ['field' => '1', 'allowed' => [1, 2]]],
+        ['in_array:allowed.*', ['field' => 'x', 'allowed' => []]],
         // Presence probes on hostile-looking paths. Laravel's Arr::has says
         // "absent" for both; a runner whose path walk uses the `in` operator
         // finds 'constructor' on Object.prototype, and one whose array-index
@@ -289,6 +422,45 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['items.*.qty', 'required|numeric|min:2', ['items' => [['qty' => '3']]]],
         ['items.*.qty', 'required|numeric|min:2', ['items' => [['qty' => '1']]]],
         ['rows.*.cols.*.v', 'required', ['rows' => [['cols' => [['v' => 'x'], ['v' => '']]]]]],
+        // Cross-field params carrying the wildcard. Laravel substitutes the
+        // indices captured while expanding the ATTRIBUTE into the parameters
+        // (replaceAsterisksInParameters), so row 0 compares against row 0 —
+        // the canonical row-wise idiom. A runner that leaves the literal `*`
+        // in the parameter can resolve nothing and fails every row.
+        ['items.*.password', 'same:items.*.password_confirmation',
+            ['items' => [['password' => 'a', 'password_confirmation' => 'a'], ['password' => 'b', 'password_confirmation' => 'b']]]],
+        ['items.*.password', 'same:items.*.password_confirmation',
+            ['items' => [['password' => 'a', 'password_confirmation' => 'a'], ['password' => 'b', 'password_confirmation' => 'c']]]],
+        ['items.*.max', 'gte:items.*.min',
+            ['items' => [['min' => '2', 'max' => '5'], ['min' => '4', 'max' => '3']]]],
+        ['items.*.b', 'required_if:items.*.a,yes',
+            ['items' => [['a' => 'yes'], ['a' => 'no']]]],
+        ['items.*.b', 'required_if:items.*.a,yes',
+            ['items' => [['a' => 'yes', 'b' => 'x'], ['a' => 'no']]]],
+        // A DOTLESS cross-field reference inside a wildcard resolves from the
+        // ROOT, not the row — Laravel's getValue() is Arr::get($data, $param)
+        // with no row awareness. The row-relative meaning is spelled with the
+        // wildcard path above; resolving the bare name against the row
+        // green-ticks the Laravel-wrong spelling.
+        ['items.*.password', 'same:password_confirmation',
+            ['password_confirmation' => 'x',
+                'items' => [['password' => 'x', 'password_confirmation' => 'y']]]],
+        ['items.*.password', 'same:password_confirmation',
+            ['password_confirmation' => 'x',
+                'items' => [['password' => 'y', 'password_confirmation' => 'x']]]],
+        // `distinct` ranges over the OTHER expansions of its own pattern.
+        ['items.*.id', 'distinct', ['items' => [['id' => 'a'], ['id' => 'b']]]],
+        ['items.*.id', 'distinct', ['items' => [['id' => 'a'], ['id' => 'a']]]],
+        ['items.*.id', 'distinct', ['items' => [['id' => '1'], ['id' => '01']]]],
+        ['items.*.id', 'distinct:strict', ['items' => [['id' => '1'], ['id' => 1]]]],
+        ['items.*.id', 'distinct', ['items' => [['id' => '1'], ['id' => 1]]]],
+        ['items.*.id', 'distinct:ignore_case', ['items' => [['id' => 'A'], ['id' => 'a']]]],
+        ['items.*.id', 'distinct', ['items' => [['id' => 'A'], ['id' => 'a']]]],
+        // `confirmed` inside a wildcard appends _confirmation to the CONCRETE
+        // path — items.0.password_confirmation — which happens to live in the
+        // row; the mechanism is the full-path suffix, not row-sibling search.
+        ['items.*.password', 'confirmed',
+            ['items' => [['password' => 'x', 'password_confirmation' => 'x'], ['password' => 'y', 'password_confirmation' => 'z']]]],
     ] as $index => [$field, $rule, $data]) {
         $cases[] = [
             'rule' => "{$field} => {$rule}",

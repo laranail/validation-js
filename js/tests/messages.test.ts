@@ -1,6 +1,6 @@
+import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import assert from 'node:assert/strict';
 import { SCHEMA_VERSION, validate } from '../src/index.ts';
 import type { Schema } from '../src/types.ts';
 
@@ -163,4 +163,27 @@ test('the runner agrees with the exporter about the major version', () => {
     // Both fixtures are written by the PHP exporter, so a bump on one side
     // without the other shows up here rather than as a wrong verdict.
     assert.equal(cases[0]?.schema.version, SCHEMA_VERSION);
+});
+
+test('a positional dependent field never leaks into :values', () => {
+    // A third-party schema writer may carry the conditional family's
+    // parameters positionally — {0: field, 1+: values} — instead of naming
+    // 'other'. The field is still the field; re-listing it rendered
+    // "required unless kind is in kind, card".
+    const schema = {
+        version: 1,
+        fields: {
+            field: {
+                attribute: null,
+                client: [{ rule: 'required_unless', params: { '0': 'kind', '1': 'card' } }],
+                server: [],
+            },
+        },
+        messages: { 'field.required_unless': 'Required unless :other is in :values.' },
+        messageVariants: {},
+    };
+
+    const result = validate({ kind: 'cheque' }, schema);
+
+    assert.equal(result.failures[0]?.message, 'Required unless kind is in card.');
 });

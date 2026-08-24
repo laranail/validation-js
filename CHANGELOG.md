@@ -61,7 +61,7 @@ reference the release-planning audit's register.
   cannot decide never masquerade as passing.
 - `RuleCatalogue`, classifying rules as client-checkable or server-only, where anything
   unrecognised — custom, package, or future-Laravel — defaults to the server.
-- `@laranail/validation-js`, a zero-dependency TypeScript runner implementing 61 rules.
+- `@laranail/validation-js`, a zero-dependency TypeScript runner implementing 97 rules.
 - Wildcard support. `items.*.email` is expanded against the submitted data by the runner, which
   has it, rather than at export time, which does not; failures name the concrete path. Nested
   patterns work, an empty collection expands to nothing (matching Laravel), and cross-field
@@ -78,6 +78,6 @@ reference the release-planning audit's register.
   `PostalCode`, `Latitude`, `Longitude` and `CssColor`. A rule may advertise SEVERAL rules —
   `Latitude` is `numeric` plus `between:-90,90` — and a partial advertisement is dropped whole. Anything performing a checksum, a query or IO keeps the server default,
   and an advertised rule name the runner does not implement is ignored rather than shipped.
-- A differential test: the PHP suite records Laravel's own verdicts over 311 rule-and-value
+- A differential test: the PHP suite records Laravel's own verdicts over 511 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.

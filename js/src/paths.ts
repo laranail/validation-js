@@ -96,21 +96,37 @@ export function expand(pattern: string, values: Values): string[] {
 }
 
 /**
- * Resolve a rule's reference to another field, relative to the row first.
+ * The concrete keys a pattern's wildcards matched for one expanded field.
  *
- * Inside `items.0.password`, a `same:password_confirmation` means the sibling
- * in the SAME row. Resolving it at the top level would compare every row
- * against one shared field, which is not what the form means.
+ * `items.*.password` expanded to `items.0.password` captured `['0']`. These
+ * are what Laravel substitutes into rule PARAMETERS
+ * (`replaceAsterisksInParameters`), and that substitution — not row-relative
+ * lookup — is how `same:items.*.password_confirmation` comes to mean "this
+ * row's confirmation".
  */
-export function sibling(field: string, other: string, values: Values): string {
-    const segments = field.split('.');
-    segments.pop();
+export function capturedKeys(pattern: string, field: string): string[] {
+    if (!pattern.includes('*')) return [];
 
-    while (segments.length > 0) {
-        const candidate = `${segments.join('.')}.${other}`;
-        if (has(values, candidate)) return candidate;
-        segments.pop();
-    }
+    const patternSegments = pattern.split('.');
+    const fieldSegments = field.split('.');
+    const keys: string[] = [];
 
-    return other;
+    patternSegments.forEach((segment, index) => {
+        const concrete = fieldSegments[index];
+        if (segment === '*' && concrete !== undefined) keys.push(concrete);
+    });
+
+    return keys;
+}
+
+/**
+ * Replace successive `*`s with successive keys — Laravel's
+ * `Str::replaceArray('*', $keys, …)`. A `*` beyond the captured keys stays
+ * literal, exactly as Laravel leaves it; a later `get()` on such a path finds
+ * nothing, which is also what `Arr::get` does with a literal `*` segment.
+ */
+export function substituteAsterisks(value: string, keys: string[]): string {
+    let next = 0;
+
+    return value.replace(/\*/g, (literal) => keys[next++] ?? literal);
 }

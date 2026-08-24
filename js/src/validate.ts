@@ -1,6 +1,13 @@
-import { checks, hasRequiredParams, IMPLICIT, isFileValue, numeric } from './rules.ts';
+import { capturedKeys, expand, get, has, substituteAsterisks } from './paths.ts';
 import type { Check, Context } from './rules.ts';
-import { expand, get, has, sibling } from './paths.ts';
+import {
+    checks,
+    hasRequiredParams,
+    IMPLICIT,
+    isFileValue,
+    NAMES_DEPENDENT_AT_ZERO,
+    numeric,
+} from './rules.ts';
 import type { Failure, Result, Schema, Values } from './types.ts';
 
 /**
@@ -25,7 +32,62 @@ export const SCHEMA_VERSION = 1;
  * third into "valid" is what makes client-side validation lie: it shows a
  * green tick for input the server will reject.
  */
+interface PendingCheck {
+    promise: Promise<boolean | 'undetermined'>;
+    field: string;
+    pattern: string;
+    rule: string;
+    params: Record<string, string>;
+    attribute: string | null;
+    value: unknown;
+    ctx: Context;
+}
+
 export function validate(values: Values, schema: Schema): Result {
+    return run(values, schema, undefined);
+}
+
+/**
+ * `validate`, but async checks are AWAITED rather than rounded trip — the
+ * form runtime's entry point once `dimensions` (and, later, remote rules)
+ * are in play. One deliberate difference from the sync engine's
+ * one-failure-per-field presentation: rules after a pending async one have
+ * already run by the time it resolves, so a field can carry a second
+ * failure. The VERDICT is identical either way.
+ */
+export async function validateAsync(values: Values, schema: Schema): Promise<Result> {
+    const pending: PendingCheck[] = [];
+    const result = run(values, schema, pending);
+
+    for (const entry of pending) {
+        const verdict = await entry.promise;
+
+        if (verdict === 'undetermined') {
+            if (!result.undetermined.includes(entry.field)) result.undetermined.push(entry.field);
+            continue;
+        }
+
+        if (!verdict) {
+            result.failures.push({
+                field: entry.field,
+                rule: entry.rule,
+                message: interpolate(
+                    schema,
+                    entry.pattern,
+                    entry.rule,
+                    entry.params,
+                    entry.attribute,
+                    entry.value,
+                    entry.ctx,
+                ),
+            });
+        }
+    }
+
+    return { ...result, valid: result.failures.length === 0 };
+}
+
+function run(values: Values, schema: Schema, pending: PendingCheck[] | undefined): Result {
     const failures: Failure[] = [];
     const undetermined: string[] = [];
 
@@ -55,6 +117,12 @@ export function validate(values: Values, schema: Schema): Result {
             const value = get(values, field);
             const rules = definition.client;
 
+            // The keys the pattern's wildcards matched for THIS field. Laravel
+            // substitutes them into every rule parameter of the expanded
+            // attribute (replaceAsterisksInParameters), which is what makes
+            // `same:items.*.password_confirmation` mean this row's field.
+            const keys = capturedKeys(pattern, field);
+
             // `nullable` and `sometimes` are structural: they decide whether the
             // OTHER rules run at all, so they are resolved before the loop rather
             // than checked in it.
@@ -74,6 +142,7 @@ export function validate(values: Values, schema: Schema): Result {
             const ctx: Context = {
                 values,
                 field,
+                pattern,
                 numericField: rules.some((r) => ['numeric', 'integer', 'decimal'].includes(r.rule)),
                 arrayField: rules.some((r) => ['array', 'list'].includes(r.rule)),
             };
@@ -106,9 +175,18 @@ export function validate(values: Values, schema: Schema): Result {
                 // identically through Object.values() and named lookups — the
                 // three functions below are typed on the object form, and the
                 // published .d.ts was unsound while the union leaked through.
-                const params: Record<string, string> = Array.isArray(rawParams)
+                let params: Record<string, string> = Array.isArray(rawParams)
                     ? Object.fromEntries(rawParams.map((value, index) => [String(index), value]))
                     : rawParams;
+
+                if (keys.length > 0) {
+                    params = Object.fromEntries(
+                        Object.entries(params).map(([name, parameter]) => [
+                            name,
+                            substituteAsterisks(parameter, keys),
+                        ]),
+                    );
+                }
 
                 // A rule with no implementation must not silently pass: that is
                 // the same lie as treating a server rule as valid. It becomes
@@ -137,7 +215,39 @@ export function validate(values: Values, schema: Schema): Result {
                 // rules, so a `required` alongside it still fires.
                 if (nullable && value === null && !IMPLICIT.has(rule)) continue;
 
-                if (!check(value, params, ctx)) {
+                const verdict = check(value, params, ctx);
+
+                // An async answer: the sync engine cannot wait, so the field
+                // rounds trip; validateAsync() collects it instead. Either
+                // way a Promise is never truthiness-tested — that would pass
+                // everything.
+                if (verdict instanceof Promise) {
+                    if (pending === undefined) {
+                        if (!undetermined.includes(field)) undetermined.push(field);
+                        continue;
+                    }
+
+                    pending.push({
+                        promise: verdict,
+                        field,
+                        pattern,
+                        rule,
+                        params,
+                        attribute: definition.attribute,
+                        value,
+                        ctx,
+                    });
+                    continue;
+                }
+
+                // 'undetermined' is the check saying "I cannot decide" — the
+                // same honest answer an unknown rule gets, reached inside one.
+                if (verdict === 'undetermined') {
+                    if (!undetermined.includes(field)) undetermined.push(field);
+                    continue;
+                }
+
+                if (!verdict) {
                     failures.push({
                         field,
                         rule,
@@ -234,16 +344,19 @@ export function interpolate(
         );
     }
 
-    // A named `other` is a FIELD, so it is displayed the way a field is.
-    if (params.other !== undefined) {
-        message = message.replaceAll(':other', displayable(params.other));
+    // A named `other` is a FIELD, so it is displayed the way a field is. The
+    // conditional family may carry it positionally (key '0') instead.
+    const dependent = params.other ?? (NAMES_DEPENDENT_AT_ZERO.has(rule) ? params['0'] : undefined);
+
+    if (dependent !== undefined) {
+        message = message.replaceAll(':other', displayable(dependent));
     }
 
-    if (READS_DEPENDENT_VALUE.has(rule) && params.other !== undefined) {
-        return message.replaceAll(
-            ':value',
-            displayValue(get(ctx.values, sibling(ctx.field, params.other, ctx.values))),
-        );
+    if (READS_DEPENDENT_VALUE.has(rule) && dependent !== undefined) {
+        // Root resolution, like the rules themselves: the parameter reaching
+        // here already carries the row's substituted index when it named a
+        // wildcard path.
+        return message.replaceAll(':value', displayValue(get(ctx.values, dependent)));
     }
 
     for (const [key, param] of Object.entries(params)) {
@@ -253,9 +366,11 @@ export function interpolate(
     // What is left is the variadic tail. Position 0 of a conditional rule is
     // the dependent FIELD, not a value — already spent on `:other` — so joining
     // every parameter rendered `required_unless:kind,card` as "unless kind is
-    // in kind, card".
+    // in kind, card". A third-party schema writer may carry that field
+    // POSITIONALLY (key '0') instead of under 'other', and it is just as much
+    // the field there — drop both spellings for the conditional family.
     const tail = Object.entries(params)
-        .filter(([key]) => key !== 'other')
+        .filter(([key]) => key !== 'other' && !(NAMES_DEPENDENT_AT_ZERO.has(rule) && key === '0'))
         .map(([, param]) => (LISTS_FIELDS.has(rule) ? displayable(param) : param));
 
     const joined = tail.join(LISTS_FIELDS.has(rule) ? ' / ' : ', ');

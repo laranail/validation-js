@@ -1,6 +1,6 @@
+import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { test } from 'node:test';
-import assert from 'node:assert/strict';
 import { validate } from '../src/index.ts';
 import type { Schema } from '../src/types.ts';
 
