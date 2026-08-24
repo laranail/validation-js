@@ -117,11 +117,12 @@ it('exports every variant of a size message, in a key of their own', function ()
 
 it('emits the parameter name an older runner reads, alongside the current one', function (): void {
     // The size bounds were named `value` in the first release and are now named
-    // for the placeholder their message uses. Both travel, so a runner from
-    // either era finds what it looks for and the two halves ship separately.
+    // for the placeholder their message uses. The pre-1.0 'value' alias is
+    // gone with the clean schema v1 — a runner old enough to want it cannot
+    // import the package it shipped in.
     $params = exporter()->export(['n' => 'max:255'])['fields']['n']['client'][0]['params'];
 
-    expect($params)->toBe(['max' => '255', 'value' => '255']);
+    expect($params)->toBe(['max' => '255']);
 });
 
 it('adds no alias for a parameter that never had another name', function (): void {
@@ -402,12 +403,14 @@ it('keeps every exported message a plain string', function (): void {
     }
 });
 
-it('keeps every renamed parameter reachable under its old name', function (string $rule, string $legacy): void {
-    // A runner reading a key that is no longer there gets nothing, and the
-    // coercions underneath turn that into a verdict rather than a question.
+it('carries no legacy parameter alias in the clean schema v1', function (string $rule, string $legacy): void {
+    // The 'value' spelling was a migration aid for a runner that could never
+    // actually be installed (J1 predates every real consumer). Pre-1.0 is
+    // the moment to retire it; a stale key that nothing reads is schema
+    // noise that every future runner would have to keep tolerating.
     $params = exporter()->export(['f' => $rule])['fields']['f']['client'][0]['params'];
 
-    expect($params)->toHaveKey($legacy);
+    expect($params)->not->toHaveKey($legacy);
 })->with([
     'max:5' => ['max:5', 'value'],
     'min:5' => ['min:5', 'value'],

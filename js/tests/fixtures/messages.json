@@ -15,8 +15,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -58,8 +57,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -98,8 +96,7 @@
                         {
                             "rule": "min",
                             "params": {
-                                "min": "3",
-                                "value": "3"
+                                "min": "3"
                             }
                         }
                     ],
@@ -137,8 +134,7 @@
                         {
                             "rule": "size",
                             "params": {
-                                "size": "4",
-                                "value": "4"
+                                "size": "4"
                             }
                         }
                     ],
@@ -786,8 +782,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "5",
-                                "value": "5"
+                                "max": "5"
                             }
                         }
                     ],
@@ -862,8 +857,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "2",
-                                "value": "2"
+                                "max": "2"
                             }
                         }
                     ],
@@ -941,8 +935,7 @@
                         {
                             "rule": "max",
                             "params": {
-                                "max": "2",
-                                "value": "2"
+                                "max": "2"
                             }
                         }
                     ],

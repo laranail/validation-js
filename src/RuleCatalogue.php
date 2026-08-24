@@ -175,22 +175,6 @@ final class RuleCatalogue
         'date_equals' => ['date'],
     ];
 
-    /**
-     * Names an older runner reads, emitted alongside the current ones.
-     *
-     * Keyed rule => [current name => legacy name]. Schema version 1 called all
-     * three size bounds `value`; they are now named for the placeholder their
-     * message uses, which is what makes the message interpolate. Both travel,
-     * so a runner from either era finds what it looks for.
-     *
-     * @var array<string, array<string, string>>
-     */
-    public const array PARAMETER_ALIASES = [
-        'max' => ['max' => 'value'],
-        'min' => ['min' => 'value'],
-        'size' => ['size' => 'value'],
-    ];
-
     public static function isClientCheckable(string $rule): bool
     {
         $rule = mb_strtolower($rule);
@@ -220,10 +204,12 @@ final class RuleCatalogue
             // in the table, inverting min/max whenever the author's
             // insertion order differed from the table's.
             //
-            // Positional entries are named from the table as before. Keys
-            // are forced to strings: an integer key would make the schema's
-            // JSON object serialise as an ARRAY on round trip, and the
-            // runner reads params as an object.
+            // Positional entries are named from the table as before. The
+            // (string) cast on the fallback keeps the TYPE honest for
+            // readers; it does not change the wire — PHP coerces
+            // numeric-string keys back to integers, which is exactly why
+            // fully-positional rules serialise as a JSON ARRAY (see above)
+            // and the runner normalises both shapes at its boundary.
             $name = is_string($key) ? $key : ($names[$position] ?? (string) $position);
 
             if (! is_string($key)) {
@@ -231,23 +217,6 @@ final class RuleCatalogue
             }
 
             $named[$name] = $parameter;
-
-            // The same value under the name an older runner looks for.
-            //
-            // This is what lets the two halves ship separately. Renaming a
-            // parameter is invisible on the wire — a runner that reads a key
-            // which is no longer there gets `undefined`, and the interesting
-            // question is what it does next. Emitting both means it never has
-            // to find out: the old name keeps working for as long as anyone is
-            // running the old code, and the entry costs a handful of bytes.
-            //
-            // Retire an alias only when the runner that needed it is out of
-            // support, and treat that as the breaking change it is.
-            $legacy = self::PARAMETER_ALIASES[$rule][$name] ?? null;
-
-            if ($legacy !== null) {
-                $named[$legacy] = $parameter;
-            }
         }
 
         return $named;
