@@ -96,7 +96,9 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         // J11: '1.' — a dot with no digits after it — is in Laravel's grammar.
         'decimal:0,2' => ['1.', '1', '.5', '1.23', '1.234'],
         'gt:5' => ['6', '5', '4'],
+        'lt:5' => ['4', '5'],
         'lte:5' => ['5', '6'],
+        'ipv6' => ['::1', '2001:db8::1', '127.0.0.1', 'nope'],
         // The date family — the biggest client-rule gap. Shapes the runner
         // decides must match Laravel; anything outside its documented shape
         // set degrades to undetermined and is excluded from this comparison.
@@ -307,6 +309,12 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['required_without_all:a,b', ['a' => '1']],
         ['required_if_accepted:agree', ['agree' => 'yes']],
         ['required_if_accepted:agree', ['agree' => 'no']],
+        ['required_if_declined:agree', ['agree' => 'no']],
+        ['required_if_declined:agree', ['agree' => 'yes']],
+        ['prohibited_if_accepted:agree', ['agree' => 'yes', 'field' => 'x']],
+        ['prohibited_if_accepted:agree', ['agree' => 'no', 'field' => 'x']],
+        ['prohibited_if_declined:agree', ['agree' => 'no', 'field' => 'x']],
+        ['prohibited_if_declined:agree', ['agree' => 'yes', 'field' => 'x']],
         // J8: Laravel converts a literal 'null' parameter to a real null
         // (convertValuesToNull), so `required_if:other,null` fires on a
         // present-null dependent.

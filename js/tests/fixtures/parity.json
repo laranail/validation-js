@@ -5775,6 +5775,74 @@
         "id": "gt:5 #2"
     },
     {
+        "rule": "lt:5",
+        "value": "4",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lt": "The :attribute field must be less than :value characters."
+            },
+            "messageVariants": {
+                "field.lt": {
+                    "array": "The :attribute field must have less than :value items.",
+                    "file": "The :attribute field must be less than :value kilobytes.",
+                    "numeric": "The :attribute field must be less than :value.",
+                    "string": "The :attribute field must be less than :value characters."
+                }
+            }
+        },
+        "laravel": true,
+        "id": "lt:5 #0"
+    },
+    {
+        "rule": "lt:5",
+        "value": "5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "lt",
+                            "params": {
+                                "value": "5"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.lt": "The :attribute field must be less than :value characters."
+            },
+            "messageVariants": {
+                "field.lt": {
+                    "array": "The :attribute field must have less than :value items.",
+                    "file": "The :attribute field must be less than :value kilobytes.",
+                    "numeric": "The :attribute field must be less than :value.",
+                    "string": "The :attribute field must be less than :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "lt:5 #1"
+    },
+    {
         "rule": "lte:5",
         "value": "5",
         "schema": {
@@ -5841,6 +5909,106 @@
         },
         "laravel": false,
         "id": "lte:5 #1"
+    },
+    {
+        "rule": "ipv6",
+        "value": "::1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "ipv6 #0"
+    },
+    {
+        "rule": "ipv6",
+        "value": "2001:db8::1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "ipv6 #1"
+    },
+    {
+        "rule": "ipv6",
+        "value": "127.0.0.1",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "ipv6 #2"
+    },
+    {
+        "rule": "ipv6",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "ipv6",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.ipv6": "The :attribute field must be a valid IPv6 address."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "ipv6 #3"
     },
     {
         "rule": "date",
@@ -11718,6 +11886,190 @@
         "id": "conditional #18 required_if_accepted:agree"
     },
     {
+        "rule": "required_if_declined:agree",
+        "value": null,
+        "data": {
+            "agree": "no"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if_declined": "The :attribute field is required when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #19 required_if_declined:agree"
+    },
+    {
+        "rule": "required_if_declined:agree",
+        "value": null,
+        "data": {
+            "agree": "yes"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.required_if_declined": "The :attribute field is required when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #20 required_if_declined:agree"
+    },
+    {
+        "rule": "prohibited_if_accepted:agree",
+        "value": "x",
+        "data": {
+            "agree": "yes",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_accepted",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_accepted": "The :attribute field is prohibited when :other is accepted."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #21 prohibited_if_accepted:agree"
+    },
+    {
+        "rule": "prohibited_if_accepted:agree",
+        "value": "x",
+        "data": {
+            "agree": "no",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_accepted",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_accepted": "The :attribute field is prohibited when :other is accepted."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #22 prohibited_if_accepted:agree"
+    },
+    {
+        "rule": "prohibited_if_declined:agree",
+        "value": "x",
+        "data": {
+            "agree": "no",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_declined": "The :attribute field is prohibited when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "conditional #23 prohibited_if_declined:agree"
+    },
+    {
+        "rule": "prohibited_if_declined:agree",
+        "value": "x",
+        "data": {
+            "agree": "yes",
+            "field": "x"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "prohibited_if_declined",
+                            "params": {
+                                "other": "agree"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.prohibited_if_declined": "The :attribute field is prohibited when :other is declined."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "conditional #24 prohibited_if_declined:agree"
+    },
+    {
         "rule": "required_if:other,null",
         "value": null,
         "data": {
@@ -11746,7 +12098,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #19 required_if:other,null"
+        "id": "conditional #25 required_if:other,null"
     },
     {
         "rule": "required_if:other,null",
@@ -11778,7 +12130,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #20 required_if:other,null"
+        "id": "conditional #26 required_if:other,null"
     },
     {
         "rule": "required_if:other,null",
@@ -11809,7 +12161,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #21 required_if:other,null"
+        "id": "conditional #27 required_if:other,null"
     },
     {
         "rule": "required_if:other,null",
@@ -11840,7 +12192,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #22 required_if:other,null"
+        "id": "conditional #28 required_if:other,null"
     },
     {
         "rule": "required_unless:other,null",
@@ -11871,7 +12223,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #23 required_unless:other,null"
+        "id": "conditional #29 required_unless:other,null"
     },
     {
         "rule": "required_unless:other,null",
@@ -11902,7 +12254,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #24 required_unless:other,null"
+        "id": "conditional #30 required_unless:other,null"
     },
     {
         "rule": "required_if:other,null",
@@ -11931,7 +12283,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #25 required_if:other,null"
+        "id": "conditional #31 required_if:other,null"
     },
     {
         "rule": "required_unless:other,null",
@@ -11960,7 +12312,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #26 required_unless:other,null"
+        "id": "conditional #32 required_unless:other,null"
     },
     {
         "rule": "required_if:other,true",
@@ -11991,7 +12343,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #27 required_if:other,true"
+        "id": "conditional #33 required_if:other,true"
     },
     {
         "rule": "required_if:other,1",
@@ -12022,7 +12374,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #28 required_if:other,1"
+        "id": "conditional #34 required_if:other,1"
     },
     {
         "rule": "required_if:other,true",
@@ -12053,7 +12405,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #29 required_if:other,true"
+        "id": "conditional #35 required_if:other,true"
     },
     {
         "rule": "accepted_if:kind,card",
@@ -12085,7 +12437,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #30 accepted_if:kind,card"
+        "id": "conditional #36 accepted_if:kind,card"
     },
     {
         "rule": "accepted_if:kind,card",
@@ -12117,7 +12469,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #31 accepted_if:kind,card"
+        "id": "conditional #37 accepted_if:kind,card"
     },
     {
         "rule": "accepted_if:kind,card",
@@ -12149,7 +12501,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #32 accepted_if:kind,card"
+        "id": "conditional #38 accepted_if:kind,card"
     },
     {
         "rule": "accepted_if:kind,card",
@@ -12180,7 +12532,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #33 accepted_if:kind,card"
+        "id": "conditional #39 accepted_if:kind,card"
     },
     {
         "rule": "declined_if:kind,card",
@@ -12212,7 +12564,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #34 declined_if:kind,card"
+        "id": "conditional #40 declined_if:kind,card"
     },
     {
         "rule": "declined_if:kind,card",
@@ -12244,7 +12596,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #35 declined_if:kind,card"
+        "id": "conditional #41 declined_if:kind,card"
     },
     {
         "rule": "prohibited",
@@ -12272,7 +12624,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #36 prohibited"
+        "id": "conditional #42 prohibited"
     },
     {
         "rule": "prohibited",
@@ -12300,7 +12652,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #37 prohibited"
+        "id": "conditional #43 prohibited"
     },
     {
         "rule": "prohibited",
@@ -12326,7 +12678,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #38 prohibited"
+        "id": "conditional #44 prohibited"
     },
     {
         "rule": "prohibited_if:kind,card",
@@ -12358,7 +12710,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #39 prohibited_if:kind,card"
+        "id": "conditional #45 prohibited_if:kind,card"
     },
     {
         "rule": "prohibited_if:kind,card",
@@ -12389,7 +12741,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #40 prohibited_if:kind,card"
+        "id": "conditional #46 prohibited_if:kind,card"
     },
     {
         "rule": "prohibited_if:kind,card",
@@ -12421,7 +12773,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #41 prohibited_if:kind,card"
+        "id": "conditional #47 prohibited_if:kind,card"
     },
     {
         "rule": "prohibited_unless:kind,card",
@@ -12453,7 +12805,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #42 prohibited_unless:kind,card"
+        "id": "conditional #48 prohibited_unless:kind,card"
     },
     {
         "rule": "prohibited_unless:kind,card",
@@ -12485,7 +12837,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #43 prohibited_unless:kind,card"
+        "id": "conditional #49 prohibited_unless:kind,card"
     },
     {
         "rule": "prohibits:a,b",
@@ -12517,7 +12869,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #44 prohibits:a,b"
+        "id": "conditional #50 prohibits:a,b"
     },
     {
         "rule": "prohibits:a,b",
@@ -12548,7 +12900,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #45 prohibits:a,b"
+        "id": "conditional #51 prohibits:a,b"
     },
     {
         "rule": "prohibits:a,b",
@@ -12579,7 +12931,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #46 prohibits:a,b"
+        "id": "conditional #52 prohibits:a,b"
     },
     {
         "rule": "missing",
@@ -12605,7 +12957,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #47 missing"
+        "id": "conditional #53 missing"
     },
     {
         "rule": "missing",
@@ -12633,7 +12985,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #48 missing"
+        "id": "conditional #54 missing"
     },
     {
         "rule": "missing",
@@ -12661,7 +13013,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #49 missing"
+        "id": "conditional #55 missing"
     },
     {
         "rule": "missing_if:kind,card",
@@ -12693,7 +13045,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #50 missing_if:kind,card"
+        "id": "conditional #56 missing_if:kind,card"
     },
     {
         "rule": "missing_if:kind,card",
@@ -12725,7 +13077,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #51 missing_if:kind,card"
+        "id": "conditional #57 missing_if:kind,card"
     },
     {
         "rule": "missing_unless:kind,card",
@@ -12757,7 +13109,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #52 missing_unless:kind,card"
+        "id": "conditional #58 missing_unless:kind,card"
     },
     {
         "rule": "missing_unless:kind,card",
@@ -12789,7 +13141,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #53 missing_unless:kind,card"
+        "id": "conditional #59 missing_unless:kind,card"
     },
     {
         "rule": "missing_with:a",
@@ -12820,7 +13172,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #54 missing_with:a"
+        "id": "conditional #60 missing_with:a"
     },
     {
         "rule": "missing_with:a",
@@ -12850,7 +13202,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #55 missing_with:a"
+        "id": "conditional #61 missing_with:a"
     },
     {
         "rule": "missing_with_all:a,b",
@@ -12883,7 +13235,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #56 missing_with_all:a,b"
+        "id": "conditional #62 missing_with_all:a,b"
     },
     {
         "rule": "missing_with_all:a,b",
@@ -12915,7 +13267,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #57 missing_with_all:a,b"
+        "id": "conditional #63 missing_with_all:a,b"
     },
     {
         "rule": "present_if:kind,card",
@@ -12946,7 +13298,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #58 present_if:kind,card"
+        "id": "conditional #64 present_if:kind,card"
     },
     {
         "rule": "present_if:kind,card",
@@ -12978,7 +13330,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #59 present_if:kind,card"
+        "id": "conditional #65 present_if:kind,card"
     },
     {
         "rule": "present_if:kind,card",
@@ -13009,7 +13361,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #60 present_if:kind,card"
+        "id": "conditional #66 present_if:kind,card"
     },
     {
         "rule": "present_unless:kind,card",
@@ -13040,7 +13392,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #61 present_unless:kind,card"
+        "id": "conditional #67 present_unless:kind,card"
     },
     {
         "rule": "present_unless:kind,card",
@@ -13071,7 +13423,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #62 present_unless:kind,card"
+        "id": "conditional #68 present_unless:kind,card"
     },
     {
         "rule": "present_with:a",
@@ -13101,7 +13453,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #63 present_with:a"
+        "id": "conditional #69 present_with:a"
     },
     {
         "rule": "present_with:a",
@@ -13129,7 +13481,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #64 present_with:a"
+        "id": "conditional #70 present_with:a"
     },
     {
         "rule": "present_with_all:a,b",
@@ -13161,7 +13513,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #65 present_with_all:a,b"
+        "id": "conditional #71 present_with_all:a,b"
     },
     {
         "rule": "present_with_all:a,b",
@@ -13192,7 +13544,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #66 present_with_all:a,b"
+        "id": "conditional #72 present_with_all:a,b"
     },
     {
         "rule": "list",
@@ -13226,7 +13578,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #67 list"
+        "id": "conditional #73 list"
     },
     {
         "rule": "list",
@@ -13258,7 +13610,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #68 list"
+        "id": "conditional #74 list"
     },
     {
         "rule": "list",
@@ -13286,7 +13638,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #69 list"
+        "id": "conditional #75 list"
     },
     {
         "rule": "required_array_keys:name,email",
@@ -13325,7 +13677,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #70 required_array_keys:name,email"
+        "id": "conditional #76 required_array_keys:name,email"
     },
     {
         "rule": "required_array_keys:name,email",
@@ -13360,7 +13712,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #71 required_array_keys:name,email"
+        "id": "conditional #77 required_array_keys:name,email"
     },
     {
         "rule": "required_array_keys:0,1",
@@ -13397,7 +13749,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #72 required_array_keys:0,1"
+        "id": "conditional #78 required_array_keys:0,1"
     },
     {
         "rule": "required_array_keys:name",
@@ -13427,7 +13779,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #73 required_array_keys:name"
+        "id": "conditional #79 required_array_keys:name"
     },
     {
         "rule": "max_digits:3",
@@ -13457,7 +13809,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #74 max_digits:3"
+        "id": "conditional #80 max_digits:3"
     },
     {
         "rule": "max_digits:3",
@@ -13487,7 +13839,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #75 max_digits:3"
+        "id": "conditional #81 max_digits:3"
     },
     {
         "rule": "max_digits:3",
@@ -13517,7 +13869,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #76 max_digits:3"
+        "id": "conditional #82 max_digits:3"
     },
     {
         "rule": "max_digits:3",
@@ -13547,7 +13899,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #77 max_digits:3"
+        "id": "conditional #83 max_digits:3"
     },
     {
         "rule": "min_digits:2",
@@ -13577,7 +13929,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #78 min_digits:2"
+        "id": "conditional #84 min_digits:2"
     },
     {
         "rule": "min_digits:2",
@@ -13607,7 +13959,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #79 min_digits:2"
+        "id": "conditional #85 min_digits:2"
     },
     {
         "rule": "in_array:allowed.*",
@@ -13641,7 +13993,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #80 in_array:allowed.*"
+        "id": "conditional #86 in_array:allowed.*"
     },
     {
         "rule": "in_array:allowed.*",
@@ -13675,7 +14027,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #81 in_array:allowed.*"
+        "id": "conditional #87 in_array:allowed.*"
     },
     {
         "rule": "in_array:allowed.*",
@@ -13709,7 +14061,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #82 in_array:allowed.*"
+        "id": "conditional #88 in_array:allowed.*"
     },
     {
         "rule": "in_array:allowed.*",
@@ -13740,7 +14092,7 @@
             "messageVariants": []
         },
         "laravel": false,
-        "id": "conditional #83 in_array:allowed.*"
+        "id": "conditional #89 in_array:allowed.*"
     },
     {
         "rule": "required_with:meta.constructor",
@@ -13772,7 +14124,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #84 required_with:meta.constructor"
+        "id": "conditional #90 required_with:meta.constructor"
     },
     {
         "rule": "required_with:items.-1",
@@ -13805,7 +14157,7 @@
             "messageVariants": []
         },
         "laravel": true,
-        "id": "conditional #85 required_with:items.-1"
+        "id": "conditional #91 required_with:items.-1"
     },
     {
         "rule": "items.*.email => required|email",

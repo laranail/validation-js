@@ -52,3 +52,34 @@ it('states the real client-rule count in the CHANGELOG', function (): void {
         );
     }
 });
+
+it('exercises every client-checkable rule in the parity grid', function (): void {
+    // The exit criterion of the client-engine phase, made a guard: a rule the
+    // catalogue calls client-checkable but the grid never runs is an
+    // implementation nobody has compared with Laravel.
+    $cases = json_decode(
+        (string) file_get_contents(dirname(__DIR__).'/js/tests/fixtures/parity.json'),
+        true,
+        flags: JSON_THROW_ON_ERROR,
+    );
+
+    $exercised = [];
+
+    foreach ($cases as $case) {
+        foreach ($case['schema']['fields'] as $field) {
+            foreach ($field['client'] as $clientRule) {
+                $exercised[$clientRule['rule']] = true;
+            }
+        }
+    }
+
+    // Structural rules never produce a verdict to compare; the file family
+    // cannot ride JSON and is pinned by js/tests/files.test.ts instead.
+    $exempt = ['nullable', 'sometimes', 'file', 'mimes', 'extensions', 'image', 'dimensions'];
+
+    $unexercised = array_diff(RuleCatalogue::CLIENT, array_keys($exercised), $exempt);
+
+    expect(array_values($unexercised))->toBeEmpty(
+        'client rules absent from the parity grid: '.implode(', ', $unexercised),
+    );
+});
