@@ -97,6 +97,24 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         'decimal:0,2' => ['1.', '1', '.5', '1.23', '1.234'],
         'gt:5' => ['6', '5', '4'],
         'lte:5' => ['5', '6'],
+        // The date family — the biggest client-rule gap. Shapes the runner
+        // decides must match Laravel; anything outside its documented shape
+        // set degrades to undetermined and is excluded from this comparison.
+        'date' => ['2023-06-15', '2023-02-31', '2023-13-01', '2023-06-15 10:30', '2023-06-15T10:30:00Z', '6/15/2023', '15-06-2023', '2023/06/15', '20230615', 'not a date', '2023-6-5', '0000-01-01'],
+        'date_format:Y-m-d' => ['2023-06-15', '2023-6-5', '15/06/2023', '2023-02-31', 'nope'],
+        'date_format:d/m/Y' => ['15/06/2023', '2023-06-15', '31/02/2023'],
+        'date_format:Y-m-d H:i' => ['2023-06-15 10:30', '2023-06-15 25:30', '2023-06-15'],
+        'date_format:H:i' => ['10:30', '25:30', '10:75'],
+        'date_format:Y-m-d,Y/m/d' => ['2023-06-15', '2023/06/15', '15.06.2023'],
+        'after:2023-06-15' => ['2023-06-16', '2023-06-15', '2023-06-14', 'not a date'],
+        'after_or_equal:2023-06-15' => ['2023-06-15', '2023-06-14'],
+        'before:2023-06-15' => ['2023-06-14', '2023-06-15', '2023-06-16'],
+        'before_or_equal:2023-06-15' => ['2023-06-15', '2023-06-16'],
+        // P3's lesson from the PHP side, mirrored: date_equals compares the
+        // full timestamp, not the calendar day.
+        'date_equals:2023-06-15' => ['2023-06-15', '2023-06-15 08:00:00', '2023-06-16'],
+        'date|after:2023-06-15 10:00:00' => ['2023-06-15 10:00:01', '2023-06-15 09:59:59'],
+        'timezone' => ['Europe/Berlin', 'Africa/Nairobi', 'UTC', 'Mars/Olympus', 'europe/berlin', 'EST'],
     ];
 
     $exporter = new RuleExporter(app('translator'));
@@ -127,6 +145,9 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['confirmed', 'x', 'x'], ['confirmed', 'x', 'y'],
         // J10: comparisons decide numeric-ness ONCE per attribute; these are
         // the shapes where per-side promotion diverges.
+        // Date comparisons against a FIELD reference.
+        ['after:other', '2023-06-16', '2023-06-15'], ['after:other', '2023-06-14', '2023-06-15'],
+        ['before_or_equal:other', '2023-06-15', '2023-06-15'], ['before_or_equal:other', '2023-06-16', '2023-06-15'],
         ['gt:other', '10', '9'], ['gt:other', '9', '10'],
         ['gt:other', 'abcd', 'abc'], ['gt:other', 'abc', 'abcd'],
         ['gt:other', '10', 'abc'], ['gt:other', 'abc', '10'],

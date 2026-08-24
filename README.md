@@ -62,7 +62,7 @@ answer; the browser just saves the user a round trip on the things it can be sur
 
 ## How the parity claim is tested
 
-The PHP suite runs **Laravel's own validator** over a grid of 383 rule-and-value combinations,
+The PHP suite runs **Laravel's own validator** over a grid of 438 rule-and-value combinations,
 records its verdicts, and writes them to a fixture. The JavaScript suite then has to reproduce
 every one.
 

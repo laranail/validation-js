@@ -56,6 +56,10 @@ final class RuleCatalogue
         'ends_with', 'starts_with',
         // Numeric
         'decimal', 'multiple_of',
+        // Dates — the shape set the runner documents; everything outside it
+        // degrades to undetermined inside the checks themselves.
+        'date', 'date_format', 'after', 'after_or_equal', 'before',
+        'before_or_equal', 'date_equals', 'timezone',
     ];
 
     /**
@@ -133,6 +137,12 @@ final class RuleCatalogue
         'required_if_accepted' => ['other'],
         'required_if_declined' => ['other'],
         'confirmed' => ['other'],
+        // Named for the `:date` placeholder their messages interpolate.
+        'after' => ['date'],
+        'after_or_equal' => ['date'],
+        'before' => ['date'],
+        'before_or_equal' => ['date'],
+        'date_equals' => ['date'],
     ];
 
     /**

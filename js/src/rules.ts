@@ -1,3 +1,4 @@
+import { matchesFormat, parseDate } from './dates.ts';
 import { get, has } from './paths.ts';
 import type { Values } from './types.ts';
 
@@ -192,6 +193,11 @@ export const REQUIRED_PARAMS: Record<string, readonly string[]> = {
     not_regex: ['pattern'],
     same: ['other'],
     different: ['other'],
+    after: ['date'],
+    after_or_equal: ['date'],
+    before: ['date'],
+    before_or_equal: ['date'],
+    date_equals: ['date'],
     gt: ['value'],
     gte: ['value'],
     lt: ['value'],
@@ -209,6 +215,7 @@ export const REQUIRED_PARAMS: Record<string, readonly string[]> = {
  * wrong-verdict-from-missing-data as above, reached a different way.
  */
 export const REQUIRES_ANY_PARAM: ReadonlySet<string> = new Set([
+    'date_format',
     'in',
     'not_in',
     'starts_with',
@@ -395,6 +402,57 @@ export const checks = {
 
         return 'undetermined';
     },
+    // The date family. `date` decides the documented shape set and answers
+    // 'undetermined' outside it — a strtotime port would be a second
+    // implementation that disagrees at exactly the edges nobody tests.
+    date: (v) => {
+        const parsed = parseDate(v);
+        return parsed === 'unknown' ? 'undetermined' : parsed !== null;
+    },
+    date_format: (v, p) => {
+        if (typeof v !== 'string') return false;
+
+        // Laravel accepts several formats — any match passes. A format this
+        // runner cannot translate poisons only the REJECT verdict: passing
+        // one still passes, failing all with an untranslatable one among
+        // them rounds trip.
+        let sawUnknown = false;
+
+        for (const format of Object.values(p)) {
+            const matched = matchesFormat(v, format);
+            if (matched === true) return true;
+            if (matched === 'unknown') sawUnknown = true;
+        }
+
+        return sawUnknown ? 'undetermined' : false;
+    },
+    after: (v, p, c) => dateCompares(v, p.date, c, (d) => d > 0),
+    after_or_equal: (v, p, c) => dateCompares(v, p.date, c, (d) => d >= 0),
+    before: (v, p, c) => dateCompares(v, p.date, c, (d) => d < 0),
+    before_or_equal: (v, p, c) => dateCompares(v, p.date, c, (d) => d <= 0),
+    // The FULL timestamp, not the calendar day — the same divergence the
+    // PHP optimizer shipped as P3, mirrored here so neither half repeats it.
+    date_equals: (v, p, c) => dateCompares(v, p.date, c, (d) => d === 0),
+    timezone: (v, p) => {
+        // Parameters reach into DateTimeZone::listIdentifiers groups
+        // (per_country and friends) — regional filtering the browser's
+        // identifier list cannot reproduce.
+        if (Object.values(p).length > 0) return 'undetermined';
+        if (typeof v !== 'string') return false;
+
+        let zones: string[];
+        try {
+            zones = Intl.supportedValuesOf('timeZone');
+        } catch {
+            return 'undetermined';
+        }
+
+        if (v === 'UTC' || zones.includes(v)) return true;
+
+        // The two lists differ at the edges (legacy zones, links); a
+        // definite rejection needs certainty the value is in neither.
+        return /^[A-Za-z_+-]+(?:\/[A-Za-z0-9_+-]+){1,2}$/.test(v) ? false : 'undetermined';
+    },
     regex: (v, p) => toRegExp(p.pattern)?.test(str(v)) ?? true,
     not_regex: (v, p) => !(toRegExp(p.pattern)?.test(str(v)) ?? false),
 
@@ -538,6 +596,28 @@ function matchesCondition(params: Record<string, string> | string[], ctx: Contex
 
         return str(actual) === value;
     });
+}
+
+/**
+ * Laravel's getDateTimestamp for the comparison family: the parameter is a
+ * FIELD when one exists at that path, a literal otherwise. Relative phrases
+ * ('tomorrow') and unshaped strings answer 'undetermined'; an unparseable
+ * VALUE fails, as it does in Laravel.
+ */
+function dateCompares(
+    value: unknown,
+    name: string | undefined,
+    ctx: Context,
+    op: (difference: number) => boolean,
+): Verdict {
+    const fieldValue = name === undefined ? undefined : get(ctx.values, name);
+    const comparand = parseDate(fieldValue !== undefined ? fieldValue : name);
+    const own = parseDate(value);
+
+    if (own === null) return false;
+    if (own === 'unknown' || comparand === 'unknown' || comparand === null) return 'undetermined';
+
+    return op(own - comparand);
 }
 
 /** The last segment of a dotted path — `items.0.email` is `email`. */

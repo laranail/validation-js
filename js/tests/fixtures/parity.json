@@ -5861,6 +5861,1360 @@
         "id": "lte:5 #1"
     },
     {
+        "rule": "date",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #0"
+    },
+    {
+        "rule": "date",
+        "value": "2023-02-31",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #1"
+    },
+    {
+        "rule": "date",
+        "value": "2023-13-01",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #2"
+    },
+    {
+        "rule": "date",
+        "value": "2023-06-15 10:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #3"
+    },
+    {
+        "rule": "date",
+        "value": "2023-06-15T10:30:00Z",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #4"
+    },
+    {
+        "rule": "date",
+        "value": "6/15/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #5"
+    },
+    {
+        "rule": "date",
+        "value": "15-06-2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #6"
+    },
+    {
+        "rule": "date",
+        "value": "2023/06/15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #7"
+    },
+    {
+        "rule": "date",
+        "value": "20230615",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #8"
+    },
+    {
+        "rule": "date",
+        "value": "not a date",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #9"
+    },
+    {
+        "rule": "date",
+        "value": "2023-6-5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date #10"
+    },
+    {
+        "rule": "date",
+        "value": "0000-01-01",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date #11"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d #0"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "2023-6-5",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #1"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "15/06/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #2"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "2023-02-31",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #3"
+    },
+    {
+        "rule": "date_format:Y-m-d",
+        "value": "nope",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d #4"
+    },
+    {
+        "rule": "date_format:d/m/Y",
+        "value": "15/06/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "d/m/Y"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:d/m/Y #0"
+    },
+    {
+        "rule": "date_format:d/m/Y",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "d/m/Y"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:d/m/Y #1"
+    },
+    {
+        "rule": "date_format:d/m/Y",
+        "value": "31/02/2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "d/m/Y"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:d/m/Y #2"
+    },
+    {
+        "rule": "date_format:Y-m-d H:i",
+        "value": "2023-06-15 10:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d H:i #0"
+    },
+    {
+        "rule": "date_format:Y-m-d H:i",
+        "value": "2023-06-15 25:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d H:i #1"
+    },
+    {
+        "rule": "date_format:Y-m-d H:i",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d H:i #2"
+    },
+    {
+        "rule": "date_format:H:i",
+        "value": "10:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:H:i #0"
+    },
+    {
+        "rule": "date_format:H:i",
+        "value": "25:30",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:H:i #1"
+    },
+    {
+        "rule": "date_format:H:i",
+        "value": "10:75",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "H:i"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:H:i #2"
+    },
+    {
+        "rule": "date_format:Y-m-d,Y/m/d",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d",
+                                "Y/m/d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d,Y/m/d #0"
+    },
+    {
+        "rule": "date_format:Y-m-d,Y/m/d",
+        "value": "2023/06/15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d",
+                                "Y/m/d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_format:Y-m-d,Y/m/d #1"
+    },
+    {
+        "rule": "date_format:Y-m-d,Y/m/d",
+        "value": "15.06.2023",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_format",
+                            "params": [
+                                "Y-m-d",
+                                "Y/m/d"
+                            ]
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_format": "The :attribute field must match the format :format."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_format:Y-m-d,Y/m/d #2"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "after:2023-06-15 #0"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:2023-06-15 #1"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "2023-06-14",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:2023-06-15 #2"
+    },
+    {
+        "rule": "after:2023-06-15",
+        "value": "not a date",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:2023-06-15 #3"
+    },
+    {
+        "rule": "after_or_equal:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after_or_equal": "The :attribute field must be a date after or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "after_or_equal:2023-06-15 #0"
+    },
+    {
+        "rule": "after_or_equal:2023-06-15",
+        "value": "2023-06-14",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after_or_equal": "The :attribute field must be a date after or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after_or_equal:2023-06-15 #1"
+    },
+    {
+        "rule": "before:2023-06-15",
+        "value": "2023-06-14",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before": "The :attribute field must be a date before :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "before:2023-06-15 #0"
+    },
+    {
+        "rule": "before:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before": "The :attribute field must be a date before :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before:2023-06-15 #1"
+    },
+    {
+        "rule": "before:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before": "The :attribute field must be a date before :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before:2023-06-15 #2"
+    },
+    {
+        "rule": "before_or_equal:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "before_or_equal:2023-06-15 #0"
+    },
+    {
+        "rule": "before_or_equal:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before_or_equal:2023-06-15 #1"
+    },
+    {
+        "rule": "date_equals:2023-06-15",
+        "value": "2023-06-15",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_equals",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_equals": "The :attribute field must be a date equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date_equals:2023-06-15 #0"
+    },
+    {
+        "rule": "date_equals:2023-06-15",
+        "value": "2023-06-15 08:00:00",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_equals",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_equals": "The :attribute field must be a date equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_equals:2023-06-15 #1"
+    },
+    {
+        "rule": "date_equals:2023-06-15",
+        "value": "2023-06-16",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date_equals",
+                            "params": {
+                                "date": "2023-06-15"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date_equals": "The :attribute field must be a date equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date_equals:2023-06-15 #2"
+    },
+    {
+        "rule": "date|after:2023-06-15 10:00:00",
+        "value": "2023-06-15 10:00:01",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        },
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15 10:00:00"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date.",
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "date|after:2023-06-15 10:00:00 #0"
+    },
+    {
+        "rule": "date|after:2023-06-15 10:00:00",
+        "value": "2023-06-15 09:59:59",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "date",
+                            "params": []
+                        },
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "2023-06-15 10:00:00"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.date": "The :attribute field must be a valid date.",
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "date|after:2023-06-15 10:00:00 #1"
+    },
+    {
+        "rule": "timezone",
+        "value": "Europe/Berlin",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "timezone #0"
+    },
+    {
+        "rule": "timezone",
+        "value": "Africa/Nairobi",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "timezone #1"
+    },
+    {
+        "rule": "timezone",
+        "value": "UTC",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "timezone #2"
+    },
+    {
+        "rule": "timezone",
+        "value": "Mars/Olympus",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "timezone #3"
+    },
+    {
+        "rule": "timezone",
+        "value": "europe/berlin",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "timezone #4"
+    },
+    {
+        "rule": "timezone",
+        "value": "EST",
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "timezone",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.timezone": "The :attribute field must be a valid timezone."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "timezone #5"
+    },
+    {
         "rule": "same:other",
         "value": "x",
         "data": {
@@ -6270,6 +7624,130 @@
         },
         "laravel": false,
         "id": "confirmed (\"x\" vs \"y\")"
+    },
+    {
+        "rule": "after:other",
+        "value": "2023-06-16",
+        "data": {
+            "field": "2023-06-16",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "after:other (\"2023-06-16\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "after:other",
+        "value": "2023-06-14",
+        "data": {
+            "field": "2023-06-14",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "after",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.after": "The :attribute field must be a date after :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "after:other (\"2023-06-14\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "before_or_equal:other",
+        "value": "2023-06-15",
+        "data": {
+            "field": "2023-06-15",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "before_or_equal:other (\"2023-06-15\" vs \"2023-06-15\")"
+    },
+    {
+        "rule": "before_or_equal:other",
+        "value": "2023-06-16",
+        "data": {
+            "field": "2023-06-16",
+            "other": "2023-06-15"
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "field": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "before_or_equal",
+                            "params": {
+                                "date": "other"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "field.before_or_equal": "The :attribute field must be a date before or equal to :date."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "before_or_equal:other (\"2023-06-16\" vs \"2023-06-15\")"
     },
     {
         "rule": "gt:other",
