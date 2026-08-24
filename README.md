@@ -111,6 +111,7 @@ whole forms to the server until both halves were upgraded in step. See
 ## <a name="documentation"></a>Documentation
 
 - [Schema](docs/schema.md) — the contract both halves implement
+- [Transport](docs/transport.md) — the three delivery tiers, the validate endpoint, and the remote channel
 - [Rules](docs/tools/rules.md) — what runs in the browser, what does not, and why
 - [Upgrading](UPGRADING.md) — why the two packages upgrade separately, and what would change that
 
