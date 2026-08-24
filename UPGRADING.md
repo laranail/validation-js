@@ -77,6 +77,13 @@ allow-list, and the comparison family reproduces `shouldBeNumeric`. Each change 
 browser verdict onto the server's side of a previously measured disagreement — if input now
 fails client-side, it was already failing server-side.
 
+### The form runtime is additive
+
+`createValidator`, `createHeadless`, the renderer/resolver/event surfaces and the `/regex`
+subpath are all new API; nothing existing changed shape. The engine's `validate()` gained an
+optional third options argument (per-instance rules and message fallbacks) — additive, and the
+built-in rule table remains shared and read-only.
+
 ### Checks are three-valued and may be asynchronous
 
 `Check` returns `boolean | 'undetermined' | Promise<...>`. The sync `validate()` treats a

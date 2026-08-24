@@ -62,6 +62,19 @@ answer; the browser just saves the user a round trip on the things it can be sur
 
 ## How the parity claim is tested
 
+## Form runtime
+
+The engine gained its form runtime: `createValidator(form, schema, options)` binds a real form
+with debounced eager validation, an injectable renderer (`ClassMapRenderer` over plain-data
+presets — `bootstrap5`, `tailwind`, `bulma`, `vanilla`), input-widget resolvers, a dual event
+channel (instance `on()` plus bubbling `laranail:*` DOM events), and core-owned accessibility:
+`aria-invalid`, non-destructive `aria-describedby`, a polite live region, and a `role="alert"`
+summary with focus management. `createHeadless(schema)` is the DOM-free facade;
+`@laranail/validation-js/regex` ships the fluent regex builder, PHP-symmetric. Everything is
+instance-scoped — two validators coexist on one page, attach is idempotent, and `destroy()` is
+leak-free, all pinned by the Playwright suite. The engine stays zero-dependency with a CI
+bundle budget (Layer 0 ≤ 8 KB min+gzip).
+
 The PHP suite runs **Laravel's own validator** over a grid of 511 rule-and-value combinations,
 records its verdicts, and writes them to a fixture. The JavaScript suite then has to reproduce
 every one.
