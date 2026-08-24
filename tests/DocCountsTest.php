@@ -65,10 +65,18 @@ it('exercises every client-checkable rule in the parity grid', function (): void
 
     $exercised = [];
 
-    foreach ($cases as $case) {
-        foreach ($case['schema']['fields'] as $field) {
-            foreach ($field['client'] as $clientRule) {
-                $exercised[$clientRule['rule']] = true;
+    foreach (is_array($cases) ? $cases : [] as $case) {
+        $fields = is_array($case) ? ($case['schema']['fields'] ?? null) : null;
+
+        foreach (is_array($fields) ? $fields : [] as $field) {
+            $client = is_array($field) ? ($field['client'] ?? null) : null;
+
+            foreach (is_array($client) ? $client : [] as $clientRule) {
+                $rule = is_array($clientRule) ? ($clientRule['rule'] ?? null) : null;
+
+                if (is_string($rule)) {
+                    $exercised[$rule] = true;
+                }
             }
         }
     }
