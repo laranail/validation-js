@@ -1,11 +1,20 @@
 {
     "name": "laranail/validation-js",
     "description": "Export Laravel validation rules as a JSON schema, and validate against it in the browser with no round trip.",
-    "keywords": ["laravel", "validation", "javascript", "client-side"],
+    "keywords": [
+        "laravel",
+        "validation",
+        "javascript",
+        "client-side"
+    ],
     "homepage": "https://opensource.simtabi.com/products/laranail/validation-js",
     "license": "MIT",
     "authors": [
-        { "name": "Imani Manyara", "email": "imani@simtabi.com", "role": "Maintainer" }
+        {
+            "name": "Imani Manyara",
+            "email": "imani@simtabi.com",
+            "role": "Maintainer"
+        }
     ],
     "support": {
         "issues": "https://github.com/laranail/validation-js/issues",
@@ -13,16 +22,26 @@
         "docs": "https://opensource.simtabi.com/documentation/laranail/validation-js/"
     },
     "repositories": [
-        { "type": "vcs", "url": "https://github.com/laranail/validation" },
-        { "type": "vcs", "url": "https://github.com/laranail/package-tools" },
-        { "type": "vcs", "url": "https://github.com/laranail/console" }
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/validation"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/package-tools"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laranail/console"
+        }
     ],
     "require": {
         "php": "^8.4.1 || ^8.5",
         "illuminate/contracts": "^13.0",
         "illuminate/support": "^13.0",
         "illuminate/validation": "^13.0",
-        "laranail/package-tools": "^0.1"
+        "laranail/package-tools": "^0.1",
+        "laranail/console": "^0.1"
     },
     "require-dev": {
         "larastan/larastan": "^3.9.3",
@@ -35,10 +54,18 @@
         "phpstan/phpstan": "^2.1"
     },
     "suggest": {
-        "laranail/validation": "^0.1 — export straight from a RuleSet instead of a plain rules array."
+        "laranail/validation": "^0.1 \u2014 export straight from a RuleSet instead of a plain rules array."
     },
-    "autoload": { "psr-4": { "Simtabi\\Laranail\\ValidationJs\\": "src/" } },
-    "autoload-dev": { "psr-4": { "Simtabi\\Laranail\\ValidationJs\\Tests\\": "tests/" } },
+    "autoload": {
+        "psr-4": {
+            "Simtabi\\Laranail\\ValidationJs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Simtabi\\Laranail\\ValidationJs\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "test": "vendor/bin/pest",
         "phpstan": "vendor/bin/phpstan analyse",
@@ -46,11 +73,20 @@
     },
     "config": {
         "sort-packages": true,
-        "allow-plugins": { "pestphp/pest-plugin": true, "phpstan/extension-installer": true }
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
-        "laravel": { "providers": ["Simtabi\\Laranail\\ValidationJs\\ValidationJsServiceProvider"] },
-        "branch-alias": { "dev-main": "0.1.x-dev" }
+        "laravel": {
+            "providers": [
+                "Simtabi\\Laranail\\ValidationJs\\ValidationJsServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true
