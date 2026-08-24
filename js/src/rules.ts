@@ -476,6 +476,42 @@ export const checks = {
 
         return 'undetermined';
     },
+    // The file pre-flight tier — ADVISORY by design. A browser knows a
+    // file's name, declared type and byte size; only the server reads the
+    // bytes. So these fail fast on the obviously-wrong pick (the UX win) and
+    // answer 'undetermined' on a match, because a green tick from a
+    // NAME-derived check is precisely the lie the server then exposes.
+    file: (v) => (isFile(v) ? true : false),
+    mimes: (v, p) => {
+        if (!isFile(v)) return false;
+
+        const name = (v as { name?: string }).name ?? '';
+        const extension = name.includes('.') ? (name.split('.').pop() ?? '').toLowerCase() : '';
+
+        // Laravel's mimes speaks EXTENSIONS ('jpg'), guessed from content;
+        // the browser's closest honest signal is the filename's own.
+        return Object.values(p).some((allowed) => allowed.toLowerCase() === extension)
+            ? 'undetermined'
+            : false;
+    },
+    extensions: (v, p) => {
+        if (!isFile(v)) return false;
+
+        const name = (v as { name?: string }).name ?? '';
+        const extension = name.includes('.') ? (name.split('.').pop() ?? '').toLowerCase() : '';
+
+        return Object.values(p).some((allowed) => allowed.toLowerCase() === extension)
+            ? 'undetermined'
+            : false;
+    },
+    image: (v) => {
+        if (!isFile(v)) return false;
+
+        const type = (v as { type?: string }).type ?? '';
+
+        return type.startsWith('image/') ? 'undetermined' : false;
+    },
+
     // The date family. `date` decides the documented shape set and answers
     // 'undetermined' outside it — a strtotime port would be a second
     // implementation that disagrees at exactly the edges nobody tests.

@@ -70,6 +70,10 @@ final class RuleCatalogue
         // Collections
         'list', 'required_array_keys', 'max_digits', 'min_digits',
         'in_array', 'distinct',
+        // File pre-flight — advisory: the runner fails the obviously-wrong
+        // pick from name/declared-type/size and answers undetermined on a
+        // match, because only the server reads the bytes.
+        'file', 'mimes', 'extensions', 'image',
     ];
 
     /**
@@ -81,14 +85,16 @@ final class RuleCatalogue
      * - `unique` / `exists` need the database.
      * - `active_url` needs DNS.
      * - `current_password` needs the session and a hash comparison.
-     * - `dimensions` / `image` / `mimes` / `mimetypes` / `extensions` need to
-     *   read the file, which the browser can only approximate from a name.
+     * - `dimensions` needs the decoded image (async — a later phase) and
+     *   `mimetypes` the sniffed content; their siblings moved to the client
+     *   as ADVISORY checks that fail fast and never green-tick, since a
+     *   browser only approximates a file from its name and declared type.
      *
      * @var list<string>
      */
     public const array SERVER = [
         'unique', 'exists', 'active_url', 'current_password',
-        'dimensions', 'image', 'mimes', 'mimetypes', 'extensions', 'file',
+        'dimensions', 'mimetypes',
     ];
 
     /**

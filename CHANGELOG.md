@@ -61,7 +61,7 @@ reference the release-planning audit's register.
   cannot decide never masquerade as passing.
 - `RuleCatalogue`, classifying rules as client-checkable or server-only, where anything
   unrecognised — custom, package, or future-Laravel — defaults to the server.
-- `@laranail/validation-js`, a zero-dependency TypeScript runner implementing 92 rules.
+- `@laranail/validation-js`, a zero-dependency TypeScript runner implementing 96 rules.
 - Wildcard support. `items.*.email` is expanded against the submitted data by the runner, which
   has it, rather than at export time, which does not; failures name the concrete path. Nested
   patterns work, an empty collection expands to nothing (matching Laravel), and cross-field
