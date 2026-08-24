@@ -289,6 +289,37 @@ it('writes the parity fixture from Laravel’s own verdicts', function (): void 
         ['items.*.qty', 'required|numeric|min:2', ['items' => [['qty' => '3']]]],
         ['items.*.qty', 'required|numeric|min:2', ['items' => [['qty' => '1']]]],
         ['rows.*.cols.*.v', 'required', ['rows' => [['cols' => [['v' => 'x'], ['v' => '']]]]]],
+        // Cross-field params carrying the wildcard. Laravel substitutes the
+        // indices captured while expanding the ATTRIBUTE into the parameters
+        // (replaceAsterisksInParameters), so row 0 compares against row 0 —
+        // the canonical row-wise idiom. A runner that leaves the literal `*`
+        // in the parameter can resolve nothing and fails every row.
+        ['items.*.password', 'same:items.*.password_confirmation',
+            ['items' => [['password' => 'a', 'password_confirmation' => 'a'], ['password' => 'b', 'password_confirmation' => 'b']]]],
+        ['items.*.password', 'same:items.*.password_confirmation',
+            ['items' => [['password' => 'a', 'password_confirmation' => 'a'], ['password' => 'b', 'password_confirmation' => 'c']]]],
+        ['items.*.max', 'gte:items.*.min',
+            ['items' => [['min' => '2', 'max' => '5'], ['min' => '4', 'max' => '3']]]],
+        ['items.*.b', 'required_if:items.*.a,yes',
+            ['items' => [['a' => 'yes'], ['a' => 'no']]]],
+        ['items.*.b', 'required_if:items.*.a,yes',
+            ['items' => [['a' => 'yes', 'b' => 'x'], ['a' => 'no']]]],
+        // A DOTLESS cross-field reference inside a wildcard resolves from the
+        // ROOT, not the row — Laravel's getValue() is Arr::get($data, $param)
+        // with no row awareness. The row-relative meaning is spelled with the
+        // wildcard path above; resolving the bare name against the row
+        // green-ticks the Laravel-wrong spelling.
+        ['items.*.password', 'same:password_confirmation',
+            ['password_confirmation' => 'x',
+                'items' => [['password' => 'x', 'password_confirmation' => 'y']]]],
+        ['items.*.password', 'same:password_confirmation',
+            ['password_confirmation' => 'x',
+                'items' => [['password' => 'y', 'password_confirmation' => 'x']]]],
+        // `confirmed` inside a wildcard appends _confirmation to the CONCRETE
+        // path — items.0.password_confirmation — which happens to live in the
+        // row; the mechanism is the full-path suffix, not row-sibling search.
+        ['items.*.password', 'confirmed',
+            ['items' => [['password' => 'x', 'password_confirmation' => 'x'], ['password' => 'y', 'password_confirmation' => 'z']]]],
     ] as $index => [$field, $rule, $data]) {
         $cases[] = [
             'rule' => "{$field} => {$rule}",

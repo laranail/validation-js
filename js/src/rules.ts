@@ -1,4 +1,4 @@
-import { get, has, sibling } from './paths.ts';
+import { get, has } from './paths.ts';
 import type { Values } from './types.ts';
 
 /**
@@ -373,8 +373,10 @@ export const checks = {
 
     accepted: acceptedCheck,
     declined: declinedCheck,
-    confirmed: (v, p, c) =>
-        str(v) === str(other(c, p.other ?? `${basename(c.field)}_confirmation`)),
+    // The default counterpart is the FULL concrete path plus `_confirmation`
+    // — items.0.password looks for items.0.password_confirmation — which is
+    // Laravel's own spelling: $attribute.'_confirmation', resolved from root.
+    confirmed: (v, p, c) => str(v) === str(other(c, p.other ?? `${c.field}_confirmation`)),
     same: (v, p, c) => str(v) === str(other(c, p.other)),
     different: (v, p, c) => str(v) !== str(other(c, p.other)),
 
@@ -417,14 +419,19 @@ function decimals(value: string): number {
 }
 
 /**
- * Another field's value, resolved relative to the current row.
+ * Another field's value, resolved from the ROOT of the data — Laravel's
+ * `getValue()` is `Arr::get($this->data, $parameter)` with no row awareness.
  *
- * Inside `items.0.password`, `same:password_confirmation` means the sibling in
- * the SAME row. Resolving at the top level would compare every row against one
- * shared field, which is not what the form means.
+ * Inside `items.0.password`, `same:password_confirmation` therefore reads the
+ * TOP-LEVEL `password_confirmation`, green-ticking nothing Laravel would
+ * reject. The row-relative meaning is spelled `same:items.*.password_confirmation`,
+ * whose `*` the engine substitutes with the row's own index before this
+ * function ever sees it (see paths.ts `substituteAsterisks`). Resolving the
+ * bare name against the row first — the previous behaviour — accepted the
+ * Laravel-wrong spelling and diverged on the Laravel-right one.
  */
 function other(ctx: Context, name: string | undefined): unknown {
-    return name === undefined ? undefined : get(ctx.values, sibling(ctx.field, name, ctx.values));
+    return name === undefined ? undefined : get(ctx.values, name);
 }
 
 /** Every parameter as a field name — for the rules whose params are all fields. */

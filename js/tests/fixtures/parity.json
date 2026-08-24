@@ -9041,5 +9041,315 @@
         },
         "laravel": false,
         "id": "wildcard #6 rows.*.cols.*.v"
+    },
+    {
+        "rule": "items.*.password => same:items.*.password_confirmation",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "password": "a",
+                    "password_confirmation": "a"
+                },
+                {
+                    "password": "b",
+                    "password_confirmation": "b"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "items.*.password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #7 items.*.password"
+    },
+    {
+        "rule": "items.*.password => same:items.*.password_confirmation",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "password": "a",
+                    "password_confirmation": "a"
+                },
+                {
+                    "password": "b",
+                    "password_confirmation": "c"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "items.*.password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #8 items.*.password"
+    },
+    {
+        "rule": "items.*.max => gte:items.*.min",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "min": "2",
+                    "max": "5"
+                },
+                {
+                    "min": "4",
+                    "max": "3"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.max": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "gte",
+                            "params": {
+                                "value": "items.*.min"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.max.gte": "The :attribute field must be greater than or equal to :value characters."
+            },
+            "messageVariants": {
+                "items.*.max.gte": {
+                    "array": "The :attribute field must have :value items or more.",
+                    "file": "The :attribute field must be greater than or equal to :value kilobytes.",
+                    "numeric": "The :attribute field must be greater than or equal to :value.",
+                    "string": "The :attribute field must be greater than or equal to :value characters."
+                }
+            }
+        },
+        "laravel": false,
+        "id": "wildcard #9 items.*.max"
+    },
+    {
+        "rule": "items.*.b => required_if:items.*.a,yes",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "a": "yes"
+                },
+                {
+                    "a": "no"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.b": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "items.*.a",
+                                "1": "yes"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.b.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #10 items.*.b"
+    },
+    {
+        "rule": "items.*.b => required_if:items.*.a,yes",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "a": "yes",
+                    "b": "x"
+                },
+                {
+                    "a": "no"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.b": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "required_if",
+                            "params": {
+                                "other": "items.*.a",
+                                "1": "yes"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.b.required_if": "The :attribute field is required when :other is :value."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #11 items.*.b"
+    },
+    {
+        "rule": "items.*.password => same:password_confirmation",
+        "value": null,
+        "data": {
+            "password_confirmation": "x",
+            "items": [
+                {
+                    "password": "x",
+                    "password_confirmation": "y"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": true,
+        "id": "wildcard #12 items.*.password"
+    },
+    {
+        "rule": "items.*.password => same:password_confirmation",
+        "value": null,
+        "data": {
+            "password_confirmation": "x",
+            "items": [
+                {
+                    "password": "y",
+                    "password_confirmation": "x"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "same",
+                            "params": {
+                                "other": "password_confirmation"
+                            }
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.same": "The :attribute field must match :other."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #13 items.*.password"
+    },
+    {
+        "rule": "items.*.password => confirmed",
+        "value": null,
+        "data": {
+            "items": [
+                {
+                    "password": "x",
+                    "password_confirmation": "x"
+                },
+                {
+                    "password": "y",
+                    "password_confirmation": "z"
+                }
+            ]
+        },
+        "schema": {
+            "version": 1,
+            "fields": {
+                "items.*.password": {
+                    "attribute": null,
+                    "client": [
+                        {
+                            "rule": "confirmed",
+                            "params": []
+                        }
+                    ],
+                    "server": []
+                }
+            },
+            "messages": {
+                "items.*.password.confirmed": "The :attribute field confirmation does not match."
+            },
+            "messageVariants": []
+        },
+        "laravel": false,
+        "id": "wildcard #14 items.*.password"
     }
 ]

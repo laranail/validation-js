@@ -1,6 +1,6 @@
 import { checks, hasRequiredParams, IMPLICIT, isFileValue, numeric } from './rules.ts';
 import type { Check, Context } from './rules.ts';
-import { expand, get, has, sibling } from './paths.ts';
+import { capturedKeys, expand, get, has, substituteAsterisks } from './paths.ts';
 import type { Failure, Result, Schema, Values } from './types.ts';
 
 /**
@@ -55,6 +55,12 @@ export function validate(values: Values, schema: Schema): Result {
             const value = get(values, field);
             const rules = definition.client;
 
+            // The keys the pattern's wildcards matched for THIS field. Laravel
+            // substitutes them into every rule parameter of the expanded
+            // attribute (replaceAsterisksInParameters), which is what makes
+            // `same:items.*.password_confirmation` mean this row's field.
+            const keys = capturedKeys(pattern, field);
+
             // `nullable` and `sometimes` are structural: they decide whether the
             // OTHER rules run at all, so they are resolved before the loop rather
             // than checked in it.
@@ -106,9 +112,18 @@ export function validate(values: Values, schema: Schema): Result {
                 // identically through Object.values() and named lookups — the
                 // three functions below are typed on the object form, and the
                 // published .d.ts was unsound while the union leaked through.
-                const params: Record<string, string> = Array.isArray(rawParams)
+                let params: Record<string, string> = Array.isArray(rawParams)
                     ? Object.fromEntries(rawParams.map((value, index) => [String(index), value]))
                     : rawParams;
+
+                if (keys.length > 0) {
+                    params = Object.fromEntries(
+                        Object.entries(params).map(([name, parameter]) => [
+                            name,
+                            substituteAsterisks(parameter, keys),
+                        ]),
+                    );
+                }
 
                 // A rule with no implementation must not silently pass: that is
                 // the same lie as treating a server rule as valid. It becomes
@@ -240,10 +255,10 @@ export function interpolate(
     }
 
     if (READS_DEPENDENT_VALUE.has(rule) && params.other !== undefined) {
-        return message.replaceAll(
-            ':value',
-            displayValue(get(ctx.values, sibling(ctx.field, params.other, ctx.values))),
-        );
+        // Root resolution, like the rules themselves: the parameter reaching
+        // here already carries the row's substituted index when it named a
+        // wildcard path.
+        return message.replaceAll(':value', displayValue(get(ctx.values, params.other)));
     }
 
     for (const [key, param] of Object.entries(params)) {
