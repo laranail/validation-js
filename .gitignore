@@ -61,3 +61,8 @@ node_modules/
 # Mutation testing
 /.stryker-tmp
 /reports
+
+# Playwright artifacts
+test-results/
+playwright-report/
+js/e2e/.bundle/
