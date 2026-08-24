@@ -6,9 +6,16 @@ import type { Page } from '@playwright/test';
  * express intent as plain browser code — the same code a consumer writes.
  */
 export async function bootPage(page: Page, html: string): Promise<void> {
-    await page.setContent(
-        `<!DOCTYPE html><html lang="en"><head><title>Fixture</title></head><body><main><h1>Fixture</h1>${html}</main></body></html>`,
+    const document = `<!DOCTYPE html><html lang="en"><head><title>Fixture</title></head><body><main><h1>Fixture</h1>${html}</main></body></html>`;
+
+    // A REAL origin, not setContent's about:blank: a relative fetch('/…')
+    // has no base to resolve against on about:blank and throws — which
+    // made every transport spec quietly exercise the unreachable path —
+    // and document.cookie is a SecurityError there too.
+    await page.route('https://fixture.test/', (route) =>
+        route.fulfill({ contentType: 'text/html', body: document }),
     );
+    await page.goto('https://fixture.test/');
     await page.addScriptTag({ path: 'js/e2e/.bundle/laranail.js' });
 }
 

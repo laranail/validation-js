@@ -3,7 +3,8 @@
     "files": {
         "includes": [
             "js/**",
-            "!js/tests/fixtures/**"
+            "!js/tests/fixtures/**",
+            "!js/e2e/.bundle/**"
         ]
     },
     "formatter": {
