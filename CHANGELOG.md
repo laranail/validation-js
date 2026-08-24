@@ -9,6 +9,38 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- **Framework adapters (JS):** `@laranail/validation-js/react` (a `useValidation` hook in the
+  react-hook-form shape — `getFieldProps`, `handleSubmit`, `useSyncExternalStore` state,
+  StrictMode-double-mount safe) and `…/vue` (a VeeValidate-shaped Vue 3 composable over a
+  `shallowRef` snapshot swap). Both wrap the new stateful **`HeadlessForm`** facade — values
+  in, `{ valid, errors, touched, validating, undetermined }` out, `subscribe`/`snapshot` with
+  stable identity, `setErrors` (server-422 merge), `reset`, latest-wins `validateField`, and
+  optional transport resolution of undetermined fields. React and Vue are optional peer
+  dependencies; Svelte is deferred by decision, not omission.
+- **Bridges (JS):** `…/autoboot` — declarative wiring for server-rendered pages
+  (`form[data-laranail]` + schema islands, idempotent re-scan on `htmx:afterSwap`,
+  `turbo:load`, `turbo:frame-load`, `livewire:navigated`, destroy-on-removal) — and
+  `…/alpine` — an Alpine plugin registering the `laranailForm` component and `$laranail`
+  magic.
+- **Form runtime (JS):** `validate({ only })` wizard-step narrowing (everything evaluates,
+  one step reports), `setErrors()` mapping a real submit's 422 through the same renderer and
+  aria plumbing, `refresh()` forgetting removed repeater rows instead of leaking them, and
+  progressive enhancement — `novalidate` is set only once the runtime attaches and restored
+  on destroy, so a page whose script never loads keeps native constraints.
+- **Debug (JS):** `…/debug` — `attachDebug(validator)` console tracing with per-verdict
+  collapsed groups and a plain-language reason for every undetermined field; a separate
+  subpath so it tree-shakes out by absence.
+- **Console (PHP):** `laranail::validation-js.doctor` (exporter↔runner schema-major agreement,
+  exact catalogue↔engine rule-set equality, parity-fixture health, endpoint allow-list
+  sanity) and `laranail::validation-js.parity` (the CI fixture-currency job made local —
+  regenerate and diff before a sister-repo tag turns into a red CI wave).
+- **Guards:** the §7.2 catalogue-drift test pins `RuleCatalogue::CLIENT` and the JS engine's
+  `checks` map to exact set agreement, and a live-registry naming test pins every registered
+  surface (commands, Blade prefix, route names, config key) to the org convention.
+- Docs: the full tree — installation, getting-started, configuration, architecture (including
+  the Precognition-reuse, Filament and Nova verdicts), release, per-subsystem reference under
+  `docs/tools/`, and ten task recipes.
+
 - **Transport (PHP):** three delivery tiers over one `SchemaFactory` path — the
   `@laranailValidation` directive and `<x-laranail-validation-js::schema>` component render an
   inert JSON data island (CSP-safe `type="application/json"`, `JSON_HEX_*`-encoded, optional
