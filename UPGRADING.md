@@ -49,7 +49,20 @@ read has disappeared.
 
 Full detail in [`docs/schema.md`](docs/schema.md#shipping-the-two-halves-apart).
 
-## Unreleased (the 1.0 line)
+## v1.0.0 - 2026-08-24
+
+The SemVer graduation. From this release the [stability contract](README.md#stability) is
+binding: stable surfaces break only in a major, deprecations live at least one minor, and the
+wire schema's additive-forever promise starts here, at schema v1, from the clean format below.
+
+**Nothing breaks between v0.2.0 and v1.0.0** — the transport tiers, the headless form, the
+adapters, the bridges and the console commands are all additive. The entries below cover the
+0.1 → 1.0 line as a whole for anyone arriving from a pre-0.2 build.
+
+Two loosenings worth knowing, neither requiring action: `engines.node` is now `>= 18` (the
+package ships built ESM; Node 22.6's type-stripping is only needed to develop the package
+itself), and the browser floor is declared explicitly — Safari/iOS 15.4+, Chrome/Edge 93+,
+Firefox 92+ (`browserslist`; see docs/installation.md).
 
 ### The wire schema is reset clean
 

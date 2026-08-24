@@ -7,6 +7,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+## 1.0.0 - 2026-08-24
+
+The 1.0 major: both halves graduate to real SemVer, the
+[stability contract](README.md#stability) becomes binding, and the wire schema's
+additive-forever promise starts from this clean v1 baseline. No breaking changes against
+v0.2.0 — see UPGRADING.md for the whole 0.1 → 1.0 line.
+
 ### Added
 
 - **Framework adapters (JS):** `@laranail/validation-js/react` (a `useValidation` hook in the
@@ -40,6 +47,23 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Docs: the full tree — installation, getting-started, configuration, architecture (including
   the Precognition-reuse, Filament and Nova verdicts), release, per-subsystem reference under
   `docs/tools/`, and ten task recipes.
+- Release mechanics: a tag-driven `release.yml` (CHANGELOG-sourced release body, npm publish
+  with `--provenance` from CI) and `update-changelog.yml` (backfills hand-authored releases,
+  guarded against duplicating what release.yml already sourced). The Composer dist is lean —
+  `js/tests/`, `js/e2e/`, tooling configs and scripts are export-ignored.
+- A stability boundary: every PHP class is stable-listed or `@internal`, enforced by a test;
+  the README states the contract and the deprecation policy.
+- A declared browser floor — Safari/iOS 15.4+, Chrome/Edge 93+, Firefox 92+ (`browserslist`),
+  set by `Object.hasOwn`. The two regex lookbehinds were refactored away: a lookbehind literal
+  is a parse-time SyntaxError on Safari < 16.4, failing the whole module instead of one rule.
+- `engines.node` relaxed to `>= 18` for consumers (built ESM); Node ≥ 22.6 remains a
+  dev-only requirement for the package's own test suite.
+
+### Changed
+
+- `composer.json` graduates: Simtabi LLC organization author (parity with
+  `laranail/validation`), `branch-alias` `1.0.x-dev`, and the `laranail/validation`
+  dev/suggest constraint moves to `^1.0`.
 
 - **Transport (PHP):** three delivery tiers over one `SchemaFactory` path — the
   `@laranailValidation` directive and `<x-laranail-validation-js::schema>` component render an
