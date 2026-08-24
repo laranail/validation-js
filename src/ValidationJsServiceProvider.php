@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Simtabi\Laranail\Package\Tools\Package;
 use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
+use Simtabi\Laranail\ValidationJs\Commands\DoctorCommand;
 use Simtabi\Laranail\ValidationJs\Commands\ExportCommand;
+use Simtabi\Laranail\ValidationJs\Commands\ParityCommand;
 use Simtabi\Laranail\ValidationJs\Http\SchemaController;
 use Simtabi\Laranail\ValidationJs\Http\ValidateController;
 
@@ -54,7 +56,7 @@ class ValidationJsServiceProvider extends PackageServiceProvider
                 $this->package->getNamespacedPublishTag('config'),
             );
 
-            $this->commands([ExportCommand::class]);
+            $this->commands([ExportCommand::class, DoctorCommand::class, ParityCommand::class]);
         }
     }
 
