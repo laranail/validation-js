@@ -26,6 +26,8 @@ use Simtabi\Laranail\ValidationJs\RemoteRegistry;
  * `Precognition-Validate-Only` narrowing the REPORTED fields, exactly as
  * Precognition does, so cross-field rules see the whole submission. The
  * monitoring event carries field names and outcome — never values.
+ *
+ * @internal Routed, never called directly; not part of the 1.0 stable API.
  */
 final readonly class ValidateController
 {

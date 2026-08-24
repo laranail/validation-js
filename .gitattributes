@@ -29,6 +29,15 @@ SECURITY.md           export-ignore
 UPGRADING.md          export-ignore
 tests/                export-ignore
 workbench/            export-ignore
+js/tests/             export-ignore
+js/e2e/               export-ignore
+scripts/              export-ignore
+internal/             export-ignore
+playwright.config.ts  export-ignore
+stryker.config.json   export-ignore
+biome.json            export-ignore
+tsconfig.json         export-ignore
+tsconfig.build.json   export-ignore
 
 # >>> package-boost (managed) >>>
 .agents/                export-ignore

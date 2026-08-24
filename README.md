@@ -112,6 +112,25 @@ React hook (`@laranail/validation-js/react`) and a Vue 3 composable (`…/vue`),
 (`…/alpine`) and declarative autoboot for Blade/HTMX/Turbo/Livewire pages (`…/autoboot`) on
 the DOM-owning side, and `…/debug` console tracing that tree-shakes out by absence.
 
+## Stability
+
+1.0 states what SemVer covers. **Stable:** the JS `createValidator` / `createHeadless` /
+`HeadlessForm` and the `Validator` surface (`validate`, `validateField`, `setErrors`,
+`refresh`, `explain`, `on`, `use`, `registerRule`, `destroy`), the framework adapters'
+documented API, the shipped `.d.ts` types, the **wire schema** ([Schema](docs/schema.md));
+on the PHP side `RuleExporter`, `SchemaFactory`, `RemoteRegistry`, the events, the Blade
+surface, the console commands, and the `laranail.validation-js.*` config keys. **Not stable
+(`@internal`, may change in a minor):** `RuleCatalogue`, the HTTP controllers,
+`EngineIntrospection`, and anything undocumented. A test enforces that every class is one or
+the other. Deprecations post-1.0 are marked `@deprecated` with the replacement and removal
+version, kept for at least one minor, removed only in the next major.
+
+**Browsers:** Safari/iOS 15.4+, Chrome/Edge 93+, Firefox 92+ (declared in `browserslist`;
+the floor is `Object.hasOwn` — see [Installation](docs/installation.md)). **Accessibility:**
+the runtime's a11y behaviour (`aria-invalid`, non-destructive `aria-describedby`, polite live
+region, `role="alert"` summary, focus management, reduced-motion) lives in core, is asserted
+with axe in the browser suite, and is part of the stable contract.
+
 ## <a name="documentation"></a>Documentation
 
 ### Guides

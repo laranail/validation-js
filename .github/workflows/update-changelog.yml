@@ -1,0 +1,51 @@
+name: "Update Changelog"
+
+on:
+  release:
+    types: [released]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      # Always main: the CHANGELOG lives there, and a release in this repo
+      # may legitimately TARGET a commit behind main (a patch tag cut from
+      # a verified sha) — the release's target_commitish is then a bare
+      # sha, which is not a branch anything can commit to. That is exactly
+      # how the sister repo's v0.1.1 run failed.
+      - name: Checkout code
+        uses: actions/checkout@v7
+        with:
+          ref: main
+
+      # release.yml SOURCES the release body from the CHANGELOG, so on the
+      # normal path the section already exists — inserting it again would
+      # duplicate it. This job only backfills a release authored by hand.
+      - name: Check whether the section already exists
+        id: existing
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          if grep -qE "^## (\[)?v?${VERSION#v}([] ]|$)" CHANGELOG.md; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Update Changelog
+        if: steps.existing.outputs.present == 'false'
+        uses: stefanzweifel/changelog-updater-action@v1
+        with:
+          latest-version: ${{ github.event.release.tag_name }}
+          release-notes: ${{ github.event.release.body }}
+
+      - name: Commit updated CHANGELOG
+        if: steps.existing.outputs.present == 'false'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          branch: main
+          commit_message: Update CHANGELOG
+          file_pattern: CHANGELOG.md

@@ -1,0 +1,77 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # The release body IS the CHANGELOG section for this version — a
+      # release without a real description is incomplete (org standard).
+      - name: Extract changelog section
+        id: changelog
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v ver="$VERSION" '
+            $0 ~ "^## (\\[)?(v)?"ver"([] ]|$)" { grab = 1; next }
+            grab && /^## / { exit }
+            grab { print }
+          ' CHANGELOG.md > release-body.md
+          if ! [ -s release-body.md ]; then
+            echo "No CHANGELOG section found for ${VERSION}" >&2
+            exit 1
+          fi
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --notes-file release-body.md \
+            --generate-notes
+
+  npm-publish:
+    runs-on: ubuntu-latest
+    needs: release
+
+    # OIDC provenance: configure npm trusted publishing for
+    # @laranail/validation-js pointing at this workflow (or provide
+    # NPM_TOKEN as a fallback secret).
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+
+      - run: npm install
+
+      # The tag and the manifest must agree — npm reads the manifest, git
+      # reads the tag, and a mismatch ships a version nobody meant.
+      - name: Verify manifest matches tag
+        run: |
+          MANIFEST=$(node -p "require('./package.json').version")
+          test "v$MANIFEST" = "$GITHUB_REF_NAME" || {
+            echo "package.json ($MANIFEST) != tag ($GITHUB_REF_NAME)" >&2
+            exit 1
+          }
+
+      # prepublishOnly runs the full suite + the pack-import check.
+      - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

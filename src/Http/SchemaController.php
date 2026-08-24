@@ -16,6 +16,8 @@ use Simtabi\Laranail\ValidationJs\SchemaFactory;
  * an unknown key is a bare 404 that echoes nothing. Conditional requests
  * are honoured (`ETag`/304), caching is private: a schema may have been
  * redacted per-user by a SchemaExporting listener.
+ *
+ * @internal Routed, never called directly; not part of the 1.0 stable API.
  */
 final readonly class SchemaController
 {
