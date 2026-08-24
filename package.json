@@ -76,7 +76,8 @@
         "test:pack": "bash js/tests/pack-import-check.sh",
         "prepublishOnly": "npm test && npm run test:pack",
         "test:e2e": "playwright test",
-        "budget": "node scripts/bundle-budget.mjs"
+        "budget": "node scripts/bundle-budget.mjs",
+        "test:mutation": "stryker run"
     },
     "publishConfig": {
         "access": "public"

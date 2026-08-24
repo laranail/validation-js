@@ -1,10 +1,31 @@
 {
     "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
-    "mutate": ["js/src/rules.ts", "js/src/paths.ts", "js/src/validate.ts"],
-    "ignorePatterns": ["/vendor", "/.phpunit.cache", "/dist"],
+    "mutate": [
+        "js/src/rules.ts",
+        "js/src/paths.ts",
+        "js/src/validate.ts"
+    ],
+    "ignorePatterns": [
+        "/vendor",
+        "/.phpunit.cache",
+        "/dist",
+        "tsconfig.json",
+        "tsconfig.build.json"
+    ],
     "testRunner": "command",
-    "commandRunner": { "command": "node --test \"js/tests/**/*.test.ts\"" },
-    "reporters": ["clear-text", "progress"],
+    "commandRunner": {
+        "command": "node --test \"js/tests/**/*.test.ts\""
+    },
+    "reporters": [
+        "clear-text",
+        "progress"
+    ],
     "coverageAnalysis": "off",
-    "tempDirName": ".stryker-tmp"
+    "tempDirName": ".stryker-tmp",
+    "_comment": "tsconfig files are excluded from the sandbox deliberately: the command runner (node --test, type-stripping) never reads them, and Stryker 10's TSConfigPreprocessor calls parseConfigFileTextToJson, which TypeScript 7 removed \u2014 with no tsconfig in the sandbox the preprocessor no-ops.",
+    "thresholds": {
+        "high": 80,
+        "low": 68,
+        "break": 60
+    }
 }
