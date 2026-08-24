@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { validate } from '../src/index.ts';
+import { validate, validateAsync } from '../src/index.ts';
 import type { Schema } from '../src/types.ts';
 
 /**
@@ -58,4 +58,22 @@ test('size rules read a file in kilobytes, as Laravel does', () => {
 
     assert.equal(validate({ field: big }, schemaFor('max', { max: '2' })).valid, false);
     assert.equal(validate({ field: big }, schemaFor('max', { max: '4' })).valid, true);
+});
+
+test('dimensions rounds trip where images cannot be decoded, and async never lies', async () => {
+    // Node has no createImageBitmap: the sync engine must answer
+    // undetermined — a Promise truthiness-tested would pass everything,
+    // which is the failure mode this pin exists for.
+    const schema = schemaFor('dimensions', { '0': 'min_width=100' });
+
+    const sync = validate({ field: png }, schema);
+    assert.equal(sync.valid, true);
+    assert.deepEqual(sync.undetermined, ['field']);
+
+    const resolved = await validateAsync({ field: png }, schema);
+    assert.deepEqual(resolved.undetermined, ['field']);
+
+    // A non-file fails dimensions outright, sync and async alike.
+    assert.equal(validate({ field: 'nope' }, schema).valid, false);
+    assert.equal((await validateAsync({ field: 'nope' }, schema)).valid, false);
 });

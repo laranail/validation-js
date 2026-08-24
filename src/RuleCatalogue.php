@@ -74,6 +74,9 @@ final class RuleCatalogue
         // pick from name/declared-type/size and answers undetermined on a
         // match, because only the server reads the bytes.
         'file', 'mimes', 'extensions', 'image',
+        // Async: decided in browsers by decoding the image; undetermined
+        // where decoding is unavailable.
+        'dimensions',
     ];
 
     /**
@@ -85,16 +88,14 @@ final class RuleCatalogue
      * - `unique` / `exists` need the database.
      * - `active_url` needs DNS.
      * - `current_password` needs the session and a hash comparison.
-     * - `dimensions` needs the decoded image (async — a later phase) and
-     *   `mimetypes` the sniffed content; their siblings moved to the client
-     *   as ADVISORY checks that fail fast and never green-tick, since a
-     *   browser only approximates a file from its name and declared type.
+     * - `mimetypes` needs the sniffed content; the other file rules moved
+     *   to the client as ADVISORY checks that fail fast and never
+     *   green-tick (`dimensions` decodes the real image, asynchronously).
      *
      * @var list<string>
      */
     public const array SERVER = [
-        'unique', 'exists', 'active_url', 'current_password',
-        'dimensions', 'mimetypes',
+        'unique', 'exists', 'active_url', 'current_password', 'mimetypes',
     ];
 
     /**

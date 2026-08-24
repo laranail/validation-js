@@ -128,7 +128,17 @@ export interface Context {
  */
 export type Verdict = boolean | 'undetermined';
 
-export type Check = (value: unknown, params: Record<string, string>, ctx: Context) => Verdict;
+/**
+ * A check may answer asynchronously — `dimensions` has to decode the image
+ * first. The SYNC `validate()` treats a Promise as 'undetermined' (it cannot
+ * wait, and guessing is worse); `validateAsync()` awaits it. Sync rules pay
+ * nothing for the union's existence.
+ */
+export type Check = (
+    value: unknown,
+    params: Record<string, string>,
+    ctx: Context,
+) => Verdict | Promise<Verdict>;
 
 /**
  * Rules Laravel runs even when the value is absent or empty.
@@ -510,6 +520,55 @@ export const checks = {
         const type = (v as { type?: string }).type ?? '';
 
         return type.startsWith('image/') ? 'undetermined' : false;
+    },
+
+    // The first ASYNC rule: constraints on the decoded image. In a browser
+    // the file is decoded (createImageBitmap) and the answer is a Promise;
+    // where decoding is unavailable the rule is undetermined — never a
+    // guess from the filename.
+    dimensions: (v, p) => {
+        if (!isFile(v)) return false;
+
+        if (typeof createImageBitmap === 'undefined') return 'undetermined';
+
+        return createImageBitmap(v as unknown as Blob).then(
+            (bitmap) => {
+                const constraints = Object.values(p).map((entry) => entry.split('=', 2));
+                const { width, height } = bitmap;
+                bitmap.close();
+
+                return constraints.every(([name, raw]) => {
+                    const bound = Number(raw);
+
+                    switch (name) {
+                        case 'width':
+                            return width === bound;
+                        case 'height':
+                            return height === bound;
+                        case 'min_width':
+                            return width >= bound;
+                        case 'min_height':
+                            return height >= bound;
+                        case 'max_width':
+                            return width <= bound;
+                        case 'max_height':
+                            return height <= bound;
+                        case 'ratio': {
+                            // Laravel accepts `3/2` and `1.5`; comparison
+                            // carries the same 1px tolerance.
+                            const [num, den] = (raw ?? '').split('/');
+                            const ratio =
+                                den === undefined ? Number(num) : Number(num) / Number(den);
+                            return Math.abs(ratio - width / height) < 1 / Math.min(width, height);
+                        }
+                        default:
+                            return true;
+                    }
+                });
+            },
+            // Undecodable is not an image with the wrong size — it fails.
+            () => false,
+        );
     },
 
     // The date family. `date` decides the documented shape set and answers

@@ -32,7 +32,62 @@ export const SCHEMA_VERSION = 1;
  * third into "valid" is what makes client-side validation lie: it shows a
  * green tick for input the server will reject.
  */
+interface PendingCheck {
+    promise: Promise<boolean | 'undetermined'>;
+    field: string;
+    pattern: string;
+    rule: string;
+    params: Record<string, string>;
+    attribute: string | null;
+    value: unknown;
+    ctx: Context;
+}
+
 export function validate(values: Values, schema: Schema): Result {
+    return run(values, schema, undefined);
+}
+
+/**
+ * `validate`, but async checks are AWAITED rather than rounded trip — the
+ * form runtime's entry point once `dimensions` (and, later, remote rules)
+ * are in play. One deliberate difference from the sync engine's
+ * one-failure-per-field presentation: rules after a pending async one have
+ * already run by the time it resolves, so a field can carry a second
+ * failure. The VERDICT is identical either way.
+ */
+export async function validateAsync(values: Values, schema: Schema): Promise<Result> {
+    const pending: PendingCheck[] = [];
+    const result = run(values, schema, pending);
+
+    for (const entry of pending) {
+        const verdict = await entry.promise;
+
+        if (verdict === 'undetermined') {
+            if (!result.undetermined.includes(entry.field)) result.undetermined.push(entry.field);
+            continue;
+        }
+
+        if (!verdict) {
+            result.failures.push({
+                field: entry.field,
+                rule: entry.rule,
+                message: interpolate(
+                    schema,
+                    entry.pattern,
+                    entry.rule,
+                    entry.params,
+                    entry.attribute,
+                    entry.value,
+                    entry.ctx,
+                ),
+            });
+        }
+    }
+
+    return { ...result, valid: result.failures.length === 0 };
+}
+
+function run(values: Values, schema: Schema, pending: PendingCheck[] | undefined): Result {
     const failures: Failure[] = [];
     const undetermined: string[] = [];
 
@@ -161,6 +216,29 @@ export function validate(values: Values, schema: Schema): Result {
                 if (nullable && value === null && !IMPLICIT.has(rule)) continue;
 
                 const verdict = check(value, params, ctx);
+
+                // An async answer: the sync engine cannot wait, so the field
+                // rounds trip; validateAsync() collects it instead. Either
+                // way a Promise is never truthiness-tested — that would pass
+                // everything.
+                if (verdict instanceof Promise) {
+                    if (pending === undefined) {
+                        if (!undetermined.includes(field)) undetermined.push(field);
+                        continue;
+                    }
+
+                    pending.push({
+                        promise: verdict,
+                        field,
+                        pattern,
+                        rule,
+                        params,
+                        attribute: definition.attribute,
+                        value,
+                        ctx,
+                    });
+                    continue;
+                }
 
                 // 'undetermined' is the check saying "I cannot decide" — the
                 // same honest answer an unknown rule gets, reached inside one.
