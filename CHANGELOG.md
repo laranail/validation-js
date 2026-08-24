@@ -7,6 +7,35 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+
+- **Transport (PHP):** three delivery tiers over one `SchemaFactory` path — the
+  `@laranailValidation` directive and `<x-laranail-validation-js::schema>` component render an
+  inert JSON data island (CSP-safe `type="application/json"`, `JSON_HEX_*`-encoded, optional
+  nonce); `laranail::validation-js.export` writes allow-listed schemas to static JSON; an
+  opt-in, disabled-by-default GET endpoint serves them dynamically with a stable `ETag`/304 and
+  `Cache-Control: private`, resolving keys only through the config allow-list (never class
+  strings). `SchemaExporting` is a redaction seam covering every tier; `SchemaExported`
+  announces the finished document. `SchemaFactory::forRequest()` container-builds the
+  FormRequest so `rules()` can inject dependencies, and throws `SchemaExportException` rather
+  than returning a silent empty schema when it cannot run.
+- **Transport (PHP):** an opt-in, Precognition-compatible validate endpoint for RuleSets.
+  `RemoteRegistry::register()` requires an authorization closure by signature (RuleSets have no
+  `authorize()`, so the registry fails closed), outcomes are uniform (204 +
+  `Precognition: true` on pass, 422 `{"errors"}` on failure — malformed and missing produce the
+  same skeleton), `Precognition-Validate-Only` narrows reported failures while the full payload
+  validates, and the route sits behind a configurable throttle.
+  `RemoteValidationAttempted` fires with endpoint, field names and outcome — never values.
+- **Transport (JS):** `RemoteChannel`, the Precognition client for undetermined fields. Sends
+  the full payload with `Precognition-Validate-Only` naming what the engine could not decide,
+  forwards Laravel's `XSRF-TOKEN` cookie, and degrades by design: latest-wins abort produces a
+  no-verdict `stale`, every non-answer (offline, 403, 429, 500) becomes transient undetermined
+  with no message painted, a 204 is the one moment an undetermined field earns `valid`, and a
+  422 paints the server's own message. Wire it with the `transport` option of
+  `createValidator`; submit never waits on it.
+- `config/laranail-validation-js.php` (publishable, read at `laranail.validation-js.*`) with
+  both endpoints disabled by default, plus runtime defaults for the Blade tier.
+
 ## 0.2.0 - 2026-08-23
 
 The first release on real SemVer — the single moving `v0.1.0` tag is retired. Bug IDs (J1…)

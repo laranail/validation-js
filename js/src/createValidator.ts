@@ -7,6 +7,7 @@ import { type LocalisedMessage, resolveMessage } from './i18n/messages.ts';
 import { type InputResolver, ResolverRegistry } from './plugins/InputResolver.ts';
 import { headlessRenderer, type Renderer } from './render/Renderer.ts';
 import type { Check } from './rules.ts';
+import type { RemoteChannel } from './transport/RemoteChannel.ts';
 import type { Result, Schema, Values } from './types.ts';
 import { type EngineOptions, validate, validateAsync } from './validate.ts';
 
@@ -27,6 +28,8 @@ export interface ValidatorOptions {
     debounce?: number;
     notifier?: Notifier;
     locale?: string;
+    /** A RemoteChannel resolving undetermined fields through the server. */
+    transport?: RemoteChannel;
 }
 
 export interface Plugin {
@@ -98,6 +101,7 @@ export function createValidator(
         rules,
         ruleMessages,
         validatorId: id,
+        transport: options.transport ?? null,
     });
 
     const registerRule = (
