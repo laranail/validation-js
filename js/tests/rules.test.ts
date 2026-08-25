@@ -2,7 +2,6 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { validate } from '../src/index.ts';
 
-
 // ---------------------------------------------------------------------------
 // J8 / J15 — isolated regression pins (the final re-audit found the
 // mechanisms shipped but no test naming the exact plan scenarios).
