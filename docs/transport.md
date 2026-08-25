@@ -19,6 +19,12 @@ Event::listen(SchemaExporting::class, function (SchemaExporting $event): void {
 });
 ```
 
+Any tier can mark fields **server-only** with `except: ['field']` on
+`RuleExporter::export()` / `SchemaFactory::forRules()` — the field's rule names still travel,
+so the runner reports it undetermined rather than green, but nothing about it evaluates
+client-side. The `SchemaExporting` listener remains the cross-tier redaction seam for removing
+a field entirely.
+
 `SchemaFactory::forRequest()` builds the FormRequest **through the container** — created from
 the current request, container and redirector attached, `rules()` invoked with dependency
 injection — because `rules()` may read `$this->route(...)` or `$this->user()`. A `rules()` that

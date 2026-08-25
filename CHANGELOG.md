@@ -7,6 +7,24 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## Unreleased
 
+### Added
+
+- **The per-field client opt-out**: `except: ['field']` on `RuleExporter::export()` and
+  `SchemaFactory::forRules()` exports a field server-only — its rule names still travel, so
+  the runner reports it undetermined rather than green, but nothing about it evaluates
+  client-side (the legacy `NoJsValidation` ergonomic, first-class).
+- The JS stable surface is now a test: the main entry point must export exactly the
+  documented list, closing the §12.1 boundary on the runtime half (the PHP half already had
+  `StabilityBoundaryTest`). Isolated regression pins land for J8 (`required_if:other,null`
+  null-param conversion) and J15 (`:values` never re-lists the dependent field for
+  positional params), and a Playwright spec pins §6.5's dependent-field revalidation
+  (fixing a confirmed pair's confirmation clears the failure painted on its source field).
+- `release.yml` generates and attaches two CycloneDX SBOMs per release — the composer dist
+  via `laranail::package-tools.sbom`, the npm dist via `npm sbom`.
+- `docs/architecture.md` records why four renderer presets ship instead of the legacy's
+  eight (the other four target end-of-life framework markup; `ClassMapPreset` is ten lines
+  of plain data for anything else).
+
 ## 1.0.0 - 2026-08-24
 
 The 1.0 major: both halves graduate to real SemVer, the

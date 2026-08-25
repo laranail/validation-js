@@ -426,3 +426,16 @@ it('adds only keys, never removes one the first release read', function (): void
         ->and(exporter()->export(['f' => 'required'])['fields']['f'])
         ->toHaveKeys(['attribute', 'client', 'server']);
 });
+
+it('exports an excepted field server-only — the per-field client opt-out', function (): void {
+    $schema = app(RuleExporter::class)->export(
+        ['email' => 'required|email|max:64', 'name' => 'required|string'],
+        except: ['email'],
+    );
+
+    // The rule NAMES still travel, so the runner reports the field
+    // undetermined instead of green — nothing evaluates client-side.
+    expect($schema['fields']['email']['client'])->toBe([])
+        ->and($schema['fields']['email']['server'])->toBe(['required', 'email', 'max'])
+        ->and($schema['fields']['name']['client'])->not->toBe([]);
+});

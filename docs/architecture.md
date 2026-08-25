@@ -63,6 +63,14 @@ additive case: a custom `FormField.vue` wraps the **headless** facade (Nova's Vu
 DOM), paired with the [validate endpoint](transport.md#the-validate-endpoint) for the
 server-only rules, since Nova provides none.
 
+## Why four renderer presets, not the legacy's eight
+
+The predecessor shipped eight framework presets; this package ships vanilla, Bootstrap 5,
+Tailwind and Bulma. The other four targeted framework generations that are end-of-life
+(Bootstrap 3/4-era markup, Foundation, Semantic UI), and `ClassMapPreset` is plain data — a
+consumer covers any framework in roughly ten lines without waiting on this package. Shipping
+presets for dead markup would be surface area pretending to be support.
+
 ## Not in this library
 
 Deliberate non-goals, recorded so scope creep is a decision: no client-side authority (the

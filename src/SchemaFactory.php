@@ -32,6 +32,8 @@ final readonly class SchemaFactory
      * @param  array<string, mixed>  $rules
      * @param  array<string, string>  $messages
      * @param  array<string, string>  $attributes
+     * @param  list<string>  $except  Fields exported server-only — the per-field opt-out
+     *                                (the field degrades to undetermined, never green).
      * @return array<string, mixed>
      */
     public function forRules(
@@ -39,6 +41,7 @@ final readonly class SchemaFactory
         array $messages = [],
         array $attributes = [],
         ?string $key = null,
+        array $except = [],
     ): array {
         $exporting = new SchemaExporting($rules, $messages, $attributes, $key);
         $this->events->dispatch($exporting);
@@ -47,6 +50,7 @@ final readonly class SchemaFactory
             $exporting->rules,
             $exporting->messages,
             $exporting->attributes,
+            $except,
         );
 
         $this->events->dispatch(new SchemaExported($schema, $key));

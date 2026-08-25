@@ -68,9 +68,13 @@ final readonly class RuleExporter
      * @param  array<string, mixed>  $rules
      * @param  array<string, string>  $messages  Custom messages, `field.rule` or `field`.
      * @param  array<string, string>  $attributes  Human names for fields.
+     * @param  list<string>  $except  Fields (or `items.*`-style patterns) exported as
+     *                                server-only: their rule NAMES still travel, so the
+     *                                runner reports them undetermined instead of green,
+     *                                but nothing about them is evaluated client-side.
      * @return array{version: int, fields: array<string, array{attribute: string|null, client: list<array{rule: string, params: array<array-key, string>}>, server: list<string>}>, messages: array<string, string>, messageVariants: array<string, array<string, string>>}
      */
-    public function export(array $rules, array $messages = [], array $attributes = []): array
+    public function export(array $rules, array $messages = [], array $attributes = [], array $except = []): array
     {
         $parser = new ValidationRuleParser([]);
         $fields = [];
@@ -79,13 +83,14 @@ final readonly class RuleExporter
 
         foreach ($rules as $attribute => $rule) {
             $attribute = (string) $attribute;
+            $serverOnly = in_array($attribute, $except, true);
             $client = [];
             $server = [];
 
             foreach ($this->explode($parser, $attribute, $rule) as [$name, $parameters]) {
                 $snake = self::snake($name);
 
-                if (RuleCatalogue::isClientCheckable($snake)) {
+                if (! $serverOnly && RuleCatalogue::isClientCheckable($snake)) {
                     $client[] = [
                         'rule' => $snake,
                         'params' => RuleCatalogue::nameParameters($snake, $parameters),
