@@ -31,6 +31,29 @@ jobs:
             exit 1
           fi
 
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: "8.5"
+          coverage: none
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "24"
+
+      # Two SBOMs, one per registry surface (§12.3): the composer dist via
+      # the org's package-tools generator (which reads composer.lock from
+      # the app base path — the skeleton under the testbench CLI), and the
+      # npm dist via npm's own CycloneDX emitter.
+      - name: Generate SBOMs
+        run: |
+          composer update --prefer-dist --no-interaction --quiet
+          cp composer.lock vendor/orchestra/testbench-core/laravel/composer.lock
+          vendor/bin/testbench laranail::package-tools.sbom --print > sbom.composer.cdx.json
+          php -r 'json_decode(file_get_contents("sbom.composer.cdx.json"), flags: JSON_THROW_ON_ERROR);'
+          npm install --silent
+          npm sbom --sbom-format cyclonedx --omit dev > sbom.npm.cdx.json
+          node -e 'JSON.parse(require("fs").readFileSync("sbom.npm.cdx.json"))'
+
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -38,7 +61,8 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             --title "$GITHUB_REF_NAME" \
             --notes-file release-body.md \
-            --generate-notes
+            --generate-notes \
+            sbom.composer.cdx.json sbom.npm.cdx.json
 
   npm-publish:
     runs-on: ubuntu-latest

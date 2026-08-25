@@ -113,3 +113,39 @@ test('refresh() forgets a removed repeater row instead of leaking it', async ({ 
     );
     expect(status).toBe('pristine');
 });
+
+test('fixing a field clears its dependent — the §6.5 revalidation guarantee', async ({ page }) => {
+    // The mechanism is deliberate: field-level validation evaluates the
+    // WHOLE form and reapplies to every field already showing feedback,
+    // so a dependent (confirmed/same/gt) follows its source without a
+    // schema-derived dependency graph.
+    await bootPage(
+        page,
+        `<form>
+            <input name="password" id="password" type="password">
+            <input name="password_confirmation" id="confirmation" type="password">
+        </form>`,
+    );
+
+    const schema = schemaFor(
+        { password: { client: [{ rule: 'required' }, { rule: 'confirmed' }] } },
+        { 'password.confirmed': 'The password confirmation does not match.' },
+    );
+    await boot(page, schema);
+
+    await page.locator('#password').fill('first-secret');
+    await page.locator('#confirmation').fill('other-secret');
+    await page.locator('#password').focus();
+    await page.locator('#password').blur();
+
+    await expect(page.locator('[data-laranail-message="password"]')).toContainText(
+        'does not match',
+    );
+
+    // Fix the DEPENDENT side: editing password_confirmation must clear
+    // the failure painted on password, its source field.
+    await page.locator('#confirmation').fill('first-secret');
+    await page.locator('#confirmation').blur();
+
+    await expect(page.locator('[data-laranail-message="password"]')).toHaveCount(0);
+});
