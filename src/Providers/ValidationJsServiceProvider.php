@@ -71,7 +71,7 @@ class ValidationJsServiceProvider extends PackageServiceProvider
     private function registerBladeSurface(): void
     {
         Blade::anonymousComponentPath(
-            dirname(__DIR__, 2).'/resources/views/components',
+            $this->packagePath('resources/views/components'),
             'laranail-validation-js',
         );
 
@@ -114,6 +114,6 @@ class ValidationJsServiceProvider extends PackageServiceProvider
 
     private function configPath(): string
     {
-        return dirname(__DIR__, 2).'/config/laranail-validation-js.php';
+        return $this->packagePath('config/laranail-validation-js.php');
     }
 }
