@@ -385,15 +385,19 @@ export const checks = {
     // fails, exactly as the vendor's [^0-9] scan does.
     max_digits: (v, p) => digitCount(v) !== null && (digitCount(v) as number) <= num(p.max),
     min_digits: (v, p) => digitCount(v) !== null && (digitCount(v) as number) >= num(p.min),
-    // The value must appear among another field's expanded values, loosely —
-    // in_array:users.*.id is the canonical spelling.
+    // The value must appear among another field's expanded values, compared
+    // STRICTLY — in_array:users.*.id is the canonical spelling.
+    //
+    // Laravel's validateInArray ends in `in_array($value, $otherValues, true)`,
+    // so '1' does not match the integer 1. This ran loosely and disagreed, which
+    // the parity fixture hid because it had not been regenerated since.
     in_array: (v, p, c) => {
         const pattern = p.other ?? p['0'];
         if (pattern === undefined) return false;
 
         return expand(pattern, c.values)
             .map((f) => get(c.values, f))
-            .some((el) => looselyEquals(el, v));
+            .some((el) => strictEquals(el, v));
     },
     // Unique among the OTHER expansions of the same pattern. `strict` and
     // `ignore_case` ride as flags, as they do in Laravel.
