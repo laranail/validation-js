@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
-use Simtabi\Laranail\ValidationJs\ValidationJsServiceProvider;
+use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 
 /**
  * The org naming guard, read from the LIVE registries — never by grepping

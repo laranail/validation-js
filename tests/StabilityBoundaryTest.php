@@ -7,12 +7,12 @@ use Simtabi\Laranail\ValidationJs\Commands\ParityCommand;
 use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExporting;
+use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 use Simtabi\Laranail\ValidationJs\RemoteRegistry;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
 use Simtabi\Laranail\ValidationJs\SchemaExportException;
 use Simtabi\Laranail\ValidationJs\SchemaFactory;
 use Simtabi\Laranail\ValidationJs\Support\RendersSchemas;
-use Simtabi\Laranail\ValidationJs\ValidationJsServiceProvider;
 
 /**
  * The §12.1 boundary, enforced: every class is either on the stable list

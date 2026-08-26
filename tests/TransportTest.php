@@ -12,11 +12,11 @@ use Illuminate\Testing\TestResponse;
 use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExporting;
+use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 use Simtabi\Laranail\ValidationJs\RemoteRegistry;
 use Simtabi\Laranail\ValidationJs\SchemaExportException;
 use Simtabi\Laranail\ValidationJs\SchemaFactory;
 use Simtabi\Laranail\ValidationJs\Support\RendersSchemas;
-use Simtabi\Laranail\ValidationJs\ValidationJsServiceProvider;
 
 final class StoreThingRequest extends FormRequest
 {

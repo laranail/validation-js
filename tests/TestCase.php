@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\ValidationJs\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Simtabi\Laranail\ValidationJs\ValidationJsServiceProvider;
+use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

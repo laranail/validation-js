@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Simtabi\Laranail\ValidationJs;
+namespace Simtabi\Laranail\ValidationJs\Providers;
 
 use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Facades\Blade;
@@ -14,6 +14,9 @@ use Simtabi\Laranail\ValidationJs\Commands\ExportCommand;
 use Simtabi\Laranail\ValidationJs\Commands\ParityCommand;
 use Simtabi\Laranail\ValidationJs\Http\SchemaController;
 use Simtabi\Laranail\ValidationJs\Http\ValidateController;
+use Simtabi\Laranail\ValidationJs\RemoteRegistry;
+use Simtabi\Laranail\ValidationJs\RuleExporter;
+use Simtabi\Laranail\ValidationJs\SchemaFactory;
 
 /**
  * The exporter, and — new with the transport phase — the Laravel surface
@@ -68,7 +71,7 @@ class ValidationJsServiceProvider extends PackageServiceProvider
     private function registerBladeSurface(): void
     {
         Blade::anonymousComponentPath(
-            dirname(__DIR__).'/resources/views/components',
+            dirname(__DIR__, 2).'/resources/views/components',
             'laranail-validation-js',
         );
 
@@ -111,6 +114,6 @@ class ValidationJsServiceProvider extends PackageServiceProvider
 
     private function configPath(): string
     {
-        return dirname(__DIR__).'/config/laranail-validation-js.php';
+        return dirname(__DIR__, 2).'/config/laranail-validation-js.php';
     }
 }
