@@ -14060,7 +14060,7 @@
             },
             "messageVariants": []
         },
-        "laravel": false,
+        "laravel": true,
         "id": "conditional #88 in_array:allowed.*"
     },
     {
