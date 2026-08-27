@@ -26,6 +26,14 @@ jobs:
           # and every Windows cell failed while every Linux one passed.
           extensions: dom, curl, libxml, mbstring, zip, fileinfo, intl, pdo_sqlite, sqlite3
           coverage: none
+      # laranail/validation is PHP ^8.5. It is a DEV dependency used only by the
+      # exporter/parity tests, which skip themselves when it is absent -- the
+      # package's own src/ guards it with interface_exists(). Removing it here
+      # keeps the 8.4 cell honest rather than dropping 8.4 from the matrix.
+      - name: Drop the 8.5-only dependency on PHP 8.4
+        if: matrix.php == '8.4'
+        run: composer remove --dev laranail/validation --no-update
+
       - run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
       - run: vendor/bin/pest
 
