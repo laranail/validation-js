@@ -14,6 +14,16 @@ use Simtabi\Laranail\Validation\Rules\Text\Slug;
 use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
 
+// laranail/validation is a DEV dependency and is PHP ^8.5, so the 8.4 CI cell
+// installs without it. These cases exercise the exporter against that package's
+// own rule classes and cannot run when it is absent; the package's own src/
+// guards the same boundary with interface_exists().
+beforeEach(function (): void {
+    if (! interface_exists(\Simtabi\Laranail\Validation\Contracts\ClientCheckable::class)) {
+        $this->markTestSkipped('laranail/validation not installed');
+    }
+});
+
 function exporter(): RuleExporter
 {
     return new RuleExporter(app('translator'));
