@@ -6,7 +6,7 @@ name: mutation
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * 1"
+    - cron: "39 6 * * 1"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
