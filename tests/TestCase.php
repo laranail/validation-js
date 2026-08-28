@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs\Tests;
 
-use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 use Simtabi\Laranail\Package\Tools\Testing\IsolatedTestCase;
+use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 
 abstract class TestCase extends IsolatedTestCase
 {
