@@ -4,9 +4,14 @@ on:
   release:
     types: [released]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     permissions:
       contents: write

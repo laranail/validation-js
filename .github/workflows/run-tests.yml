@@ -1,13 +1,16 @@
 name: run-tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   php:
     runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
@@ -39,6 +42,7 @@ jobs:
 
   js:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     name: JavaScript
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -63,6 +67,7 @@ jobs:
 
   browser:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     name: Browser runtime (Playwright)
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -78,6 +83,7 @@ jobs:
 
   parity:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     name: Parity fixture is current
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
