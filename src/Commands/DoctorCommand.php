@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\ValidationJs\Commands;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Simtabi\Laranail\Console\Tools\Commands\Command;
-use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
-use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
+use Simtabi\Laranail\ValidationJs\RuleCatalogue;
+use Simtabi\Laranail\Console\Tools\Commands\Command;
 use Simtabi\Laranail\ValidationJs\Support\EngineIntrospection;
+use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
 
 /**
  * Schema/wire-format health (§5.8): the questions whose silent "no" costs
@@ -57,12 +57,12 @@ final class DoctorCommand extends Command
         }
 
         if ($runner !== RuleExporter::VERSION) {
-            $this->error('Schema major mismatch: exporter v'.RuleExporter::VERSION.", runner v{$runner}.");
+            $this->error('Schema major mismatch: exporter v' . RuleExporter::VERSION . ", runner v{$runner}.");
 
             return false;
         }
 
-        $this->line('✓ Exporter and runner declare schema v'.RuleExporter::VERSION.'.');
+        $this->line('✓ Exporter and runner declare schema v' . RuleExporter::VERSION . '.');
 
         return true;
     }
@@ -82,24 +82,24 @@ final class DoctorCommand extends Command
 
         if ($missing !== [] || $extra !== []) {
             if ($missing !== []) {
-                $this->error('Catalogue advertises rules the runner cannot evaluate (silent holes): '.implode(', ', $missing));
+                $this->error('Catalogue advertises rules the runner cannot evaluate (silent holes): ' . implode(', ', $missing));
             }
 
             if ($extra !== []) {
-                $this->error('Runner implements rules the catalogue withholds (needless round trips): '.implode(', ', $extra));
+                $this->error('Runner implements rules the catalogue withholds (needless round trips): ' . implode(', ', $extra));
             }
 
             return false;
         }
 
-        $this->line('✓ Catalogue and runner agree on '.count($engine).' client rules.');
+        $this->line('✓ Catalogue and runner agree on ' . count($engine) . ' client rules.');
 
         return true;
     }
 
     private function checkParityFixture(): bool
     {
-        $path = EngineIntrospection::packageRoot().'/js/tests/fixtures/parity.json';
+        $path = EngineIntrospection::packageRoot() . '/js/tests/fixtures/parity.json';
 
         if (! is_file($path)) {
             $this->warn('Parity fixture not present (packaged installs may omit it) — skipped.');
@@ -115,7 +115,7 @@ final class DoctorCommand extends Command
             return false;
         }
 
-        $this->line('✓ Parity fixture holds '.count($decoded).' recorded verdicts.');
+        $this->line('✓ Parity fixture holds ' . count($decoded) . ' recorded verdicts.');
 
         return true;
     }
@@ -141,7 +141,7 @@ final class DoctorCommand extends Command
         }
 
         if ($healthy) {
-            $this->line('✓ Endpoint allow-list: '.count($schemas).' entr'.(count($schemas) === 1 ? 'y' : 'ies').', all resolvable FormRequests.');
+            $this->line('✓ Endpoint allow-list: ' . count($schemas) . ' entr' . (count($schemas) === 1 ? 'y' : 'ies') . ', all resolvable FormRequests.');
         }
 
         return $healthy;

@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs;
 
-use Illuminate\Contracts\Translation\Translator;
-use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Validation\InvokableValidationRule;
-use Illuminate\Validation\ValidationRuleParser;
-use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
 use Stringable;
+use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Validation\ValidationRuleParser;
+use Illuminate\Contracts\Translation\Translator;
+use Illuminate\Validation\InvokableValidationRule;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
 
 /**
  * Turns a Laravel rule set into the JSON schema the browser runner consumes.
@@ -65,13 +65,14 @@ final readonly class RuleExporter
     public function __construct(private ?Translator $translator = null) {}
 
     /**
-     * @param  array<string, mixed>  $rules
-     * @param  array<string, string>  $messages  Custom messages, `field.rule` or `field`.
-     * @param  array<string, string>  $attributes  Human names for fields.
-     * @param  list<string>  $except  Fields (or `items.*`-style patterns) exported as
-     *                                server-only: their rule NAMES still travel, so the
-     *                                runner reports them undetermined instead of green,
-     *                                but nothing about them is evaluated client-side.
+     * @param array<string, mixed> $rules
+     * @param array<string, string> $messages Custom messages, `field.rule` or `field`.
+     * @param array<string, string> $attributes Human names for fields.
+     * @param list<string> $except Fields (or `items.*`-style patterns) exported as
+     *                             server-only: their rule NAMES still travel, so the
+     *                             runner reports them undetermined instead of green,
+     *                             but nothing about them is evaluated client-side.
+     *
      * @return array{version: int, fields: array<string, array{attribute: string|null, client: list<array{rule: string, params: array<array-key, string>}>, server: list<string>}>, messages: array<string, string>, messageVariants: array<string, array<string, string>>}
      */
     public function export(array $rules, array $messages = [], array $attributes = [], array $except = []): array
@@ -92,7 +93,7 @@ final readonly class RuleExporter
 
                 if (! $serverOnly && RuleCatalogue::isClientCheckable($snake)) {
                     $client[] = [
-                        'rule' => $snake,
+                        'rule'   => $snake,
                         'params' => RuleCatalogue::nameParameters($snake, $parameters),
                     ];
 
@@ -121,23 +122,23 @@ final readonly class RuleExporter
 
             $fields[$attribute] = [
                 'attribute' => $attributes[$attribute] ?? null,
-                'client' => $client,
-                'server' => array_values(array_unique($server)),
+                'client'    => $client,
+                'server'    => array_values(array_unique($server)),
             ];
         }
 
         return [
-            'version' => self::VERSION,
-            'fields' => $fields,
-            'messages' => $exportedMessages,
+            'version'         => self::VERSION,
+            'fields'          => $fields,
+            'messages'        => $exportedMessages,
             'messageVariants' => $exportedVariants,
         ];
     }
 
     /**
-     * @param  array<string, mixed>  $rules
-     * @param  array<string, string>  $messages
-     * @param  array<string, string>  $attributes
+     * @param array<string, mixed> $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $attributes
      */
     public function toJson(array $rules, array $messages = [], array $attributes = []): string
     {
@@ -150,6 +151,63 @@ final readonly class RuleExporter
             $this->export($rules, $messages, $attributes),
             JSON_THROW_ON_ERROR | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP,
         );
+    }
+
+    /**
+     * A rule's own browser-equivalent rules, if it advertises any.
+     *
+     * A LIST, because a rule's browser form is not always one rule:
+     * `Geo\Latitude` is `numeric` AND `between:-90,90`. All of them are
+     * exported, and all must pass.
+     *
+     * Parameter keys are preserved: ClientCheckable documents NAMED keys,
+     * and the name is the contract. Flattening them to a positional list
+     * re-keyed each VALUE to whatever name sat at that position in the
+     * catalogue table — a rule that wrote ['max' => …, 'min' => …] exported
+     * inverted bounds.
+     *
+     * `interface_exists` rather than a hard dependency: laranail/validation is
+     * a suggest, not a require, and this package is useful without it. A
+     * consumer who has not installed it simply has no rule objects that could
+     * advertise anything.
+     *
+     * @return list<array{rule: string, params: array<array-key, string>}>
+     */
+    private static function advertisedClientRules(object $rule): array
+    {
+        if (! interface_exists(ClientCheckable::class) || ! $rule instanceof ClientCheckable) {
+            return [];
+        }
+
+        $exported = [];
+
+        foreach ($rule->clientRules() as $advertised) {
+            // Only names the runner implements. A rule inventing its own would
+            // be exported and then silently do nothing, which is the failure
+            // mode the server default exists to prevent — and it must take the
+            // WHOLE advertisement with it, or the field would be checked
+            // against a subset of its own rules and pass too easily.
+            if (! RuleCatalogue::isClientCheckable($advertised['rule'])) {
+                return [];
+            }
+
+            $exported[] = ['rule' => $advertised['rule'], 'params' => $advertised['params']];
+        }
+
+        return $exported;
+    }
+
+    private static function objectName(object $rule): string
+    {
+        return self::snake(class_basename($rule));
+    }
+
+    private static function snake(string $rule): string
+    {
+        // Laravel studly-cases rule names internally and snake-cases them for
+        // messages; the schema uses the snake form throughout so the runner
+        // and the message keys agree.
+        return mb_strtolower((string) preg_replace('/(?<!^)[A-Z]/', '_$0', $rule));
     }
 
     /**
@@ -248,63 +306,6 @@ final readonly class RuleExporter
     }
 
     /**
-     * A rule's own browser-equivalent rules, if it advertises any.
-     *
-     * A LIST, because a rule's browser form is not always one rule:
-     * `Geo\Latitude` is `numeric` AND `between:-90,90`. All of them are
-     * exported, and all must pass.
-     *
-     * Parameter keys are preserved: ClientCheckable documents NAMED keys,
-     * and the name is the contract. Flattening them to a positional list
-     * re-keyed each VALUE to whatever name sat at that position in the
-     * catalogue table — a rule that wrote ['max' => …, 'min' => …] exported
-     * inverted bounds.
-     *
-     * `interface_exists` rather than a hard dependency: laranail/validation is
-     * a suggest, not a require, and this package is useful without it. A
-     * consumer who has not installed it simply has no rule objects that could
-     * advertise anything.
-     *
-     * @return list<array{rule: string, params: array<array-key, string>}>
-     */
-    private static function advertisedClientRules(object $rule): array
-    {
-        if (! interface_exists(ClientCheckable::class) || ! $rule instanceof ClientCheckable) {
-            return [];
-        }
-
-        $exported = [];
-
-        foreach ($rule->clientRules() as $advertised) {
-            // Only names the runner implements. A rule inventing its own would
-            // be exported and then silently do nothing, which is the failure
-            // mode the server default exists to prevent — and it must take the
-            // WHOLE advertisement with it, or the field would be checked
-            // against a subset of its own rules and pass too easily.
-            if (! RuleCatalogue::isClientCheckable($advertised['rule'])) {
-                return [];
-            }
-
-            $exported[] = ['rule' => $advertised['rule'], 'params' => $advertised['params']];
-        }
-
-        return $exported;
-    }
-
-    private static function objectName(object $rule): string
-    {
-        return self::snake(class_basename($rule));
-    }
-
-    private static function snake(string $rule): string
-    {
-        // Laravel studly-cases rule names internally and snake-cases them for
-        // messages; the schema uses the snake form throughout so the runner
-        // and the message keys agree.
-        return mb_strtolower((string) preg_replace('/(?<!^)[A-Z]/', '_$0', $rule));
-    }
-
-    /**
      * The message template for a rule — never a finished sentence.
      *
      * `:attribute` is deliberately left in place. Substituting it here looks
@@ -314,7 +315,8 @@ final readonly class RuleExporter
      * user "The items.*.qty field is required." The runner has the submission,
      * so it fills the name.
      *
-     * @param  array<string, string>  $messages
+     * @param array<string, string> $messages
+     *
      * @return string|array<string, string>|null
      */
     private function message(string $attribute, string $rule, array $messages): string|array|null

@@ -60,7 +60,7 @@
         "phpstan/phpstan": "^2.1"
     },
     "suggest": {
-        "laranail/validation": "^1.0 (PHP 8.5) or ^0.1.1 (PHP 8.4) — export straight from a RuleSet instead of a plain rules array."
+        "laranail/validation": "^1.0 (PHP 8.5) or ^0.1.1 (PHP 8.4) \u2014 export straight from a RuleSet instead of a plain rules array."
     },
     "autoload": {
         "psr-4": {
@@ -75,7 +75,13 @@
     "scripts": {
         "test": "vendor/bin/pest",
         "phpstan": "vendor/bin/phpstan analyse",
-        "format": "vendor/bin/pint"
+        "format": "@pint-fix",
+        "pint": "vendor/bin/pint --test --config vendor/laranail/package-tools/pint.json",
+        "pint-fix": "vendor/bin/pint --parallel --config vendor/laranail/package-tools/pint.json",
+        "lint": [
+            "@pint",
+            "@phpstan"
+        ]
     },
     "config": {
         "sort-packages": true,

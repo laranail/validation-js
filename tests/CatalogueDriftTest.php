@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
+use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Simtabi\Laranail\ValidationJs\Support\EngineIntrospection;
 
 /**

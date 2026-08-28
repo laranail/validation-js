@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs;
 
-use RuntimeException;
 use Throwable;
+use RuntimeException;
 
 /**
  * A schema could not be exported. Always a loud failure: the silent

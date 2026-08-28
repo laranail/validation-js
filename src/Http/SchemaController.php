@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs\Http;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Simtabi\Laranail\ValidationJs\SchemaFactory;
 
 /**
@@ -34,17 +34,17 @@ final readonly class SchemaController
 
         $schema = $this->factory->forRequest($class, $key);
         $body = json_encode($schema, JSON_THROW_ON_ERROR);
-        $etag = '"'.sha1($body).'"';
+        $etag = '"' . sha1($body) . '"';
 
         if ($request->headers->get('If-None-Match') === $etag) {
             return response('', 304)->withHeaders([
-                'ETag' => $etag,
+                'ETag'          => $etag,
                 'Cache-Control' => 'private, max-age=60',
             ]);
         }
 
         return response()->json($schema)->withHeaders([
-            'ETag' => $etag,
+            'ETag'          => $etag,
             'Cache-Control' => 'private, max-age=60',
         ]);
     }
