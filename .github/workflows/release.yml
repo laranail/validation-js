@@ -90,6 +90,23 @@ jobs:
     timeout-minutes: 30
     needs: release
 
+    # Gated on a repository variable because the npm side is not configured yet:
+    # @laranail/validation-js has never been published, so `npm publish` fails
+    # with ENEEDAUTH on every tag move. A workflow that is always red is a
+    # workflow nobody reads -- it would bury the next real release failure the
+    # same way the "release already exists" error did.
+    #
+    # To enable: configure npm trusted publishing for @laranail/validation-js
+    # pointing at this workflow (or add an NPM_TOKEN secret), then set the
+    # repository variable NPM_PUBLISH_ENABLED to 'true'. Until then this job is
+    # visibly skipped rather than silently absent.
+    #
+    #     gh variable set NPM_PUBLISH_ENABLED --body true --repo laranail/validation-js
+    #
+    # A repository variable is used rather than testing the secret directly:
+    # the secrets context is not available in a job-level `if`.
+    if: ${{ vars.NPM_PUBLISH_ENABLED == 'true' }}
+
     # OIDC provenance: configure npm trusted publishing for
     # @laranail/validation-js pointing at this workflow (or provide
     # NPM_TOKEN as a fallback secret).
