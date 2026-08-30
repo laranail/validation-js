@@ -25,6 +25,27 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   eight (the other four target end-of-life framework markup; `ClassMapPreset` is ten lines
   of plain data for anything else).
 
+## v0.1.0 - 2026-08-30
+
+The single moving tag the whole laranail family is on. The `v1.0.0` and `v0.2.0` tags below
+were withdrawn during the org-wide floor reset, so everything recorded under them ships from
+here; nothing in this file has been removed.
+
+### Fixed
+
+- `release.yml` is idempotent. `v0.1.0` is force-pushed on every change, so the workflow
+  re-fires against a release that already exists, and `gh release create` refuses that
+  outright — every routine tag move produced a red run. It now edits when the release is
+  present and re-uploads both SBOMs with `--clobber`, matching `laranail/password-tools`.
+- The release could not build its notes at all: the workflow extracts the CHANGELOG section
+  matching the tag, and no `0.1.0` heading existed here after the reset relabelled the tag
+  but not this file.
+
+## Internal history (not published)
+
+These were tagged during development and the tags have since been withdrawn. Nothing here is
+separately installable — it all ships inside `v0.1.0` above.
+
 ## 1.0.0 - 2026-08-24
 
 The 1.0 major: both halves graduate to real SemVer, the
