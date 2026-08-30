@@ -59,15 +59,31 @@ jobs:
           npm sbom --sbom-format cyclonedx --omit dev > sbom.npm.cdx.json
           node -e 'JSON.parse(require("fs").readFileSync("sbom.npm.cdx.json"))'
 
-      - name: Create GitHub release
+      - name: Create or update the GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" \
-            --title "$GITHUB_REF_NAME" \
-            --notes-file release-body.md \
-            --generate-notes \
-            sbom.composer.cdx.json sbom.npm.cdx.json
+          # v0.1.0 is a moving tag -- it is force-pushed on every change, so this
+          # workflow re-fires against a release that already exists. `gh release
+          # create` refuses outright in that case ("a release with the same tag
+          # name already exists") and exits 1, so every routine tag move would
+          # produce a red run and bury any real release failure.
+          #
+          # The 26 packages using softprops/action-gh-release already update in
+          # place; this is the hand-rolled equivalent. Both SBOMs need explicit
+          # re-upload on the edit path: `gh release edit` takes no assets, and
+          # the upload needs --clobber because the names are already present.
+          if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
+            gh release edit "$GITHUB_REF_NAME" --notes-file release-body.md
+            gh release upload "$GITHUB_REF_NAME" \
+              sbom.composer.cdx.json sbom.npm.cdx.json --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              --title "$GITHUB_REF_NAME" \
+              --notes-file release-body.md \
+              --generate-notes \
+              sbom.composer.cdx.json sbom.npm.cdx.json
+          fi
 
   npm-publish:
     runs-on: ubuntu-latest
