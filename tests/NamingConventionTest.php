@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Artisan;
 use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 
 /**
@@ -46,16 +46,16 @@ it('renders the Blade component only under the laranail-validation-js prefix', f
 
 it('names its routes under laranail.validation-js.*', function (): void {
     config()->set('laranail.validation-js.endpoint', [
-        'enabled'    => true,
-        'path'       => '/_laranail/validation/schema',
-        'schemas'    => [],
+        'enabled' => true,
+        'path' => '/_laranail/validation/schema',
+        'schemas' => [],
         'middleware' => [],
     ]);
     config()->set('laranail.validation-js.validate', [
-        'enabled'    => true,
-        'path'       => '/_laranail/validation/validate',
+        'enabled' => true,
+        'path' => '/_laranail/validation/validate',
         'middleware' => [],
-        'throttle'   => '30,1',
+        'throttle' => '30,1',
     ]);
     app()->register(ValidationJsServiceProvider::class, force: true);
 

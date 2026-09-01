@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-use Illuminate\Validation\Rule;
-use Simtabi\Laranail\ValidationJs\RuleExporter;
-use Simtabi\Laranail\Validation\Rules\Text\Slug;
-use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Validation\Rule;
+use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
 use Simtabi\Laranail\Validation\Rules\Banking\Iban;
 use Simtabi\Laranail\Validation\Rules\Banking\Luhn;
+use Simtabi\Laranail\Validation\Rules\Crypto\BitcoinAddress;
 use Simtabi\Laranail\Validation\Rules\Geo\Latitude;
 use Simtabi\Laranail\Validation\Rules\Identifiers\Imei;
-use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
-use Simtabi\Laranail\Validation\Rules\Crypto\BitcoinAddress;
+use Simtabi\Laranail\Validation\Rules\Text\Slug;
+use Simtabi\Laranail\ValidationJs\RuleCatalogue;
+use Simtabi\Laranail\ValidationJs\RuleExporter;
 
 // laranail/validation is a DEV dependency and is PHP ^8.5, so the 8.4 CI cell
 // installs without it. These cases exercise the exporter against that package's
@@ -45,7 +45,7 @@ it('GUARANTEES server-rule parameters never reach the wire', function (): void {
     // so a future exporter path that leaks parameters fails here.
     $json = exporter()->toJson([
         'email' => 'required|email|unique:app_users,email_column|exists:tenants,id',
-        'code'  => ['required', 'my_custom_check:secret_arg'],
+        'code' => ['required', 'my_custom_check:secret_arg'],
     ]);
 
     expect($json)->not->toContain('app_users')
@@ -153,7 +153,7 @@ it('prefers a custom message, and a human attribute name', function (): void {
     $schema = exporter()->export(
         ['email' => 'required'],
         ['email.required' => 'We need your address.'],
-        ['email'          => 'Email address'],
+        ['email' => 'Email address'],
     );
 
     expect($schema['messages']['email.required'])->toBe('We need your address.')
@@ -168,7 +168,7 @@ it('handles every rule input shape Laravel accepts', function (mixed $rules): vo
     expect(array_column($schema['fields']['field']['client'], 'rule'))->toContain('required');
 })->with([
     'pipe string' => 'required|max:5',
-    'array'       => [['required', 'max:5']],
+    'array' => [['required', 'max:5']],
     'mixed array' => [['required', 'max:5']],
 ]);
 
@@ -422,8 +422,8 @@ it('carries no legacy parameter alias in the clean schema v1', function (string 
 
     expect($params)->not->toHaveKey($legacy);
 })->with([
-    'max:5'  => ['max:5', 'value'],
-    'min:5'  => ['min:5', 'value'],
+    'max:5' => ['max:5', 'value'],
+    'min:5' => ['min:5', 'value'],
     'size:5' => ['size:5', 'value'],
 ]);
 

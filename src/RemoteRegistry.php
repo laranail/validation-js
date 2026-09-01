@@ -21,12 +21,12 @@ final class RemoteRegistry
     private array $entries = [];
 
     /**
-     * @param Closure(): array<string, mixed> $rules Returns FormRequest-style
-     *                                               rules. A `RuleSet` user passes
-     *                                               `fn () => $ruleSet->toArray()` — the
-     *                                               endpoint stays decoupled from the
-     *                                               optional laranail/validation package.
-     * @param Closure(Request): bool $authorize Who may probe this rule set.
+     * @param  Closure(): array<string, mixed>  $rules  Returns FormRequest-style
+     *                                                  rules. A `RuleSet` user passes
+     *                                                  `fn () => $ruleSet->toArray()` — the
+     *                                                  endpoint stays decoupled from the
+     *                                                  optional laranail/validation package.
+     * @param  Closure(Request): bool  $authorize  Who may probe this rule set.
      */
     public function register(string $key, Closure $rules, Closure $authorize): void
     {

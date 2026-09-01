@@ -14,14 +14,14 @@ use Simtabi\Laranail\ValidationJs\RuleCatalogue;
  */
 it('states the real parity-fixture count in the README and CHANGELOG', function (): void {
     $fixtures = json_decode(
-        (string) file_get_contents(dirname(__DIR__) . '/js/tests/fixtures/parity.json'),
+        (string) file_get_contents(dirname(__DIR__).'/js/tests/fixtures/parity.json'),
         true,
         flags: JSON_THROW_ON_ERROR,
     );
     $actual = count($fixtures);
 
     foreach (['README.md', 'CHANGELOG.md'] as $doc) {
-        $prose = (string) file_get_contents(dirname(__DIR__) . '/' . $doc);
+        $prose = (string) file_get_contents(dirname(__DIR__).'/'.$doc);
 
         // \s+ because hard-wrapped prose can break the line inside the phrase.
         preg_match_all('/(\d+)\s+rule-and-value\s+combinations/', $prose, $m);
@@ -39,7 +39,7 @@ it('states the real parity-fixture count in the README and CHANGELOG', function 
 
 it('states the real client-rule count in the CHANGELOG', function (): void {
     $actual = count(RuleCatalogue::CLIENT);
-    $prose = (string) file_get_contents(dirname(__DIR__) . '/CHANGELOG.md');
+    $prose = (string) file_get_contents(dirname(__DIR__).'/CHANGELOG.md');
 
     preg_match_all('/implementing (\d+) rules/', $prose, $m);
 
@@ -58,7 +58,7 @@ it('exercises every client-checkable rule in the parity grid', function (): void
     // catalogue calls client-checkable but the grid never runs is an
     // implementation nobody has compared with Laravel.
     $cases = json_decode(
-        (string) file_get_contents(dirname(__DIR__) . '/js/tests/fixtures/parity.json'),
+        (string) file_get_contents(dirname(__DIR__).'/js/tests/fixtures/parity.json'),
         true,
         flags: JSON_THROW_ON_ERROR,
     );
@@ -88,6 +88,6 @@ it('exercises every client-checkable rule in the parity grid', function (): void
     $unexercised = array_diff(RuleCatalogue::CLIENT, array_keys($exercised), $exempt);
 
     expect(array_values($unexercised))->toBeEmpty(
-        'client rules absent from the parity grid: ' . implode(', ', $unexercised),
+        'client rules absent from the parity grid: '.implode(', ', $unexercised),
     );
 });

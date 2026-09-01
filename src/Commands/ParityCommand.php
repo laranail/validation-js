@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs\Commands;
 
-use Symfony\Component\Process\Process;
 use Simtabi\Laranail\Console\Tools\Commands\Command;
-use Simtabi\Laranail\ValidationJs\Support\EngineIntrospection;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
+use Simtabi\Laranail\ValidationJs\Support\EngineIntrospection;
+use Symfony\Component\Process\Process;
 
 /**
  * The CI parity-currency job, made local (§5.8): regenerate the
@@ -28,7 +28,7 @@ final class ParityCommand extends Command
     {
         $root = EngineIntrospection::packageRoot();
 
-        if (! is_file($root . '/vendor/bin/pest') || ! is_dir($root . '/.git')) {
+        if (! is_file($root.'/vendor/bin/pest') || ! is_dir($root.'/.git')) {
             $this->error('The parity command runs inside the package checkout (it needs pest and git).');
 
             return self::FAILURE;
@@ -36,7 +36,7 @@ final class ParityCommand extends Command
 
         $this->line('Regenerating fixtures from Laravel’s verdicts…');
         $generate = new Process(
-            [$root . '/vendor/bin/pest', 'tests/ParityFixtureTest.php'],
+            [$root.'/vendor/bin/pest', 'tests/ParityFixtureTest.php'],
             $root,
             timeout: 600,
         );
@@ -44,7 +44,7 @@ final class ParityCommand extends Command
 
         if (! $generate->isSuccessful()) {
             $this->error('Fixture generation failed:');
-            $this->line($generate->getOutput() . $generate->getErrorOutput());
+            $this->line($generate->getOutput().$generate->getErrorOutput());
 
             return self::FAILURE;
         }

@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs\Providers;
 
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Simtabi\Laranail\Package\Tools\Package;
-use Simtabi\Laranail\ValidationJs\RuleExporter;
-use Illuminate\Contracts\Translation\Translator;
-use Simtabi\Laranail\ValidationJs\SchemaFactory;
-use Simtabi\Laranail\ValidationJs\RemoteRegistry;
-use Simtabi\Laranail\ValidationJs\Http\SchemaController;
+use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
 use Simtabi\Laranail\ValidationJs\Commands\DoctorCommand;
 use Simtabi\Laranail\ValidationJs\Commands\ExportCommand;
 use Simtabi\Laranail\ValidationJs\Commands\ParityCommand;
+use Simtabi\Laranail\ValidationJs\Http\SchemaController;
 use Simtabi\Laranail\ValidationJs\Http\ValidateController;
-use Simtabi\Laranail\Package\Tools\Providers\PackageServiceProvider;
+use Simtabi\Laranail\ValidationJs\RemoteRegistry;
+use Simtabi\Laranail\ValidationJs\RuleExporter;
+use Simtabi\Laranail\ValidationJs\SchemaFactory;
 
 /**
  * The exporter, and — new with the transport phase — the Laravel surface
@@ -91,7 +91,7 @@ class ValidationJsServiceProvider extends PackageServiceProvider
                 is_string(...),
             ));
 
-            Route::get(rtrim($path, '/') . '/{key}', SchemaController::class)
+            Route::get(rtrim($path, '/').'/{key}', SchemaController::class)
                 ->middleware($middleware)
                 ->name('laranail.validation-js.schema');
         }
@@ -106,8 +106,8 @@ class ValidationJsServiceProvider extends PackageServiceProvider
             ));
             $throttle = is_string($validate['throttle'] ?? null) ? $validate['throttle'] : '30,1';
 
-            Route::post(rtrim($path, '/') . '/{key}', ValidateController::class)
-                ->middleware([...$middleware, 'throttle:' . $throttle])
+            Route::post(rtrim($path, '/').'/{key}', ValidateController::class)
+                ->middleware([...$middleware, 'throttle:'.$throttle])
                 ->name('laranail.validation-js.validate');
         }
     }
