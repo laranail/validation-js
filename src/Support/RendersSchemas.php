@@ -18,7 +18,7 @@ use Simtabi\Laranail\ValidationJs\SchemaFactory;
 final class RendersSchemas
 {
     /**
-     * @param array<string, mixed>|class-string<FormRequest> $source Rules, or a FormRequest class.
+     * @param  array<string, mixed>|class-string<FormRequest>  $source  Rules, or a FormRequest class.
      */
     public static function directive(
         array|string $source,
@@ -43,9 +43,9 @@ final class RendersSchemas
         );
 
         $escapedId = htmlspecialchars($id, ENT_QUOTES);
-        $nonceAttribute = $nonce === null ? '' : ' nonce="' . htmlspecialchars($nonce, ENT_QUOTES) . '"';
+        $nonceAttribute = $nonce === null ? '' : ' nonce="'.htmlspecialchars($nonce, ENT_QUOTES).'"';
 
-        return '<script type="application/json" data-laranail-schema="' . $escapedId . '"'
-            . $nonceAttribute . '>' . $json . '</script>';
+        return '<script type="application/json" data-laranail-schema="'.$escapedId.'"'
+            .$nonceAttribute.'>'.$json.'</script>';
     }
 }

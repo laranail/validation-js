@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use Illuminate\Http\Request;
-use Illuminate\Testing\TestResponse;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Http\FormRequest;
-use Simtabi\Laranail\ValidationJs\SchemaFactory;
-use Simtabi\Laranail\ValidationJs\RemoteRegistry;
-use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
-use Simtabi\Laranail\ValidationJs\SchemaExportException;
-use Simtabi\Laranail\ValidationJs\Events\SchemaExporting;
-use Simtabi\Laranail\ValidationJs\Support\RendersSchemas;
+use Illuminate\Testing\TestResponse;
 use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
-use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
+use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
+use Simtabi\Laranail\ValidationJs\Events\SchemaExporting;
 use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
+use Simtabi\Laranail\ValidationJs\RemoteRegistry;
+use Simtabi\Laranail\ValidationJs\SchemaExportException;
+use Simtabi\Laranail\ValidationJs\SchemaFactory;
+use Simtabi\Laranail\ValidationJs\Support\RendersSchemas;
 
 final class StoreThingRequest extends FormRequest
 {
@@ -129,9 +129,9 @@ it('renders the same island through the Blade component and directive', function
 function enableSchemaEndpoint(): void
 {
     config()->set('laranail.validation-js.endpoint', [
-        'enabled'    => true,
-        'path'       => '/_laranail/validation/schema',
-        'schemas'    => ['signup' => StoreThingRequest::class],
+        'enabled' => true,
+        'path' => '/_laranail/validation/schema',
+        'schemas' => ['signup' => StoreThingRequest::class],
         'middleware' => [],
     ]);
 
@@ -155,14 +155,14 @@ it('serves only allow-listed keys, never class strings', function (): void {
 
     // An unknown key — including an attempted class-string — is a bare 404.
     $this->get('/_laranail/validation/schema/unknown')->assertNotFound();
-    $this->get('/_laranail/validation/schema/' . urlencode(StoreThingRequest::class))->assertNotFound();
+    $this->get('/_laranail/validation/schema/'.urlencode(StoreThingRequest::class))->assertNotFound();
 });
 
 it('strips server-rule parameters on the wire — the §10.1 guarantee at the endpoint', function (): void {
     config()->set('laranail.validation-js.endpoint', [
-        'enabled'    => true,
-        'path'       => '/_laranail/validation/schema',
-        'schemas'    => ['users' => UniqueCarryingRequest::class],
+        'enabled' => true,
+        'path' => '/_laranail/validation/schema',
+        'schemas' => ['users' => UniqueCarryingRequest::class],
         'middleware' => [],
     ]);
     app()->register(ValidationJsServiceProvider::class, force: true);
@@ -207,10 +207,10 @@ final class UniqueCarryingRequest extends FormRequest
 function enableValidateEndpoint(?Closure $authorize = null): void
 {
     config()->set('laranail.validation-js.validate', [
-        'enabled'    => true,
-        'path'       => '/_laranail/validation/validate',
+        'enabled' => true,
+        'path' => '/_laranail/validation/validate',
         'middleware' => [],
-        'throttle'   => '3,1',
+        'throttle' => '3,1',
     ]);
 
     app()->register(ValidationJsServiceProvider::class, force: true);
@@ -244,7 +244,7 @@ it('narrows REPORTED failures to the Validate-Only list while validating everyth
 
     $response = $this->postJson(
         '/_laranail/validation/validate/profile',
-        ['email'                      => 'nope', 'age' => 'not-a-number'],
+        ['email' => 'nope', 'age' => 'not-a-number'],
         ['Precognition-Validate-Only' => 'age'],
     );
 
@@ -278,7 +278,7 @@ it('monitors attempts with field names and outcomes — never values', function 
 
     $this->postJson(
         '/_laranail/validation/validate/profile',
-        ['email'                      => 'hunter2@secret.example'],
+        ['email' => 'hunter2@secret.example'],
         ['Precognition-Validate-Only' => 'email'],
     )->assertStatus(204);
 
@@ -312,16 +312,16 @@ it('round-trips Precognition for a FormRequest: validate-only, full payload, no 
 
     // Authorization is the FormRequest's own — inherited for free.
     $this->postJson('/things', ['email' => 'nope'], [
-        'Precognition'               => 'true',
+        'Precognition' => 'true',
         'Precognition-Validate-Only' => 'email',
-        'X-Allowed'                  => 'yes',
+        'X-Allowed' => 'yes',
     ])
         ->assertStatus(422)
         ->assertJsonStructure(['errors' => ['email']]);
 
     $this->postJson('/things', ['email' => 'a@b.co', 'name' => 'Alice'], [
         'Precognition' => 'true',
-        'X-Allowed'    => 'yes',
+        'X-Allowed' => 'yes',
     ])->assertStatus(204);
 
     expect($controllerRan)->toBeFalse();
@@ -338,12 +338,12 @@ it('round-trips Precognition for a FormRequest: validate-only, full payload, no 
 
 it('writes allow-listed schemas to static JSON through the org-named command', function (): void {
     config()->set('laranail.validation-js.endpoint.schemas', ['signup' => StoreThingRequest::class]);
-    $out = 'exported-' . uniqid();
+    $out = 'exported-'.uniqid();
 
     $this->artisan('laranail::validation-js.export', ['--out' => $out])
         ->assertSuccessful();
 
-    $path = base_path($out . '/signup.json');
+    $path = base_path($out.'/signup.json');
     $written = json_decode((string) file_get_contents($path), true);
 
     expect($written)->toHaveKey('fields')

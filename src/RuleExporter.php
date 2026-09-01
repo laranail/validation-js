@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs;
 
-use Stringable;
-use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Validation\ValidationRuleParser;
 use Illuminate\Contracts\Translation\Translator;
-use Illuminate\Validation\InvokableValidationRule;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Validation\InvokableValidationRule;
+use Illuminate\Validation\ValidationRuleParser;
 use Simtabi\Laranail\Validation\Contracts\ClientCheckable;
+use Stringable;
 
 /**
  * Turns a Laravel rule set into the JSON schema the browser runner consumes.
@@ -65,14 +65,13 @@ final readonly class RuleExporter
     public function __construct(private ?Translator $translator = null) {}
 
     /**
-     * @param array<string, mixed> $rules
-     * @param array<string, string> $messages Custom messages, `field.rule` or `field`.
-     * @param array<string, string> $attributes Human names for fields.
-     * @param list<string> $except Fields (or `items.*`-style patterns) exported as
-     *                             server-only: their rule NAMES still travel, so the
-     *                             runner reports them undetermined instead of green,
-     *                             but nothing about them is evaluated client-side.
-     *
+     * @param  array<string, mixed>  $rules
+     * @param  array<string, string>  $messages  Custom messages, `field.rule` or `field`.
+     * @param  array<string, string>  $attributes  Human names for fields.
+     * @param  list<string>  $except  Fields (or `items.*`-style patterns) exported as
+     *                                server-only: their rule NAMES still travel, so the
+     *                                runner reports them undetermined instead of green,
+     *                                but nothing about them is evaluated client-side.
      * @return array{version: int, fields: array<string, array{attribute: string|null, client: list<array{rule: string, params: array<array-key, string>}>, server: list<string>}>, messages: array<string, string>, messageVariants: array<string, array<string, string>>}
      */
     public function export(array $rules, array $messages = [], array $attributes = [], array $except = []): array
@@ -93,7 +92,7 @@ final readonly class RuleExporter
 
                 if (! $serverOnly && RuleCatalogue::isClientCheckable($snake)) {
                     $client[] = [
-                        'rule'   => $snake,
+                        'rule' => $snake,
                         'params' => RuleCatalogue::nameParameters($snake, $parameters),
                     ];
 
@@ -122,23 +121,23 @@ final readonly class RuleExporter
 
             $fields[$attribute] = [
                 'attribute' => $attributes[$attribute] ?? null,
-                'client'    => $client,
-                'server'    => array_values(array_unique($server)),
+                'client' => $client,
+                'server' => array_values(array_unique($server)),
             ];
         }
 
         return [
-            'version'         => self::VERSION,
-            'fields'          => $fields,
-            'messages'        => $exportedMessages,
+            'version' => self::VERSION,
+            'fields' => $fields,
+            'messages' => $exportedMessages,
             'messageVariants' => $exportedVariants,
         ];
     }
 
     /**
-     * @param array<string, mixed> $rules
-     * @param array<string, string> $messages
-     * @param array<string, string> $attributes
+     * @param  array<string, mixed>  $rules
+     * @param  array<string, string>  $messages
+     * @param  array<string, string>  $attributes
      */
     public function toJson(array $rules, array $messages = [], array $attributes = []): string
     {
@@ -315,8 +314,7 @@ final readonly class RuleExporter
      * user "The items.*.qty field is required." The runner has the submission,
      * so it fills the name.
      *
-     * @param array<string, string> $messages
-     *
+     * @param  array<string, string>  $messages
      * @return string|array<string, string>|null
      */
     private function message(string $attribute, string $rule, array $messages): string|array|null

@@ -17,7 +17,7 @@ return [
      */
     'endpoint' => [
         'enabled' => false,
-        'path'    => '/_laranail/validation/schema',
+        'path' => '/_laranail/validation/schema',
         // 'signup' => \App\Http\Requests\StoreUserRequest::class,
         'schemas' => [],
         // Middleware wrapped around the route — put your auth here.
@@ -31,10 +31,10 @@ return [
      * without it (fail closed at boot, §10.2).
      */
     'validate' => [
-        'enabled'    => false,
-        'path'       => '/_laranail/validation/validate',
+        'enabled' => false,
+        'path' => '/_laranail/validation/validate',
         'middleware' => ['web'],
-        'throttle'   => '30,1',
+        'throttle' => '30,1',
     ],
 
     /*
@@ -42,7 +42,7 @@ return [
      * renders configuration alongside the schema.
      */
     'runtime' => [
-        'mode'     => 'eager',
+        'mode' => 'eager',
         'debounce' => 300,
     ],
 ];

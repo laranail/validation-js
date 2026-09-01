@@ -12,8 +12,8 @@ namespace Simtabi\Laranail\ValidationJs\Events;
 final readonly class RemoteValidationAttempted
 {
     /**
-     * @param list<string> $fields The Validate-Only field list (empty = full validation).
-     * @param 'passed'|'failed'|'unauthorized'|'throttled' $outcome
+     * @param  list<string>  $fields  The Validate-Only field list (empty = full validation).
+     * @param  'passed'|'failed'|'unauthorized'|'throttled'  $outcome
      */
     public function __construct(
         public string $endpoint,
