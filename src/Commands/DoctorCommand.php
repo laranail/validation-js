@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Simtabi\Laranail\ValidationJs\Commands;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Simtabi\Laranail\Console\Tools\Commands\Command;
-use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
-use Simtabi\Laranail\Package\Tools\Services\Doctor\Checks\CallbackCheck;
-use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorReporter;
-use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorResult;
-use Simtabi\Laranail\ValidationJs\RuleCatalogue;
 use Simtabi\Laranail\ValidationJs\RuleExporter;
+use Simtabi\Laranail\ValidationJs\RuleCatalogue;
+use Simtabi\Laranail\Console\Tools\Commands\Command;
 use Simtabi\Laranail\ValidationJs\Support\EngineIntrospection;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorResult;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\DoctorReporter;
+use Simtabi\Laranail\Package\Tools\Services\Doctor\Checks\CallbackCheck;
+use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
 
 /**
  * Schema/wire-format health (§5.8): the questions whose silent "no" costs
@@ -84,11 +84,11 @@ final class DoctorCommand extends Command
 
         if ($runner !== RuleExporter::VERSION) {
             return DoctorResult::fail(
-                'Schema major mismatch: exporter v'.RuleExporter::VERSION.", runner v{$runner}.",
+                'Schema major mismatch: exporter v' . RuleExporter::VERSION . ", runner v{$runner}.",
             );
         }
 
-        return DoctorResult::pass('Exporter and runner declare schema v'.RuleExporter::VERSION.'.');
+        return DoctorResult::pass('Exporter and runner declare schema v' . RuleExporter::VERSION . '.');
     }
 
     private function checkCatalogueDrift(): DoctorResult
@@ -106,22 +106,22 @@ final class DoctorCommand extends Command
             $detail = [];
 
             if ($missing !== []) {
-                $detail['silent holes'] = 'catalogue advertises rules the runner cannot evaluate: '.implode(', ', $missing);
+                $detail['silent holes'] = 'catalogue advertises rules the runner cannot evaluate: ' . implode(', ', $missing);
             }
 
             if ($extra !== []) {
-                $detail['needless round trips'] = 'runner implements rules the catalogue withholds: '.implode(', ', $extra);
+                $detail['needless round trips'] = 'runner implements rules the catalogue withholds: ' . implode(', ', $extra);
             }
 
             return DoctorResult::fail('Catalogue and runner disagree.', $detail);
         }
 
-        return DoctorResult::pass('Catalogue and runner agree on '.count($engine).' client rules.');
+        return DoctorResult::pass('Catalogue and runner agree on ' . count($engine) . ' client rules.');
     }
 
     private function checkParityFixture(): DoctorResult
     {
-        $path = EngineIntrospection::packageRoot().'/js/tests/fixtures/parity.json';
+        $path = EngineIntrospection::packageRoot() . '/js/tests/fixtures/parity.json';
 
         if (! is_file($path)) {
             return DoctorResult::warn('Parity fixture not present (packaged installs may omit it).');
@@ -135,7 +135,7 @@ final class DoctorCommand extends Command
             );
         }
 
-        return DoctorResult::pass('Parity fixture holds '.count($decoded).' recorded verdicts.');
+        return DoctorResult::pass('Parity fixture holds ' . count($decoded) . ' recorded verdicts.');
     }
 
     private function checkAllowList(): DoctorResult
@@ -162,7 +162,7 @@ final class DoctorCommand extends Command
         }
 
         return DoctorResult::pass(
-            'Endpoint allow-list: '.count($schemas).' entr'.(count($schemas) === 1 ? 'y' : 'ies').', all resolvable FormRequests.',
+            'Endpoint allow-list: ' . count($schemas) . ' entr' . (count($schemas) === 1 ? 'y' : 'ies') . ', all resolvable FormRequests.',
         );
     }
 }

@@ -15,12 +15,12 @@ namespace Simtabi\Laranail\ValidationJs\Events;
 final class SchemaExporting
 {
     /**
-     * @param  array<string, mixed>  $rules
-     * @param  array<string, string>  $messages
-     * @param  array<string, string>  $attributes
-     * @param  string|null  $key  The endpoint allow-list key, when the
-     *                            export serves the dynamic tier; null for
-     *                            programmatic and inline exports.
+     * @param array<string, mixed> $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $attributes
+     * @param string|null $key The endpoint allow-list key, when the
+     *                         export serves the dynamic tier; null for
+     *                         programmatic and inline exports.
      */
     public function __construct(
         public array $rules,

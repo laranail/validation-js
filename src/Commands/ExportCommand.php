@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs\Commands;
 
+use Simtabi\Laranail\ValidationJs\SchemaFactory;
 use Simtabi\Laranail\Console\Tools\Commands\Command;
 use Simtabi\Laranail\Console\Tools\Commands\Concerns\SupportsNamespacedNames;
-use Simtabi\Laranail\ValidationJs\SchemaFactory;
 
 /**
  * The static delivery tier (§5.7.1b): write allow-listed schemas to JSON
@@ -53,7 +53,7 @@ final class ExportCommand extends Command
             }
 
             $schema = $factory->forRequest($class, (string) $name);
-            $path = $directory.'/'.$name.'.json';
+            $path = $directory . '/' . $name . '.json';
             file_put_contents($path, json_encode($schema, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
             $this->info("Wrote {$path}");
         }

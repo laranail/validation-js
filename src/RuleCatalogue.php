@@ -120,8 +120,8 @@ final class RuleCatalogue
      * @var array<string, list<string>>
      */
     public const array PARAMETER_NAMES = [
-        'between' => ['min', 'max'],
-        'digits' => ['digits'],
+        'between'        => ['min', 'max'],
+        'digits'         => ['digits'],
         'digits_between' => ['min', 'max'],
         // Named for the PLACEHOLDER the message uses, not for the role the
         // parameter plays. `max:255`'s line reads ":max characters", so a
@@ -129,50 +129,50 @@ final class RuleCatalogue
         // a literal ":max". The check and the message have to read the same key
         // or one of the two is silently wrong, and it is always the message —
         // the check keeps working, so nothing fails to reveal it.
-        'max' => ['max'],
-        'min' => ['min'],
+        'max'  => ['max'],
+        'min'  => ['min'],
         'size' => ['size'],
         // `decimal` is the exception, and it is Laravel's exception rather than
         // one invented here: the check needs two bounds, the line has a single
         // `:decimal` that Laravel renders as "2" or "2-4". The runner composes
         // it from these two — see interpolate() in js/src/validate.ts.
-        'decimal' => ['min', 'max'],
+        'decimal'     => ['min', 'max'],
         'multiple_of' => ['value'],
-        'regex' => ['pattern'],
-        'not_regex' => ['pattern'],
-        'same' => ['other'],
-        'different' => ['other'],
-        'gt' => ['value'],
-        'gte' => ['value'],
-        'lt' => ['value'],
-        'lte' => ['value'],
+        'regex'       => ['pattern'],
+        'not_regex'   => ['pattern'],
+        'same'        => ['other'],
+        'different'   => ['other'],
+        'gt'          => ['value'],
+        'gte'         => ['value'],
+        'lt'          => ['value'],
+        'lte'         => ['value'],
         // Only position 0 is named. These take a field and then a VARIADIC
         // list of values — `required_if:kind,card,cheque` — so naming the
         // second would imply there is exactly one.
-        'required_if' => ['other'],
-        'required_unless' => ['other'],
-        'required_if_accepted' => ['other'],
-        'required_if_declined' => ['other'],
-        'confirmed' => ['other'],
-        'accepted_if' => ['other'],
-        'declined_if' => ['other'],
-        'prohibited_if' => ['other'],
-        'prohibited_unless' => ['other'],
+        'required_if'            => ['other'],
+        'required_unless'        => ['other'],
+        'required_if_accepted'   => ['other'],
+        'required_if_declined'   => ['other'],
+        'confirmed'              => ['other'],
+        'accepted_if'            => ['other'],
+        'declined_if'            => ['other'],
+        'prohibited_if'          => ['other'],
+        'prohibited_unless'      => ['other'],
         'prohibited_if_accepted' => ['other'],
         'prohibited_if_declined' => ['other'],
-        'missing_if' => ['other'],
-        'missing_unless' => ['other'],
-        'present_if' => ['other'],
-        'present_unless' => ['other'],
-        'max_digits' => ['max'],
-        'min_digits' => ['min'],
-        'in_array' => ['other'],
+        'missing_if'             => ['other'],
+        'missing_unless'         => ['other'],
+        'present_if'             => ['other'],
+        'present_unless'         => ['other'],
+        'max_digits'             => ['max'],
+        'min_digits'             => ['min'],
+        'in_array'               => ['other'],
         // Named for the `:date` placeholder their messages interpolate.
-        'after' => ['date'],
-        'after_or_equal' => ['date'],
-        'before' => ['date'],
+        'after'           => ['date'],
+        'after_or_equal'  => ['date'],
+        'before'          => ['date'],
         'before_or_equal' => ['date'],
-        'date_equals' => ['date'],
+        'date_equals'     => ['date'],
     ];
 
     public static function isClientCheckable(string $rule): bool
@@ -186,7 +186,8 @@ final class RuleCatalogue
     }
 
     /**
-     * @param  array<array-key, string>  $parameters
+     * @param array<array-key, string> $parameters
+     *
      * @return array<array-key, string> String keys for named rules; integer
      *                                  keys for variadic ones. See above.
      */
