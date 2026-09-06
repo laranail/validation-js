@@ -1,18 +1,18 @@
 <?php
 
 declare(strict_types=1);
+use Simtabi\Laranail\ValidationJs\RuleExporter;
+use Simtabi\Laranail\ValidationJs\SchemaFactory;
+use Simtabi\Laranail\ValidationJs\RemoteRegistry;
+use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
+use Simtabi\Laranail\ValidationJs\SchemaExportException;
 use Simtabi\Laranail\ValidationJs\Commands\DoctorCommand;
 use Simtabi\Laranail\ValidationJs\Commands\ExportCommand;
 use Simtabi\Laranail\ValidationJs\Commands\ParityCommand;
-use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
-use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExporting;
-use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
-use Simtabi\Laranail\ValidationJs\RemoteRegistry;
-use Simtabi\Laranail\ValidationJs\RuleExporter;
-use Simtabi\Laranail\ValidationJs\SchemaExportException;
-use Simtabi\Laranail\ValidationJs\SchemaFactory;
 use Simtabi\Laranail\ValidationJs\Support\RendersSchemas;
+use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
+use Simtabi\Laranail\ValidationJs\Providers\ValidationJsServiceProvider;
 
 /**
  * The §12.1 boundary, enforced: every class is either on the stable list
@@ -37,7 +37,7 @@ const STABLE = [
 
 it('classifies every class as stable or @internal — nothing unmarked', function (): void {
     $files = new RecursiveIteratorIterator(
-        new RecursiveDirectoryIterator(dirname(__DIR__).'/src', FilesystemIterator::SKIP_DOTS),
+        new RecursiveDirectoryIterator(dirname(__DIR__) . '/src', FilesystemIterator::SKIP_DOTS),
     );
 
     $unclassified = [];
@@ -54,7 +54,7 @@ it('classifies every class as stable or @internal — nothing unmarked', functio
             continue;
         }
 
-        $fqn = $ns[1].'\\'.$cls[1];
+        $fqn = $ns[1] . '\\' . $cls[1];
         $reflection = new ReflectionClass($fqn);
         $internal = str_contains((string) $reflection->getDocComment(), '@internal');
         $stable = in_array($fqn, STABLE, true);

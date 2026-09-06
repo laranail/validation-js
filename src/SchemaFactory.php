@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs;
 
-use Illuminate\Contracts\Container\Container;
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Foundation\Http\FormRequest;
+use Throwable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Container\Container;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExported;
 use Simtabi\Laranail\ValidationJs\Events\SchemaExporting;
-use Throwable;
 
 /**
  * The one path every delivery tier exports through — inline Blade, the
@@ -29,11 +29,12 @@ final readonly class SchemaFactory
     ) {}
 
     /**
-     * @param  array<string, mixed>  $rules
-     * @param  array<string, string>  $messages
-     * @param  array<string, string>  $attributes
-     * @param  list<string>  $except  Fields exported server-only — the per-field opt-out
-     *                                (the field degrades to undetermined, never green).
+     * @param array<string, mixed> $rules
+     * @param array<string, string> $messages
+     * @param array<string, string> $attributes
+     * @param list<string> $except Fields exported server-only — the per-field opt-out
+     *                             (the field degrades to undetermined, never green).
+     *
      * @return array<string, mixed>
      */
     public function forRules(
@@ -72,7 +73,8 @@ final readonly class SchemaFactory
      * silent empty schema, which would switch client validation off while
      * looking configured.
      *
-     * @param  string  $requestClass  Validated here: a non-FormRequest name throws.
+     * @param string $requestClass Validated here: a non-FormRequest name throws.
+     *
      * @return array<string, mixed>
      */
     public function forRequest(string $requestClass, ?string $key = null): array
@@ -103,8 +105,8 @@ final readonly class SchemaFactory
         } catch (Throwable $exception) {
             throw new SchemaExportException(
                 "[{$requestClass}::rules()] could not run outside a live request"
-                    .' — it likely reads route parameters or input that only exist mid-request.'
-                    .' Export a RuleSet for this form, or guard those reads.',
+                    . ' — it likely reads route parameters or input that only exist mid-request.'
+                    . ' Export a RuleSet for this form, or guard those reads.',
                 previous: $exception,
             );
         }

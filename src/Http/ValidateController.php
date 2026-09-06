@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Simtabi\Laranail\ValidationJs\Http;
 
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
-use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
+use Illuminate\Contracts\Events\Dispatcher;
 use Simtabi\Laranail\ValidationJs\RemoteRegistry;
+use Simtabi\Laranail\ValidationJs\Events\RemoteValidationAttempted;
 
 /**
  * The thin validate endpoint for registered RuleSets (§5.7.2). The

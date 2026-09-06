@@ -57,7 +57,7 @@ final class EngineIntrospection
 
     private static function read(string $relative): ?string
     {
-        $path = self::packageRoot().'/'.$relative;
+        $path = self::packageRoot() . '/' . $relative;
         $contents = is_file($path) ? file_get_contents($path) : false;
 
         return $contents === false ? null : $contents;
