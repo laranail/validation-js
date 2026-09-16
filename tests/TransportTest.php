@@ -244,7 +244,7 @@ it('narrows REPORTED failures to the Validate-Only list while validating everyth
 
     $response = $this->postJson(
         '/_laranail/validation/validate/profile',
-        ['email'                      => 'nope', 'age' => 'not-a-number'],
+        ['email' => 'nope', 'age' => 'not-a-number'],
         ['Precognition-Validate-Only' => 'age'],
     );
 
@@ -278,7 +278,7 @@ it('monitors attempts with field names and outcomes — never values', function 
 
     $this->postJson(
         '/_laranail/validation/validate/profile',
-        ['email'                      => 'hunter2@secret.example'],
+        ['email' => 'hunter2@secret.example'],
         ['Precognition-Validate-Only' => 'email'],
     )->assertStatus(204);
 

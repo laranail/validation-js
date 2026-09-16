@@ -153,7 +153,7 @@ it('prefers a custom message, and a human attribute name', function (): void {
     $schema = exporter()->export(
         ['email' => 'required'],
         ['email.required' => 'We need your address.'],
-        ['email'          => 'Email address'],
+        ['email' => 'Email address'],
     );
 
     expect($schema['messages']['email.required'])->toBe('We need your address.')
