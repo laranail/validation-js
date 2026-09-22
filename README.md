@@ -1,9 +1,10 @@
 # laranail/validation-js
 
-[![Latest version on Packagist](https://img.shields.io/packagist/v/laranail/validation-js.svg)](https://packagist.org/packages/laranail/validation-js)
 [![Tests](https://github.com/laranail/validation-js/actions/workflows/run-tests.yml/badge.svg)](https://github.com/laranail/validation-js/actions/workflows/run-tests.yml)
 [![Static analysis](https://github.com/laranail/validation-js/actions/workflows/phpstan.yml/badge.svg)](https://github.com/laranail/validation-js/actions/workflows/phpstan.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+`laranail/validation-js` is not published to Packagist, so there is no registry-version badge to show — see [Install](#install).
 
 > Export your Laravel validation rules as a JSON schema and check them in the browser — with no round trip, no duplicated rule definitions, and no lying about what the client can actually decide.
 
