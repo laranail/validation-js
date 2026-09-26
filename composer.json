@@ -70,7 +70,7 @@
         "phpstan/phpstan": "^2.1"
     },
     "suggest": {
-        "laranail/validation": "^1.0 (PHP 8.5) or ^0.1.1 (PHP 8.4) \u2014 export straight from a RuleSet instead of a plain rules array."
+        "laranail/validation": "^0.1 (PHP 8.5) \u2014 export straight from a RuleSet instead of a plain rules array."
     },
     "autoload": {
         "psr-4": {

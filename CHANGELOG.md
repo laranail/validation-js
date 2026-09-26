@@ -25,6 +25,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   eight (the other four target end-of-life framework markup; `ClassMapPreset` is ten lines
   of plain data for anything else).
 
+### Fixed
+
+- **`suggest` named `laranail/validation ^1.0`, which resolves nothing.** `v1.0.0` was withdrawn in the floor-to-`v0.1.0` reset; the only tag on the remote is the moving `v0.1.0`, so the suggestion now reads `^0.1`. The `^0.1.1 (PHP 8.4)` alternative is dropped as well: `laranail/validation` requires PHP `^8.5`, so no PHP 8.4 install can take it. Composer never resolves a suggestion, so no CI run could catch it.
+
 ## v0.1.0 - 2026-08-30
 
 The single moving tag the whole laranail family is on. The `v1.0.0` and `v0.2.0` tags below
