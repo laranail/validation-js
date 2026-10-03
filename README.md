@@ -33,7 +33,19 @@ composer require laranail/validation-js
 npm install @laranail/validation-js
 ```
 
-## Quick start
+## Quick start guide and usage
+
+### Getting started
+
+Nothing is required after the two installs: `ValidationJsServiceProvider` is auto-discovered and
+the npm package has zero runtime dependencies. Publish the config only when you want the
+transport endpoints or different runtime defaults:
+
+```bash
+php artisan vendor:publish --tag=laranail::validation-js-config
+```
+
+### Usage
 
 Export on the server:
 
