@@ -5,8 +5,7 @@ All notable changes to `laranail/validation-js` are documented in this file.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
-
+## [Unreleased]
 ### Added
 
 - **The per-field client opt-out**: `except: ['field']` on `RuleExporter::export()` and
@@ -212,3 +211,5 @@ reference the release-planning audit's register.
 - A differential test: the PHP suite records Laravel's own verdicts over 511 rule-and-value
   combinations, and the JavaScript suite must reproduce every one. CI regenerates the fixture
   and fails if the committed copy disagrees.
+
+[Unreleased]: https://github.com/laranail/validation-js/compare/v0.1.0...HEAD
