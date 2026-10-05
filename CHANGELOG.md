@@ -23,10 +23,18 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `docs/architecture.md` records why four renderer presets ship instead of the legacy's
   eight (the other four target end-of-life framework markup; `ClassMapPreset` is ten lines
   of plain data for anything else).
+- The `phpstan` workflow also runs `composer pint` (`laranail-pint --test` against the shared
+  config). Nothing in CI checked formatting before, so a pull request could merge unformatted.
 
 ### Fixed
 
 - **`suggest` named `laranail/validation ^1.0`, which resolves nothing.** `v1.0.0` was withdrawn in the floor-to-`v0.1.0` reset; the only tag on the remote is the moving `v0.1.0`, so the suggestion now reads `^0.1`. The `^0.1.1 (PHP 8.4)` alternative is dropped as well: `laranail/validation` requires PHP `^8.5`, so no PHP 8.4 install can take it. Composer never resolves a suggestion, so no CI run could catch it.
+
+### Changed
+
+- `require` now declares `illuminate/http`, `illuminate/routing` and `illuminate/view`, which the
+  package imports or calls directly (`Request`, `Redirector`, `Route::get()`, `Blade::directive()`).
+  They arrived only through `laranail/package-tools` before.
 
 ## v0.1.0 - 2026-08-30
 
