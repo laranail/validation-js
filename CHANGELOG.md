@@ -43,6 +43,13 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `require` now declares `illuminate/http`, `illuminate/routing` and `illuminate/view`, which the
   package imports or calls directly (`Request`, `Redirector`, `Route::get()`, `Blade::directive()`).
   They arrived only through `laranail/package-tools` before.
+- `require` now declares `illuminate/config`, `illuminate/container` and `laravel/framework ^13.0`.
+  `SchemaFactory`, `Support\RendersSchemas` and `Commands\DoctorCommand` import
+  `Illuminate\Foundation\Http\FormRequest`, which has no split package, and the global helpers
+  `src/` calls (`config()`, `resolve()`, `config_path()`, ...) are defined only in
+  `Illuminate/Foundation/helpers.php`. They arrived only transitively before.
+  `tests/DeclaredRequirementsTest.php` scans `src/` and fails on any use the manifest does not
+  declare.
 
 ## v0.1.0 - 2026-08-30
 
