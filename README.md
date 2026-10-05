@@ -33,6 +33,18 @@ composer require laranail/validation-js
 npm install @laranail/validation-js
 ```
 
+`@laranail/validation-js` is published to GitHub Packages, not npm, while npm cannot take a publish
+from this repository ([npm/cli#9969](https://github.com/npm/cli/issues/9969)). GitHub Packages asks
+for a token even for a public package, so before `npm install` add a GitHub token with
+`read:packages` to the project's `.npmrc`:
+
+```ini
+@laranail:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+See [npm or GitHub Packages](docs/release.md#npm-or-github-packages).
+
 ## Quick start guide and usage
 
 ### Getting started
