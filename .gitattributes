@@ -38,6 +38,7 @@ stryker.config.json   export-ignore
 biome.json            export-ignore
 tsconfig.json         export-ignore
 tsconfig.build.json   export-ignore
+/.dev                  export-ignore
 
 # >>> package-boost (managed) >>>
 .agents/                export-ignore

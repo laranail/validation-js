@@ -1,16 +1,33 @@
 name: "Release"
 
+# A tag push creates or updates the GitHub release, then publishes the npm package to the registry the
+# repository variable PUBLISH_REGISTRY names (npm when unset). A maintainer can publish an existing tag by hand to
+# either registry, which is what .dev/tools/npm-release does:  gh workflow run release.yml -f tag=vX.Y.Z -f registry=github
+# GitHub Packages (npm.pkg.github.com) needs no npm account: the run's own GITHUB_TOKEN publishes. This repository
+# was created after 2026-07-15, so npm's trusted publishing refuses its immutable OIDC subject (npm/cli#9969).
 on:
   push:
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "An existing release tag to publish, e.g. v0.1.0"
+        required: true
+      registry:
+        description: "npm (registry.npmjs.org) or github (GitHub Packages)"
+        type: choice
+        options: [npm, github]
+        default: npm
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ inputs.tag || github.ref }}
   cancel-in-progress: false
 
 jobs:
   release:
+    # Only for a tag push: publishing an existing tag by hand leaves its release alone.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -105,7 +122,8 @@ jobs:
     #
     # A repository variable is used rather than testing the secret directly:
     # the secrets context is not available in a job-level `if`.
-    if: ${{ vars.NPM_PUBLISH_ENABLED == 'true' }}
+    # A hand-started run has no release job to wait for, so `needs` alone would skip it.
+    if: ${{ !cancelled() && vars.NPM_PUBLISH_ENABLED == 'true' && (needs.release.result == 'success' || github.event_name == 'workflow_dispatch') }}
 
     # OIDC provenance: configure npm trusted publishing for
     # @laranail/validation-js pointing at this workflow (or provide
@@ -113,9 +131,22 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write # GitHub Packages, with the run's GITHUB_TOKEN
+    env:
+      TAG: ${{ inputs.tag || github.ref_name }}
+      TARGET: ${{ inputs.registry || vars.PUBLISH_REGISTRY || 'npm' }}
 
     steps:
+      - name: Check the tag
+        run: |
+          if ! printf '%s' "$TAG" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "::error::'$TAG' is not a release tag (vX.Y.Z)." >&2
+            exit 1
+          fi
+
       - uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ inputs.tag || github.ref_name }}
 
       - uses: actions/setup-node@v7
         with:
@@ -129,12 +160,50 @@ jobs:
       - name: Verify manifest matches tag
         run: |
           MANIFEST=$(node -p "require('./package.json').version")
-          test "v$MANIFEST" = "$GITHUB_REF_NAME" || {
-            echo "package.json ($MANIFEST) != tag ($GITHUB_REF_NAME)" >&2
+          test "v$MANIFEST" = "$TAG" || {
+            echo "package.json ($MANIFEST) != tag ($TAG)" >&2
             exit 1
           }
 
-      # prepublishOnly runs the full suite + the pack-import check.
-      - run: npm publish --provenance --access public
+      # GitHub Packages is reached through its own userconfig, so the .npmrc
+      # setup-node wrote for npm is untouched. A version the registry already
+      # has is reported, not failed: v0.1.0 is a moving tag.
+      - name: Check whether this version is already published
+        id: published
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          printf '@laranail:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n' "$GITHUB_TOKEN" > "$RUNNER_TEMP/github-packages.npmrc"
+          name="$(node -p "require('./package.json').name")"
+          version="$(node -p "require('./package.json').version")"
+          if [ "$TARGET" = github ]; then
+            found=$(npm view "$name@$version" version --userconfig "$RUNNER_TEMP/github-packages.npmrc" 2>/dev/null || true)
+            label="GitHub Packages"
+          else
+            found=$(npm view "$name@$version" version 2>/dev/null || true)
+            label=npm
+          fi
+          if [ "$found" = "$version" ]; then
+            echo "already on $label: $name@$version"
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # prepublishOnly runs the full suite + the pack-import check.
+      # npm: trusted publishing, or the NPM_TOKEN secret. npm tries OIDC before
+      # a token whenever the job can mint one, so the token route hides the
+      # OIDC variables and loses provenance. GitHub Packages: the run's token.
+      - name: Publish
+        if: steps.published.outputs.exists != 'true'
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ "$TARGET" = github ]; then
+            npm publish --userconfig "$RUNNER_TEMP/github-packages.npmrc" --registry https://npm.pkg.github.com --provenance=false
+          elif [ -n "$NPM_TOKEN" ]; then
+            env -u ACTIONS_ID_TOKEN_REQUEST_URL -u ACTIONS_ID_TOKEN_REQUEST_TOKEN \
+              NODE_AUTH_TOKEN="$NPM_TOKEN" npm publish --access public --provenance=false
+          else
+            npm publish --provenance --access public
+          fi

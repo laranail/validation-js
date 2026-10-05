@@ -8,6 +8,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [Unreleased]
 ### Added
 
+- **The npm package publishes to npm or GitHub Packages.** `release.yml` takes a `workflow_dispatch`
+  with `tag` and `registry` inputs, publishes to GitHub Packages with the run's own `GITHUB_TOKEN`,
+  follows the `PUBLISH_REGISTRY` variable on a tag push (npm when unset), publishes to npm with the
+  `NPM_TOKEN` secret without the OIDC exchange npm would try first, and reports a version a registry
+  already has instead of failing. The release job runs on tag pushes only, and the npm job no longer
+  needs it on a hand-started run. `.dev/tools/npm-release github|npm` publishes every missing release;
+  see `docs/release.md`. `.dev` is export-ignored.
+
 - **The per-field client opt-out**: `except: ['field']` on `RuleExporter::export()` and
   `SchemaFactory::forRules()` exports a field server-only — its rule names still travel, so
   the runner reports it undetermined rather than green, but nothing about it evaluates
