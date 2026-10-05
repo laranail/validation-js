@@ -25,6 +25,33 @@ exporter and lose only precision, never correctness.
 4. Tag `vX.Y.Z`; the GitHub release carries the CHANGELOG section. npm publish happens from the
    tagged checkout (`prepublishOnly` re-runs the suite and the pack-import check).
 
+## npm or GitHub Packages
+
+The npm job publishes to the registry the repository variable `PUBLISH_REGISTRY` names: npm, the
+default, or `github` for GitHub Packages (`npm.pkg.github.com`), which publishes with the run's own
+`GITHUB_TOKEN` and needs no npm account. This repository was created after 2026-07-15, so npm's
+trusted publishing refuses its immutable OIDC subject
+([npm/cli#9969](https://github.com/npm/cli/issues/9969)); npm needs the `NPM_TOKEN` secret, published
+without provenance. Both routes stay behind `NPM_PUBLISH_ENABLED`. A version the registry already has
+is reported, not failed.
+
+One command publishes every release tag that is not out yet by starting `release.yml` once per tag
+with `tag` and `registry` inputs; a hand-started run never touches the GitHub release:
+
+```bash
+.dev/tools/npm-release github        # GitHub Packages; needs no npm token
+.dev/tools/npm-release npm           # npm, with a granular token (npm_…) on the clipboard
+```
+
+`--dry-run` changes nothing and `--help` lists the rest; it needs `gh` signed in as a maintainer.
+GitHub Packages asks for authentication even to install a public package: a project installing from
+it adds `@laranail:registry=https://npm.pkg.github.com` and
+`//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}` to its `.npmrc`, with a `read:packages` token.
+
+> `v0.1.0` is a moving tag, and a registry never lets a version be replaced: the first publish of
+> `0.1.0` is the only one that lands, and later tag moves are reported as already published. Publish
+> from a tag whose version will not move again.
+
 ## Cross-package ordering
 
 When a rule gains client support: ship the **PHP side first** (the exporter degrades an
