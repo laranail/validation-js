@@ -40,6 +40,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Changed
 
+- **A guard now keeps literal credentials out of the tests**, and every generated credential's
+  purpose a single word. `NoLiteralCredentialsTest` runs package-tools' `AssertsNoLiteralCredentials`
+  over `tests/`, so secret scanning has nothing to report. Requires
+  `laranail/package-tools ^0.1.10`.
 - `require` now declares `illuminate/http`, `illuminate/routing` and `illuminate/view`, which the
   package imports or calls directly (`Request`, `Redirector`, `Route::get()`, `Blade::directive()`).
   They arrived only through `laranail/package-tools` before.
