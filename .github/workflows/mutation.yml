@@ -15,7 +15,10 @@ concurrency:
 jobs:
   stryker:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Stryker needs about 27 minutes for the ~1,700 mutants (measured on the
+    # 2026-10-26 run, cancelled at 58% after 15). The bound is there to stop a
+    # hung job, not to cut a working one short; 45 leaves headroom for growth.
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
 
