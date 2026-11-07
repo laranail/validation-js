@@ -22,8 +22,10 @@ exporter and lose only precision, never correctness.
    `npm run test:e2e`, `npm run budget`, `npm run test:pack`.
 3. `laranail::validation-js.parity` — a sister-repo tag can move what `^0.1` resolves to and
    stale the differential fixtures; regenerating locally is cheaper than a red CI wave.
-4. Tag `vX.Y.Z`; the GitHub release carries the CHANGELOG section. npm publish happens from the
-   tagged checkout (`prepublishOnly` re-runs the suite and the pack-import check).
+4. Tag `vX.Y.Z`; the GitHub release carries the CHANGELOG section. **The tag publishes nothing to
+   npm** — see below.
+5. To release the JS half: bump `package.json`'s `version`, land it, then start the publish by hand.
+   It runs from the tagged checkout (`prepublishOnly` re-runs the suite and the pack-import check).
 
 ## npm or GitHub Packages
 
@@ -33,10 +35,22 @@ default, or `github` for GitHub Packages (`npm.pkg.github.com`), which publishes
 trusted publishing refuses its immutable OIDC subject
 ([npm/cli#9969](https://github.com/npm/cli/issues/9969)); npm needs the `NPM_TOKEN` secret, published
 without provenance. Both routes stay behind `NPM_PUBLISH_ENABLED`. A version the registry already has
-is reported, not failed.
+is reported rather than failed, so re-running after a partial publish is safe — but it is reported as
+a **warning**, because a run that published nothing must not read as a clean release.
 
-One command publishes every release tag that is not out yet by starting `release.yml` once per tag
-with `tag` and `registry` inputs; a hand-started run never touches the GitHub release:
+**The publish job is `workflow_dispatch` only.** A tag push creates the GitHub release and stops
+there; `tests/ReleaseWorkflowTest.php` fails if the job ever accepts a tag push again. Bump
+`package.json` first — the version published is the manifest's, and a registry refuses one it already
+has:
+
+```bash
+npm version <X.Y.Z> --no-git-tag-version
+```
+
+Land that through a pull request, then start the run. One command does it for every release tag not
+out yet, by starting `release.yml` once per tag with `tag` and `registry` inputs; the `tag` says which
+commit to build, not which version to publish, and a hand-started run never touches the GitHub
+release:
 
 ```bash
 .dev/tools/npm-release github        # GitHub Packages; needs no npm token
@@ -48,9 +62,15 @@ GitHub Packages asks for authentication even to install a public package: a proj
 it adds `@laranail:registry=https://npm.pkg.github.com` and
 `//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}` to its `.npmrc`, with a `read:packages` token.
 
-> `v0.1.0` is a moving tag, and a registry never lets a version be replaced: the first publish of
-> `0.1.0` is the only one that lands, and later tag moves are reported as already published. Publish
-> from a tag whose version will not move again.
+> **This already happened, and the advice that used to stand here could not be followed.** It read
+> *"publish from a tag whose version will not move again"* — but this repository has one tag and it
+> moves, so there was no such tag to publish from, and the workflow additionally *required* the
+> manifest version to equal it. `@laranail/validation-js@0.1.0` is on GitHub Packages from an early
+> tag push, frozen, while the tag has moved on without it; every run since reported success.
+>
+> The fix is the one the table at the top of this page always described: **the npm line is its own**.
+> The tag names the commit, `package.json` names the version, nothing publishes automatically, and
+> `0.1.0` is spent — the next release is higher.
 
 ## Cross-package ordering
 
