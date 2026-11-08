@@ -23,7 +23,12 @@ exporter and lose only precision, never correctness.
 3. `laranail::validation-js.parity` — a sister-repo tag can move what `^0.1` resolves to and
    stale the differential fixtures; regenerating locally is cheaper than a red CI wave.
 4. Tag `vX.Y.Z`; the GitHub release carries the CHANGELOG section. **The tag publishes nothing to
-   npm** — see below.
+   npm** — see below. Moving the tag by delete-then-push — the route wherever `git push --force` is
+   unavailable — reverts its release to a *draft*, and `gh release edit` leaves that flag as it finds
+   it, so `release.yml` passes `--draft=false`. Without it the run goes green having republished
+   nothing, and nothing else reports it: the tag resolves, composer installs, and the org's
+   tag-currency check passes, because none of them reads the release.
+   `tests/ReleaseWorkflowTest.php` fails if any workflow's `gh release edit` drops the flag.
 5. To release the JS half: bump `package.json`'s `version`, land it, then start the publish by hand.
    It runs from the tagged checkout (`prepublishOnly` re-runs the suite and the pack-import check).
 

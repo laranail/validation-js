@@ -126,6 +126,37 @@ it('warns when a run publishes nothing, so a skip cannot read as a release', fun
         ->and(workflowString($probe['run'] ?? null))->toContain('::warning::');
 });
 
+it('clears the draft flag on every release edit, because deleting a tag sets it', function (): void {
+    $dir = dirname(__DIR__) . '/.github/workflows';
+    $files = [...glob($dir . '/*.yml') ?: [], ...glob($dir . '/*.yaml') ?: []];
+
+    // A glob that stops matching must fail here rather than report a clean sweep.
+    expect(count($files))->toBeGreaterThanOrEqual(6);
+
+    $edits = [];
+
+    foreach ($files as $file) {
+        $lines = preg_split('/\n/', workflowString(file_get_contents($file))) ?: [];
+        // Drop comment lines first -- the prose above the command names it too -- then join shell line
+        // continuations, so a flag written on the next line still counts as part of the same command.
+        $code = implode("\n", array_filter($lines, static fn (string $line): bool => preg_match('/^\s*#/', $line) !== 1));
+        preg_match_all('/gh release edit[^\n]*/', (string) preg_replace('/\\\\\n\s*/', ' ', $code), $found);
+
+        foreach ($found[0] as $command) {
+            $edits[] = basename($file) . ': ' . $command;
+        }
+    }
+
+    // Non-vacuity: no match at all means the matcher broke, not that the workflows are clean.
+    expect($edits)->not->toBeEmpty('no gh release edit was found -- check the matcher, not the workflows');
+
+    // `gh release edit` leaves the draft flag as it found it, and moving the tag by delete-then-push
+    // sets it, so an edit without --draft=false republishes nothing on a run that still goes green.
+    foreach ($edits as $command) {
+        expect($command)->toContain('--draft=false');
+    }
+});
+
 it('names a version that is not the frozen 0.1.0', function (): void {
     $manifest = json_decode(workflowString(file_get_contents(dirname(__DIR__) . '/package.json')), true);
     $manifest = is_array($manifest) ? $manifest : [];

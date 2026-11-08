@@ -93,8 +93,16 @@ jobs:
           # place; this is the hand-rolled equivalent. Both SBOMs need explicit
           # re-upload on the edit path: `gh release edit` takes no assets, and
           # the upload needs --clobber because the names are already present.
+          #
+          # --draft=false is load-bearing, not a restatement of the default. Deleting a tag reverts
+          # its release to a DRAFT, and moving v0.1.0 goes through a delete-then-push wherever
+          # `git push --force` is unavailable. `gh release edit` leaves the flag exactly as it finds
+          # it, so without this the run goes GREEN while republishing nothing: correct tag, invisible
+          # release. Measured here on 2026-11-07, and nothing else reports that state -- the tag
+          # resolves, composer installs, and verify-tag-currency.sh passes, because none of them
+          # reads the release.
           if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
-            gh release edit "$GITHUB_REF_NAME" --notes-file release-body.md
+            gh release edit "$GITHUB_REF_NAME" --draft=false --notes-file release-body.md
             gh release upload "$GITHUB_REF_NAME" \
               sbom.composer.cdx.json sbom.npm.cdx.json --clobber
           else
