@@ -14,6 +14,17 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   `NPM_TOKEN` secret without the OIDC exchange npm would try first, and reports a version a registry
   already has instead of failing. The release job runs on tag pushes only.
 
+### Fixed
+
+- **A moved tag no longer leaves its GitHub release unpublished.** Deleting a tag reverts its release
+  to a *draft*, and moving `v0.1.0` goes through a delete-then-push wherever `git push --force` is
+  unavailable. `gh release edit` leaves that flag exactly as it finds it, so the run that followed the
+  move went **green** having republished nothing: correct tag, invisible release. Nothing else reports
+  that state either — the tag resolves, `composer` installs, and `verify-tag-currency.sh` passes,
+  because none of them reads the release, so it was found only by reading it. Measured 2026-11-08,
+  after `v0.1.0`'s release had to be published by hand. The edit now passes `--draft=false`, and
+  `tests/ReleaseWorkflowTest.php` fails if any workflow's `gh release edit` drops it.
+
 ### Changed
 
 - **The npm package is never published from a tag push.** A published registry version is immutable,
