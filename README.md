@@ -34,9 +34,12 @@ npm install @laranail/validation-js
 ```
 
 `@laranail/validation-js` is published to GitHub Packages, not npm, while npm cannot take a publish
-from this repository ([npm/cli#9969](https://github.com/npm/cli/issues/9969)). GitHub Packages asks
-for a token even for a public package, so before `npm install` add a GitHub token with
-`read:packages` to the project's `.npmrc`:
+from this repository ([npm/cli#9969](https://github.com/npm/cli/issues/9969)). **It versions
+independently of the Composer package**, which is on a moving `v0.1.0` tag: a published registry
+version is immutable and cannot follow a tag that moves, so the npm package carries its own version
+and is released by hand. GitHub Packages currently holds `0.1.0`, published from that moving tag
+before the two were separated. GitHub Packages asks for a token even for a public package, so before
+`npm install` add a GitHub token with `read:packages` to the project's `.npmrc`:
 
 ```ini
 @laranail:registry=https://npm.pkg.github.com

@@ -73,7 +73,8 @@
         "pestphp/pest": "^3.0||^4.4.5",
         "pestphp/pest-plugin-laravel": "^3.0||^4.1",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^2.1"
+        "phpstan/phpstan": "^2.1",
+        "symfony/yaml": "^7.0 || ^8.0"
     },
     "suggest": {
         "laranail/validation": "^0.1 (PHP 8.5) \u2014 export straight from a RuleSet instead of a plain rules array."
