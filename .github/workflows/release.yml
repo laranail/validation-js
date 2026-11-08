@@ -98,7 +98,7 @@ jobs:
           # its release to a DRAFT, and moving v0.1.0 goes through a delete-then-push wherever
           # `git push --force` is unavailable. `gh release edit` leaves the flag exactly as it finds
           # it, so without this the run goes GREEN while republishing nothing: correct tag, invisible
-          # release. Measured here on 2026-11-07, and nothing else reports that state -- the tag
+          # release. Measured here on 2026-11-08, and nothing else reports that state -- the tag
           # resolves, composer installs, and verify-tag-currency.sh passes, because none of them
           # reads the release.
           if gh release view "$GITHUB_REF_NAME" > /dev/null 2>&1; then
